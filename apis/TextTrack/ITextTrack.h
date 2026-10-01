@@ -22,13 +22,13 @@
 #include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
 
-#define ITEXTTRACK_VERSION 4
+#define ITEXTTRACK_VERSION 6
 
 namespace WPEFramework {
 namespace Exchange {
 
 /*
-    This is the COM-RPC interface for managing Closed Captions styles.
+    This is the interface for managing Closed Captions styles.
 */
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
@@ -308,13 +308,13 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
 };
 
 /*
- * This is the COM-RPC interface for global TTML style overrides.
+ * This is the interface for global TTML style overrides.
  * Added in version 2
  */
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
     enum {
-	    ID = ID_TEXT_TRACK_TTML_STYLE
+        ID = ID_TEXT_TRACK_TTML_STYLE
     };
 
     /* @event */
@@ -350,15 +350,75 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 
     /**
      * @brief Gets the global TTML style overrides
-     * @param style will receive the style overrides
+     * @param style Will receive the style overrides
      * @text getTtmlStyleOverrides
      */
     virtual Core::hresult GetTtmlStyleOverrides(string& style /* @out */) const = 0;
-
 };
 
 /*
- * This is the COM-RPC interface for querying TextTrack capabilities.
+ * This is the interface for global WebVTT style overrides.
+ * Added in version 6
+ */
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL ITextTrackWebVTTStyle : virtual public Core::IUnknown {
+    enum {
+        ID = ID_TEXT_TRACK_WEBVTT_STYLE
+    };
+
+    /* @event */
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        enum {
+            ID = ID_TEXT_TRACK_WEBVTT_STYLE_NOTIFICATION
+        };
+
+        /**
+         * @brief The WebVTT Style override settings has changed.
+         * @text onWebVTTStyleOverridesChanged
+         */
+        virtual void OnWebVTTStyleOverridesChanged(const string &style) {};
+    };
+
+    /** Register notification interface.
+     * The callback will be called with the current settings.
+     */
+    virtual Core::hresult Register(INotification *notification) = 0;
+    /** Unregister notification interface */
+    virtual Core::hresult Unregister(const INotification *notification) = 0;
+
+    /**
+     * @brief Sets global WebVTT override style.
+     * @details The styles given here will be applied last to WebVTT sessions, meaning
+     * that they will override styles given in the content.
+     * The value will be persisted in the system.
+     * The style setting will take effect immediately in all running (WebVTT) sessions that have not applied a custom style.
+     * The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:100;fontSize:LARGE".
+     * Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored.
+     * A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. built-in styling.
+     * The colour keys fontColor and backgroundColor take an RGB value written as "#rrggbb"; opacity is not part of
+     * the colour, use the matching opacity key instead.
+     * The opacity keys fontOpacity and backgroundOpacity take a value between 0 and 100 (0 is fully transparent, 100 is fully opaque).
+     * The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL,
+     * CURSIVE or SMALL_CAPITAL.
+     * The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE.
+     * A key that is omitted is left unset and does not override lower priority styling.
+     * @param style Contains the chosen override for styles
+     * @text setWebVTTStyleOverrides
+     */
+    virtual Core::hresult SetWebVTTStyleOverrides(const string& style) = 0;
+
+    /**
+     * @brief Gets the global WebVTT style overrides
+     * @details Gets the global WebVTT style overrides. The string uses the same "key:value;key:value" format as setWebVTTStyleOverrides, and is
+     * returned in a normalised form: keys appear in a fixed order and values use their canonical spelling.
+     * @param style Will receive the style overrides
+     * @text getWebVTTStyleOverrides
+     */
+    virtual Core::hresult GetWebVTTStyleOverrides(string& style /* @out */) const = 0;
+};
+
+/*
+ * This is the interface for querying TextTrack capabilities.
  * The list of capabilities can be extended over time and future versions.
  * Added in version 4
  */
@@ -381,7 +441,7 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
     // @param hasCapability Indicates whether the queried capability is supported.
     // @retval Core::ERROR_NONE The capability query completed successfully.
     // @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported.
-    virtual Core::hresult GetCapability(Capability capability, bool &hasCapability /* @out */) const = 0;
+    virtual Core::hresult GetCapability(const Capability capability, bool &hasCapability /* @out */) const = 0;
 
     // @text getCapabilities
     // @brief Retrieves an iterator over all supported TextTrack capabilities.
@@ -392,9 +452,9 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
 };
 
 /*
-    This is the COM-RPC interface for handling TextTrack sessions.
+    This is the interface for handling TextTrack sessions.
 */
-/* @json 1.4.0 @text:keep */
+/* @json 1.5.0 @text:keep */
 struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     enum {
         ID = ID_TEXT_TRACK
@@ -407,13 +467,37 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
         WEBVTT = 3
     };
 
+    enum class SubtitleFormat : uint8_t {
+        NONE = 0,
+        TTML = 1,
+        CC = 2,
+        WEBVTT = 3,
+        TELETEXT = 4, // USES PES DATA
+        DVBSUB = 5,   // USES PES DATA
+        SCTE = 6      // USES PES DATA
+    };
+
+    // Structured information about a session, returned by GetSessions().
+    struct EXTERNAL SessionInfo {
+        uint32_t sessionId /* @brief The session ID */;
+        string whoAmI /* @brief An identifier for the caller that created the session. May be empty if created via OpenSession. */;
+        string displayHandle /* @brief The display handle of the session */;
+        SubtitleFormat format /* @brief The type of the session (CC, TTML, etc). Can be NONE if not yet set. */;
+        bool isPreview /* @brief Whether the session is a preview session or not */;
+        bool isMuted /* @brief Whether the session is currently muted or not */;
+        bool isPaused /* @brief Whether the session is currently paused or not */;
+        uint64_t dataCount /* @brief The number of data packets sent to this session, for debugging purposes. The count is the number of times SendSessionData() has been called. */;
+        string info /* @brief Opaque debug information about the session */;
+    };
+    using ISessionInfoIterator = RPC::IIteratorType<SessionInfo, ID_TEXT_TRACK_SESSION_INFO_ITERATOR>;
+
     // Sessions
     /**
      * @brief Opens a new renderSession.
      * @details If a session is already running on the supplied displayHandle, the sessionId for this session is
      * returned. If the session is instead newly opened, the session type is not set and display is muted. Use one
      * of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
-     * @param displayHandle is an encoding of the wayland display name
+     * @param displayHandle Is an encoding of the wayland display name
      * @param sessionId On success the returned session id ex: 1
      * @text openSession
      */
@@ -464,7 +548,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief Sends data of Closed Captions, Captions or Timed Text data to a render session.
      * @param sessionId Is the session
      * @param type Is the type of data
-     * @param displayOffsetMs Is currently unused
+     * @param displayOffsetMs Is added to a timestamp in the data to determine when to display it. The offset is in milliseconds and can be negative. Not all types support this.
      * @param data Is the data to display, properly formatted as per the expectations of the type used
      * @text sendSessionData
      */
@@ -482,9 +566,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief  Applies a custom ClosedCaptionsStyle on a single session.
      * @details When a custom style is applied on a specific session we will not update the style for this session if the global style setting change.
      * The style setting will take effect immediately.
+     * Available in JSON interface since version 6.
      * @param sessionId Is the session as returned in the ITextTrack interface.
      * @param style Contains the chosen styles
-     * @json:omit
      * @text applyCustomClosedCaptionsStyleToSession
      */
     virtual Core::hresult ApplyCustomClosedCaptionsStyleToSession(const uint32_t sessionId, const ITextTrackClosedCaptionsStyle::ClosedCaptionsStyle &style) = 0;
@@ -492,9 +576,10 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     /**
      * @brief Sets a static text in the display for preview purposes.
      * @details The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
+     * @param sessionId Is the session
      * @param text Is the text to display
-     * @returns Core::ERROR_OK if preview is shown
-     * @returns Core::ERROR_NOT_SUPPORTED if preview is not supported
+     * @retval Core::ERROR_NONE if preview is shown
+     * @retval Core::ERROR_NOT_SUPPORTED if preview is not supported
      * @text setPreviewText
      */
     virtual Core::hresult SetPreviewText(const uint32_t sessionId, const string &text) = 0;
@@ -553,6 +638,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @details When a custom styling override is applied on a specific TTML session, the styling carried on the data for the specified element is
      * overridden. For styling options, see https://www.w3.org/TR/2018/REC-ttml1-20181108/#styling-vocabulary-style
      * The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported)
+     * A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. device style overrides.
      * Styles not mentioned in the list will not be affected.
      * Added in version 2
      * @param sessionId Is the session as returned in the ITextTrack interface.
@@ -569,25 +655,164 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * cancelled by calling AssociateVideoDecoder() with an empty string for handle.
      * After associating the video decoder, further calls to SendSessionData will be ignored.
      * Added in version 3
-     * @param sessionId is the session
-     * @param handle is a textual representation of the video decoder handle
+     * @param sessionId Is the session
+     * @param handle Is a textual representation of the video decoder handle
      * @text associateVideoDecoder
-     * @returns ERROR_NOT_SUPPORTED if the function is not implemented
-     * @returns ERROR_GENERAL if the association failed (whether bad handle is used or lack of support on the platform).
-     * @returns ERROR_OK on success
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_GENERAL if the association failed (whether bad handle is used or lack of support on the platform).
+     * @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult AssociateVideoDecoder(const uint32_t sessionId, const string &handle) { return Core::ERROR_NOT_SUPPORTED; }
 
     // @brief Return the interface version implemented
     // @details This allows to query the running plugin for the version of the interface
     // it was compiled to support. This information can be helpful in determining whether
-    // a certain functionality can be expected to be present.
+    // a certain functionality can be expected to be present. You can expect all functions
+    // of the reported version to be implemented (from version 6).
     // Added in version 4
-    // @param version will receive the version number ex: 4
+    // @param version Will receive the version number ex: 4
     // @text getInterfaceVersion
     // @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-    // @retval Core::ERROR_OK on success
+    // @retval Core::ERROR_NONE on success
     virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Creates a new rendering session.
+     * @details The session is newly opened, the session type is not set and display is muted. Use one
+     * of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
+     * In contrast to OpenSession(), this function will not return an existing session if the displayHandle is
+     * already in use, but will always create a new session. This allows multiple sessions to be created for
+     * the same displayHandle, which can be useful for example for preview purposes.
+     * Added in version 5
+     * @text createSession
+     * @param displayHandle Is an encoding of the wayland display name
+     * @param whoAmI Identifier for the caller; must not be empty.
+     * @param sessionId On success the returned session id ex: 1
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_GENERAL if we were unable to create the session
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult CreateSession(const string &displayHandle, const string &whoAmI, uint32_t &sessionId /* @out */) { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Get a list of active sessions.
+     * Added in version 5
+     * @text getSessions
+     * @param sessions On success, will contain an iterator to the list of active sessions (see SessionInfo struct)
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult GetSessions(ISessionInfoIterator *&sessions /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Create a preview session for purposes of previewing style settings.
+     * @details Like CreateSession(), except: the preview session will be created as a CC type session and unmuted.
+     * There can only be one active preview session.
+     * Creating a preview session will cause all other sessions to be muted automatically until the preview session is closed.
+     * Use ApplyCustomClosedCaptionsStyleToSession() to preview style changes.
+     * Given a blank displayHandle, we will create a preview session on the standard display (from the configuration file).
+     * Use SetPreviewText() to set the text to display in the preview session.
+     * Use SetPreviewGeometry() to set the position of the preview session.
+     * Added in version 5
+     * @text createPreviewSession
+     * @param displayHandle Is an encoding of the wayland display name; may be empty
+     * @param whoAmI Identifier for the caller; must not be empty.
+     * @param sessionId On success the returned session id ex: 1
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_GENERAL if we were unable to create the session
+     * @retval Core::ERROR_GENERAL if a preview session is already running on the display
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult CreatePreviewSession(const string &displayHandle, const string &whoAmI, uint32_t &sessionId /* @out */) { return Core::ERROR_NOT_SUPPORTED; }
+
+    enum class Anchor : uint8_t {
+        CENTER = 0,
+        TOP = 1,
+        BOTTOM = 2,
+        LEFT = 3,
+        RIGHT = 4,
+        TOP_LEFT = 5,
+        TOP_RIGHT = 6,
+        BOTTOM_LEFT = 7,
+        BOTTOM_RIGHT = 8
+    };
+
+    /**
+     * @brief Set the position of the preview session.
+     * @details The positions are given as percentage of the subtitle drawing area, so 0.5 means centre and 0.0 means top or left, 1.0 is bottom or right.
+     * The anchor value indicates which point of the text the positions refer to, so for example if the anchor is TOP_LEFT, the text will be positioned
+     * in such a way that the top left of the text is at the given position. If the anchor is CENTER, the text will be centered on
+     * the given position. This allows for more flexible positioning of the preview text.
+     * The default geometry is centred on the display/drawing area (0.5, 0.5, Anchor::CENTER).
+     * Added in version 5
+     * @text setPreviewGeometry
+     * @param sessionId Is the session
+     * @param xPos Is the horizontal position (0..1) for the preview text
+     * @param yPos Is the vertical position (0..1) for the preview text
+     * @param anchor Indicates the anchor point of the preview text, i.e. which point of the text the positions refer to.
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_GENERAL if the geometry could not be set
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult SetPreviewGeometry(const uint32_t sessionId, const float xPos /* @restrict:0.0..1.0 */, const float yPos /* @restrict:0.0..1.0 */, const Anchor anchor) { return Core::ERROR_NOT_SUPPORTED; }
+
+    using ISubtitleFormatIterator = RPC::IIteratorType<SubtitleFormat, ID_TEXT_TRACK_SUBTITLE_FORMAT_ITERATOR>;
+
+    /**
+     * @brief Sets whether the global ClosedCaptionsStyle applies to a given session type.
+     * @details When set to true, the global ClosedCaptionsStyle will be converted and applied to all sessions of the given type. The conversion
+     * will be done according to the best effort conversion rules for the given type. When set to false, the global ClosedCaptionsStyle will not be applied.
+     * Added in version 5
+     * @text setClosedCaptionsStyleAppliesTo
+     * @param format The session type to configure
+     * @param applies If true, the global ClosedCaptionsStyle applies to sessions of this type
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_GENERAL if the session type is not supported
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult SetClosedCaptionsStyleAppliesTo(const SubtitleFormat format, const bool applies) { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Gets whether the global ClosedCaptionsStyle applies to a given session type.
+     * @details Added in version 5
+     * @text getClosedCaptionsStyleAppliesTo
+     * @param format The session type to query
+     * @param applies On success, true if the global ClosedCaptionsStyle applies to sessions of this type
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult GetClosedCaptionsStyleAppliesTo(const SubtitleFormat format, bool &applies /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Gets the list of session types for which the global ClosedCaptionsStyle applies.
+     * @details Added in version 5
+     * @text getClosedCaptionsStyleAppliesToList
+     * @param iterator On success, an iterator over the session types for which the global ClosedCaptionsStyle applies
+     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     * @retval Core::ERROR_NONE on success
+     */
+    virtual Core::hresult GetClosedCaptionsStyleAppliesToList(ISubtitleFormatIterator *&iterator /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Applies a custom WebVTT styling with overrides that is applied on all elements
+     * @details When a custom styling override is applied on a specific WebVTT session, the styling carried on the data for the specified element is
+     * overridden.
+     * The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:100;fontSize:LARGE".
+     * Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored.
+     * A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. device style overrides.
+     * The colour keys fontColor and backgroundColor take an RGB value written as "#rrggbb"; opacity is not part of
+     * the colour, use the matching opacity key instead.
+     * The opacity keys fontOpacity and backgroundOpacity take a value between 0 and 100 (0 is fully transparent, 100 is fully opaque).
+     * The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL,
+     * CURSIVE or SMALL_CAPITAL.
+     * The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE.
+     * Styles not mentioned in the list will not be affected.
+     * Added in version 6
+     * @param sessionId Is the session as returned in the ITextTrack interface.
+     * @param style Contains the list of styles to be overridden
+     * @text applyCustomWebVTTStyleOverridesToSession
+     */
+    virtual Core::hresult ApplyCustomWebVTTStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
 };
 
 } // namespace Exchange
