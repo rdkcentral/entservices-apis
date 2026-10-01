@@ -18,9 +18,9 @@ A TextTrack module for Thunder framework.
   - [ITextTrackTtmlStyle](#ITextTrackTtmlStyle)
     - [Methods](#ITextTrackTtmlStyle-Methods)
     - [Notifications](#ITextTrackTtmlStyle-Notifications)
-  - [ITextTrackWebVttStyle](#ITextTrackWebVttStyle)
-    - [Methods](#ITextTrackWebVttStyle-Methods)
-    - [Notifications](#ITextTrackWebVttStyle-Notifications)
+  - [ITextTrackWebVTTStyle](#ITextTrackWebVTTStyle)
+    - [Methods](#ITextTrackWebVTTStyle-Methods)
+    - [Notifications](#ITextTrackWebVTTStyle-Notifications)
   - [ITextTrackCapabilities](#ITextTrackCapabilities)
     - [Methods](#ITextTrackCapabilities-Methods)
   - [ITextTrack](#ITextTrack)
@@ -38,7 +38,7 @@ The `TextTrack` module provides the following interface(s):
 
 - ITextTrackClosedCaptionsStyle
 - ITextTrackTtmlStyle
-- ITextTrackWebVttStyle
+- ITextTrackWebVTTStyle
 - ITextTrackCapabilities
 - ITextTrack
 
@@ -1674,23 +1674,23 @@ The TTML Style override settings has changed.
 
 ---
 
-<a id="ITextTrackWebVttStyle"></a>
-## ITextTrackWebVttStyle Interface
+<a id="ITextTrackWebVTTStyle"></a>
+## ITextTrackWebVTTStyle Interface
 
-<a id="ITextTrackWebVttStyle-Methods"></a>
+<a id="ITextTrackWebVTTStyle-Methods"></a>
 ### Methods
 
-The following methods are provided by the ITextTrackWebVttStyle Interface:
+The following methods are provided by the ITextTrackWebVTTStyle Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getWebVttStyleOverrides](#getWebVttStyleOverrides) | Gets the global WebVTT style overrides |
-| [setWebVttStyleOverrides](#setWebVttStyleOverrides) | Sets global WebVTT override style. |
+| [getWebVTTStyleOverrides](#getWebVTTStyleOverrides) | Gets the global WebVTT style overrides |
+| [setWebVTTStyleOverrides](#setWebVTTStyleOverrides) | Sets global WebVTT override style. |
 
-<a id="getWebVttStyleOverrides"></a>
-## *getWebVttStyleOverrides*
+<a id="getWebVTTStyleOverrides"></a>
+## *getWebVTTStyleOverrides*
 
-Gets the global WebVTT style overrides. The string uses the same "key:value;key:value" format as setWebVttStyleOverrides, and is returned in a normalised form: keys appear in a fixed order and values use their canonical spelling.
+Gets the global WebVTT style overrides. The string uses the same "key:value;key:value" format as setWebVTTStyleOverrides, and is returned in a normalised form: keys appear in a fixed order and values use their canonical spelling.
 
 ### Events Triggered
 None
@@ -1711,7 +1711,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 43,
-    "method": "org.rdk.TextTrack.getWebVttStyleOverrides"
+    "method": "org.rdk.TextTrack.getWebVTTStyleOverrides"
 }
 ```
 
@@ -1719,7 +1719,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 43, "method": "org.rdk.TextTrack.getWebVttStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 43, "method": "org.rdk.TextTrack.getWebVTTStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1735,10 +1735,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 43, "
 }
 ```
 
-<a id="setWebVttStyleOverrides"></a>
-## *setWebVttStyleOverrides*
+<a id="setWebVTTStyleOverrides"></a>
+## *setWebVTTStyleOverrides*
 
-The styles given here will be applied last to WebVTT sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (WebVTT) sessions, which has not applied a custom style. The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:100;fontSize:LARGE". Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored. A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. built-in styling. The colour keys fontColor and backgroundColor take an RGB value written as "#rrggbb"; opacity is not part of the colour, use the matching opacity key instead. The opacity keys fontOpacity and backgroundOpacity take a value between 0 and 100 (0 is fully transparent, 100 is fully opaque). The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE or SMALL_CAPITAL. The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE. A key that is omitted is left unset and does not override lower priority styling.
+The styles given here will be applied last to WebVTT sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (WebVTT) sessions that have not applied a custom style. The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:100;fontSize:LARGE". Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored. A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. built-in styling. The colour keys fontColor and backgroundColor take an RGB value written as "#rrggbb"; opacity is not part of the colour, use the matching opacity key instead. The opacity keys fontOpacity and backgroundOpacity take a value between 0 and 100 (0 is fully transparent, 100 is fully opaque). The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE or SMALL_CAPITAL. The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE. A key that is omitted is left unset and does not override lower priority styling.
 
 ### Events Triggered
 None
@@ -1761,7 +1761,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 44,
-    "method": "org.rdk.TextTrack.setWebVttStyleOverrides",
+    "method": "org.rdk.TextTrack.setWebVTTStyleOverrides",
     "params": {
         "style": ""
     }
@@ -1772,7 +1772,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 44, "method": "org.rdk.TextTrack.setWebVttStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 44, "method": "org.rdk.TextTrack.setWebVTTStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1786,19 +1786,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 44, "
 }
 ```
 
-<a id="ITextTrackWebVttStyle-Notifications"></a>
+<a id="ITextTrackWebVTTStyle-Notifications"></a>
 ### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the ITextTrackWebVttStyle Interface:
+The following events are provided by the ITextTrackWebVTTStyle Interface:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onWebVttStyleOverridesChanged](#onWebVttStyleOverridesChanged) | The WebVTT Style override settings has changed. |
+| [onWebVTTStyleOverridesChanged](#onWebVTTStyleOverridesChanged) | The WebVTT Style override settings has changed. |
 
-<a id="onWebVttStyleOverridesChanged"></a>
-## *onWebVttStyleOverridesChanged*
+<a id="onWebVTTStyleOverridesChanged"></a>
+## *onWebVTTStyleOverridesChanged*
 
 The WebVTT Style override settings has changed.
 
@@ -1814,7 +1814,7 @@ The WebVTT Style override settings has changed.
 {
     "jsonrpc": "2.0",
     "id": 55,
-    "method": "org.rdk.TextTrack.onWebVttStyleOverridesChanged",
+    "method": "org.rdk.TextTrack.onWebVTTStyleOverridesChanged",
     "params": {
         "style": ""
     }
