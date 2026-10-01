@@ -191,6 +191,20 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
     // Provides keysystem-specific metadata
     virtual OCDM_RESULT Metadata(const std::string& keySystem, std::string& metadata /* @out */) const = 0;
 
+    // fairplay
+
+    virtual OCDM_RESULT CreateMovieSession(const string& keySystem, uint32_t version, const uint8_t* cert /* @in @length:certificateLength */, uint32_t certificateLength, const uint8_t* versionlist /* @in @length:versionListSize */, uint32_t versionListSize, uint8_t* movieIdOut /* @out @length:movieIdSize */, uint32_t movieIdSize) const = 0;
+    virtual OCDM_RESULT DestroyMovieSession(const string& keySystem, uint32_t version, uint64_t movieId) const = 0;
+    virtual OCDM_RESULT GenerateChallengeWithVersionList(const string& keySystem, uint32_t version, uint64_t movieId, const uint8_t* assetidData /* @in @length:assetidSize */, uint32_t assetidSize,  const uint8_t* versionlist /* @in @length:versionListSize */, uint32_t versionListSize,
+         const uint8_t* streamerChallengeData /* @in @length:streamerChallengeSize */, uint32_t streamerChallengeSize,
+         uint64_t cryptorId, uint8_t* licenseChallengeBuffer /* @out @length:licenseChallengeMaxSize */, uint32_t licenseChallengeMaxSize, uint8_t *licenseSize /* @out @length:license_bytes */, uint32_t license_bytes, uint8_t *session /* @out @length:session_bytes */, uint32_t session_bytes) const = 0;
+    virtual OCDM_RESULT DestroyServerExchange(const string& keySystem, uint32_t version, uint8_t* session /* @in @length:session_bytes */, uint32_t session_bytes) const = 0;
+    virtual OCDM_RESULT InitLibrary(const string& keySystem) const = 0;
+    virtual OCDM_RESULT ProcessLicense(const string& keySystem, uint32_t version, uint8_t* session /* @in @length:session_bytes */, uint32_t session_bytes, const uint8_t* licenseData /* @in @length:licenseDataSize */, uint32_t licenseDataSize, uint8_t *cryptoId /* @inout @length:cryptoId_bytes */, uint32_t cryptoId_bytes) const = 0;
+    virtual OCDM_RESULT DestroyCryptor(const string& keySystem, uint32_t version, uint64_t cryptoId) const = 0;
+
+
+
     // Provides keysystem-specific metricdata
     virtual OCDM_RESULT Metricdata(
         const std::string& keySystem,
