@@ -144,6 +144,8 @@ namespace Exchange {
 
         using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICESETTINGS_AUDIO_PROFILE_ITERATOR>;
 
+        using IDeviceSettingsAudioApplicationConfigIterator = RPC::IIteratorType<string, ID_DEVICESETTINGS_AUDIO_APPLICATION_CONFIG_ITERATOR>;
+
         struct VolumeLeveller {
             uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
             uint8_t level;      /* @text Value of volume leveller. 0 -10 */
@@ -451,6 +453,29 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param enabled: true (enabled) or false (disabled)
         virtual Core::hresult EnableAudioLEConfig(const int32_t handle , const bool enable ) = 0;
+
+        /** Set an application-specific audio configuration. */
+        // @text setApplicationAudioConfig
+        // @brief Enable or disable an application-specific audio configuration
+        // @param handle: Audio handle
+        // @param audioConfig: Configuration name
+        // @param enable: true to enable or false to disable
+        virtual Core::hresult SetApplicationAudioConfig(const int32_t handle, const string& audioConfig, const bool enable) = 0;
+
+        /** Get an application-specific audio configuration. */
+        // @text getApplicationAudioConfig
+        // @brief Get the state of an application-specific audio configuration
+        // @param handle: Audio handle
+        // @param audioConfig: Configuration name
+        // @param enabled: true when enabled or false when disabled
+        virtual Core::hresult GetApplicationAudioConfig(const int32_t handle, const string& audioConfig, bool& enabled /* @out */) = 0;
+
+        /** Get supported application-specific audio configurations. */
+        // @text getApplicationAudioConfigList
+        // @brief Get the supported application-specific audio configuration names
+        // @param handle: Audio handle
+        // @param configList: Supported configuration names
+        virtual Core::hresult GetApplicationAudioConfigList(const int32_t handle, IDeviceSettingsAudioApplicationConfigIterator*& configList /* @out */) const = 0;
 
         /** Set Audio Delay  */
         // @text setAudioDelay
