@@ -49,6 +49,7 @@ org.rdk.PowerManager interface methods:
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transaction id |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time |
+| [scheduleDeepSleepWakeup](#scheduleDeepSleepWakeup) | Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp |
 | [getOvertempGraceInterval](#getOvertempGraceInterval) | Returns the over-temperature grace interval value |
 | [getPowerState](#getPowerState) | Returns the current power state of the device |
 | [getThermalState](#getThermalState) | Returns temperature threshold values |
@@ -260,6 +261,62 @@ No Events
         "clientId": 1,
         "transactionId": 3,
         "delayPeriod": 5
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="scheduleDeepSleepWakeup"></a>
+## *scheduleDeepSleepWakeup*
+
+Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp. The device will transition to POWER_STATE_STANDBY (ActiveStandby) and the requestor info will be passed in the OnPowerModeChanged event.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.unixTime | integer | Unix timestamp (seconds since epoch) when device should wake up |
+| params.requestorId | string | Unique identifier of the client scheduling the wakeup (alphanumeric + underscore + hyphen) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 2 | ```ERROR_INVALID_PARAMETER``` | Invalid requestorId (contains whitespace or invalid characters) |
+| 1 | ```ERROR_GENERAL``` | General error |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.scheduleDeepSleepWakeup",
+    "params": {
+        "unixTime": 1725379200,
+        "requestorId": "my_app_123"
     }
 }
 ```
