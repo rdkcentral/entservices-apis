@@ -66,7 +66,7 @@ The following methods are provided by the IAppManager Interface:
 | [isInstalled](#isInstalled) | check whether the Application is installed or not |
 | [killApp](#killApp) | killApp will terminate forcefully |
 | [launchApp](#launchApp) | Launch an Application and app will be in ACTIVE state. |
-| [preloadApp](#preloadApp) | Asynchronously preloads an Application; the call returns immediately once the request is accepted and does not wait for the app to reach the RUNNING state (hidden). Completion is reported via the onAppLifecycleStateChanged event. |
+| [preloadApp](#preloadApp) | Asynchronously preloads an Application into the PAUSED state (hidden); completion is reported via onAppLifecycleStateChanged. |
 | [sendIntent](#sendIntent) | Sends an intent to a loaded app. |
 | [setAppProperty](#setAppProperty) | Sets a property for a given app |
 | [startSystemApp](#startSystemApp) | Start the System Application |
@@ -604,7 +604,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="preloadApp"></a>
 ## *preloadApp*
 
-Asynchronously preloads an Application; the call returns immediately once the request is accepted and does not wait for the app to reach the RUNNING state (hidden). Completion is reported via the onAppLifecycleStateChanged event.
+Asynchronously preloads an Application into the PAUSED state (hidden); completion is reported via onAppLifecycleStateChanged.
 
 ### Events Triggered
 None
