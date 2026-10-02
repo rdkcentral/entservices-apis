@@ -24,41 +24,6 @@
 namespace WPEFramework {
 namespace Exchange {
 
-#ifndef RUNTIME_CONFIG
-struct RuntimeConfig
-{
-    bool dial{false};
-    bool wanLanAccess{false};
-    bool thunder{false};
-    int32_t systemMemoryLimit{0};
-    int32_t gpuMemoryLimit{0};
-    std::string envVariables{};
-    uint32_t userId{0};
-    uint32_t groupId{0};
-    uint32_t dataImageSize{0};
-
-    bool resourceManagerClientEnabled{false};
-    std::string dialId;
-    std::string command;
-    std::string appType;
-    std::string appPath;
-    std::string runtimePath;
-
-    std::string logFilePath;
-    uint32_t logFileMaxSize{0};
-    std::string logLevels /* @text logLevels */ /* @brief JSON array of strings representing enabled log levels */;
-    bool mapi {false};
-    std::string fkpsFiles /* @text fkpsFiles */ /* @brief JSON array of strings identifying FKPS files */;
-    std::string capabilities /* @text capabilities */ /* @brief Comma-separated lowercase runtime capability tokens */;
-    std::string ralfPkgPath /* @text ralfPkgPath */ /* @brief Filesystem path containing metadata information for RALF packages */;
-
-    std::string fireboltVersion;
-    bool enableDebugger{false};
-    std::string unpackedPath;
-};
-#define RUNTIME_CONFIG
-#endif
-
 // @stubgen:include <com/IIteratorType.h>
 
 // @json 1.0.0 @text:keep

@@ -2,7 +2,7 @@
 <a id="AppPackageManager_Module"></a>
 # AppPackageManager Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
+**Version: [2.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
 
 A AppPackageManager module for Thunder framework.
 
@@ -93,7 +93,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.AppPackageManager.cancel",
     "params": {
@@ -106,7 +106,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AppPackageManager.cancel", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.AppPackageManager.cancel", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -114,7 +114,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -144,7 +144,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.AppPackageManager.delete",
     "params": {
@@ -157,7 +157,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AppPackageManager.delete", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.AppPackageManager.delete", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -165,7 +165,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
@@ -200,7 +200,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.AppPackageManager.download",
     "params": {
@@ -218,7 +218,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AppPackageManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.AppPackageManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -226,7 +226,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "downloadId": ""
@@ -257,7 +257,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.AppPackageManager.getStorageInformation"
 }
@@ -267,7 +267,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.AppPackageManager.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.AppPackageManager.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -275,7 +275,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "quotaKb": 0,
@@ -308,7 +308,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.AppPackageManager.pause",
     "params": {
@@ -321,7 +321,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.AppPackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.AppPackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -329,7 +329,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": null
 }
@@ -360,7 +360,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.AppPackageManager.progress",
     "params": {
@@ -373,7 +373,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AppPackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.AppPackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -381,7 +381,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "progress": 0
@@ -414,7 +414,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.AppPackageManager.rateLimit",
     "params": {
@@ -428,7 +428,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AppPackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.AppPackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -436,7 +436,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": null
 }
@@ -466,7 +466,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.AppPackageManager.resume",
     "params": {
@@ -479,7 +479,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AppPackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.AppPackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -487,7 +487,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": null
 }
@@ -505,8 +505,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [config](#config) | Config |
-| [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
+| [config](#config) | Return the package runtime configuration as an opaque serialized JSON string |
+| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque serialized JSON runtime configuration |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -515,7 +515,7 @@ The following methods are provided by the IPackageInstaller Interface:
 <a id="config"></a>
 ## *config*
 
-Config
+Return the package runtime configuration as an opaque serialized JSON string
 
 ### Events Triggered
 None
@@ -529,32 +529,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.configMetadata | object | Config Metadata |
-| result.configMetadata.dial | bool |  |
-| result.configMetadata.wanLanAccess | bool |  |
-| result.configMetadata.thunder | bool |  |
-| result.configMetadata.systemMemoryLimit | integer |  |
-| result.configMetadata.gpuMemoryLimit | integer |  |
-| result.configMetadata.envVariables | string |  |
-| result.configMetadata.userId | integer |  |
-| result.configMetadata.groupId | integer |  |
-| result.configMetadata.dataImageSize | integer |  |
-| result.configMetadata.resourceManagerClientEnabled | bool |  |
-| result.configMetadata.dialId | string |  |
-| result.configMetadata.command | string |  |
-| result.configMetadata.appType | string |  |
-| result.configMetadata.appPath | string |  |
-| result.configMetadata.runtimePath | string |  |
-| result.configMetadata.logFilePath | string |  |
-| result.configMetadata.logFileMaxSize | integer |  |
-| result.configMetadata.logLevels | string | json array of strings |
-| result.configMetadata.mapi | bool |  |
-| result.configMetadata.fkpsFiles | string | json array of strings |
-| result.configMetadata.capabilities | string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
-| result.configMetadata.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
-| result.configMetadata.fireboltVersion | string |  |
-| result.configMetadata.enableDebugger | bool |  |
-| result.configMetadata.unpackedPath | string |  |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -563,7 +538,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.AppPackageManager.config",
     "params": {
@@ -577,7 +552,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -585,34 +560,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "dial": true,
-        "wanLanAccess": true,
-        "thunder": true,
-        "systemMemoryLimit": 0,
-        "gpuMemoryLimit": 0,
-        "envVariables": "",
-        "userId": 0,
-        "groupId": 0,
-        "dataImageSize": 0,
-        "resourceManagerClientEnabled": true,
-        "dialId": "",
-        "command": "",
-        "appType": "",
-        "appPath": "",
-        "runtimePath": "",
-        "logFilePath": "",
-        "logFileMaxSize": 0,
-        "logLevels": "",
-        "mapi": true,
-        "fkpsFiles": "",
-        "capabilities": "",
-        "ralfPkgPath": "",
-        "fireboltVersion": "",
-        "enableDebugger": true,
-        "unpackedPath": ""
+        "runtimeConfigPayload": ""
     }
 }
 ```
@@ -620,7 +571,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
-getConfigForPackage
+Return package metadata and its opaque serialized JSON runtime configuration
 
 ### Events Triggered
 None
@@ -635,32 +586,7 @@ None
 | result | object |  |
 | result.id | string | package id |
 | result.version | string | version of package |
-| result.config | object | metadata of package |
-| result.config.dial | bool |  |
-| result.config.wanLanAccess | bool |  |
-| result.config.thunder | bool |  |
-| result.config.systemMemoryLimit | integer |  |
-| result.config.gpuMemoryLimit | integer |  |
-| result.config.envVariables | string |  |
-| result.config.userId | integer |  |
-| result.config.groupId | integer |  |
-| result.config.dataImageSize | integer |  |
-| result.config.resourceManagerClientEnabled | bool |  |
-| result.config.dialId | string |  |
-| result.config.command | string |  |
-| result.config.appType | string |  |
-| result.config.appPath | string |  |
-| result.config.runtimePath | string |  |
-| result.config.logFilePath | string |  |
-| result.config.logFileMaxSize | integer |  |
-| result.config.logLevels | string | json array of strings |
-| result.config.mapi | bool |  |
-| result.config.fkpsFiles | string | json array of strings |
-| result.config.capabilities | string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
-| result.config.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
-| result.config.fireboltVersion | string |  |
-| result.config.enableDebugger | bool |  |
-| result.config.unpackedPath | string |  |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
 
 ### Examples
 
@@ -669,7 +595,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.AppPackageManager.getConfigForPackage",
     "params": {
@@ -682,7 +608,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AppPackageManager.getConfigForPackage", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.AppPackageManager.getConfigForPackage", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -690,38 +616,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
         "id": "",
         "version": "",
-        "config": {
-            "dial": true,
-            "wanLanAccess": true,
-            "thunder": true,
-            "systemMemoryLimit": 0,
-            "gpuMemoryLimit": 0,
-            "envVariables": "",
-            "userId": 0,
-            "groupId": 0,
-            "dataImageSize": 0,
-            "resourceManagerClientEnabled": true,
-            "dialId": "",
-            "command": "",
-            "appType": "",
-            "appPath": "",
-            "runtimePath": "",
-            "logFilePath": "",
-            "logFileMaxSize": 0,
-            "logLevels": "",
-            "mapi": true,
-            "fkpsFiles": "",
-            "capabilities": "",
-            "ralfPkgPath": "",
-            "fireboltVersion": "",
-            "enableDebugger": true,
-            "unpackedPath": ""
-        }
+        "runtimeConfigPayload": ""
     }
 }
 ```
@@ -756,7 +656,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.AppPackageManager.install",
     "params": {
@@ -777,7 +677,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -785,7 +685,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "failReason": "NONE"
@@ -821,7 +721,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.AppPackageManager.listPackages"
 }
@@ -831,7 +731,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AppPackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.AppPackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -839,7 +739,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": [
         {
@@ -880,7 +780,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.AppPackageManager.packageState",
     "params": {
@@ -894,7 +794,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -902,7 +802,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "state": "INSTALLING"
@@ -935,7 +835,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.AppPackageManager.uninstall",
     "params": {
@@ -948,7 +848,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AppPackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.AppPackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -956,7 +856,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": {
         "errorReason": ""
@@ -1005,7 +905,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage",
     "params": {
@@ -1019,7 +919,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1027,7 +927,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "config": ""
@@ -1060,7 +960,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.AppPackageManager.getConfigListForInstalledPackages",
     "params": {
@@ -1073,7 +973,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppPackageManager.getConfigListForInstalledPackages", "params": {"filter": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppPackageManager.getConfigListForInstalledPackages", "params": {"filter": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1081,7 +981,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "config": ""

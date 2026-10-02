@@ -24,42 +24,6 @@
 namespace WPEFramework {
 namespace Exchange {
 
-#ifndef RUNTIME_CONFIG
-struct RuntimeConfig {
-    bool dial;
-    bool wanLanAccess;
-    bool thunder;
-    int32_t systemMemoryLimit;
-    int32_t gpuMemoryLimit;
-    std::string envVariables;
-    uint32_t userId;
-    uint32_t groupId;
-    uint32_t dataImageSize;
-
-    bool resourceManagerClientEnabled;
-    std::string dialId;
-    std::string command;
-    std::string appType;
-    std::string appPath;
-    std::string runtimePath;
-
-    std::string logFilePath;
-    uint32_t logFileMaxSize;
-    std::string logLevels;          //json array of strings
-    bool mapi;
-    std::string fkpsFiles;          //json array of strings
-    std::string capabilities /* @text capabilities */
-                             /* @brief Comma-separated lowercase runtime capability tokens */;
-    std::string ralfPkgPath /* @text ralfPkgPath */
-                            /* @brief Filesystem path holding metadata information for RALF packages */;
-
-    std::string fireboltVersion;
-    bool enableDebugger;
-    string unpackedPath;
-};
-#define RUNTIME_CONFIG
-#endif
-
 // @text:keep
 struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
 
@@ -109,7 +73,8 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @json:omit
     // @text spawnApp
     // @brief Perform launching of application with window and runtime manager
-    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const RuntimeConfig& runtimeConfigObject , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    // @param runtimeConfigPayload Opaque string containing a serialized mutable JSON object; unknown properties must be preserved when enriched
+    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const string& runtimeConfigPayload /* @opaque */ , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
     // @json:omit
