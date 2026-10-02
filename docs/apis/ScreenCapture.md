@@ -55,13 +55,14 @@ The following methods are provided by the IScreenCapture Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL |
-| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
+| [putScreenshot](#putScreenshot) | Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter |
+| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it by HTTP POST request to the specified URL |
 
-<a id="sendScreenshot"></a>
-## *sendScreenshot*
+<a id="putScreenshot"></a>
+## *putScreenshot*
 
-Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
+Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
 
 ### Events Triggered
 None
@@ -74,7 +75,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Output structure containing the immediate execution status of the capture request |
+| result.success */; | bool | Output structure containing the immediate execution status of the capture request |
 
 ### Examples
 
@@ -83,8 +84,62 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
+    "method": "org.rdk.ScreenCapture.putScreenshot",
+    "params": {
+        "callGUID": "123e4567-e89b-12d3-a456-426614174000"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ScreenCapture.putScreenshot", "params": {"callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a id="sendScreenshot"></a>
+## *sendScreenshot*
+
+Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callGUID | string | A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success */; | bool | Output structure containing the immediate execution status of the capture request |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
     "method": "org.rdk.ScreenCapture.sendScreenshot",
     "params": {
         "callGUID": "123e4567-e89b-12d3-a456-426614174000"
@@ -96,7 +151,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -104,8 +159,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
+    "jsonrpc": "2.0",
+    "id": 1,
     "result": {
         "success": true
     }
@@ -115,7 +170,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="uploadScreenCapture"></a>
 ## *uploadScreenCapture*
 
-Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
+Takes a screenshot and uploads it by HTTP POST request to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
 
 ### Events Triggered
 None
@@ -129,7 +184,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Output structure containing the immediate execution status of the upload request |
+| result.success */; | bool | Output structure containing the immediate execution status of the upload request |
 
 ### Examples
 
@@ -138,8 +193,8 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
+    "jsonrpc": "2.0",
+    "id": 2,
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
         "url": "https://example.com/upload",
@@ -152,7 +207,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "https://example.com/upload", "callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "https://example.com/upload", "callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -160,8 +215,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
+    "jsonrpc": "2.0",
+    "id": 2,
     "result": {
         "success": true
     }
@@ -196,8 +251,8 @@ Provides the status, message, and call GUID associated with the completed upload
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
+    "jsonrpc": "2.0",
+    "id": 3,
     "method": "org.rdk.ScreenCapture.uploadComplete",
     "params": {
         "status": true,

@@ -56,8 +56,8 @@ namespace WPEFramework
 
             /**********************uploadScreenCapture() - start*******************************/
             // @text uploadScreenCapture
-            // @brief Takes a screenshot and uploads it to the specified URL
-            // @details Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
+            // @brief Takes a screenshot and uploads it by HTTP POST request to the specified URL
+            // @details Takes a screenshot and uploads it by HTTP POST request to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
             // @param url: Destination URL for the upload.
             // @example url: "https://example.com/upload"
             // @param callGUID: The unique identifier of the call associated with the upload.
@@ -70,8 +70,8 @@ namespace WPEFramework
 
             /**********************sendScreenshot() - start*******************************/
             // @text sendScreenshot
-            // @brief Takes a screenshot and uploads it to the specified URL
-            // @details Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
+            // @brief Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter
+            // @details Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
             // @param callGUID: A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
             // @example callGUID: "123e4567-e89b-12d3-a456-426614174000"
             // @param result: Output structure containing the immediate execution status of the capture request
@@ -79,6 +79,19 @@ namespace WPEFramework
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************sendScreenshot() - end*********************************/
+
+            /**********************putScreenshot() - start*******************************/
+            // @text putScreenshot
+            // @brief Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter
+            // @details Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
+            // @param callGUID: A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
+            // @example callGUID: "123e4567-e89b-12d3-a456-426614174000"
+            // @param result: Output structure containing the immediate execution status of the capture request
+            // @example result: { "success": true }
+            // @retval Core::ERROR_NONE: Indicates success
+            virtual Core::hresult PutScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
+            /**********************putScreenshot() - end*********************************/
+
         };
     } // namespace Exchange
 } // namespace WPEFramework
