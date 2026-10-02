@@ -63,7 +63,7 @@ The following methods are provided by the IAmazon Interface:
 <a id="factoryResetRequest"></a>
 ## *factoryResetRequest*
 
-Factory reset amazon prime app data
+Removes the stored application data and restores Amazon Prime to its factory state.
 
 ### Events Triggered
 None
@@ -81,7 +81,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.AmazonPrime.factoryResetRequest"
 }
@@ -91,7 +91,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AmazonPrime.factoryResetRequest"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AmazonPrime.factoryResetRequest"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -99,7 +99,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="personalInfoRequest"></a>
 ## *personalInfoRequest*
 
-Request for personal access token to amazon prime app
+Requests the Amazon Prime application to provide the user's personal access token.
 
 ### Events Triggered
 None
@@ -126,7 +126,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.AmazonPrime.personalInfoRequest"
 }
@@ -136,7 +136,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AmazonPrime.personalInfoRequest"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AmazonPrime.personalInfoRequest"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -144,7 +144,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
 }
@@ -153,7 +153,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="setDeepLink"></a>
 ## *setDeepLink*
 
-Set the deeplink command for amazon prime
+The command is forwarded to the Amazon Prime application when it is launched or active.
 
 ### Events Triggered
 None
@@ -174,11 +174,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.AmazonPrime.setDeepLink",
     "params": {
-        "command": ""
+        "command": "USER_REQUEST"
     }
 }
 ```
@@ -187,7 +187,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AmazonPrime.setDeepLink", "params": {"command": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.AmazonPrime.setDeepLink", "params": {"command": "USER_REQUEST"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -195,7 +195,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -204,7 +204,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setLaunchReason"></a>
 ## *setLaunchReason*
 
-Set launch reason for amazon prime app
+Sets the reason for launching the Amazon Prime application.
 
 ### Events Triggered
 None
@@ -225,11 +225,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.AmazonPrime.setLaunchReason",
     "params": {
-        "command": ""
+        "command": "USER_REQUEST"
     }
 }
 ```
@@ -238,7 +238,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AmazonPrime.setLaunchReason", "params": {"command": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.AmazonPrime.setLaunchReason", "params": {"command": "USER_REQUEST"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -246,7 +246,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
@@ -266,7 +266,7 @@ The following events are provided by the IAmazon Interface:
 <a id="StateChange"></a>
 ## *StateChange*
 
-Triggered whenever the App state changes
+The notification is sent when the Amazon Prime application changes playback state.
 
 ### Parameters
 | Name | Type | Description |
@@ -278,7 +278,7 @@ Triggered whenever the App state changes
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.AmazonPrime.StateChange",
     "params": {
