@@ -2370,7 +2370,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.path | string | Path to the pre-downloaded splash screen file location. Full path with file name |
+| params.path | string | Path to the pre-downloaded splash screen file location. Full path with file name. The path is canonicalized to an absolute path and must exist as a regular file (not a directory or symlink) located under one of these approved directories: /opt/, /tmp/, or /media/. Paths are validated before being forwarded to the platform operation |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2430,6 +2430,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
     "error": {
         "code": 1,
         "message": "Indicates failure"
+    }
+}
+```
+
+
+#### Error Response (Invalid path)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 32,
+    "error": {
+        "code": -32001,
+        "message": "Invalid path"
     }
 }
 ```
