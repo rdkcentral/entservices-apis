@@ -80,11 +80,11 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
         // @brief Notifies state change of container
         // @text onContainerStateChanged
-        // @details This event is triggered when the state of the container changes.
-        // @param containerId: Identifier of the container whose state changed
-        // @example containerId: "container123"
-        // @param state: New state of the container
-        // @example state: running
+    // @details This event is triggered when the state of the container changes.
+    // @param containerId: Identifier of the container whose state changed
+    // @example containerId: "container123"
+    // @param state: New state of the container
+    // @example state: RUNNING
         virtual void OnContainerStateChanged(const string& containerId, ContainerState state) {}
         // Possible state values {Starting, running, suspended, hibernating, hibernated, waking, terminating, terminated}
     };
