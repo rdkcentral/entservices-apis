@@ -112,7 +112,15 @@ namespace WPEFramework
             // @param rebootRequestor: Reboot requested by
             virtual void OnRebootBegin(const string &rebootReasonCustom, const string &rebootReasonOther, const string &rebootRequestor) {};
         };
+        // @brief Register for reboot notifications.
+        // @param notification: Subscriber callback.
+        // @retval ErrorCode::ERROR_NONE: Callback registered.
+        // @retval ErrorCode::ERROR_GENERAL: Callback already registered.
         virtual Core::hresult Register(Exchange::IPowerManager::IRebootNotification* notification ) = 0;
+        // @brief Unregister a reboot-notification callback.
+        // @param notification: Previously registered callback.
+        // @retval ErrorCode::ERROR_NONE: Callback removed.
+        // @retval ErrorCode::ERROR_GENERAL: Callback not registered.
         virtual Core::hresult Unregister(const Exchange::IPowerManager::IRebootNotification* notification ) = 0;
 
         // @event
@@ -380,7 +388,12 @@ namespace WPEFramework
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
-        virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
+        // JSON-RPC uses IPowerManagerRenegotiation; keep this legacy COM slot unchanged.
+        // @json:omit
+        // @retval ErrorCode::ERROR_NONE: Delay accepted.
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid client or transaction, no active round, or retry pending.
+        // @retval ErrorCode::ERROR_UNAVAILABLE: The implementation is shutting down.
+        virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId, const int transactionId, const int delayPeriod) = 0;
 
         /** Get the Wakeup Time in seconds */
         // @text getTimeSinceWakeup
