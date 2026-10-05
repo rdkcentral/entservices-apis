@@ -144,7 +144,7 @@ namespace Exchange {
 
         using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICESETTINGS_AUDIO_PROFILE_ITERATOR>;
 
-        using IDeviceSettingsAudioApplicationConfigIterator = RPC::IIteratorType<string, ID_DEVICESETTINGS_AUDIO_APPLICATION_CONFIG_ITERATOR>;
+	using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct VolumeLeveller {
             uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
@@ -475,7 +475,7 @@ namespace Exchange {
         // @brief Get the supported application-specific audio configuration names
         // @param handle: Audio handle
         // @param configList: Supported configuration names
-        virtual Core::hresult GetApplicationAudioConfigList(const int32_t handle, IDeviceSettingsAudioApplicationConfigIterator*& configList /* @out */) const = 0;
+        virtual Core::hresult GetApplicationAudioConfigList(const int32_t handle, IStringIterator*& configList /* @out */) const = 0;
 
         /** Set Audio Delay  */
         // @text setAudioDelay
