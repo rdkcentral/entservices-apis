@@ -140,7 +140,7 @@ None
     "method": "org.rdk.LifecycleManager.closeApp",
     "params": {
         "appId": "com.example.myapp",
-        "closeReason": "USER_REQUEST"
+        "closeReason": "USER_EXIT"
     }
 }
 ```
@@ -149,7 +149,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.LifecycleManager.closeApp", "params": {"appId": "com.example.myapp", "closeReason": "USER_REQUEST"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.LifecycleManager.closeApp", "params": {"appId": "com.example.myapp", "closeReason": "USER_EXIT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
