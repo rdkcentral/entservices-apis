@@ -21,6 +21,22 @@ import json
 import re
 import os
 
+from header_file_parser import extract_inline_example_clause
+
+def strip_inline_example(description):
+    """
+    Removes an inline 'e.g. ...'/'ex: ...' example clause (quoted string, balanced
+    JSON object/array, or plain scalar) from a description, so it isn't duplicated
+    in the rendered table cell alongside the generated example JSON.
+    """
+    if not description:
+        return description
+    clause = extract_inline_example_clause(description)
+    if not clause:
+        return description
+    start, end, _ = clause
+    return description[:start] + description[end:]
+
 # Templates
 HEADER_TOC_TEMPLATE = """<!-- Generated automatically, DO NOT EDIT! -->
 <a id="{classname}_Module"></a>
@@ -382,9 +398,25 @@ def generate_parameters_section(params, symbol_registry):
     if params:
         markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
         markdown += f"| params | object |  |\n"
-        for param in params:
+        # Single-member struct params (e.g. a struct wrapping just one "enable" field)
+        # are normally flattened straight to their member's name, dropping the param's
+        # own name. That's fine for a single occurrence, but when two or more sibling
+        # params in this method share that same struct shape, they'd otherwise collide
+        # into identical rows (e.g. "ptt" and "ff" both rendering as "params.enable").
+        # Detect that collision and restore each param's own name as a prefix.
+        first_keys = [next(iter(symbol_registry[f"{p['name']}-{p['type']}"]['flattened_description'])) for p in params]
+        first_key_counts = {}
+        for k in first_keys:
+            first_key_counts[k] = first_key_counts.get(k, 0) + 1
+        for param, first_key in zip(params, first_keys):
             param_key = f"{param['name']}-{param['type']}"
             flattened_params = dict(symbol_registry[param_key]['flattened_description'])
+            expected_root_key = f".{param['name']}"
+            if first_key_counts[first_key] > 1 and first_key != expected_root_key:
+                rekeyed = {expected_root_key: {'type': 'object', 'description': ''}}
+                for member_key, member_data in flattened_params.items():
+                    rekeyed[f"{expected_root_key}{member_key}"] = member_data
+                flattened_params = rekeyed
             if param['description']:
                 first_key = next(iter(flattened_params))
                 merged_description = _merge_description_with_generated(
@@ -392,11 +424,12 @@ def generate_parameters_section(params, symbol_registry):
                     flattened_params[first_key].get('description', '')
                 )
                 flattened_params[first_key] = {**flattened_params[first_key], 'description': merged_description}
-            for param_name, param_data in flattened_params.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+            for is_root, (param_name, param_data) in ((i == 0, item) for i, item in enumerate(flattened_params.items())):
+                cleaned_description = strip_inline_example(param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
-                optionality = f"<sup>({param['optionality']})</sup>" if param['optionality'] == 'optional' else ''
+                is_optional = (param['optionality'] == 'optional') if is_root else param_data.get('optional', False)
+                optionality = '<sup>(optional)</sup>' if is_optional else ''
                 markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method takes no parameters.\n"
@@ -427,11 +460,12 @@ def generate_results_section(results, symbol_registry):
                     flattened_results[first_key].get('description', '')
                 )
                 flattened_results[first_key] = {**flattened_results[first_key], 'description': merged_description}
-            for result_name, result_data in flattened_results.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+            for is_root, (result_name, result_data) in ((i == 0, item) for i, item in enumerate(flattened_results.items())):
+                cleaned_description = strip_inline_example(result_data['description'])
                 if result['custom_name']:
                     result_name = result_name.replace(result['name'], result['custom_name'])
-                optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
+                is_optional = (result['optionality'] == 'optional') if is_root else result_data.get('optional', False)
+                optionality = '<sup>(optional)</sup>' if is_optional else ''
                 markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
@@ -580,7 +614,7 @@ def generate_values_section(values, symbol_registry):
                 )
                 flattened_values[first_key] = {**flattened_values[first_key], 'description': merged_description}
             for value_name, value_data in flattened_values.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
+                cleaned_description = strip_inline_example(value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This property has no values.\n"
@@ -645,22 +679,14 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
 
 def _convert_json_types(obj):
     """
-    Recursively convert string numbers and 'true'/'false' strings to int/float/bool in a dict or list.
+    Recursively walks a dict/list example tree. Type coercion (string -> int/float/bool) now
+    happens at the source in header_file_parser.py, where the symbol's declared JSON type is
+    known; this function no longer guesses from string content, since a string that merely looks
+    numeric (e.g. an IR code "1156") is not necessarily meant to become a JSON number.
     """
     if isinstance(obj, dict):
         return {k: _convert_json_types(v) for k, v in obj.items()}
     elif isinstance(obj, list):
         return [_convert_json_types(i) for i in obj]
-    elif isinstance(obj, str):
-        if obj.lower() == 'true':
-            return True
-        if obj.lower() == 'false':
-            return False
-        try:
-            if '.' in obj:
-                return float(obj)
-            return int(obj)
-        except ValueError:
-            return obj
     else:
         return obj
