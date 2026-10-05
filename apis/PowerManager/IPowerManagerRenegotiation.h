@@ -16,7 +16,7 @@ namespace Exchange {
         // @param clientId: Identifier returned by AddPowerModePreChangeClient.
         // @param transactionId: Transaction identifier received in OnPowerModePreChange.
         // @param delayPeriod: Delay in seconds.
-        // @param renegotiateAfterwards: Optional, defaults to false. Set true to restart negotiation after the delay; false preserves the legacy delay behavior.
+        // @param renegotiateAfterwards(optional): Defaults to false. Set true to restart negotiation after the delay; false preserves the legacy delay behavior.
         // @retval ErrorCode::ERROR_NONE: Delay accepted.
         // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid client or transaction, no active round, retry pending, or negative renegotiation delay.
         // @retval ErrorCode::ERROR_ILLEGAL_STATE: The negotiation round has already completed.

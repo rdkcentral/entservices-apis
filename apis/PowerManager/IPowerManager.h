@@ -118,7 +118,6 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_GENERAL: Callback already registered.
         virtual Core::hresult Register(Exchange::IPowerManager::IRebootNotification* notification ) = 0;
         // @brief Unregister a reboot-notification callback.
-        // @details Only detaching the creating wrapper's lifecycle-owner callback also drains negotiation work.
         // @param notification: Previously registered callback.
         // @retval ErrorCode::ERROR_NONE: Callback removed.
         // @retval ErrorCode::ERROR_GENERAL: Callback not registered.
