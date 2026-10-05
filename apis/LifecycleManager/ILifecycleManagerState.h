@@ -96,7 +96,7 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
     // @param appId: App identifier for the application.
     // @example appId: "com.example.myapp"
     // @param closeReason: Closed reason for application
-    // @example closeReason: USER_REQUEST
+    // @example closeReason: USER_EXIT
     // @retval Core::ERROR_NONE: The close request was accepted successfully.
     virtual Core::hresult CloseApp(const string& appId , const AppCloseReason closeReason ) = 0;
 
