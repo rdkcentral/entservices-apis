@@ -62,8 +62,20 @@ struct EXTERNAL INetflixSecurity : public Core::IUnknown
     // @retval Core::ERROR_UNAVAILABLE: Wrapping key is unavailable
     virtual Core::hresult GetWrappingKey(uint32_t& wrappingKeyId /* @out */) const = 0;
 
+    // @brief Derive encryption keys based on an authenticated Diffie-Hellman procedure.
+    // @details This API derives encryption, HMAC, and wrapping keys using the specified Diffie-Hellman key IDs.
+    // @param privateDhKeyId The ID of the private Diffie-Hellman key.
+    // @example privateDhKeyId: 1
+    // @param peerPublicDhKeyId The ID of the peer's public Diffie-Hellman key.
+    // @example peerPublicDhKeyId: 1
+    // @param derivationKeyId The ID of the derivation key.
+    // @example derivationKeyId: 1
+    // @param encryptionKeyId Output encryption key handle.
+    // @example encryptionKeyId: 1
+    // @param hmacKeyId Output HMAC key handle.
+    // @example hmacKeyId: 1
+    // @param wrappingKeyId Output wrapping key handle.
     // @example wrappingKeyId: 1
-    // @retval uint32_t: Status code returned by the key-derivation operation.
     virtual uint32_t DeriveKeys(const uint32_t privateDhKeyId, const uint32_t peerPublicDhKeyId, const uint32_t derivationKeyId,
                                 uint32_t& encryptionKeyId /* @out */, uint32_t& hmacKeyId /* @out */, uint32_t& wrappingKeyId /* @out */) = 0;
 
