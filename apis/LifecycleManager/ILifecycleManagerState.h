@@ -48,7 +48,7 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
         // @param appId: App identifier for the application.
         // @example appId: "com.example.app"
         // @param appInstanceId: A numerical identifier for a specific instance of the application.
-        // @example appInstanceId: "instance123"
+        // @example appInstanceId: "123"
         // @param oldLifecycleState: The previous state of the application instance before the update.
         // @example oldLifecycleState: INITIALIZING
         // @param newLifecycleState: The new state to transition the application.
