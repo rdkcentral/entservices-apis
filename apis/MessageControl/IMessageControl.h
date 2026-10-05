@@ -49,15 +49,25 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
 
-    // @brief Enables/disables a message control
-    // @param type Message type
-    // @param module Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
-    // @param category Name of the message category (e.g. Information)
-    // @param enabled Denotes if control should be enabled (true) or disabled (false)
+    // @brief Enables or disables a message control for a given message type, module, and category.
+    // @details This method updates the runtime filtering configuration for a message source. When enabled is set to true, matching messages are allowed through; when false, they are suppressed.
+    // @param type: Message type to configure, such as tracing, logging, reporting, or standard output/error.
+    // @example type: LOGGING
+    // @param category: Name of the message category (e.g. Information).
+    // @example category: "Information"
+    // @param module: Name of the module the message is originating from (e.g. Plugin_BluetoothControl).
+    // @example module: "Plugin_BluetoothControl"
+    // @param enabled: Denotes whether the control should be enabled (true) or disabled (false).
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: The message control was updated successfully.
     virtual Core::hresult Enable(const MessageType type, const string& category, const string& module, const bool enabled) = 0;
 
     // @property
-    // @brief Retrieves a list of current message controls
+    // @brief Retrieves the current message control configuration.
+    // @details This method returns the list of message controls currently configured for the system so callers can inspect which message types, categories, and modules are enabled or disabled.
+    // @param control:List of current message controls returned by the call.
+    // @example control: nullptr
+    // @retval Core::ERROR_NONE: The current controls were retrieved successfully.
     virtual Core::hresult Controls(IControlIterator*& control /* @out */) const = 0;
   };
 

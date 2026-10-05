@@ -54,7 +54,7 @@ namespace Exchange {
         struct PackageInfo {
            string downloadId;   /*@brief Download ID*/
            string fileLocator;  /*@brief File Locator*/
-           Reason reason;       /*@brief Reason for the download status*/
+           Reason reason;       /*@brief Reason for the download status*/     
         };
 
         //typedef std::vector<PackageInfo> PackageInfoList;
@@ -64,7 +64,10 @@ namespace Exchange {
             enum { ID = ID_PACKAGE_DOWNLOADER_NOTIFICATION  };
             ~INotification() override = default;
 
-            // @brief Signal changes on the status
+            // @brief Reports status changes for application package downloads.
+            // @details Emitted when the status of one or more downloads changes.
+            // @param packageInfo: Iterator containing download identifiers, file locators, and status reasons.
+            // @example packageInfo: [{"downloadId":"download-123","fileLocator":"/tmp/app.pkg","reason":"NONE"}]
             // @text onAppDownloadStatus
             virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
             }
@@ -86,11 +89,8 @@ namespace Exchange {
 
 
         struct Options {
-            // @brief Priority
             bool priority;
-            // @brief Retries
             uint32_t retries;
-            // @brief RateLimit
             uint64_t rateLimit;
         };
 
@@ -98,58 +98,97 @@ namespace Exchange {
             string downloadId;
         };
 
-	    // @brief Download
+        // @brief Starts downloading a resource file.
+        // @details The returned download identifier can be used to monitor or control the asynchronous download.
+        // @param url: URL of the resource to download.
+        // @param options: Download priority, retry count, and rate limit settings.
+        // @param downloadId: Receives the identifier assigned to the download.
+        // @example url: "https://example.com/resources/app-data.tar"
+        // @example options: {"priority":true,"retries":3,"rateLimit":1048576}
+        // @example downloadId: "download-123"
+        // @retval Core::ERROR_NONE: The download request was accepted.
+        // @retval Core::ERROR_GENERAL: The download request could not be started.
         // @text download
-        // @param url: Download url
-        // @param options: Download options
         virtual Core::hresult Download(
             const string &url,
             const Options &options,
             DownloadId &downloadId /* @out */) = 0;
 
-        // @brief Pause
+        // @brief Pauses an active download.
+        // @details The download can be continued later with Resume using the same identifier.
+        // @param downloadId: Identifier of the download to pause.
+        // @example downloadId: "download-123"
+        // @retval Core::ERROR_NONE: The download was paused.
+        // @retval Core::ERROR_GENERAL: The download could not be paused.
         // @text pause
-        // @param downloadId: Download id
         virtual Core::hresult Pause(const string &downloadId) = 0;
 
-        // @brief Resume
+        // @brief Resumes a paused download.
+        // @details The download continues using the state associated with its identifier.
+        // @param downloadId: Identifier of the download to resume.
+        // @example downloadId: "download-123"
+        // @retval Core::ERROR_NONE: The download was resumed.
+        // @retval Core::ERROR_GENERAL: The download could not be resumed.
         // @text resume
-        // @param downloadId: Download id
         virtual Core::hresult Resume(const string &downloadId) = 0;
 
-        // @brief Cancel
+        // @brief Cancels an active or paused download.
+        // @details Cancellation stops the operation associated with the supplied download identifier.
+        // @param downloadId: Identifier of the download to cancel.
+        // @example downloadId: "download-123"
+        // @retval Core::ERROR_NONE: The download was cancelled.
+        // @retval Core::ERROR_GENERAL: The download could not be cancelled.
         // @text cancel
-        // @param downloadId: Download id
         virtual Core::hresult Cancel(const string &downloadId) = 0;
 
-        // @brief Delete
+        // @brief Deletes a downloaded package or resource file.
+        // @details The file is selected by its file locator.
+        // @param fileLocator: Locator of the file to delete.
+        // @example fileLocator: "/tmp/downloads/app.pkg"
+        // @retval Core::ERROR_NONE: The file was deleted.
+        // @retval Core::ERROR_GENERAL: The file could not be deleted.
         // @text delete
-        // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
         struct ProgressInfo {
             uint8_t progress;
         };
 
-        // @brief Progress
+        // @brief Retrieves the progress of a download.
+        // @details Progress is reported as an integer percentage for the identified download.
+        // @param downloadId: Identifier of the download to query.
+        // @param progress: Receives the current download progress percentage.
+        // @example downloadId: "download-123"
+        // @example progress: 42
+        // @retval Core::ERROR_NONE: Download progress was returned.
+        // @retval Core::ERROR_GENERAL: Progress could not be retrieved.
         // @text progress
-        // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
             ProgressInfo &progress /* @out */) = 0;
 
-        // @brief GetStorageInformation
+        // @brief Retrieves application package storage usage and quota.
+        // @details Values are reported in kilobytes.
+        // @param quotaKb: Receives the available storage quota in kilobytes.
+        // @param usedKb: Receives the amount of storage currently used in kilobytes.
+        // @example quotaKb: 1048576
+        // @example usedKb: 262144
+        // @retval Core::ERROR_NONE: Storage information was returned.
+        // @retval Core::ERROR_GENERAL: Storage information could not be retrieved.
         // @text getStorageInformation
-        // @param quotaKb: Storage quota in kilobytes
-        // @param usedKb: Used storage in kilobytes
         virtual Core::hresult GetStorageInformation(
             uint32_t &quotaKb /* @out */,
             uint32_t &usedKb  /* @out */) = 0;
 
-        // @brief RateLimit
+        // @brief Sets the maximum rate for a download.
+        // @details The limit applies to the download identified by downloadId.
+        // @param downloadId: Identifier of the download to configure.
+        // @param limit: Maximum download rate.
+        // @example downloadId: "download-123"
+        // @example limit: 1048576
+        // @retval Core::ERROR_NONE: The download rate limit was updated.
+        // @retval Core::ERROR_GENERAL: The rate limit could not be updated.
         // @text rateLimit
-        // @param downloadId: Download id
-        // @param limit: Limit
         virtual Core::hresult RateLimit(const string &downloadId, const uint64_t &limit) = 0;
     };
 
@@ -198,7 +237,10 @@ namespace Exchange {
             enum { ID = ID_PACKAGE_INSTALLER_NOTIFICATION  };
             ~INotification() override = default;
 
-            // @brief Signal changes on the status
+            // @brief Reports status changes for package installation operations.
+            // @details The notification carries the serialized installation status response.
+            // @param jsonresponse: JSON string describing the installation status change.
+            // @example jsonresponse: "{\"packageId\":\"org.example.app\",\"state\":\"INSTALLED\"}"
             // @text onAppInstallationStatus
             virtual void OnAppInstallationStatus(const string& jsonresponse) {
             }
@@ -211,19 +253,28 @@ namespace Exchange {
         virtual Core::hresult Unregister(IPackageInstaller::INotification *sink) = 0;
 
         struct EXTERNAL KeyValue  {
-            // @brief Name
+            // @brief Name of a metadata entry.
             string name;
-            // @brief Value
+            // @brief Value associated with the metadata entry name.
             string value;
         };
         using IKeyValueIterator = RPC::IIteratorType<KeyValue, ID_PACKAGE_KEY_VALUE_ITERATOR>;
 
-        // @brief Install
+        // @brief Installs a package.
+        // @details Installs the specified package version using the supplied file locator and optional metadata.
+        // @param packageId: Identifier of the package to install.
+        // @param version: Version of the package to install.
+        // @param additionalMetadata: Optional key-value metadata to apply during installation.
+        // @param fileLocator: Locator of the package bundle to install.
+        // @param failReason: Receives the reason if installation fails.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @example additionalMetadata: [{"name":"channel","value":"stable"}]
+        // @example fileLocator: "/tmp/packages/app-1.2.3.pkg"
+        // @example failReason: "NONE"
+        // @retval Core::ERROR_NONE: The installation request was processed; inspect failReason for the installation outcome.
+        // @retval Core::ERROR_GENERAL: The installation request could not be processed.
         // @text install
-        // @param packageId: Package Id
-        // @param version: Version
-        // @param additionalMetadata: Additional Metadata
-        // @param fileLocator: File Locator
         virtual Core::hresult Install(
             const string &packageId,
             const string &version,
@@ -231,22 +282,40 @@ namespace Exchange {
             const string &fileLocator,
             FailReason &failReason /* @out */) = 0;
 
-        // @brief Uninstall
+        // @brief Uninstalls a package.
+        // @details Removes the package identified by packageId and reports an implementation-specific error reason when applicable.
+        // @param packageId: Identifier of the package to uninstall.
+        // @param errorReason: Receives the reason for an unsuccessful uninstall, if any.
+        // @example packageId: "org.example.app"
+        // @example errorReason: ""
+        // @retval Core::ERROR_NONE: The uninstall operation completed.
+        // @retval Core::ERROR_GENERAL: The package could not be uninstalled.
         // @text uninstall
-        // @param packageId: Package Id
         virtual Core::hresult Uninstall(
             const string &packageId,
             string &errorReason /* @out */
             ) = 0;
 
-        // @brief ListPackages
+        // @brief Lists packages known to the package installer.
+        // @details Returns package identifiers, versions, states, digests, sizes, and package types.
+        // @param packages: Receives an iterator over the package records.
+        // @example packages: [{"packageId":"org.example.app","version":"1.2.3","state":"INSTALLED","digest":"sha256:abc123","sizeKb":2048,"packageType":"application"}]
+        // @retval Core::ERROR_NONE: The package list was returned.
+        // @retval Core::ERROR_GENERAL: The package list could not be retrieved.
         // @text listPackages
         virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
 
-        // @brief Config
+        // @brief Retrieves runtime configuration for an installed package version.
+        // @details The returned configuration contains runtime and resource settings for the package.
+        // @param packageId: Identifier of the package.
+        // @param version: Version of the package.
+        // @param configMetadata: Receives the package runtime configuration.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @example configMetadata: {"dial":true,"appPath":"/opt/apps/example"}
+        // @retval Core::ERROR_NONE: Package configuration was returned.
+        // @retval Core::ERROR_GENERAL: Package configuration could not be retrieved.
         // @text config
-        // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
@@ -258,22 +327,36 @@ namespace Exchange {
         };
         // XXX: update vvv
 
-        // @brief PackageState
+        // @brief Retrieves the installation state of a package version.
+        // @details The returned state is one of the InstallState values.
+        // @param packageId: Identifier of the package.
+        // @param version: Version of the package.
+        // @param state: Receives the current installation state.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @example state: "INSTALLED"
+        // @retval Core::ERROR_NONE: The package state was returned.
+        // @retval Core::ERROR_GENERAL: The package state could not be retrieved.
         // @text packageState
-        // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult PackageState(
             const string &packageId,
             const string &version,
             InstallState &state /* @out */
             ) = 0;
 
-        // @brief getConfigForPackage
+        // @brief Retrieves package metadata using its file locator.
+        // @details Returns the package identifier, version, and runtime configuration associated with the located package.
+        // @param fileLocator: Locator of the package whose configuration is requested.
+        // @param id: Receives the package identifier.
+        // @param version: Receives the package version.
+        // @param config: Receives the package runtime configuration.
+        // @example fileLocator: "/tmp/packages/app-1.2.3.pkg"
+        // @example id: "org.example.app"
+        // @example version: "1.2.3"
+        // @example config: {"dial":true,"appPath":"/opt/apps/example"}
+        // @retval Core::ERROR_NONE: Package metadata was returned.
+        // @retval Core::ERROR_GENERAL: Package metadata could not be retrieved.
         // @text getConfigForPackage
-        // @param fileLocator: locator of package
-        // @param id: package id
-        // @param version: version of package
-        // @param config: metadata of package
         virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
    };
 
@@ -296,15 +379,25 @@ namespace Exchange {
         };
         using ILockIterator = RPC::IIteratorType<AdditionalLock, ID_PACKAGE_LOCK_ITERATOR>;
 
-        // @brief Lock
+        // @brief Locks a package while an application is using it.
+        // @details The lock reason and package identity are associated with the returned lock identifier and metadata.
+        // @param packageId: Identifier of the package to lock.
+        // @param version: Version of the package to lock.
+        // @param lockReason: Reason the package must remain locked.
+        // @param lockId: Receives the identifier for the lock.
+        // @param unpackedPath: Receives the package's unpacked filesystem path.
+        // @param configMetadata: Receives the runtime configuration for the package.
+        // @param appMetadata: Receives additional package metadata entries.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @example lockReason: "LAUNCH"
+        // @example lockId: 17
+        // @example unpackedPath: "/opt/apps/org.example.app"
+        // @example configMetadata: {"appPath":"/opt/apps/org.example.app"}
+        // @example appMetadata: [{"packageId":"org.example.runtime","version":"2.0.0"}]
+        // @retval Core::ERROR_NONE: The package was locked.
+        // @retval Core::ERROR_GENERAL: The package could not be locked.
         // @text lock
-        // @param packageId: Package Id
-        // @param version: Version
-        // @param lockReason: LockReason
-        // @param lockId: Lock Id
-        // @param unpackedPath: Unpacked Path
-        // @param configMetadata: Config Metadata
-        // @param appMetadata: App Metadata
         virtual Core::hresult Lock(
             const string &packageId,
             const string &version,
@@ -316,18 +409,36 @@ namespace Exchange {
             // XXX: appContextPath ?!
             ) = 0;
 
-        // @brief Unlock
+        // @brief Releases a package lock.
+        // @details Unlocks the specified package version so it is no longer protected by this lock.
+        // @param packageId: Identifier of the package to unlock.
+        // @param version: Version of the package to unlock.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @retval Core::ERROR_NONE: The package was unlocked.
+        // @retval Core::ERROR_GENERAL: The package could not be unlocked.
         // @text unlock
-        // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult Unlock(
             const string &packageId,
             const string &version) = 0;
 
-        // @brief GetLockedInfo
+        // @brief Retrieves lock and package information.
+        // @details Returns the unpacked path, runtime configuration, gateway metadata path, and whether the package is locked.
+        // @param packageId: Identifier of the package to query.
+        // @param version: Version of the package to query.
+        // @param unpackedPath: Receives the package's unpacked filesystem path.
+        // @param configMetadata: Receives the package runtime configuration.
+        // @param gatewayMetadataPath: Receives the gateway metadata file path.
+        // @param locked: Receives whether the package is currently locked.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @example unpackedPath: "/opt/apps/org.example.app"
+        // @example configMetadata: {"appPath":"/opt/apps/org.example.app"}
+        // @example gatewayMetadataPath: "/opt/apps/org.example.app/gateway.json"
+        // @example locked: true
+        // @retval Core::ERROR_NONE: Package lock information was returned.
+        // @retval Core::ERROR_GENERAL: Package lock information could not be retrieved.
         // @text getLockedInfo
-        // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult GetLockedInfo(
             const string &packageId,
             const string &version,
@@ -342,17 +453,28 @@ namespace Exchange {
         enum { ID = ID_APP_PACKAGE_MANAGER_CONFIG };
 
 
-        // @brief Returns the metadata of installed package in JSON string format
+        // @brief Returns the metadata of an installed package as a JSON string.
+        // @details The package is selected by its identifier and version.
+        // @param packageId: Identifier of the installed package.
+        // @param version: Version of the installed package.
+        // @param config: Receives the package metadata serialized as JSON.
+        // @example packageId: "org.example.app"
+        // @example version: "1.2.3"
+        // @example config: "{\"appPath\":\"/opt/apps/example\"}"
+        // @retval Core::ERROR_NONE: Package metadata was returned.
+        // @retval Core::ERROR_GENERAL: Package metadata could not be retrieved.
         // @text getConfigForInstalledPackage
-        // @param packageId: Package Id
-        // @param version: Version
-        // @param config: Config of the installed package in JSON string format
         virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string &config /* @out @opaque */) = 0;
 
-        // @brief Returns the metadata of all installed packages in JSON string format.
+        // @brief Returns metadata for installed packages as a JSON string.
+        // @details An optional filter limits the returned packages to those matching the requested capability.
+        // @param filter: Capability filter applied to installed packages.
+        // @param config: Receives the matching package metadata serialized as JSON.
+        // @example filter: "video"
+        // @example config: "[{\"packageId\":\"org.example.app\",\"version\":\"1.2.3\"}]"
+        // @retval Core::ERROR_NONE: Package metadata was returned.
+        // @retval Core::ERROR_GENERAL: Package metadata could not be retrieved.
         // @text getConfigListForInstalledPackages
-        // @param filter: capability filter for installed packages
-        // @param config: Returns the metadata of all installed packages in JSON string format
         virtual Core::hresult GetConfigListForInstalledPackages(const string &filter, string &config /* @out @opaque */) = 0;
     };
 
@@ -361,7 +483,9 @@ namespace Exchange {
 
         ~IPackageCacheInitializer() override = default;
 
-        // @brief Start cache initialization
+        // @brief Starts package cache initialization.
+        // @details Requests initialization of the package cache; completion may occur asynchronously.
+        // @example result: "Cache initialization started"
         // @text startCacheInitialization
         // @retval Core::ERROR_NONE: Cache initialization start requested successfully
         // @retval Core::ERROR_GENERAL: Failed to start cache initialization

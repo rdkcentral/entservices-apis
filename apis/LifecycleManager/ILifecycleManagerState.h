@@ -43,12 +43,18 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
 
         /** Notifies the new state */
         // @text onAppLifecycleStateChanged
-        // @brief Notifies the new state
-        // @param appId:App identifier for the application.
-        // @param appInstanceId:A numerical identifier for a specific instance of the application.
-        // @param oldLifecycleState:The previous state of the application instance before the update.
-        // @param newLifecycleState:The new state to transition the application.
-        // @param navigationIntent:navigation intent during active state
+        // @brief Notifies when an application lifecycle state changes.
+        // @details This notification is sent whenever an application transitions between lifecycle states and includes the previous state, the new state, and any active navigation context.
+        // @param appId: App identifier for the application.
+        // @example appId: "com.example.app"
+        // @param appInstanceId: A numerical identifier for a specific instance of the application.
+        // @example appInstanceId: "1"
+        // @param oldLifecycleState: The previous state of the application instance before the update.
+        // @example oldLifecycleState: ACTIVE
+        // @param newLifecycleState: The new state to transition the application.
+        // @example newLifecycleState: INACTIVE
+        // @param navigationIntent: Navigation intent associated with the application while it is active.
+        // @example navigationIntent: "home"
         virtual void OnAppLifecycleStateChanged(const string& appId /* @text appId */,
                                         const string& appInstanceId /* @text appInstanceId */,
                                         const ILifecycleManager::LifecycleState oldLifecycleState /* @text oldLifecycleState */,
@@ -64,22 +70,35 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
 
     /** Response api call to appInitializing API */
     // @text appReady
-    // @brief Response api call to appInitializing API
+    // @brief Confirms that the application is ready to complete its initialization.
+    // @details This method is called by the application after initialization to acknowledge that the app is ready for the lifecycle transition to proceed.
     // @param appId:App identifier for the application.
+    // @example appId: "com.example.app"
+    // @retval Core::ERROR_NONE: The readiness acknowledgement was accepted successfully.
     virtual Core::hresult AppReady(const string& appId ) = 0;
 
     /** Response api call to appLifecycleStateChanged API */
     // @text stateChangeComplete
-    // @brief Response api call to appLifecycleStateChanged API
+    // @brief Confirms completion of a requested lifecycle state change.
+    // @details This method allows the application to report the outcome of a previously requested lifecycle transition and indicates whether the operation succeeded.
     // @param appId:App identifier for the application.
-    // @param stateChangedId: state changed identifier
+    // @example appId: "com.example.app"
+    // @param stateChangedId: Unique identifier of the requested state transition.
+    // @example stateChangedId: 42
+    // @param success: Indicates whether the lifecycle state change completed successfully.
+    // @example success: true
+    // @retval Core::ERROR_NONE: The completion response was accepted successfully.
     virtual Core::hresult StateChangeComplete(const string& appId , const uint32_t stateChangedId , const bool success ) = 0;
 
     /** close the app */
     // @text closeApp
-    // @brief close the app
-    // @param appId:App identifier for the application.
-    // @param closeReason: closed reason for application
+    // @brief Requests that the application be closed.
+    // @details This method instructs the lifecycle manager to terminate the specified application using the supplied close reason.
+    // @param appId: App identifier for the application.
+    // @example appId: "com.example.app"
+    // @param closeReason: Reason the application is being closed.
+    // @example closeReason: USER_EXIT
+    // @retval Core::ERROR_NONE: The close request was accepted successfully.
     virtual Core::hresult CloseApp(const string& appId , const AppCloseReason closeReason ) = 0;
 
 };

@@ -274,14 +274,24 @@ class IStreamProperties {
 public:
     virtual ~IStreamProperties (void) = default;
 
-    // Get stream video size
+    // @brief Gets the height of the current stream.
+    // @details Returns the stream height in pixels for the active media content.
+    // @retval uint16_t: Stream height in pixels for the current media content.
     virtual uint16_t GetHeight() const = 0;
+
+    // @brief Gets the width of the current stream.
+    // @details Returns the stream width in pixels for the active media content.
+    // @retval uint16_t: Stream width in pixels.
     virtual uint16_t GetWidth() const = 0;
 
-    // Get stream type
+    // @brief Gets the media type of the current stream.
+    // @details Identifies whether the current stream is video, audio, or data.
+    // @retval MediaType: The media type of the current stream.
     virtual MediaType GetMediaType() const = 0;
 
-    // Deprecated method for backwards compatibility. 
+    // @brief Gets the legacy initialization length for backward compatibility.
+    // @details Returns the initialization length used by legacy decryption flows.
+    // @retval uint8_t: Legacy initialization length value.
     virtual uint8_t InitLength() const = 0;
 };
 
@@ -291,22 +301,46 @@ class IMediaKeySessionCallback {
 public:
     virtual ~IMediaKeySessionCallback(void) = default;
 
-    // Event fired when a key message is successfully created.
+    // @brief Notifies that a key message was generated.
+    // @details Called when a key message is successfully created and is ready for delivery to the license server.
+    // @param f_pbKeyMessage:Buffer containing the generated key message.
+    // @example f_pbKeyMessage: "keyMessageBuffer"
+    // @param f_cbKeyMessage:Length of the key message buffer.
+    // @example f_cbKeyMessage: 128
+    // @param f_pszUrl:URL associated with the key message delivery.
+    // @example f_pszUrl: "https://license.server.com"
     virtual void OnKeyMessage(
         const uint8_t* f_pbKeyMessage, //__in_bcount(f_cbKeyMessage)
         uint32_t f_cbKeyMessage, //__in
         const char* f_pszUrl)
         = 0; //__in_z_opt
 
-    // Event fired when MediaKeySession encounters an error.
+    // @brief Notifies that the MediaKeySession encountered an error.
+    // @details Signals the failure condition and includes the DRM-specific and system error codes along with an error message.
+    // @param f_nError:Error code raised by the session.
+    // @example f_nError: -1
+    // @param f_crSysError:Underlying system error code.
+    // @example f_crSysError: 0
+    // @param errorMessage:Human-readable description of the failure.
+    // @example errorMessage: "Session failed due to invalid key."
     virtual void OnError(
         int16_t f_nError,
         CDMi_RESULT f_crSysError,
         const char* errorMessage)
         = 0;
 
-    //Event fired on key status update
+    // @brief Notifies that a key status update was received.
+    // @details Reports the current status of one or more keys associated with the media session.
+    // @param keyMessage:Key message or related metadata associated with the update.
+    // @example keyMessage: "keyMessageBuffer"
+    // @param buffer:Buffer containing the status update payload.
+    // @example buffer: "statusUpdateBuffer"
+    // @param length:Length of the status update payload.
+    // @example length: 128
     virtual void OnKeyStatusUpdate(const char* keyMessage, const uint8_t* buffer, const uint8_t length) = 0;
+
+    // @brief Notifies that key status updates have completed.
+    // @details Signals that the callback has processed the key status update sequence for the session.
     virtual void OnKeyStatusesUpdated() const = 0;
 };
 
@@ -316,37 +350,84 @@ public:
     IMediaKeySession(void) = default;
     virtual ~IMediaKeySession(void) = default;
 
-    // Retrieves keysystem-specific metadata of the session
+    // @brief Retrieves keysystem-specific metadata for the session.
+    // @details Returns any DRM-specific metadata associated with the current session.
+    // @retval std::string: Session metadata, if available.
     virtual std::string GetMetadata() const { return std::string(); }
 
-    // Kicks off the process of acquiring a key. A MediaKeySession callback is supplied
-    // to receive notifications during the process.
+    // @brief Starts key acquisition for the session.
+    // @details Kicks off the process of acquiring a key and provides a callback for receiving notifications during the process.
+    // @param f_piMediaKeySessionCallback: Callback interface used to receive session progress notifications.
+    // @example f_piMediaKeySessionCallback: "mediaKeySessionCallbackInstance"
     virtual void Run(
         const IMediaKeySessionCallback* f_piMediaKeySessionCallback)
         = 0; //__in
 
-    // Loads the data stored for the specified session into the cdm object
+    // @brief Loads the stored session state.
+    // @details Loads the data stored for the specified session into the CDM object so it can resume from persisted state.
+    // @retval CDMi_RESULT: Status code indicating whether the session state was loaded successfully.
     virtual CDMi_RESULT Load() = 0;
 
-    // Process a key message response.
+    // @brief Processes a key message response.
+    // @details Updates the session with the license response data returned by the license server.
+    // @param f_pbKeyMessageResponse: Buffer containing the key message response.
+    // @example f_pbKeyMessageResponse: "keyMessageResponseBuffer"
+    // @param f_cbKeyMessageResponse: Length of the key message response buffer.
+    // @example f_cbKeyMessageResponse: 128
     virtual void Update(
         const uint8_t* f_pbKeyMessageResponse, //__in_bcount(f_cbKeyMessageResponse)
         uint32_t f_cbKeyMessageResponse)
         = 0; //__in
 
-    //Removes all license(s) and key(s) associated with the session
+    // @brief Removes all licenses and keys associated with the session.
+    // @details Invalidates any licenses or keys bound to the session and releases session-specific state.
+    // @retval CDMi_RESULT: Status code indicating whether the removal succeeded.
     virtual CDMi_RESULT Remove() = 0;
 
-    // Explicitly release all resources associated with the MediaKeySession.
+    // @brief Releases the resources associated with the MediaKeySession.
+    // @details Explicitly closes the session and frees any DRM resources that are no longer required.
+    // @retval CDMi_RESULT: Status of the close operation.
     virtual CDMi_RESULT Close(void) = 0;
 
-    // Return the session ID of the MediaKeySession. The returned pointer
-    // is valid as long as the associated MediaKeySession still exists.
+    // @brief Returns the session identifier.
+    // @details Returns the session ID, which remains valid while the associated session is active.
+    // @retval const char*: Session identifier string.
     virtual const char* GetSessionId(void) const = 0;
 
-    // Return the key system of the MediaKeySession.
+    // @brief Returns the key system for the session.
+    // @details Identifies the DRM key system associated with this MediaKeySession.
+    // @retval const char*: Name of the key system.
     virtual const char* GetKeySystem(void) const = 0;
 
+    // @brief Decrypts content using the provided session key and encryption metadata.
+    // @details Deprecated API for decrypting content with explicit session key material and IV metadata.
+    // @param f_pbSessionKey: Session key buffer.
+    // @example f_pbSessionKey: "sessionKeyBuffer"
+    // @param f_cbSessionKey: Length of the session key buffer.
+    // @example f_cbSessionKey: 16
+    // @param encryptionScheme: Encryption scheme used for the content.
+    // @example encryptionScheme: "AES-CTR"
+    // @param pattern: Encryption pattern used for the content.
+    // @example pattern: {2, 1}
+    // @param f_pbIV: Initialization vector buffer.
+    // @example f_pbIV: "ivBuffer"
+    // @param f_cbIV: Length of the IV buffer.
+    // @example f_cbIV: 16
+    // @param f_pbData: Encrypted data buffer.
+    // @example f_pbData: "encryptedDataBuffer"
+    // @param f_cbData: Length of the encrypted data buffer.
+    // @example f_cbData: 256
+    // @param f_pcbOpaqueClearContent: Pointer to output clear-content length.
+    // @example f_pcbOpaqueClearContent: 256
+    // @param f_ppbOpaqueClearContent: Pointer to output clear-content buffer.
+    // @example f_ppbOpaqueClearContent: "clearContentBuffer"
+    // @param keyIdLength: Length of the key identifier.
+    // @example keyIdLength: 16
+    // @param keyId: Key identifier used for decryption.
+    // @example keyId: "keyIdentifier"
+    // @param initWithLast15: Indicates whether the final 15 bytes should be used during decryption.
+    // @example initWithLast15: true
+    // @retval CDMi_RESULT: Status code indicating whether the deprecated decrypt operation succeeded.
     DEPRECATED virtual CDMi_RESULT Decrypt(
         const uint8_t* f_pbSessionKey VARIABLE_IS_NOT_USED,
         uint32_t f_cbSessionKey VARIABLE_IS_NOT_USED,
@@ -365,6 +446,15 @@ public:
         return (CDMi_METHOD_NOT_IMPLEMENTED);
     }
 
+    // @brief Decrypts the supplied sample data.
+    // @details Decrypts a single sample using the metadata provided in the SampleInfo structure and the stream properties.
+    // @param inData:Incoming encrypted sample data.
+    // @param inDataLength:Length of the incoming encrypted sample data.
+    // @param outData:Pointer to the decrypted output buffer.
+    // @param outDataLength:Length of the decrypted output buffer.
+    // @param sampleInfo:Encryption information for the sample.
+    // @param properties:Stream properties associated with the sample.
+    // @retval CDMi_RESULT: Status code indicating whether the decrypt operation succeeded.
     virtual CDMi_RESULT Decrypt(
         uint8_t*                 inData,          // Incoming encrypted data
         const uint32_t           inDataLength,    // Incoming encrypted data length
@@ -384,6 +474,17 @@ PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)
 POP_WARNING()
     }
 
+    // @brief Releases the clear content associated with the session.
+    // @details Clears the decrypted content that was produced for a prior decrypt operation.
+    // @param f_pbSessionKey:Session key buffer associated with the content.
+    // @example f_pbSessionKey: "sessionKeyBuffer"
+    // @param f_cbSessionKey: Length of the session key buffer.
+    // @example f_cbSessionKey: 16
+    // @param f_cbClearContentOpaque: Length of the opaque clear content.
+    // @example f_cbClearContentOpaque: 256
+    // @param f_pbClearContentOpaque: Opaque clear content buffer to release.
+    // @example f_pbClearContentOpaque: "clearContentBuffer"
+    // @retval CDMi_RESULT: Status indicating whether the content release succeeded.
     virtual CDMi_RESULT ReleaseClearContent(
         const uint8_t* f_pbSessionKey,
         uint32_t f_cbSessionKey,
@@ -391,7 +492,18 @@ POP_WARNING()
         uint8_t* f_pbClearContentOpaque)
         = 0;
 
+    // @brief Resets the output protection state.
+    // @details Returns the default implementation status for output protection reset, which is not always implemented by the CDM.
+    // @retval CDMi_RESULT: Status for the reset output protection operation.
     virtual CDMi_RESULT ResetOutputProtection() { return (CDMi_METHOD_NOT_IMPLEMENTED); }
+
+    // @brief Sets a session parameter.
+    // @details Allows the caller to provide a name-value parameter pair for implementation-specific session configuration.
+    // @param name:Parameter name to set.
+    // @example name: "sessionTimeout"
+    // @param value: Parameter value associated with the name.
+    // @example value: "30000"
+    // @retval CDMi_RESULT: Status for the parameter update operation.
     virtual CDMi_RESULT SetParameter(const std::string& name VARIABLE_IS_NOT_USED, const std::string& value VARIABLE_IS_NOT_USED) { return (CDMi_METHOD_NOT_IMPLEMENTED); }
 };
 
@@ -401,18 +513,59 @@ public:
     IMediaKeySessionExt(void) = default;
     virtual ~IMediaKeySessionExt(void) = default;
 
+    // @brief Returns the extended session identifier.
+    // @details Provides an implementation-specific extended session ID for advanced DRM scenarios.
+    // @retval uint32_t: Extended session identifier.
     virtual uint32_t GetSessionIdExt(void) const = 0;
 
+    // @brief Sets the DRM header for the session.
+    // @details Supplies a DRM header to the session for use in license acquisition or challenge exchange.
+    // @param drmHeader:Buffer containing the DRM header.
+    // @example drmHeader: "drmHeaderBuffer"
+    // @param drmHeaderLength: Length of the DRM header buffer.
+    // @example drmHeaderLength: 128
+    // @retval CDMi_RESULT: Status of the DRM header update operation.
     virtual CDMi_RESULT SetDrmHeader(const uint8_t drmHeader[], uint32_t drmHeaderLength) = 0;
 
+    // @brief Retrieves challenge data for the session.
+    // @details Returns the challenge data needed to complete an extended DRM challenge flow.
+    // @param challenge:Output buffer that receives the challenge data.
+    // @example challenge: "challengeBuffer"
+    // @param challengeSize: Length of the challenge data returned by the call.
+    // @example challengeSize: 256
+    // @param isLDL: Indicates whether the challenge is for a low-delay license flow.
+    // @example isLDL: 1
+    // @retval CDMi_RESULT: Status of the challenge retrieval operation.
     virtual CDMi_RESULT GetChallengeDataExt(uint8_t* challenge, uint32_t& challengeSize, uint32_t isLDL) = 0;
 
+    // @brief Cancels an outstanding challenge data request.
+    // @details Clears any pending extended challenge data associated with the session.
+    // @retval CDMi_RESULT: Status of the challenge cancellation operation.
     virtual CDMi_RESULT CancelChallengeDataExt() = 0;
 
+    // @brief Stores license data associated with the session.
+    // @details Persists license metadata and optionally returns a secure stop identifier.
+    // @param licenseData:Buffer containing the license data.
+    // @example licenseData: "licenseDataBuffer"
+    // @param licenseDataSize: Length of the license data buffer.
+    // @example licenseDataSize: 512
+    // @param secureStopId: Optional output buffer for a secure stop identifier.
+    // @example secureStopId: "secureStopIdBuffer"
+    // @retval CDMi_RESULT: Status of the license data storage operation.
     virtual CDMi_RESULT StoreLicenseData(const uint8_t licenseData[], uint32_t licenseDataSize, uint8_t* secureStopId) = 0;
 
+    // @brief Selects a specific key identifier for use with the session.
+    // @details Chooses the key ID that should be used for subsequent decryption operations.
+    // @param keyLength: Length of the key identifier.
+    // @example keyLength: 16
+    // @param keyId: Buffer containing the key identifier.
+    // @example keyId: "keyIdBuffer"
+    // @retval CDMi_RESULT: Status of the key selection operation.
     virtual CDMi_RESULT SelectKeyId(const uint8_t keyLength, const uint8_t keyId[]) = 0;
 
+    // @brief Clears the decrypt context for the session.
+    // @details Releases any state cached by the decrypt pipeline for the current session.
+    // @retval CDMi_RESULT: Status of the decrypt-context cleanup operation.
     virtual CDMi_RESULT CleanDecryptContext() = 0;
 };
 
@@ -422,10 +575,30 @@ public:
     IMediaKeys(void) = default;
     virtual ~IMediaKeys(void) = default;
 
-    // Retrieves keysystem-specific metadata
+    // @brief Retrieves keysystem-specific metadata.
+    // @details Returns metadata associated with the CDM implementation or media keys provider.
+    // @retval std::string: DRM-specific metadata string.
     virtual std::string GetMetadata() const { return std::string(); }
 
-    // Create a MediaKeySession using the supplied init data and CDM data.
+    // @brief Creates a MediaKeySession using the supplied initialization data.
+    // @details Creates a MediaKeySession for the requested key system using the provided init data and CDM data.
+    // @param keySystem:Key system to create the session for.
+    // @example keySystem: "com.example.drm"
+    // @param licenseType: Type of license requested for the session.
+    // @example licenseType: 1
+    // @param f_pwszInitDataType: Type of initialization data.
+    // @example f_pwszInitDataType: "cenc"
+    // @param f_pbInitData: Initialization data buffer.
+    // @example f_pbInitData: "initDataBuffer"
+    // @param f_cbInitData: Length of the initialization data buffer.
+    // @example f_cbInitData: 128
+    // @param f_pbCDMData: CDM-specific data buffer.
+    // @example f_pbCDMData: "cdmDataBuffer"
+    // @param f_cbCDMData: Length of the CDM-specific data buffer.
+    // @example f_cbCDMData: 256
+    // @param f_ppiMediaKeySession:Output pointer to the created session.
+    // @example f_ppiMediaKeySession: "mediaKeySessionPointer"
+    // @retval CDMi_RESULT: Status of the session creation operation.
     virtual CDMi_RESULT CreateMediaKeySession(
         const std::string& keySystem,
         int32_t licenseType,
@@ -437,13 +610,23 @@ public:
         IMediaKeySession** f_ppiMediaKeySession)
         = 0;
 
-    // Set Server Certificate
+    // @brief Sets the server certificate.
+    // @details Configures the server certificate used to communicate with the DRM license server.
+    // @param f_pbServerCertificate: Buffer containing the server certificate.
+    // @example f_pbServerCertificate: "serverCertificateBuffer"
+    // @param f_cbServerCertificate: Length of the server certificate buffer.
+    // @example f_cbServerCertificate: 512
+    // @retval CDMi_RESULT: Status of the server certificate configuration operation.
     virtual CDMi_RESULT SetServerCertificate(
         const uint8_t* f_pbServerCertificate,
         uint32_t f_cbServerCertificate)
         = 0;
 
-    // Destroy a MediaKeySession instance.
+    // @brief Destroys an existing MediaKeySession.
+    // @details Releases the resources associated with a previously created MediaKeySession.
+    // @param f_piMediaKeySession:Session instance to destroy.
+    // @example f_piMediaKeySession: "mediaKeySessionPointer"
+    // @retval CDMi_RESULT: Status of the session destruction operation.
     virtual CDMi_RESULT DestroyMediaKeySession(
         IMediaKeySession* f_piMediaKeySession)
         = 0;
@@ -455,24 +638,64 @@ public:
     IMediaKeysExt(void) = default;
     virtual ~IMediaKeysExt(void) = default;
 
+    // @brief Returns the DRM system time.
+    // @details Provides the current DRM system time used by the CDM implementation.
+    // @retval uint64_t: Current DRM system time in ticks or platform-specific units.
     virtual uint64_t GetDrmSystemTime() const = 0;
 
+    // @brief Returns the DRM version string.
+    // @details Returns the version information for the underlying DRM implementation.
+    // @retval std::string: DRM version string.
     virtual std::string GetVersionExt() const = 0;
 
+    // @brief Returns the LDL session limit.
+    // @details Indicates the maximum number of low-delay license sessions supported by the CDM.
+    // @retval uint32_t: LDL session limit value.
     virtual uint32_t GetLdlSessionLimit() const = 0;
 
+    // @brief Indicates whether secure stop is enabled.
+    // @details Returns whether secure-stop protection is currently enabled for the DRM system.
+    // @retval bool: True if secure stop is enabled, otherwise false.
     virtual bool IsSecureStopEnabled() = 0;
 
+    // @brief Enables or disables secure stop.
+    // @details Enables or disables the secure-stop feature for the CDM implementation.
+    // @param enable:True to enable secure stop, false to disable it.
+    // @example enable: true
+    // @retval CDMi_RESULT: Status of the secure-stop toggle operation.
     virtual CDMi_RESULT EnableSecureStop(bool enable) = 0;
 
+    // @brief Resets secure stop entries.
+    // @details Clears the secure-stop state maintained by the CDM implementation.
+    // @retval uint32_t: Number of secure-stop entries reset.
     virtual uint32_t ResetSecureStops() = 0;
 
+    // @brief Returns the secure stop IDs for the current DRM system.
+    // @details Retrieves the identifiers of secure-stop entries available in the DRM store.
+    // @param ids: Output buffer for the secure stop IDs.
+    // @example ids: "secureStopIdsBuffer"
+    // @param idsLength: Available length of the output buffer.
+    // @example idsLength: 10
+    // @param count: Number of secure stop IDs returned.
+    // @example count: 5
+    // @retval CDMi_RESULT: Status of the secure-stop ID query operation.
     virtual CDMi_RESULT GetSecureStopIds(
         uint8_t ids[],
         uint16_t idsLength,
         uint32_t& count)
         = 0;
 
+    // @brief Retrieves secure stop data for a given session.
+    // @details Returns the secure-stop payload associated with the specified session ID.
+    // @param sessionID: Session identifier used to look up the secure-stop data.
+    // @example sessionID: "sessionIdBuffer"
+    // @param sessionIDLength: Length of the session ID buffer.
+    // @example sessionIDLength: 16
+    // @param rawData: Output buffer for the secure-stop payload.
+    // @example rawData: "secureStopPayloadBuffer"
+    // @param rawSize: Length of the secure-stop payload returned by the call.
+    // @example rawSize: 128
+    // @retval CDMi_RESULT: Status of the secure-stop lookup operation.
     virtual CDMi_RESULT GetSecureStop(
         const uint8_t sessionID[],
         uint32_t sessionIDLength,
@@ -480,6 +703,17 @@ public:
         uint16_t& rawSize)
         = 0;
 
+    // @brief Commits secure stop data.
+    // @details Persists secure-stop data returned by the server for the identified session.
+    // @param sessionID: Session identifier associated with the secure-stop entry.
+    // @example sessionID: "sessionIdBuffer"
+    // @param sessionIDLength: Length of the session ID buffer.
+    // @example sessionIDLength: 16
+    // @param serverResponse: Response from the server containing secure-stop data.
+    // @example serverResponse: "serverResponseBuffer"
+    // @param serverResponseLength: Length of the server response buffer.
+    // @example serverResponseLength: 128
+    // @retval CDMi_RESULT: Status of the secure-stop commit operation.
     virtual CDMi_RESULT CommitSecureStop(
         const uint8_t sessionID[],
         uint32_t sessionIDLength,
@@ -487,15 +721,35 @@ public:
         uint32_t serverResponseLength)
         = 0;
 
+    // @brief Deletes the key store.
+    // @details Removes the DRM key store associated with the current system.
+    // @retval CDMi_RESULT: Status of the key-store deletion operation.
     virtual CDMi_RESULT DeleteKeyStore() = 0;
 
+    // @brief Deletes the secure store.
+    // @details Removes the secure storage used by the DRM implementation.
+    // @retval CDMi_RESULT: Status of the secure-store deletion operation.
     virtual CDMi_RESULT DeleteSecureStore() = 0;
 
+    // @brief Retrieves the key store hash.
+    // @details Returns a hash identifying the key store contents.
+    // @param secureStoreHash: Output buffer that receives the key-store hash.
+    // @example secureStoreHash: "keyStoreHashBuffer"
+    // @param secureStoreHashLength: Length of the output buffer.
+    // @example secureStoreHashLength: 32
+    // @retval CDMi_RESULT: Status of the key-store hash retrieval operation.
     virtual CDMi_RESULT GetKeyStoreHash(
         uint8_t secureStoreHash[],
         uint32_t secureStoreHashLength)
         = 0;
 
+    // @brief Retrieves the secure store hash.
+    // @details Returns a hash identifying the secure-store contents.
+    // @param secureStoreHash: Output buffer that receives the secure-store hash.
+    // @example secureStoreHash: "secureStoreHashBuffer"
+    // @param secureStoreHashLength: Length of the output buffer.
+    // @example secureStoreHashLength: 32
+    // @retval CDMi_RESULT: Status of the secure-store hash retrieval operation.
     virtual CDMi_RESULT GetSecureStoreHash(
         uint8_t secureStoreHash[],
         uint32_t secureStoreHashLength)
@@ -505,26 +759,88 @@ public:
 struct IMediaSystemMetrics {
     virtual ~IMediaSystemMetrics() = default;
 
+    // @brief Gathers media system metrics.
+    // @details Returns system-level metrics for the current DRM implementation in the supplied buffer.
+    // @param bufferLength: Length of the metrics buffer on input, and number of bytes written on output.
+    // @example bufferLength: 256
+    // @param buffer: Output buffer receiving the system metrics data.
+    // @example buffer: "metricsBuffer"
+    // @retval CDMi_RESULT: Status of the metrics collection operation.
     virtual CDMi_RESULT Metrics (uint32_t& bufferLength, uint8_t buffer[]) const = 0;
 };
 
 struct IMediaSessionMetrics {
     virtual ~IMediaSessionMetrics() = default;
 
+    // @brief Gathers media session metrics.
+    // @details Returns session-level metrics for the current DRM session in the supplied buffer.
+    // @param bufferLength: Length of the metrics buffer on input, and number of bytes written on output.
+    // @example bufferLength: 256
+    // @param buffer: Output buffer receiving the session metrics data.
+    // @example buffer: "sessionMetricsBuffer"
+    // @retval CDMi_RESULT: Status of the metrics collection operation.
     virtual CDMi_RESULT Metrics (uint32_t& bufferLength, uint8_t buffer[]) const = 0;
 };
 
 struct IGoogleCastAuthExtension {
     virtual ~IGoogleCastAuthExtension() = default;
+
+    // @brief Signs a hash using the wrapped device key.
+    // @details Produces a signature for the supplied hash using the device key material.
+    // @param wrappedDeviceKey:Wrapped device key used to sign the hash.
+    // @example wrappedDeviceKey: "wrappedDeviceKeyBuffer"
+    // @param hash: Hash value to sign.
+    // @example hash: "hashBuffer"
+    // @param signature: Output signature buffer.
+    // @example signature: "signatureBuffer"
+    // @retval CDMi_RESULT: Status of the signing operation.
     virtual CDMi_RESULT SignHash(const std::string& wrappedDeviceKey, const std::string& hash, std::string& signature /* @out */) = 0;
+
+    // @brief Generates a device key and certificate.
+    // @details Produces a device key and certificate pair for device authentication.
+    // @param wrappedDeviceKey: Output wrapped device key.
+    // @example wrappedDeviceKey: "wrappedDeviceKeyBuffer"
+    // @param deviceCertificate: Output device certificate.
+    // @example deviceCertificate: "deviceCertificateBuffer"
+    // @retval CDMi_RESULT: Status of the device key generation operation.
     virtual CDMi_RESULT GenDeviceKeyAndCert(std::string& wrappedDeviceKey /* @out */, std::string& deviceCertificate /* @out */) = 0;
+
+    // @brief Returns the model certificate chain.
+    // @details Provides the certificate chain associated with the DRM model.
+    // @param certChain: Output certificate chain data.
+    // @example certChain: "certChainBuffer"
+    // @retval CDMi_RESULT: Status of the certificate-chain retrieval operation.
     virtual CDMi_RESULT GetModelCertChain(std::string& certChain /* @out */) const = 0;
+
+    // @brief Returns the DRM system identifier.
+    // @details Returns the platform system identifier used for authentication or entitlement checks.
+    // @param id: Output system identifier.
+    // @example id: 12345
+    // @retval CDMi_RESULT: Status of the system identifier retrieval operation.
     virtual CDMi_RESULT GetSystemId(uint32_t& id /* @out */) const = 0;
 };
 
 // Optional batch (multi-sample) decryption. A standalone extension interface
 struct IMediaKeySessionBatch {
     virtual ~IMediaKeySessionBatch() = default;
+
+    // @brief Decrypts a batch of samples.
+    // @details Decrypts multiple samples in one call using the supplied per-sample metadata and stream properties.
+    // @param inData:Incoming encrypted data buffer.
+    // @example inData: "encryptedDataBuffer"
+    // @param inDataLength: Length of the incoming encrypted data buffer.
+    // @example inDataLength: 1024
+    // @param outData: Output buffer for decrypted data.
+    // @example outData: "decryptedDataBuffer"
+    // @param outDataLength: Length of the decrypted data buffer.
+    // @example outDataLength: 1024
+    // @param sampleInfo: Array of per-sample decrypt information.
+    // @example sampleInfo: "sampleInfoArray"
+    // @param sampleCount: Number of sample entries in the sampleInfo array.
+    // @example sampleCount: 4
+    // @param properties: Stream properties associated with the sample batch.
+    // @example properties: "streamPropertiesBuffer"
+    // @retval CDMi_RESULT: Status of the multi-sample decryption operation.
     virtual CDMi_RESULT DecryptMulti(
         uint8_t*                 inData,          // Incoming encrypted data
         const uint32_t           inDataLength,    // Incoming encrypted data length
@@ -537,17 +853,55 @@ struct IMediaKeySessionBatch {
 
 struct IRobustnessExtension {
     virtual ~IRobustnessExtension() = default;
+
+    // @brief Gets the supported robustness levels.
+    // @details Returns the list of robustness levels supported by the DRM implementation.
+    // @param levels:Output list of supported robustness levels.
+    // @example levels: ["SW_SECURE_CRYPTO", "HW_SECURE_CRYPTO"]
+    // @retval CDMi_RESULT: Status of the robustness query operation.
     virtual CDMi_RESULT GetSupportedRobustness(std::list<std::string>& levels /* @out */) const = 0;
 };
 
 struct ISystemFactory {
     virtual ~ISystemFactory() = default;
+
+    // @brief Creates a MediaKeys instance.
+    // @details Returns the MediaKeys instance for the current system factory.
+    // @retval IMediaKeys*: MediaKeys instance associated with the factory.
     virtual IMediaKeys* Instance() = 0;
+
+    // @brief Returns the key system name.
+    // @details Identifies the DRM key system implemented by the factory.
+    // @retval const char*: Key system name.
     virtual const char* KeySystem() const = 0;
+
+    // @brief Returns the supported MIME types.
+    // @details Returns the list of MIME types supported by the key system factory.
+    // @retval const std::vector<std::string>&: Supported MIME types.
     virtual const std::vector<std::string>& MimeTypes() const = 0;
+
+    // @brief Initializes the system factory.
+    // @details Initializes the key system factory and provides the plugin shell and configuration line used during startup.
+    // @param shell: Plugin shell used to initialize the factory.
+    // @example shell: "pluginShellInstance"
+    // @param configline: Serialized configuration used during factory initialization.
+    // @example configline: "key1=value1;key2=value2"
     virtual void Initialize(const WPEFramework::PluginHost::IShell * shell, const std::string& configline) = 0;
+
+    // @brief Deinitializes the system factory.
+    // @details Tears down the factory and releases any state created during initialization.
+    // @param shell: Plugin shell used to deinitialize the factory.
+    // @example shell: "pluginShellInstance"
     virtual void Deinitialize(const WPEFramework::PluginHost::IShell * shell) = 0;
+
+    // @brief Enables the key system factory.
+    // @details Activates the DRM implementation so it can process requests.
+    // @retval CDMi_RESULT: Status of the enable operation.
     virtual CDMi_RESULT Enable() = 0;
+
+    // @brief Disables the key system factory.
+    // @details Deactivates the DRM implementation and prevents further processing until re-enabled.
+    // @retval CDMi_RESULT: Status of the disable operation.
     virtual CDMi_RESULT Disable() = 0;
 };
 

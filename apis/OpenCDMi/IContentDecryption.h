@@ -30,11 +30,42 @@ namespace Exchange {
     struct EXTERNAL IContentDecryption : virtual public Core::IUnknown {
         enum { ID = ID_CONTENTDECRYPTION };
 
+        // @brief Initializes the content decryption service.
+        // @details Sets up the CDM instance using the supplied plugin shell and prepares the service for key system operations.
+        // @param service: Plugin shell used to initialize the content decryption service.
+        // @example service: "pluginShellInstance"
+        // @retval Core::ERROR_NONE: The content decryption service initialized successfully.
         virtual uint32_t Initialize(PluginHost::IShell* service) = 0;
+
+        // @brief Deinitializes the content decryption service.
+        // @details Releases resources associated with the CDM instance and cleans up any service state created during initialization.
+        // @param service: Plugin shell used to tear down the content decryption service.
+        // @example service: "pluginShellInstance"
+        // @retval Core::ERROR_NONE: The content decryption service was deinitialized successfully.
         virtual void Deinitialize(PluginHost::IShell* service) = 0;
+
+        // @brief Resets the content decryption service.
+        // @details Clears the current decryption state and resets the service to a known default configuration.
+        // @retval Core::ERROR_NONE: The content decryption service was reset successfully.
         virtual uint32_t Reset() = 0;
+
+        // @brief Retrieves the list of supported key systems.
+        // @details Returns an iterator over the key systems supported by the underlying content decryption implementation.
+        // @retval Core::ERROR_NONE: The supported key systems were retrieved successfully.
         virtual RPC::IStringIterator* Systems() const = 0;
+
+        // @brief Retrieves the key system designators for a specific key system.
+        // @details Returns the designators associated with the supplied key system so the caller can identify supported implementation variants.
+        // @param keySystem: Name of the key system whose designators are requested.
+        // @example keySystem: "com.widevine.alpha"
+        // @retval Core::ERROR_NONE: The designators were retrieved successfully.
         virtual RPC::IStringIterator* Designators(const string& keySystem) const = 0;
+
+        // @brief Retrieves the active sessions for a specific key system.
+        // @details Returns the session identifiers currently associated with the supplied key system.
+        // @param keySystem: Name of the key system whose sessions are requested.
+        // @example keySystem: "com.widevine.alpha"
+        // @retval Core::ERROR_NONE: The sessions were retrieved successfully.
         virtual RPC::IStringIterator* Sessions(const string& keySystem) const = 0;
 
         enum Status : uint8_t {
@@ -48,7 +79,12 @@ namespace Exchange {
 
             enum {ID = ID_CONTENTDECRYPTION_NOTIFICATION};
 
-            /* @brief initialization status. */
+            // @brief Reports the initialization status for the supplied DRM system.
+            // @details This notification is emitted when the DRM initialization state changes and indicates whether the system is busy, successful, or failed.
+            // @param drm: Name of the DRM system whose status changed.
+            // @example drm: "com.widevine.alpha"
+            // @param status: Current initialization status of the DRM system.
+            // @example status: SUCCESS
             virtual void initializationStatus(const std::string& drm,
                                               const Status status) = 0;
         };
