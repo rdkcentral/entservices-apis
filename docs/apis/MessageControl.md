@@ -60,7 +60,7 @@ The following methods are provided by the IMessageControl Interface:
 <a id="enable"></a>
 ## *enable*
 
-Enables/disables a message control
+Enables or disables a specific message control based on the provided parameters.
 
 ### Events Triggered
 None
@@ -84,13 +84,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.MessageControl.enable",
     "params": {
         "type": "TRACING",
-        "category": "",
-        "module": "",
+        "category": "Information",
+        "module": "Plugin_BluetoothControl",
         "enabled": true
     }
 }
@@ -100,7 +100,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MessageControl.enable", "params": {"type": "TRACING", "category": "", "module": "", "enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.MessageControl.enable", "params": {"type": "TRACING", "category": "Information", "module": "Plugin_BluetoothControl", "enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -126,7 +126,7 @@ The following properties are provided by the IMessageControl Interface:
 <a id="controls"></a>
 ## *controls*
 
-Retrieves a list of current message controls
+Retrieves a list of all current message controls.
 
 > This property is read-only.
 ### Events
@@ -134,7 +134,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).control | array |  |
+| (property).control | array | Iterator to the list of message controls. |
 | (property).control[#].type | string | Type of message. Possible values: TRACING, LOGGING, REPORTING, STANDARD_OUT, STANDARD_ERROR |
 | (property).control[#].category | string | Name of the message category (e.g. Information) |
 | (property).control[#].module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
@@ -147,7 +147,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.MessageControl.controls"
 }
@@ -157,7 +157,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MessageControl.controls"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.MessageControl.controls"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -165,13 +165,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": [
         {
             "type": "TRACING",
-            "category": "",
-            "module": "",
+            "category": "Information",
+            "module": "Plugin_BluetoothControl",
             "enabled": true
         }
     ]
