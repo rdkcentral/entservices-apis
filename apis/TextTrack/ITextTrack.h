@@ -22,13 +22,13 @@
 #include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
 
-#define ITEXTTRACK_VERSION 5
+#define ITEXTTRACK_VERSION 6
 
 namespace WPEFramework {
 namespace Exchange {
 
 /*
-    This is the COM-RPC interface for managing Closed Captions styles.
+    This is the interface for managing Closed Captions styles.
 */
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
@@ -308,7 +308,7 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
 };
 
 /*
- * This is the COM-RPC interface for global TTML style overrides.
+ * This is the interface for global TTML style overrides.
  * Added in version 2
  */
 /* @json 1.0.0 @text:keep */
@@ -357,7 +357,68 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 };
 
 /*
- * This is the COM-RPC interface for querying TextTrack capabilities.
+ * This is the interface for global WebVTT style overrides.
+ * Added in version 6
+ */
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL ITextTrackWebVTTStyle : virtual public Core::IUnknown {
+    enum {
+        ID = ID_TEXT_TRACK_WEBVTT_STYLE
+    };
+
+    /* @event */
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        enum {
+            ID = ID_TEXT_TRACK_WEBVTT_STYLE_NOTIFICATION
+        };
+
+        /**
+         * @brief The WebVTT Style override settings has changed.
+         * @text onWebVTTStyleOverridesChanged
+         */
+        virtual void OnWebVTTStyleOverridesChanged(const string &style) {};
+    };
+
+    /** Register notification interface.
+     * The callback will be called with the current settings.
+     */
+    virtual Core::hresult Register(INotification *notification) = 0;
+    /** Unregister notification interface */
+    virtual Core::hresult Unregister(const INotification *notification) = 0;
+
+    /**
+     * @brief Sets global WebVTT override style.
+     * @details The styles given here will be applied last to WebVTT sessions, meaning
+     * that they will override styles given in the content.
+     * The value will be persisted in the system.
+     * The style setting will take effect immediately in all running (WebVTT) sessions that have not applied a custom style.
+     * The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:100;fontSize:LARGE".
+     * Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored.
+     * A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. built-in styling.
+     * The colour keys fontColor and backgroundColor take an RGB value written as "#rrggbb"; opacity is not part of
+     * the colour, use the matching opacity key instead.
+     * The opacity keys fontOpacity and backgroundOpacity take a value between 0 and 100 (0 is fully transparent, 100 is fully opaque).
+     * The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL,
+     * CURSIVE or SMALL_CAPITAL.
+     * The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE.
+     * A key that is omitted is left unset and does not override lower priority styling.
+     * @param style Contains the chosen override for styles
+     * @text setWebVTTStyleOverrides
+     */
+    virtual Core::hresult SetWebVTTStyleOverrides(const string& style) = 0;
+
+    /**
+     * @brief Gets the global WebVTT style overrides
+     * @details Gets the global WebVTT style overrides. The string uses the same "key:value;key:value" format as setWebVTTStyleOverrides, and is
+     * returned in a normalised form: keys appear in a fixed order and values use their canonical spelling.
+     * @param style Will receive the style overrides
+     * @text getWebVTTStyleOverrides
+     */
+    virtual Core::hresult GetWebVTTStyleOverrides(string& style /* @out */) const = 0;
+};
+
+/*
+ * This is the interface for querying TextTrack capabilities.
  * The list of capabilities can be extended over time and future versions.
  * Added in version 4
  */
@@ -391,7 +452,7 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
 };
 
 /*
-    This is the COM-RPC interface for handling TextTrack sessions.
+    This is the interface for handling TextTrack sessions.
 */
 /* @json 1.5.0 @text:keep */
 struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
@@ -505,9 +566,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief  Applies a custom ClosedCaptionsStyle on a single session.
      * @details When a custom style is applied on a specific session we will not update the style for this session if the global style setting change.
      * The style setting will take effect immediately.
+     * Available in JSON interface since version 6.
      * @param sessionId Is the session as returned in the ITextTrack interface.
      * @param style Contains the chosen styles
-     * @json:omit
      * @text applyCustomClosedCaptionsStyleToSession
      */
     virtual Core::hresult ApplyCustomClosedCaptionsStyleToSession(const uint32_t sessionId, const ITextTrackClosedCaptionsStyle::ClosedCaptionsStyle &style) = 0;
@@ -577,6 +638,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @details When a custom styling override is applied on a specific TTML session, the styling carried on the data for the specified element is
      * overridden. For styling options, see https://www.w3.org/TR/2018/REC-ttml1-20181108/#styling-vocabulary-style
      * The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported)
+     * A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. device style overrides.
      * Styles not mentioned in the list will not be affected.
      * Added in version 2
      * @param sessionId Is the session as returned in the ITextTrack interface.
@@ -605,8 +667,8 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     // @brief Return the interface version implemented
     // @details This allows to query the running plugin for the version of the interface
     // it was compiled to support. This information can be helpful in determining whether
-    // a certain functionality can be expected to be present. There is no guarantee that the plugin has implemented
-    // all functions of that version.
+    // a certain functionality can be expected to be present. You can expect all functions
+    // of the reported version to be implemented (from version 6).
     // Added in version 4
     // @param version Will receive the version number ex: 4
     // @text getInterfaceVersion
@@ -730,6 +792,27 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult GetClosedCaptionsStyleAppliesToList(ISubtitleFormatIterator *&iterator /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Applies a custom WebVTT styling with overrides that is applied on all elements
+     * @details When a custom styling override is applied on a specific WebVTT session, the styling carried on the data for the specified element is
+     * overridden.
+     * The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:100;fontSize:LARGE".
+     * Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored.
+     * A blank/empty value is treated as meaning "use the value supplied by the content" and can be used to override e.g. device style overrides.
+     * The colour keys fontColor and backgroundColor take an RGB value written as "#rrggbb"; opacity is not part of
+     * the colour, use the matching opacity key instead.
+     * The opacity keys fontOpacity and backgroundOpacity take a value between 0 and 100 (0 is fully transparent, 100 is fully opaque).
+     * The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL,
+     * CURSIVE or SMALL_CAPITAL.
+     * The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE.
+     * Styles not mentioned in the list will not be affected.
+     * Added in version 6
+     * @param sessionId Is the session as returned in the ITextTrack interface.
+     * @param style Contains the list of styles to be overridden
+     * @text applyCustomWebVTTStyleOverridesToSession
+     */
+    virtual Core::hresult ApplyCustomWebVTTStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
 };
 
 } // namespace Exchange
