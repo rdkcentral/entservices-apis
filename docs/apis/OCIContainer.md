@@ -664,7 +664,7 @@ None
 | params | object |  |
 | params.containerId | string | Identifier of the container |
 | params.bundlePath | string | Path of the application bundle |
-| params?.command | string | <sup>(optional)</sup>Command to run in the container |
+| params.command | string | Command to run in the container |
 | params.westerosSocket | string | Westeros socket the container needs to connect to |
 ### Results
 | Name | Type | Description |
