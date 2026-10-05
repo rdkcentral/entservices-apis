@@ -34,7 +34,8 @@ namespace Exchange {
         // @details Binds the service to the Thunder plugin shell during plugin startup.
         // @param service: Thunder plugin shell used to initialize the service.
         // @example service: Initialization
-        virtual uint32_t Initialize(PluginHost::IShell* service) = 0;
+// @retval uint32_t: Initialization result.
+virtual uint32_t Initialize(PluginHost::IShell* service) = 0;
 
         // @brief Deinitializes the OpenCDMi content-decryption service.
         // @details Releases service resources associated with the Thunder plugin shell during plugin shutdown.
