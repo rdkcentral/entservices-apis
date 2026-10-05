@@ -253,7 +253,7 @@ This event is triggered whenever the lifecycle state of an application changes, 
     "method": "org.rdk.LifecycleManager.onAppLifecycleStateChanged",
     "params": {
         "appId": "com.example.myapp",
-        "appInstanceId": "instance123",
+        "appInstanceId": 123,
         "oldLifecycleState": "INITIALIZING",
         "newLifecycleState": "ACTIVE",
         "navigationIntent": "userNavigated"
