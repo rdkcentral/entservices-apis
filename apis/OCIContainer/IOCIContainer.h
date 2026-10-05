@@ -186,7 +186,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
     // @example errorReason: "Failed to stop container"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult StopContainer(const string& containerId , bool force , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Pause the container
@@ -198,7 +198,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
     // @example errorReason: "Failed to pause container"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult PauseContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Resume the container
@@ -210,7 +210,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
     // @example errorReason: "Failed to resume container"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult ResumeContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Hibernate the container
@@ -224,7 +224,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
     // @example errorReason: "Failed to hibernate container"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult HibernateContainer(const string& containerId , const string& options , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Wakeup the container
@@ -236,7 +236,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
     // @example errorReason: "Failed to wakeup container"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult WakeupContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Execute the command in container
@@ -252,7 +252,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
     // @example errorReason: "Failed to execute command"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult ExecuteCommand(const string& containerId , const string& options , const string& command , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Update container properties
@@ -268,7 +268,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: provides the reason for failure if any
     // @example errorReason: "Failed to update container property"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult Annotate(const string& containerId , const string& key , const string& value , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Remove container property
@@ -282,7 +282,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: provides the reason for failure if any
     // @example errorReason: "Failed to remove annotation"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult RemoveAnnotation(const string& containerId , const string& key , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Mount a path in container
@@ -301,7 +301,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: provides the reason for failure if any
     // @example errorReason: "Failed to mount path"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult Mount(const string& containerId , const string& source , const string& target , const string& type , const string& options , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Unmount a path in container
@@ -315,7 +315,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example success: true
     // @param errorReason: provides the reason for failure if any
     // @example errorReason: "Failed to unmount path"
-    // @retval ErrorCode::NONE: Indicates successful state change
+    // @retval Core::ERROR_NONE: Indicates successful state change
     virtual Core::hresult Unmount(const string& containerId , const string& target , bool& success /* @out */, string& errorReason /* @out */) = 0;
 };
 } // namespace Exchange
