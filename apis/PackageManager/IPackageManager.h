@@ -37,6 +37,23 @@ namespace Exchange {
         /** Install an application bundle */
         // @text install
         // @brief Downloads and installs an application bundle.
+        // @details Starts an asynchronous installation using the supplied package identity and bundle metadata. The returned handle can be used to query progress or cancel the operation; completion is reported through operationStatus.
+        // @param type: Package type used to identify the application bundle.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application to install.
+        // @example version: "1.0.0"
+        // @param url: URL from which the application bundle is downloaded.
+        // @example url: "http://example.com/app.apk"
+        // @param appName: Display name of the application.
+        // @example appName: "Example App"
+        // @param category: Application category.
+        // @example category: "Utilities"
+        // @param handle: Output handle identifying the asynchronous installation request.
+        // @example handle: "install-handle-123"
+        // @retval Core::ERROR_NONE: The installation request was accepted.
+        // @retval Core::ERROR_GENERAL: The installation request could not be started.
         virtual Core::hresult Install(const string& type,
                 const string& id,
                 const string& version,
@@ -48,6 +65,19 @@ namespace Exchange {
         /** Uninstall an application */
         // @text uninstall
         // @brief Uninstalls an application.
+        // @details Starts an asynchronous uninstall request for the specified application and uninstall mode. Completion is reported through operationStatus.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application to uninstall.
+        // @example version: "1.0.0"
+        // @param uninstallType: Uninstall mode to apply.
+        // @example uninstallType: "full"
+        // @param handle: Output handle identifying the asynchronous uninstall request.
+        // @example handle: "uninstall-handle-123"
+        // @retval Core::ERROR_NONE: The uninstall request was accepted.
+        // @retval Core::ERROR_GENERAL: The uninstall request could not be started.
         virtual Core::hresult Uninstall(const string& type,
                 const string& id,
                 const string& version,
@@ -57,6 +87,21 @@ namespace Exchange {
         /** Download a resource for an app */
         // @text download
         // @brief Downloads a resource file for an application.
+        // @details Starts an asynchronous download of the resource identified by resKey for the specified application.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application.
+        // @example version: "1.0.0"
+        // @param resKey: Key identifying the resource to download.
+        // @example resKey: "resource-key-123"
+        // @param url: URL from which the resource is downloaded.
+        // @example url: "http://example.com/resource"
+        // @param handle: Output handle identifying the asynchronous download request.
+        // @example handle: "download-handle-123"
+        // @retval Core::ERROR_NONE: The download request was accepted.
+        // @retval Core::ERROR_GENERAL: The download request could not be started.
         virtual Core::hresult Download(const string& type,
                 const string& id,
                 const string& version,
@@ -67,6 +112,17 @@ namespace Exchange {
         /** Reset application state */
         // @text reset
         // @brief Deletes all persistent local data of the application.
+        // @details Resets the persistent local state associated with the specified application using the requested reset mode.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application.
+        // @example version: "1.0.0"
+        // @param resetType: Reset mode to apply.
+        // @example resetType: "full"
+        // @retval Core::ERROR_NONE: The application state was reset successfully.
+        // @retval Core::ERROR_GENERAL: The application state could not be reset.
         virtual Core::hresult Reset(const string& type,
                 const string& id,
                 const string& version,
@@ -88,6 +144,17 @@ namespace Exchange {
         /** Get application storage usage */
         // @text getStorageDetails
         // @brief Retrieves details about app and persistent storage usage.
+        // @details Returns storage paths and usage information for the application's app and persistent storage areas.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application.
+        // @example version: "1.0.0"
+        // @param storageinfo: Output containing storage details for app and persistent data.
+        // @example storageinfo: {"apps":{"path":"","quotaKB":"","usedKB":""},"persistent":{"path":"","quotaKB":"","usedKB":""}}
+        // @retval Core::ERROR_NONE: Storage details were retrieved successfully.
+        // @retval Core::ERROR_GENERAL: Storage details could not be retrieved.
         virtual Core::hresult GetStorageDetails(const string& type,
                 const string& id,
                 const string& version,
@@ -109,6 +176,19 @@ namespace Exchange {
         /** Set custom metadata */
         // @text setAuxMetadata
         // @brief Sets a key-value pair of metadata for the application.
+        // @details Stores or replaces the auxiliary metadata value associated with the specified application and key.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application.
+        // @example version: "1.0.0"
+        // @param key: Auxiliary metadata key to set.
+        // @example key: "customKey"
+        // @param value: Value to associate with the key.
+        // @example value: "customValue"
+        // @retval Core::ERROR_NONE: The auxiliary metadata was set successfully.
+        // @retval Core::ERROR_GENERAL: The auxiliary metadata could not be set.
         virtual Core::hresult SetAuxMetadata(const string& type,
                 const string& id,
                 const string& version,
@@ -118,6 +198,17 @@ namespace Exchange {
         /** Clear custom metadata */
         // @text clearAuxMetadata
         // @brief Clears the specified metadata key.
+        // @details Removes the specified auxiliary metadata key for the identified application.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application.
+        // @example version: "1.0.0"
+        // @param key: Auxiliary metadata key to remove.
+        // @example key: "customKey"
+        // @retval Core::ERROR_NONE: The auxiliary metadata key was cleared successfully.
+        // @retval Core::ERROR_GENERAL: The auxiliary metadata key could not be cleared.
         virtual Core::hresult ClearAuxMetadata(const string& type,
                 const string& id,
                 const string& version,
@@ -126,6 +217,21 @@ namespace Exchange {
         /** Get all metadata and resources */
         // @text getMetadata
         // @brief Retrieves metadata and auxiliary resource list for an application.
+        // @details Returns the application's base metadata together with its resource and auxiliary metadata key-value entries.
+        // @param type: Package type used to identify the application.
+        // @example type: "apk"
+        // @param id: Unique identifier of the application.
+        // @example id: "com.example.app"
+        // @param version: Version of the application.
+        // @example version: "1.0.0"
+        // @param metadata: Output containing the application's name, type, category, and URL.
+        // @example metadata: {"appName":"Example App","type":"apk","category":"Utilities","url":"https://example.com/app"}
+        // @param resources: Output iterator over the application's resource key-value pairs.
+        // @example resources: [{"key":"icon","value":"https://example.com/icon.png"}]
+        // @param auxMetadata: Output iterator over the application's auxiliary metadata key-value pairs.
+        // @example auxMetadata: [{"key":"customKey","value":"customValue"}]
+        // @retval Core::ERROR_NONE: Metadata and resource lists were retrieved successfully.
+        // @retval Core::ERROR_GENERAL: Metadata or resource lists could not be retrieved.
         virtual Core::hresult GetMetadata(const string& type,
                 const string& id,
                 const string& version,
@@ -136,11 +242,23 @@ namespace Exchange {
         /** Cancel an ongoing operation */
         // @text cancel
         // @brief Cancels a previously issued asynchronous request.
+        // @details Requests cancellation of an operation identified by its handle.
+        // @param handle: Handle returned when the asynchronous operation was started.
+        // @example handle: "operationHandle"
+        // @retval Core::ERROR_NONE: The cancellation request was processed successfully.
+        // @retval Core::ERROR_GENERAL: The operation could not be cancelled.
         virtual Core::hresult Cancel(const string& handle) = 0;
 
         /** Get progress of an operation */
         // @text getProgress
         // @brief Provides the current progress of an ongoing operation.
+        // @details Queries the current progress percentage for the asynchronous operation represented by the handle.
+        // @param handle: Handle returned when the asynchronous operation was started.
+        // @example handle: "operationHandle"
+        // @param progress: Output progress value for the operation.
+        // @example progress: 50
+        // @retval Core::ERROR_NONE: Progress was retrieved successfully.
+        // @retval Core::ERROR_GENERAL: Progress could not be retrieved.
         virtual Core::hresult GetProgress(const string& handle, uint32_t& progress /* @out */) const = 0;
 
         /* @event */
@@ -150,6 +268,21 @@ namespace Exchange {
 
             // @text operationStatus
             // @brief Notifies completion of an asynchronous operation.
+            // @details Broadcasts the outcome and identifying information for a completed package operation to registered observers.
+            // @param handle: Handle identifying the asynchronous operation.
+            // @example handle: "operationHandle"
+            // @param operation: Name of the operation that completed.
+            // @example operation: "install"
+            // @param type: Package type associated with the operation.
+            // @example type: "apk"
+            // @param id: Unique application identifier.
+            // @example id: "com.example.app"
+            // @param version: Application version associated with the operation.
+            // @example version: "1.0.0"
+            // @param status: Completion status of the operation.
+            // @example status: "success"
+            // @param details: Additional status details, if available.
+            // @example details: "Operation completed without errors."
             virtual void OperationStatus(const string& handle, const string& operation, const string& type, const string& id,
                                          const string& version, const string& status, const string& details) = 0;
         };
@@ -169,6 +302,21 @@ namespace Exchange {
         /** List installed apps */
         // @text getList
         // @brief Retrieves list of installed apps matching given filters.
+        // @details Returns the identifiers and versions of installed applications matching the supplied filters.
+        // @param type: Package type filter; an empty value does not restrict by type.
+        // @example type: ""
+        // @param id: Application identifier filter; an empty value does not restrict by identifier.
+        // @example id: ""
+        // @param version: Application version filter; an empty value does not restrict by version.
+        // @example version: ""
+        // @param appName: Application name filter; an empty value does not restrict by name.
+        // @example appName: ""
+        // @param category: Application category filter; an empty value does not restrict by category.
+        // @example category: ""
+        // @param installedIds: Output iterator over matching application identifiers and versions.
+        // @example installedIds: [{"id":"","version":""}]
+        // @retval Core::ERROR_NONE: The matching installed applications were retrieved successfully.
+        // @retval Core::ERROR_GENERAL: The installed application list could not be retrieved.
         virtual Core::hresult GetList(
                 const string& type,
                 const string& id,
@@ -180,6 +328,21 @@ namespace Exchange {
         /** Lock application from uninstalling */
         // @text lock
         // @brief Locks an application to prevent uninstallation.
+        // @details Creates a lock for the specified application so it cannot be uninstalled; the returned handle identifies the lock request.
+        // @param type: Package type used to identify the application.
+        // @example type: ""
+        // @param id: Unique identifier of the application.
+        // @example id: ""
+        // @param version: Version of the application.
+        // @example version: ""
+        // @param reason: Explanation for the lock.
+        // @example reason: ""
+        // @param owner: Owner requesting the lock.
+        // @example owner: ""
+        // @param handle: Output handle identifying the lock.
+        // @example handle: ""
+        // @retval Core::ERROR_NONE: The application was locked successfully.
+        // @retval Core::ERROR_GENERAL: The application could not be locked.
         virtual Core::hresult Lock(const string& type,
                 const string& id,
                 const string& version,
@@ -191,6 +354,11 @@ namespace Exchange {
         /** Unlock application */
         // @text unlock
         // @brief Unlocks a previously locked application.
+        // @details Removes the lock identified by the supplied handle, allowing the application to be uninstalled again.
+        // @param handle: Handle identifying the lock to remove.
+        // @example handle: "" 
+        // @retval Core::ERROR_NONE: The application lock was removed successfully.
+        // @retval Core::ERROR_GENERAL: The application lock could not be removed.
         virtual Core::hresult Unlock(const string& handle) = 0;
 
         struct LockInfo {
@@ -201,6 +369,17 @@ namespace Exchange {
         /** Get lock details */
         // @text getLockInfo
         // @brief Provides lock reason and owner for an app.
+        // @details Retrieves the reason and owner recorded for the specified application's lock.
+        // @param type: Package type used to identify the application.
+        // @example type: ""
+        // @param id: Unique identifier of the application.
+        // @example id: ""
+        // @param version: Version of the application.
+        // @example version: ""
+        // @param result: Output containing the lock reason and owner.
+        // @example result: {"reason":"","owner":""}
+        // @retval Core::ERROR_NONE: Lock details were retrieved successfully.
+        // @retval Core::ERROR_GENERAL: Lock details could not be retrieved.
         virtual Core::hresult GetLockInfo(const string& type,
                 const string& id,
                 const string& version,
@@ -212,7 +391,19 @@ namespace Exchange {
 
                 enum { ID = ID_PACKAGEMANAGER_BROKER };
 
+                // @brief Publishes an IPackageManager implementation through the broker.
+                // @details Offers the PackageManager interface to framework clients.
+                // @param packagemanager: PackageManager implementation to publish.
+                // @example packagemanager: IPackageManager implementation
+                // @retval Core::ERROR_NONE: The interface was offered successfully.
+                // @retval Core::ERROR_GENERAL: The interface could not be offered.
                 virtual Core::hresult Offer(IPackageManager* packagemanager) = 0;
+
+                // @brief Withdraws an IPackageManager implementation from the broker.
+                // @details Revokes a previously offered PackageManager interface.
+                // @param packagemanager: PackageManager implementation to withdraw.
+                // @retval Core::ERROR_NONE: The interface was revoked successfully.
+                // @retval Core::ERROR_GENERAL: The interface could not be revoked.
                 virtual Core::hresult Revoke(const IPackageManager* packagemanager) = 0;
 
     };

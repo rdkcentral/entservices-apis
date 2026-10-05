@@ -62,7 +62,7 @@ The following methods are provided by the ILifecycleManagerState Interface:
 <a id="appReady"></a>
 ## *appReady*
 
-Response api call to appInitializing API
+This API is called to indicate that the application is ready after initialization.
 
 ### Events Triggered
 None
@@ -83,11 +83,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.LifecycleManager.appReady",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -96,7 +96,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.LifecycleManager.appReady", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.LifecycleManager.appReady", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -122,7 +122,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | App identifier for the application. |
-| params.closeReason | string | closed reason for application. Possible values: USER_EXIT, ERROR, KILL_AND_RUN, KILL_AND_ACTIVATE |
+| params.closeReason | string | Closed reason for application. Possible values: USER_EXIT, ERROR, KILL_AND_RUN, KILL_AND_ACTIVATE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -135,11 +135,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.LifecycleManager.closeApp",
     "params": {
-        "appId": "",
+        "appId": "com.example.myapp",
         "closeReason": "USER_EXIT"
     }
 }
@@ -149,7 +149,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.LifecycleManager.closeApp", "params": {"appId": "", "closeReason": "USER_EXIT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.LifecycleManager.closeApp", "params": {"appId": "com.example.myapp", "closeReason": "USER_EXIT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -157,7 +157,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
 }
@@ -166,7 +166,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="stateChangeComplete"></a>
 ## *stateChangeComplete*
 
-Response api call to appLifecycleStateChanged API
+This API is called to indicate that the application has completed a state change.
 
 ### Events Triggered
 None
@@ -175,8 +175,8 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | App identifier for the application. |
-| params.stateChangedId | integer | state changed identifier |
-| params.success | bool |  |
+| params.stateChangedId | integer | State changed identifier |
+| params.success | bool | Indicates whether the state change was successful. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -189,12 +189,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.LifecycleManager.stateChangeComplete",
     "params": {
-        "appId": "",
-        "stateChangedId": 0,
+        "appId": "com.example.myapp",
+        "stateChangedId": 123,
         "success": true
     }
 }
@@ -204,7 +204,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.LifecycleManager.stateChangeComplete", "params": {"appId": "", "stateChangedId": 0, "success": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.LifecycleManager.stateChangeComplete", "params": {"appId": "com.example.myapp", "stateChangedId": 123, "success": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -212,7 +212,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -232,7 +232,7 @@ The following events are provided by the ILifecycleManagerState Interface:
 <a id="onAppLifecycleStateChanged"></a>
 ## *onAppLifecycleStateChanged*
 
-Notifies the new state
+This event is triggered whenever the lifecycle state of an application changes, providing both the old and new states along with the navigation intent if applicable.
 
 ### Parameters
 | Name | Type | Description |
@@ -242,21 +242,21 @@ Notifies the new state
 | params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
 | params.oldLifecycleState | string | The previous state of the application instance before the update. |
 | params.newLifecycleState | string | The new state to transition the application. |
-| params.navigationIntent | string | navigation intent during active state |
+| params.navigationIntent | string | Navigation intent during active state |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.LifecycleManager.onAppLifecycleStateChanged",
     "params": {
-        "appId": "",
-        "appInstanceId": "",
-        "oldLifecycleState": "",
-        "newLifecycleState": "",
-        "navigationIntent": ""
+        "appId": "com.example.myapp",
+        "appInstanceId": 123,
+        "oldLifecycleState": "INITIALIZING",
+        "newLifecycleState": "ACTIVE",
+        "navigationIntent": "userNavigated"
     }
 }
 ```
