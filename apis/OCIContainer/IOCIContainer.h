@@ -142,7 +142,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @example containerId: "container123"
     // @param bundlePath: Path of the application bundle
     // @example bundlePath: "/path/to/bundle"
-    // @param command(optional): Command to run in the container
+    // @param command: Command to run in the container
     // @example command: "/bin/bash"
     // @param westerosSocket: Westeros socket the container needs to connect to
     // @example westerosSocket: "/tmp/westeros.sock"
