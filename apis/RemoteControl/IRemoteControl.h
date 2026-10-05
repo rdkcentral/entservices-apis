@@ -78,6 +78,20 @@ namespace WPEFramework {
             INVALID  /* @text invalid */
         };
 
+        enum class ValidationStatus : uint8_t {
+            SUCCESS          /* @text SUCCESS */,
+            PENDING          /* @text PENDING */,
+            TIMEOUT          /* @text TIMEOUT */,
+            COLLISION        /* @text COLLISION */,
+            FAILURE          /* @text FAILURE */,
+            ABORT            /* @text ABORT */,
+            FULL_ABORT       /* @text FULL_ABORT */,
+            FAILED           /* @text FAILED */,
+            BIND_TABLE_FULL  /* @text BIND_TABLE_FULL */,
+            IN_PROGRESS      /* @text IN_PROGRESS */,
+            CTRLM_RESTART    /* @text CTRLM_RESTART */
+        };
+
         // Data structures for Remote Control
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
@@ -132,10 +146,9 @@ namespace WPEFramework {
 
 
         struct EXTERNAL ValidationStatusObject {
-            uint32_t netType           /* @brief The type of remote control network ex: 1 */;
-            uint32_t validationDigit1  /* @brief The first validation digit ex: 1 */;
-            uint32_t validationDigit2  /* @brief The second validation digit ex: 2 */;
-            uint32_t validationDigit3  /* @brief The third validation digit ex: 3 */;
+            ValidationStatus status /* @brief The validation status of the manual pairing request */;
+            string code             /* @opaque @optional @brief JSON array of the 3 key codes (KEY_*) of the pairing code, only present when the pairing code is first generated ex: [2, 3, 4] */;
+            uint32_t key            /* @optional @brief A single key code (KEY_*) that is used to validate against the manual pair code, only present for each key press ex: 2 */;
         };
 
         /**
@@ -353,7 +366,7 @@ namespace WPEFramework {
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
-                // @param status: Validation information including network type and validation digits for manual pairing
+                // @param status: Validation information including the validation status, the pairing code (KEY_* codes) when generated, and each key that was pressed
                 virtual void OnValidation(const ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
