@@ -103,7 +103,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param success: Indicates whether the operation was successful
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
-    // @example errorReason: "Failed to retrieve container list"
+    // @example errorReason: ""
     // @retval Core::ERROR_NONE: Indicates successful retrieval of the container list
     virtual Core::hresult ListContainers(string& containers /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
