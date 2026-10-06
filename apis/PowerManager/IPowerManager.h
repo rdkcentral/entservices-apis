@@ -27,7 +27,7 @@ namespace WPEFramework
 {
     namespace Exchange
     {
-        // @json @text:keep
+        // @json 1.0.0 @text:keep
         struct EXTERNAL IPowerManager : virtual public Core::IUnknown {
         enum { ID = ID_POWER_MANAGER };
 
@@ -79,7 +79,8 @@ namespace WPEFramework
             WAKEUP_REASON_STRAUTHFAIL = 14    /* @text STR_AUTH_FAIL */,
             WAKEUP_REASON_CEC = 15            /* @text CEC */,
             WAKEUP_REASON_PRESENCE = 16       /* @text PRESENCE */,
-            WAKEUP_REASON_VOICE = 17       /* @text VOICE */
+            WAKEUP_REASON_VOICE = 17       /* @text VOICE */,
+            WAKEUP_REASON_MAINTENANCE = 18    /* @text MAINTENANCE */
         };
 
         enum SystemMode : uint8_t {
@@ -398,8 +399,40 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetRebootReason(string &reason /* @out */) = 0;
 
+        /** Schedule a deep sleep wakeup at a specific time */
+        // @text scheduleDeepSleepWakeup
+        // @brief Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp.
+        //        The device will transition to POWER_STATE_STANDBY (ActiveStandby).
+        //        Note: requestorId is not currently delivered via OnPowerModeChanged.
+        // @param unixTime: Unix timestamp (seconds since epoch) when device should wake up
+        // @param requestorId: Unique identifier of the client scheduling the wakeup (alphanumeric + underscore + hyphen)
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains whitespace or invalid characters)
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult ScheduleDeepSleepWakeup(const uint64_t unixTime, const string& requestorId) = 0;
+
+        /** Cancel previously scheduled deep sleep wakeup(s) */
+        // @text cancelScheduledDeepSleepWakeups
+        // @brief Cancel previously scheduled deep sleep wakeup(s) registered via ScheduleDeepSleepWakeup.
+        //        Both parameters are optional filters used together to select which schedule(s) to remove:
+        //        - unixTime != 0 and requestorId non-empty: cancel that exact schedule
+        //        - unixTime == 0 and requestorId non-empty: cancel all schedules for that requestor
+        //        - unixTime != 0 and requestorId == "": cancel all schedules at that time, any requestor
+        //        - unixTime == 0 and requestorId == "": cancel every scheduled wakeup
+        //        This API never inspects or special-cases the current power state; if invoked while the
+        //        device is in deep sleep (which should not normally be possible), it behaves identically
+        //        to any other state - no special logic is applied.
+        // @param unixTime: Unix timestamp (seconds since epoch) to match; 0 = match any time
+        // @param requestorId: Unique identifier of the client that scheduled the wakeup; empty = match any requestor
+        // @retval ErrorCode::ERROR_NONE: Indicates success - at least one matching schedule was found and removed
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains invalid characters), OR no
+        //         matching schedule(s) were found for the given (unixTime, requestorId) combination - including
+        //         attempting to cancel an already-expired/already-fired schedule. Callers that need to
+        //         distinguish these cases should validate requestorId (alphanumeric + underscore + hyphen)
+        //         before calling; a valid requestorId then yields this code only when nothing matched.
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure to persist the updated schedule list
+        virtual Core::hresult CancelScheduledDeepSleepWakeups(const uint64_t unixTime /* @optional */, const string& requestorId /* @optional */) = 0;
     };
 
 } // namespace Exchange
 } // namespace WPEFramework
-

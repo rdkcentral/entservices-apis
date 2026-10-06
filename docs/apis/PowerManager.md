@@ -1110,7 +1110,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).wakeupReason | string | wake up reason. Possible values: UNKNOWN, IR, BLUETOOTH, RF4CE, GPIO, LAN, WIFI, TIMER, FRONTPANEL, WATCHDOG, SOFTWARERESET, THERMALRESET, WARMRESET, COLDBOOT, STR_AUTH_FAIL, CEC, PRESENCE, VOICE |
+| (property).wakeupReason | string | wake up reason. Possible values: UNKNOWN, IR, BLUETOOTH, RF4CE, GPIO, LAN, WIFI, TIMER, FRONTPANEL, WATCHDOG, SOFTWARERESET, THERMALRESET, WARMRESET, COLDBOOT, STR_AUTH_FAIL, CEC, PRESENCE, VOICE, MAINTENANCE |
 
 ### Examples
 
