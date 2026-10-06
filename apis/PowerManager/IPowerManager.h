@@ -423,6 +423,15 @@ namespace WPEFramework
         //         before calling; a valid requestorId then yields this code only when nothing matched.
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure to persist the updated schedule list
         virtual Core::hresult CancelScheduledDeepSleepWakeups(const uint64_t unixTime /* @optional */, const string& requestorId /* @optional */) = 0;
+
+        /** Get the latest Reboot reason */
+        // @text getRebootReason
+        // @brief Get the reason of the most recent reboot executed via PowerManager, i.e. the custom reason string
+        //        supplied to SetPowerState (POWER_STATE_OFF case) or to Reboot's rebootReasonCustom parameter.
+        // @param reason: reboot reason
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult GetRebootReason(string &reason /* @out */) = 0;
     };
 
 } // namespace Exchange
