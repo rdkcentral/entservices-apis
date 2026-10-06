@@ -390,15 +390,6 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetTimeSinceWakeup(TimeSinceWakeup &timeSinceWakeup /* @out */) = 0;
 
-        /** Get the latest Reboot reason */
-        // @text getRebootReason
-        // @brief Get the reason of the most recent reboot executed via PowerManager, i.e. the custom reason string
-        //        supplied to SetPowerState (POWER_STATE_OFF case) or to Reboot's rebootReasonCustom parameter.
-        // @param reason: reboot reason
-        // @retval ErrorCode::ERROR_NONE: Indicates success
-        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-        virtual Core::hresult GetRebootReason(string &reason /* @out */) = 0;
-
         /** Schedule a deep sleep wakeup at a specific time */
         // @text scheduleDeepSleepWakeup
         // @brief Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp.
@@ -432,6 +423,15 @@ namespace WPEFramework
         //         before calling; a valid requestorId then yields this code only when nothing matched.
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure to persist the updated schedule list
         virtual Core::hresult CancelScheduledDeepSleepWakeups(const uint64_t unixTime /* @optional */, const string& requestorId /* @optional */) = 0;
+
+        /** Get the latest Reboot reason */
+        // @text getRebootReason
+        // @brief Get the reason of the most recent reboot executed via PowerManager, i.e. the custom reason string
+        //        supplied to SetPowerState (POWER_STATE_OFF case) or to Reboot's rebootReasonCustom parameter.
+        // @param reason: reboot reason
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult GetRebootReason(string &reason /* @out */) = 0;
     };
 
 } // namespace Exchange
