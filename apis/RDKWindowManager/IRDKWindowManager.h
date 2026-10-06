@@ -75,7 +75,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @text onScreenshotComplete
     // @param success: Indicates whether the screenshot was captured successfully
     // @param imageData: Base64 encoded image data (PNG format)
-    virtual void OnScreenshotComplete(const bool success, const std::string& imageData){};
+    virtual void OnScreenshotComplete(const bool success, const std::string& imageData /* @restrict:16M */){};
   };
 
   /** Register notification interface */
