@@ -52,146 +52,146 @@ namespace Exchange {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETSTRING_CALLBACK };
             ~ISetStringCallback() override = default;
             // @brief Signals completion of SetString
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetStringCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETSTRING_CALLBACK };
             ~IGetStringCallback() override = default;
             // @brief Signals completion of GetString
             // @param value Retrieved string value
-            virtual void Complete(const string& value /* @restrict:0..4M */) = 0;
+            virtual void Complete(const string& value /* @restrict:0..4M */) {}
         };
         struct EXTERNAL ISetArrayCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETARRAY_CALLBACK };
             ~ISetArrayCallback() override = default;
             // @brief Signals completion of SetArray
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetArrayCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETARRAY_CALLBACK };
             ~IGetArrayCallback() override = default;
             // @brief Signals completion of GetArray
             // @param value Retrieved byte array
-            virtual void Complete(const std::vector<uint8_t>& value /* @restrict:0..256K */) = 0;
+            virtual void Complete(const std::vector<uint8_t>& value /* @restrict:0..256K */) {}
         };
         struct EXTERNAL ISetMixedCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETMIXED_CALLBACK };
             ~ISetMixedCallback() override = default;
             // @brief Signals completion of SetMixedArray
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetMixedCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETMIXED_CALLBACK };
             ~IGetMixedCallback() override = default;
             // @brief Signals completion of GetMixedArray
             // @param value Retrieved mixed-element array
-            virtual void Complete(const std::vector<MixedElement>& value /* @restrict:0..4228 */) = 0;
+            virtual void Complete(const std::vector<MixedElement>& value /* @restrict:0..4228 */) {}
         };
         struct EXTERNAL ISetNestedCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETNESTED_CALLBACK };
             ~ISetNestedCallback() override = default;
             // @brief Signals completion of SetNestedObjects
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetNestedCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETNESTED_CALLBACK };
             ~IGetNestedCallback() override = default;
             // @brief Signals completion of GetNestedObjects
             // @param value Retrieved nested-object array
-            virtual void Complete(const std::vector<NestedObject>& value /* @restrict:0..1736 */) = 0;
+            virtual void Complete(const std::vector<NestedObject>& value /* @restrict:0..1736 */) {}
         };
         struct EXTERNAL ISetUint32Callback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETUINT32_CALLBACK };
             ~ISetUint32Callback() override = default;
             // @brief Signals completion of SetUint32
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetUint32Callback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETUINT32_CALLBACK };
             ~IGetUint32Callback() override = default;
             // @brief Signals completion of GetUint32
             // @param value Retrieved value
-            virtual void Complete(const uint32_t value) = 0;
+            virtual void Complete(const uint32_t value) {}
         };
         struct EXTERNAL ISetUint64Callback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETUINT64_CALLBACK };
             ~ISetUint64Callback() override = default;
             // @brief Signals completion of SetUint64
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetUint64Callback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETUINT64_CALLBACK };
             ~IGetUint64Callback() override = default;
             // @brief Signals completion of GetUint64
             // @param value Retrieved value
-            virtual void Complete(const uint64_t value) = 0;
+            virtual void Complete(const uint64_t value) {}
         };
         struct EXTERNAL ISetBoolCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETBOOL_CALLBACK };
             ~ISetBoolCallback() override = default;
             // @brief Signals completion of SetBool
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetBoolCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETBOOL_CALLBACK };
             ~IGetBoolCallback() override = default;
             // @brief Signals completion of GetBool
             // @param value Retrieved value
-            virtual void Complete(const bool value) = 0;
+            virtual void Complete(const bool value) {}
         };
         struct EXTERNAL ISetFloatCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETFLOAT_CALLBACK };
             ~ISetFloatCallback() override = default;
             // @brief Signals completion of SetFloat
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetFloatCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETFLOAT_CALLBACK };
             ~IGetFloatCallback() override = default;
             // @brief Signals completion of GetFloat
             // @param value Retrieved value
-            virtual void Complete(const float value) = 0;
+            virtual void Complete(const float value) {}
         };
         struct EXTERNAL ISetDoubleCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_SETDOUBLE_CALLBACK };
             ~ISetDoubleCallback() override = default;
             // @brief Signals completion of SetDouble
-            virtual void Complete() = 0;
+            virtual void Complete() {}
         };
         struct EXTERNAL IGetDoubleCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_GETDOUBLE_CALLBACK };
             ~IGetDoubleCallback() override = default;
             // @brief Signals completion of GetDouble
             // @param value Retrieved value
-            virtual void Complete(const double value) = 0;
+            virtual void Complete(const double value) {}
         };
         struct EXTERNAL IMeasureCopyCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_MEASURECOPY_CALLBACK };
             ~IMeasureCopyCallback() override = default;
             // @brief Signals completion of MeasureCopyCost
             // @param microseconds Measured operation cost
-            virtual void Complete(const uint64_t microseconds) = 0;
+            virtual void Complete(const uint64_t microseconds) {}
         };
         struct EXTERNAL IMeasureStringCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_MEASURESTRING_CALLBACK };
             ~IMeasureStringCallback() override = default;
             // @brief Signals completion of MeasureStringResizeCost
             // @param microseconds Measured operation cost
-            virtual void Complete(const uint64_t microseconds) = 0;
+            virtual void Complete(const uint64_t microseconds) {}
         };
         struct EXTERNAL IMeasureMixedCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_MEASUREMIXED_CALLBACK };
             ~IMeasureMixedCallback() override = default;
             // @brief Signals completion of MeasureMixedAssignCost
             // @param microseconds Measured operation cost
-            virtual void Complete(const uint64_t microseconds) = 0;
+            virtual void Complete(const uint64_t microseconds) {}
         };
         struct EXTERNAL IMeasureNestedCallback : virtual public Core::IUnknown {
             enum { ID = ID_ES1BENCHMARK_ASYNC_MEASURENESTED_CALLBACK };
             ~IMeasureNestedCallback() override = default;
             // @brief Signals completion of MeasureNestedAssignCost
             // @param microseconds Measured operation cost
-            virtual void Complete(const uint64_t microseconds) = 0;
+            virtual void Complete(const uint64_t microseconds) {}
         };
 
         ~IES1BenchmarkAsync() override = default;
