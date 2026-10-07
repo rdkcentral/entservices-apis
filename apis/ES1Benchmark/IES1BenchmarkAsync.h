@@ -17,7 +17,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json 1.0.0 */
+    // @json 1.0.0
     struct EXTERNAL IES1BenchmarkAsync : virtual public Core::IUnknown {
 
         enum { ID = ID_ES1BENCHMARK_ASYNC };
