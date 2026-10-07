@@ -61,12 +61,12 @@ private:
     bool Read(T* v)
     {
         if ((v != nullptr) && (HasBytes(sizeof(T)) == true)) {
-            T tmp = 0;
-            for (size_t i = 0; i < sizeof(T); i++) {
-                tmp <<= 8;
-                tmp += buf_[pos_++];
+            uint64_t tmp = buf_[pos_++];
+
+            for (size_t i = 1; i < sizeof(T); ++i) {
+                tmp = (tmp << 8) | buf_[pos_++];
             }
-            *v = tmp;
+            *v = static_cast<T>(tmp);
             return true;
         }
         return false;
