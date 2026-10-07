@@ -63,6 +63,7 @@ The following methods are provided by the IVoiceControl Interface:
 | [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
 | [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
 | [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
+| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message sent to the Voice Server |
 | [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
 | [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
 | [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
@@ -335,6 +336,66 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
         "capabilities": [
             "PRV"
         ],
+        "success": true
+    }
+}
+```
+
+<!-- Manually maintained: setVoiceInit is @json:omit in IVoiceControl.h (registered by hand in the plugin), so h2md does not generate it. Re-add this section if VoiceControl.md is regenerated. -->
+<a id="setVoiceInit"></a>
+## *setVoiceInit*
+
+Sets the application metadata in the INIT message sent to the Voice Server. The whole `params` object is forwarded unchanged to the voice stack, since different partners send bespoke fields not enumerated here. Known fields include: roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id (type/partner/subType/jvAgent), accessPayload, deviceSwVersion, name, proposition, timeZone, experience.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object | The voice init payload as a JSON object. Forwarded unchanged to the voice stack |
+| params?.capabilities | array | <sup>(optional)</sup>A list of capabilities |
+| params?.capabilities[#] | string |  |
+| params?.language | string | <sup>(optional)</sup>Preferred user interface language |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.VoiceControl.setVoiceInit",
+    "params": {
+        "capabilities": [
+            "PRV"
+        ],
+        "language": "eng-USA"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 42, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"capabilities": ["PRV"], "language": "eng-USA"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
         "success": true
     }
 }
