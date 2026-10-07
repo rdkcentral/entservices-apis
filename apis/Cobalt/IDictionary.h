@@ -34,6 +34,14 @@ namespace Exchange {
             ~INotification() override = default;
 
             // Signal changes on the subscribed namespace..
+            // @brief Notifies that a value in the specified namespace has been modified.
+            // @details This method is called whenever a value in the specified namespace has been modified.
+            // @param nameSpace: string Namespace where the modification occurred.
+            // @example nameSpace: "com.example.myapp"
+            // @param key: string Key that was modified.
+            // @example key: "exampleKey"
+            // @param value: string New value associated with the key.
+            // @example value: "exampleValue"
             virtual void Modified(const string& nameSpace, const string& key, const string& value) = 0;
         };
 
@@ -41,13 +49,29 @@ namespace Exchange {
             enum { ID = ID_DICTIONARY_ITERATOR };
 
             ~IIterator() override = default;
-
+            // @brief Resets the iterator to the first entry.
+            // @details Positions the iterator at the beginning of the collection.
             virtual void Reset() = 0;
+            
+            // @brief Checks if the iterator is currently pointing to a valid entry.
+            // @details Returns true if the iterator is positioned at a valid entry, false otherwise.
+            // @retval true: Iterator is positioned at a valid entry.
+            // @retval false: Iterator is not positioned at a valid entry.
             virtual bool IsValid() const = 0;
+            
+            // @brief Advances the iterator to the next entry.
+            // @details Moves the iterator forward and reports whether the new position is valid.
+            // @retval true: Iterator advanced to a valid entry.
+            // @retval false: Iterator did not advance to a valid entry.
             virtual bool Next() = 0;
 
             // Signal changes on the subscribed namespace..
+            // @brief Retrieves the key of the current entry.
+            // @details Returns the key at the iterator's current position.
             virtual const string Key() const = 0;
+            
+            // @brief Retrieves the value of the current entry.
+            // @details Returns the value at the iterator's current position.
             virtual const string Value() const = 0;
         };
 
@@ -58,8 +82,35 @@ namespace Exchange {
         virtual void Unregister(const string& nameSpace, struct IDictionary::INotification* sink) = 0;
 
         // Getters and Setters for the dictionary.
+        // @brief Retrieves a value from the dictionary.
+        // @details Looks up a key within the specified namespace.
+        // @param nameSpace: Namespace containing the key.
+        // @example nameSpace: "com.example.myapp"
+        // @param key: Key whose value is requested.
+        // @example key: "exampleKey"
+        // @param value: Output parameter receiving the associated value.
+        // @example value: "exampleValue"
+        // @retval true: The value was retrieved successfully;
+        // @retval false: The key was not found or retrieval failed.
         virtual bool Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
+       
+        // @brief Stores a key-value pair in the dictionary.
+        // @details Creates a new entry or updates an existing one within the namespace.
+        // @param nameSpace: Namespace where the key belongs.
+        // @example nameSpace: "com.example.myapp"
+        // @param key: Key to create or update.
+        // @example key: "exampleKey"
+        // @param value: Value associated with the key.
+        // @example value: "exampleValue"
+        // @retval true: Key-value pair stored successfully.
+        // @retval false: Key-value pair could not be stored.
         virtual bool Set(const string& nameSpace, const string& key, const string& value) = 0;
+       
+        // @brief Retrieves an iterator for a namespace.
+        // @details Returns an iterator that can be used to enumerate all key-value pairs within the namespace.
+        // @param nameSpace: Namespace to enumerate.
+        // @example nameSpace: "com.example.myapp"  
+        // @return Iterator for the specified namespace, or nullptr if the namespace does not exist.
         virtual IIterator* Get(const string& nameSpace) const = 0;
     };
 }

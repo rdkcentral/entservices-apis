@@ -60,7 +60,7 @@ The following properties are provided by the IGoogleCast Interface:
 <a id="getCastStatus"></a>
 ## *getCastStatus*
 
-Status of cast shell interfacing via Cast control API.
+Retrieves the current status of the GoogleCast shell, including build number and cast state.
 
 > This property is read-only.
 ### Events
@@ -68,7 +68,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).status | object |  |
+| (property).status | object | Output parameter returning the current cast status, including build number and cast state. |
 | (property).status.castBuildNumber | string |  |
 | (property).status.castState | string | Possible values: UNKNOWN, STARTING, NOT_SETUP, OFFLINE, FORCED_UPDATE, SUSPENDED, Ready to cast. Cast is functional. |
 
@@ -79,7 +79,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.GoogleCast.getCastStatus"
 }
@@ -89,7 +89,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.GoogleCast.getCastStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.GoogleCast.getCastStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -97,11 +97,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
-        "castBuildNumber": "",
-        "castState": "UNKNOWN"
+        "castBuildNumber": "1.0.0",
+        "castState": "READY_TO_CAST"
     }
 }
 ```
