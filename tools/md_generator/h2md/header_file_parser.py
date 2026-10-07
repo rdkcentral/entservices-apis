@@ -528,6 +528,28 @@ class HeaderFileParser:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register iterator: {iterator_object}")
 
+    VECTOR_TYPE_REGEX = re.compile(r'^(?:std::)?vector\s*<\s*([\w\d\:]+)\s*>$')
+
+    def register_vector_type(self, type_str):
+        """
+        If type_str is a std::vector<T>, registers it in the iterators registry so it is documented
+        as an array of T, and returns its registry key. Otherwise returns type_str unchanged.
+        """
+        match = self.VECTOR_TYPE_REGEX.match(type_str.strip())
+        if not match:
+            return type_str
+        element_type = self.sanitize_resolution_operator_from_type(match.group(1))
+        if re.match(r'u?int(8|16|32|64)_t', element_type):
+            element_type = 'integer'
+        # Key has no '::' so sanitize_resolution_operator_from_type leaves it intact
+        vector_type = f"vector<{element_type}>"
+        self.iterators_registry[vector_type] = element_type
+        return vector_type
+
+    def is_vector_type(self, type_str):
+        # A lone std::vector param/result stays keyed by name in JSON-RPC, unlike a lone struct
+        return type_str.startswith('vector<') and type_str in self.iterators_registry
+
     def register_enum(self, enum_object):
         """
         Registers an enum by processing the enum's enumerator definitions.
@@ -584,13 +606,14 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
+                    member_type = self.register_vector_type(member_type)
                     # Strip the trailing comment terminator before extracting @text/@brief so
                     # legitimate '/' or '*' characters in the tag's own text (e.g. a URL) aren't
                     # mistaken for the start of '*/' and truncated.
                     description_for_tags = description.rstrip() if description else description
                     if description_for_tags and description_for_tags.endswith('*/'):
                         description_for_tags = description_for_tags[:-2].rstrip()
-                    text_tag_pattern = r'@text\s+([^@]+)'
+                    text_tag_pattern = r'@text\s+([\w\-\.]+)'
                     text_tag_match = re.search(text_tag_pattern, description_for_tags) if description_for_tags else None
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
                     brief_tag_pattern = r'@brief\s+([^@]+)'
@@ -702,6 +725,7 @@ class HeaderFileParser:
         for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction, is_optional_type) in param_info_list.items():
             if self.logger:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
+            symbol_type = self.register_vector_type(symbol_type)
             if '::' in symbol_type:
                 symbol_type = self.sanitize_resolution_operator_from_type(symbol_type)
             if symbol_type == 'IStringIterator':
@@ -940,7 +964,7 @@ class HeaderFileParser:
                 overridden_name = param_custom_name if param_custom_name else param_name
                 param_type = param.get('type')
                 param_desc = param.get('description')
-                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
+                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or (param_type in self.iterators_registry and not self.is_vector_type(param_type))):
                     request["params"] = self.get_symbol_example(
                         f"{param_name}-{param_type}", param_desc)
                 else:
@@ -981,7 +1005,7 @@ class HeaderFileParser:
                 overridden_name = result_custom_name if result_custom_name and result_custom_name != result_name else result_name
                 result_type = result.get('type')
                 result_desc = result.get('description')
-                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
+                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or (result_type in self.iterators_registry and not self.is_vector_type(result_type))):
                     response['result'] = self.get_symbol_example(
                         f"{result_name}-{result_type}", result_desc)
                 else:

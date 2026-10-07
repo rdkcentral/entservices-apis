@@ -215,7 +215,8 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.types | string | Array of strings indicating the voice session request types which are valid  |
+| result.types | array | Array of strings indicating the voice session request types which are valid  |
+| result.types[#] | string |  |
 
 ### Examples
 
@@ -246,7 +247,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
     "id": 2,
     "result": {
         "success": true,
-        "types": "ptt_transcription"
+        "types": [
+            "ptt_transcription"
+        ]
     }
 }
 ```
@@ -279,7 +282,8 @@ This method takes no parameters.
 | result.response.mic.status | string | The status of the device  |
 | result?.response.mic_tap | object | <sup>(optional)</sup>The status information for the MIC TAP device type, present only when MIC TAP capability is available |
 | result?.response.mic_tap.status | string | <sup>(optional)</sup>The status of the device  |
-| result.response.capabilities | string | The list of capability strings returned by the voice stack  |
+| result.response.capabilities | array | The list of capability strings returned by the voice stack  |
+| result.response.capabilities[#] | string |  |
 | result.response.success | bool | Whether the request succeeded |
 
 ### Examples
