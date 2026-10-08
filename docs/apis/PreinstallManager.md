@@ -61,7 +61,7 @@ The following methods are provided by the IPreinstallManager Interface:
 <a id="getPreinstallState"></a>
 ## *getPreinstallState*
 
-Provides the state of the preinstallation process.
+Retrieves the current state of the preinstallation process, indicating whether it has not started, is in progress, or has completed.
 
 ### Events Triggered
 None
@@ -80,7 +80,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.PreinstallManager.getPreinstallState"
 }
@@ -90,7 +90,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PreinstallManager.getPreinstallState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.PreinstallManager.getPreinstallState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -98,7 +98,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "state": "NOT_STARTED"
@@ -111,7 +111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 1,
@@ -123,7 +123,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="startPreinstall"></a>
 ## *startPreinstall*
 
-Checks the preinstall directory for packages to be preinstalled and installs them as needed.
+Initiates the preinstallation process for apps found in the preinstall directory.
 
 ### Events Triggered
 None
@@ -144,7 +144,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.PreinstallManager.startPreinstall",
     "params": {
@@ -157,7 +157,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PreinstallManager.startPreinstall", "params": {"forceInstall": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.PreinstallManager.startPreinstall", "params": {"forceInstall": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -165,7 +165,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
 }
@@ -176,7 +176,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "error": {
         "code": 1,
@@ -200,7 +200,7 @@ The following events are provided by the IPreinstallManager Interface:
 <a id="onAppInstallationStatus"></a>
 ## *onAppInstallationStatus*
 
-Emitted when the installation of a preinstalled app succeeds or fails.
+Provides detailed information about the installation status of a preinstalled app.
 
 > This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
@@ -214,11 +214,11 @@ Emitted when the installation of a preinstalled app succeeds or fails.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.PreinstallManager.onAppInstallationStatus",
     "params": {
-        "jsonresponse": ""
+        "jsonresponse": "{\\\"app\\\":\\\"com.example.app\\\",\\\"status\\\":\\\"success\\\"}"
     }
 }
 ```
@@ -226,7 +226,7 @@ Emitted when the installation of a preinstalled app succeeds or fails.
 <a id="onPreinstallationComplete"></a>
 ## *onPreinstallationComplete*
 
-Emitted when the preinstallation process completes
+Indicates that the preinstallation process has finished, regardless of success or failure.
 
 ### Parameters
 This method takes no parameters.
@@ -235,7 +235,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.PreinstallManager.onPreinstallationComplete"
 }
