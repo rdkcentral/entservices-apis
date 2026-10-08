@@ -22,11 +22,11 @@ namespace Exchange {
         // over JSON-RPC it is transported as a string result containing that JSON
         // (e.g. "[\"app1\",\"app2\"]") - clients parse the envelope first, then
         // parse the string as JSON.
-        // @retval Core::ERROR_NONE Success; applicationIds carries the JSON array
+        // @retval Core::ERROR_NONE: Success; applicationIds carries the JSON array
         //        ("[]" when no running application uses the package)
-        // @retval Core::ERROR_UNAVAILABLE Package cache not initialized yet (plugin
+        // @retval Core::ERROR_UNAVAILABLE: Package cache not initialized yet (plugin
         //        still starting up); retry later
-        // @retval Core::ERROR_GENERAL Backend failure (libpackage not initialized or
+        // @retval Core::ERROR_GENERAL: Backend failure (libpackage not initialized or
         //        the mount-graph query failed) or payload serialization failure
         virtual Core::hresult GetRunningApplicationsUsingPackage(const string &packageId,
                                                                  string& applicationIds /* @out @opaque */) = 0;
