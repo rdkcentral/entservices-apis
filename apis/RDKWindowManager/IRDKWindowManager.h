@@ -169,7 +169,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Registers a key intercept for a specific key code and client
   // @details Configures a key intercept using the client and key information encoded in the JSON string.
   // @param intercept: JSON String format with the client/callSign, keyCode, modifiers
-  // @example intercept: {"client":"org.example.app","keyCode":13,"modifiers":[]}
+  // @example intercept: "{"client":"org.example.app","keyCode":13,"modifiers":[]}"
   // @retval Core::ERROR_NONE: The key intercept was registered successfully.
   virtual Core::hresult AddKeyIntercept(const string &intercept) = 0;
   
