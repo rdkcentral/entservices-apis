@@ -233,7 +233,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Generates a key event for the specified keys and client.
   // @details Generates the key events described by the JSON string on behalf of the specified client.
   // @param keys: JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate
-  // @example keys: {"keys":[{"keyCode":13}]}
+  // @example keys: "{"keys":[{"keyCode":13}]}"
   // @param client: Name of the client/callSign requesting the key generation.
   // @example client: "org.example.app"
   // @retval Core::ERROR_NONE: The key event request was processed successfully.
