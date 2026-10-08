@@ -204,7 +204,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Registers listeners for specific keys.
   // @details Registers the key listener definitions encoded in the supplied JSON string.
   // @param keyListeners: JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign
-  // @example keyListeners: {"client":"org.example.app","keys":[{"keyCode":13}]}
+  // @example keyListeners: "{"client":"org.example.app","keys":[{"keyCode":13}]}"
   // @retval Core::ERROR_NONE: The key listeners were registered successfully.
   virtual Core::hresult AddKeyListener(const string &keyListeners) = 0;
   
