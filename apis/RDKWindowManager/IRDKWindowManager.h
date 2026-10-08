@@ -338,7 +338,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the visibility of the given client or appInstanceId
   // @details Retrieves whether the specified client window is visible.
   // @param client: client name or application instance ID
-  // @example client: "org.example.app", status: true
+  // @example client: "org.example.app"
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
   // @example visible: true
   // @retval Core::ERROR_NONE on success
