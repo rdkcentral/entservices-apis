@@ -117,11 +117,7 @@ None
     "id": 0,
     "method": "org.rdk.RDKWindowManager.addKeyIntercept",
     "params": {
-        "intercept": {
-            "client": "org.example.app",
-            "keyCode": 13,
-            "modifiers": []
-        }
+        "intercept": "{\"client\":\"org.example.app\",\"keyCode\":13,\"modifiers\":[]}"
     }
 }
 ```
@@ -130,7 +126,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.RDKWindowManager.addKeyIntercept", "params": {"intercept": {"client": "org.example.app", "keyCode": 13, "modifiers": []}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.RDKWindowManager.addKeyIntercept", "params": {"intercept": "{\"client\":\"org.example.app\",\"keyCode\":13,\"modifiers\":[]}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
