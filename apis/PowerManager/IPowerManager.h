@@ -142,7 +142,11 @@ namespace WPEFramework
             // @text onPowerModeChanged
             // @param currentState: Current Power State
             // @param newState: New Power State
-            virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState) {};
+            // @param reason: Reason for the power state change, as provided in the triggering SetPowerState invocation.
+            //                Will be 'DeepSleep timedout' when the state change resulted from a deep sleep wakeup timer expiry.
+            // @param requestors: Name/ID of the client(s) that requested the Timer based wakeup action, as provided via the
+            //                    requestorId parameter of ScheduleDeepSleepWakeup. Empty unless reason is 'DeepSleep timedout'.
+            virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState, const string &reason, const string &requestors) {};
         };
         virtual Core::hresult Register(IModeChangedNotification* notification ) = 0;
         virtual Core::hresult Unregister(const IModeChangedNotification* notification ) = 0;
