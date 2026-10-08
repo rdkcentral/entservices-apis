@@ -547,13 +547,7 @@ None
     "id": 7,
     "method": "org.rdk.RDKWindowManager.generateKey",
     "params": {
-        "keys": {
-            "keys": [
-                {
-                    "keyCode": 13
-                }
-            ]
-        },
+        "keys": "{\"keys\":[{\"keyCode\":13}]}",
         "client": "org.example.app"
     }
 }
@@ -563,7 +557,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RDKWindowManager.generateKey", "params": {"keys": {"keys": [{"keyCode": 13}]}, "client": "org.example.app"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RDKWindowManager.generateKey", "params": {"keys": "{\"keys\":[{\"keyCode\":13}]}", "client": "org.example.app"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
