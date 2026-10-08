@@ -138,11 +138,30 @@ namespace WPEFramework
         struct EXTERNAL IModeChangedNotification : virtual public Core::IUnknown
         {
             enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGED };
-            // @brief Power mode changed
-            // @text onPowerModeChanged
+            // @json:omit
+            // @brief Power mode changed (legacy 2-parameter overload), not exposed over
+            //        JSON-RPC. Exists purely for source compatibility with notification
+            //        sinks that only override this one.
             // @param currentState: Current Power State
             // @param newState: New Power State
             virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState) {};
+
+            // @text onPowerModeChanged
+            // @brief Power mode changed (with reason/requestors), exposed over JSON-RPC.
+            // @param currentState: Current Power State
+            // @param newState: New Power State
+            // @param reason: Reason for the power state change
+            // @param requestors: Name/ID of requesting client(s), only for deep sleep timer wakeup.
+            //        When multiple clients scheduled a wakeup consumed by the same event, this is a
+            //        single space-separated list of their requestorId's (e.g. "requestor1 requestor2").
+            // @note This overload was added after the 2-parameter overload and extends the interface layout.
+            //       PowerManager and all IModeChangedNotification listeners must be rebuilt and deployed
+            //       together against this version. The default body forwards to the 2-parameter overload
+            //       only for recompiled listeners.
+            virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState, const string &reason, const string &requestors)
+            {
+                OnPowerModeChanged(currentState, newState);
+            }
         };
         virtual Core::hresult Register(IModeChangedNotification* notification ) = 0;
         virtual Core::hresult Unregister(const IModeChangedNotification* notification ) = 0;
@@ -394,7 +413,8 @@ namespace WPEFramework
         // @text scheduleDeepSleepWakeup
         // @brief Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp.
         //        The device will transition to POWER_STATE_STANDBY (ActiveStandby).
-        //        Note: requestorId is not currently delivered via OnPowerModeChanged.
+        //        Note: requestorId is delivered via IModeChangedNotification's 4-parameter OnPowerModeChanged
+        //        overload when the resulting power state change reports reason 'DeepSleep timed out'.
         // @param unixTime: Unix timestamp (seconds since epoch) when device should wake up
         // @param requestorId: Unique identifier of the client scheduling the wakeup (alphanumeric + underscore + hyphen)
         // @retval ErrorCode::ERROR_NONE: Indicates success
