@@ -110,19 +110,35 @@ namespace Exchange {
         typedef RPC::IIteratorType<VideoCodec, ID_PLAYER_PROPERTIES_VIDEO> IVideoCodecIterator;
 
         // @property
+        // @brief Returns the audio codecs supported by the player.
+        // @details Retrieves the list of audio codecs available for playback.
+        // @param codec: Receives an iterator over the supported audio codecs.
+        // @example codec: ["AUDIO_UNDEFINED"]
+        // @retval Core::ERROR_NONE: The supported audio codecs were retrieved successfully.
         virtual uint32_t AudioCodecs(IAudioCodecIterator*& codec /* @out */) const = 0;
 
         // @property
+        // @brief Returns the video codecs supported by the player.
+        // @details Retrieves the list of video codecs available for playback.
+        // @param codec: Receives an iterator over the supported video codecs.
+        // @example codec: ["VIDEO_UNDEFINED"]
+        // @retval Core::ERROR_NONE: The supported video codecs were retrieved successfully.
         virtual uint32_t VideoCodecs(IVideoCodecIterator*& codec /* @out */) const = 0;
 
         // @property
         // @brief Current Video playback resolution
+        // @details Retrieves the current video playback resolution.
         // @param res: resolution
+        // @example res: "RESOLUTION_UNKNOWN"
+        // @retval Core::ERROR_NONE: The current playback resolution was retrieved successfully.
         virtual uint32_t Resolution(PlaybackResolution& res /* @out */) const = 0;
 
         // @property
         // @brief Checks Loudness Equivalence in platform
+        // @details Reports whether audio loudness equivalence is enabled on the platform.
         // @param ae: enabled/disabled
+        // @example ae: true
+        // @retval Core::ERROR_NONE: The audio equivalence setting was retrieved successfully.
         virtual uint32_t IsAudioEquivalenceEnabled(bool& ae /* @out */) const = 0;
     };
 }
