@@ -109,7 +109,7 @@ class HeaderFileParser:
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
         ('asyncevents', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@asyncevents\s+(.*?)(?=\s*\*\/|$)')),
         ('deprecated',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@deprecated\s*(.*?)(?=\s*\*\/|$)')),
-        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
+        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit|@docs:include)(.*)')),
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
@@ -401,7 +401,14 @@ class HeaderFileParser:
                 self.plugin_version = groups[1]
             self.latest_tag = ''
         elif line_tag == 'omit':
-            self.doxy_tags['omit'] = 'omit'
+            # Scan the whole line so tags combined on one line (e.g. "@json:omit @docs:include") all apply
+            for tag in re.findall(r'@json:omit|@omit|@docs:omit|@docs:include', ''.join(g for g in groups if g)):
+                if tag == '@docs:include':
+                    self.doxy_tags['docs_include'] = True
+                elif tag == '@docs:omit':
+                    self.doxy_tags['docs_omit'] = True
+                else:
+                    self.doxy_tags['omit'] = 'omit'
             self.latest_tag = ''
         elif line_tag == 'config':
             type = groups[1]
@@ -655,8 +662,9 @@ class HeaderFileParser:
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
             method_info['cpp_name'] = method_name
             method_info['owner_interface'] = owner_interface
-            # ignore these methods
-            if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
+            # ignore these methods; @docs:omit always wins, @docs:include overrides @json:omit/@omit
+            is_omitted = doxy_tags.get('docs_omit') or ('omit' in doxy_tags and not doxy_tags.get('docs_include'))
+            if method_name in ['Register', 'Unregister'] or is_omitted:
                 return
             # if the interface struct does not have a @json tag, skip registering the methods
             if '_HasJsonTag' not in scope[-1]:
@@ -730,8 +738,9 @@ class HeaderFileParser:
                 symbol_type = self.sanitize_resolution_operator_from_type(symbol_type)
             if symbol_type == 'IStringIterator':
                 self.register_iterator(symbol_type)
-            if symbol_type in self.notification_names:
-                self.doxy_tags['omit'] = 'omit'
+            if symbol_type in self.notification_names or self._is_notification_interface_name(symbol_type):
+                # Notification registration is never JSON-RPC, so @docs:include can't override this
+                self.doxy_tags['docs_omit'] = True
             overridden_name = symbol_name
             if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
                 overridden_name = custom_name

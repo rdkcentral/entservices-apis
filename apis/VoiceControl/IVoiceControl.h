@@ -147,14 +147,15 @@ namespace WPEFramework {
             virtual Core::hresult ConfigureVoice(const Core::OptionalType<string>& urlAll, const Core::OptionalType<string>& urlPtt, const Core::OptionalType<string>& urlHf, const Core::OptionalType<string>& urlMicTap, const Core::OptionalType<bool>& enable, const Core::OptionalType<bool>& prv, const Core::OptionalType<bool>& wwFeedback, const Core::OptionalType<DeviceEnableConfig>& ptt, const Core::OptionalType<DeviceEnableConfig>& ff, const Core::OptionalType<DeviceEnableConfig>& mic, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @json:omit
+            // @docs:include
             // @brief Sets the application metadata in the INIT message sent to the Voice Server. The whole payload is forwarded unchanged, since different partners send bespoke fields not enumerated here. Known fields: roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id (type/partner/subType/jvAgent), accessPayload, deviceSwVersion, name, proposition, timeZone, experience.
             // @text setVoiceInit
-            // @param payload: The voice init payload as a JSON object
+            // @param payload: The voice init payload as a JSON object, forwarded unchanged ex: {"capabilities": ["PRV"], "language": "eng-USA"}
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque @unwrapped */, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
