@@ -344,7 +344,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, const std::vector<string>& macAddressList /* @optional @keep_key @restrict:32 */) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, const std::vector<string>& macAddressList /* @optional @restrict:32 */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate

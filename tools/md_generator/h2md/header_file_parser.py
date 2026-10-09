@@ -22,6 +22,7 @@
 import re
 import json
 import os
+import sys
 from logger import Logger
 
 def _find_balanced_json_end(text, open_index):
@@ -819,8 +820,16 @@ class HeaderFileParser:
                         custom_name = self.normalize_key(text_match.group(1))
                     if '@keep_key' in param_inline_comment:
                         keep_key = True
-                    if '@unwrapped' in param_inline_comment:
+                    if '@docs:unwrapped' in param_inline_comment:
                         unwrapped = True
+                    elif '@unwrapped' in param_inline_comment:
+                        unwrapped = True
+                        # Deprecated: Thunder doesn't support @unwrapped
+                        warning = (f"{os.path.basename(self.header_file_path)}: parameter '{param_name}' uses @unwrapped, "
+                                   f"which Thunder does not support; use @docs:unwrapped instead")
+                        print(f"WARNING: {warning}", file=sys.stderr)
+                        if self.logger:
+                            self.logger.log("WARNING", warning)
                     if '@out' in param_inline_comment:
                         direction = 'out'
                     elif '@inout' in param_inline_comment:

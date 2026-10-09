@@ -323,7 +323,7 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 
 ---
 
-### 12. `@unwrapped`
+### 12. `@docs:unwrapped` (or `@unwrapped`)
 - **Purpose**: Provides option to unwrap the results or params object such that it directly returns a single member. 
 - **Required**: No
 - **Usage**:
@@ -336,15 +336,16 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
     "params": true
 }
 ```
-  - In this case, the parameter in the method should be tagged with the `@unwrapped` tag.
+  - In this case, the parameter in the method should be tagged with the `@docs:unwrapped` tag.
+  - Use `@docs:unwrapped` rather than `@unwrapped`, which Thunder does not support. `@unwrapped` still works but prints a warning.
   - For params, the parameter must be the method's only input parameter; the Parameters table then shows a single `params` row.
-  - An `@opaque` string parameter tagged `@unwrapped` whose example is JSON (e.g. `ex: {"language": "eng-USA"}`) is documented as that JSON object or array, since that is what is sent on the wire.
+  - An `@opaque` string parameter tagged `@docs:unwrapped` whose example is JSON (e.g. `ex: {"language": "eng-USA"}`) is documented as that JSON object or array, since that is what is sent on the wire.
 
 ### Example:
 
 ***Header File Example:***
 ```cpp
-  virtual Core::hresult IsInstalled(const string& appId, bool& installed /* @unwrapped @out */) = 0;
+  virtual Core::hresult IsInstalled(const string& appId, bool& installed /* @docs:unwrapped @out */) = 0;
 ```
 ***Generated Markdown Example:***
 > #### Response
@@ -379,7 +380,7 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 // @text setVoiceInit
 // @param payload: The voice init payload as a JSON object, forwarded unchanged ex: {"capabilities": ["PRV"], "language": "eng-USA"}
 // @param result: Whether the request succeeded
-virtual Core::hresult SetVoiceInit(const string& payload /* @opaque @unwrapped */, VoiceControlSuccessResult& result /* @out */) = 0;
+virtual Core::hresult SetVoiceInit(const string& payload /* @opaque @docs:unwrapped */, VoiceControlSuccessResult& result /* @out */) = 0;
 ```
 
 
