@@ -216,7 +216,7 @@ This method takes no parameters.
 <a name="method.config"></a>
 ## *config [<sup>method</sup>](#head.Methods)*
 
-Return the runtime configuration as an opaque JSON object over JSON-RPC. COM-RPC transports the same configuration as a serialized string. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
+Return the runtime configuration as an opaque JSON object over JSON-RPC. COM-RPC transports the same configuration as a serialized string. `envVariables`, `logLevels`, and `fkpsFiles` are JSON arrays of strings rather than strings containing serialized JSON arrays; consumers must process them as arrays and preserve unknown properties.
 
 ### Events
 
@@ -317,7 +317,7 @@ No Events
 <a name="method.getConfigForPackage"></a>
 ## *getConfigForPackage [<sup>method</sup>](#head.Methods)*
 
-Return the runtime configuration as an opaque JSON object over JSON-RPC. COM-RPC transports the same configuration as a serialized string. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
+Return the runtime configuration as an opaque JSON object over JSON-RPC. COM-RPC transports the same configuration as a serialized string. `envVariables`, `logLevels`, and `fkpsFiles` are JSON arrays of strings rather than strings containing serialized JSON arrays; consumers must process them as arrays and preserve unknown properties.
 
 ### Events
 
