@@ -90,7 +90,10 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @param paths(optional) paths contains an additional set of files and directories to map into the container
     // @param debugSettings(optional) can include additional ports to open for gdb and other settings for debugging
     // @param runtimeConfigPayload Opaque string containing the final enriched serialized JSON runtime configuration object
-    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const string& runtimeConfigPayload /* @opaque */) = 0;
+    // @retval Core::ERROR_NONE: Application runtime started successfully
+    // @retval Core::ERROR_INVALID_PARAMETER: Runtime configuration payload is invalid
+    // @retval Core::ERROR_GENERAL: Application runtime could not be started
+    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const string& runtimeConfigPayload) = 0;
 
     /** @brief Hibernate the application */
     // @text hibernate
