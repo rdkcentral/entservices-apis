@@ -210,6 +210,7 @@ namespace Exchange {
         virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
 
         // @brief Return the package runtime configuration as an opaque serialized JSON string
+        // @details envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
         // @text config
         // @param packageId: Package Id
         // @param version: Version
@@ -240,6 +241,7 @@ namespace Exchange {
             ) = 0;
 
         // @brief Return package metadata and its opaque serialized JSON runtime configuration
+        // @details envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
         // @text getConfigForPackage
         // @param fileLocator: Locator of the package file
         // @param id: Package Id

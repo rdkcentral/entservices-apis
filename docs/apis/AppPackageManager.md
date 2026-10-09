@@ -517,6 +517,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 Return the package runtime configuration as an opaque JSON object
 
+`envVariables`, `logLevels`, and `fkpsFiles` are real JSON arrays of strings, not strings containing serialized JSON arrays; consumers must process and preserve them as arrays.
+
 ### Events Triggered
 None
 ### Parameters
@@ -529,7 +531,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.configMetadata | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
+| result.configMetadata | object | Opaque JSON runtime configuration object containing real JSON arrays; COM-RPC transports its serialized string representation |
 
 ### Examples
 
@@ -601,6 +603,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 
 Return package metadata and its opaque JSON runtime configuration
 
+`envVariables`, `logLevels`, and `fkpsFiles` are real JSON arrays of strings, not strings containing serialized JSON arrays; consumers must process and preserve them as arrays.
+
 ### Events Triggered
 None
 ### Parameters
@@ -614,7 +618,7 @@ None
 | result | object |  |
 | result.id | string | Package Id |
 | result.version | string | Version |
-| result.config | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
+| result.config | object | Opaque JSON runtime configuration object containing real JSON arrays; COM-RPC transports its serialized string representation |
 
 ### Examples
 
