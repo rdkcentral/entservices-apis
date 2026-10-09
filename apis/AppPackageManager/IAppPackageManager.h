@@ -214,10 +214,14 @@ namespace Exchange {
         // @param packageId: Package Id
         // @param version: Version
         // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays
+        // @retval Core::ERROR_NONE: Runtime configuration returned successfully
+        // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
+        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
+        // @retval Core::ERROR_GENERAL: Package is not installed or its runtime configuration is unavailable
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
-            string &runtimeConfigPayload /* @out @opaque */
+            string &runtimeConfigPayload /* @out */
             ) = 0;
 
         struct PackageStateResponse {
@@ -237,11 +241,15 @@ namespace Exchange {
 
         // @brief Return package metadata and its opaque serialized JSON runtime configuration
         // @text getConfigForPackage
-        // @param fileLocator: locator of package
-        // @param id: package id
-        // @param version: version of package
-        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& runtimeConfigPayload /* @out @opaque */) = 0;
+        // @param fileLocator: Locator of the package file
+        // @param id: Package Id
+        // @param version: Version
+        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays
+        // @retval Core::ERROR_NONE: Package metadata and runtime configuration returned successfully
+        // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
+        // @retval Core::ERROR_INVALID_SIGNATURE: File locator is empty
+        // @retval Core::ERROR_GENERAL: Package metadata or runtime configuration could not be retrieved
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& runtimeConfigPayload /* @out */) = 0;
    };
 
 
@@ -267,18 +275,22 @@ namespace Exchange {
         // @text lock
         // @param packageId: Package Id
         // @param version: Version
-        // @param lockReason: LockReason
-        // @param lockId: Lock Id
-        // @param unpackedPath: Unpacked Path
+        // @param lockReason: Reason for locking the package
+        // @param lockId: Identifier assigned to the package lock
+        // @param unpackedPath: Path to the unpacked package
         // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
-        // @param appMetadata: App Metadata
+        // @param appMetadata: Additional packages locked for the application
+        // @retval Core::ERROR_NONE: Package locked successfully
+        // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
+        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
+        // @retval Core::ERROR_GENERAL: Package locking or runtime configuration processing failed
         virtual Core::hresult Lock(
             const string &packageId,
             const string &version,
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
-            string &runtimeConfigPayload /* @out @opaque */,
+            string &runtimeConfigPayload /* @out */,
             IPackageHandler::ILockIterator*& appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
@@ -295,12 +307,19 @@ namespace Exchange {
         // @text getLockedInfo
         // @param packageId: Package Id
         // @param version: Version
+        // @param unpackedPath: Path to the unpacked package
         // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
+        // @param gatewayMetadataPath: Path to the application gateway metadata
+        // @param locked: Indicates whether the package is locked
+        // @retval Core::ERROR_NONE: Package lock information returned successfully
+        // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
+        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
+        // @retval Core::ERROR_GENERAL: Runtime configuration could not be processed
         virtual Core::hresult GetLockedInfo(
             const string &packageId,
             const string &version,
             string &unpackedPath /* @out */,
-            string &runtimeConfigPayload /* @out @opaque */,
+            string &runtimeConfigPayload /* @out */,
             string &gatewayMetadataPath /* @out */,
             bool &locked /* @out */
             ) = 0;

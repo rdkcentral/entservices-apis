@@ -73,8 +73,17 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @json:omit
     // @text spawnApp
     // @brief Perform launching of application with window and runtime manager
+    // @param appId Application identifier
+    // @param launchIntent Intent supplied when launching the application
+    // @param targetLifecycleState Lifecycle state requested for the application
     // @param runtimeConfigPayload Opaque string containing a serialized mutable JSON object; unknown properties must be preserved when enriched
-    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const string& runtimeConfigPayload /* @opaque */ , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    // @param launchArgs Additional application launch arguments
+    // @param appInstanceId Identifier assigned to the launched application instance
+    // @param errorReason Description of a launch failure
+    // @param success Indicates whether the launch request was accepted
+    // @retval Core::ERROR_NONE: Launch request accepted successfully
+    // @retval Core::ERROR_GENERAL: Runtime configuration is invalid, a state transition is pending, or the launch request failed
+    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const string& runtimeConfigPayload , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
     // @json:omit

@@ -568,6 +568,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 }
 ```
 
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 10,
+    "error": {
+        "code": 2,
+        "message": "Package cache is not initialized"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "Package is not installed or its runtime configuration is unavailable"
+    }
+}
+```
+
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
@@ -579,14 +607,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.fileLocator | string | locator of package |
+| params.fileLocator | string | Locator of the package file |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.id | string | package id |
-| result.version | string | version of package |
-| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
+| result.id | string | Package Id |
+| result.version | string | Version |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -622,6 +650,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
         "id": "",
         "version": "",
         "runtimeConfigPayload": ""
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 11,
+    "error": {
+        "code": 2,
+        "message": "Package cache is not initialized"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "Package metadata or runtime configuration could not be retrieved"
     }
 }
 ```

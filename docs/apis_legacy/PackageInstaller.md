@@ -216,7 +216,7 @@ This method takes no parameters.
 <a name="method.config"></a>
 ## *config [<sup>method</sup>](#head.Methods)*
 
-Return the runtime configuration as an opaque serialized JSON object. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
+Return the runtime configuration as an opaque serialized JSON string. Array-valued properties such as environment variables, log levels, and FKPS files are represented as JSON arrays within the serialized object; consumers must preserve unknown properties.
 
 ### Events
 
@@ -235,7 +235,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.runtimeConfigPayload | string | Opaque serialized JSON object containing runtime configuration |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
 
 ### Example
 
@@ -317,7 +317,7 @@ No Events
 <a name="method.getConfigForPackage"></a>
 ## *getConfigForPackage [<sup>method</sup>](#head.Methods)*
 
-Return the runtime configuration as an opaque serialized JSON object. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
+Return the runtime configuration as an opaque serialized JSON string. Array-valued properties such as environment variables, log levels, and FKPS files are represented as JSON arrays within the serialized object; consumers must preserve unknown properties.
 
 ### Events
 
@@ -337,7 +337,7 @@ No Events
 | result | object |  |
 | result.packageId | string | Package Id |
 | result.version | string | Package Version |
-| result.runtimeConfigPayload | string | Opaque serialized JSON object containing runtime configuration |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
 
 ### Example
 
