@@ -235,7 +235,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object |
+| result.configMetadata | object | Opaque JSON runtime configuration object |
 
 ### Example
 
@@ -260,7 +260,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "runtimeConfigPayload": {"dial": false, "wanLanAccess": false, "thunder": false, "systemMemoryLimit": 0, "gpuMemoryLimit": 0, "envVariables": [], "userId": 0, "groupId": 0, "dataImageSize": 0, "resourceManagerClientEnabled": false, "dialId": "...", "command": "...", "appType": "...", "appPath": "...", "runtimePath": "..."}
+        "configMetadata": {"dial": false, "wanLanAccess": false, "thunder": false, "systemMemoryLimit": 0, "gpuMemoryLimit": 0, "envVariables": [], "userId": 0, "groupId": 0, "dataImageSize": 0, "resourceManagerClientEnabled": false, "dialId": "...", "command": "...", "appType": "...", "appPath": "...", "runtimePath": "..."}
     }
 }
 ```
@@ -337,7 +337,7 @@ No Events
 | result | object |  |
 | result.packageId | string | Package Id |
 | result.version | string | Package Version |
-| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object |
+| result.config | object | Opaque JSON runtime configuration object |
 
 ### Example
 
@@ -363,7 +363,7 @@ No Events
     "result": {
         "packageId": "...",
         "version": "...",
-        "runtimeConfigPayload": {"dial": false, "wanLanAccess": false, "thunder": false, "systemMemoryLimit": 0, "gpuMemoryLimit": 0, "envVariables": [], "userId": 0, "groupId": 0, "dataImageSize": 0, "resourceManagerClientEnabled": false, "dialId": "...", "command": "...", "appType": "...", "appPath": "...", "runtimePath": "..."}
+        "config": {"dial": false, "wanLanAccess": false, "thunder": false, "systemMemoryLimit": 0, "gpuMemoryLimit": 0, "envVariables": [], "userId": 0, "groupId": 0, "dataImageSize": 0, "resourceManagerClientEnabled": false, "dialId": "...", "command": "...", "appType": "...", "appPath": "...", "runtimePath": "..."}
     }
 }
 ```
