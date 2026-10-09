@@ -2,7 +2,7 @@
 <a id="AppPackageManager_Module"></a>
 # AppPackageManager Module
 
-**Version: [2.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
 
 A AppPackageManager module for Thunder framework.
 
@@ -505,8 +505,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [config](#config) | Return the package runtime configuration as an opaque serialized JSON string |
-| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque serialized JSON runtime configuration |
+| [config](#config) | Return the package runtime configuration as an opaque JSON object |
+| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque JSON runtime configuration |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -515,7 +515,7 @@ The following methods are provided by the IPackageInstaller Interface:
 <a id="config"></a>
 ## *config*
 
-Return the package runtime configuration as an opaque serialized JSON string
+Return the package runtime configuration as an opaque JSON object
 
 ### Events Triggered
 None
@@ -529,7 +529,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays |
+| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
 
 ### Examples
 
@@ -563,7 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "runtimeConfigPayload": ""
+        "runtimeConfigPayload": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
     }
 }
 ```
@@ -599,7 +599,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
-Return package metadata and its opaque serialized JSON runtime configuration
+Return package metadata and its opaque JSON runtime configuration
 
 ### Events Triggered
 None
@@ -614,7 +614,7 @@ None
 | result | object |  |
 | result.id | string | Package Id |
 | result.version | string | Version |
-| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays |
+| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
 
 ### Examples
 
@@ -649,7 +649,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "result": {
         "id": "",
         "version": "",
-        "runtimeConfigPayload": ""
+        "runtimeConfigPayload": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
     }
 }
 ```

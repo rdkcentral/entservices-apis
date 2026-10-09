@@ -83,7 +83,7 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @param success Indicates whether the launch request was accepted
     // @retval Core::ERROR_NONE: Launch request accepted successfully
     // @retval Core::ERROR_GENERAL: Runtime configuration is invalid, a state transition is pending, or the launch request failed
-    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const string& runtimeConfigPayload , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const string& runtimeConfigPayload /* @opaque */ , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
     // @json:omit
