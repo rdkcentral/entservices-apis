@@ -754,8 +754,28 @@ None
 | result.result.status.netType | integer | The type of remote control network  |
 | result.result.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
 | result.result.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| result.result.status.netTypesSupported | string | The list of supported network types  |
-| result.result.status.remoteData | string | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
+| result.result.status.netTypesSupported | array | The list of supported network types  |
+| result.result.status.netTypesSupported[#] | integer |  |
+| result.result.status.remoteData | array | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
+| result.result.status.remoteData[#].macAddress | string | The MAC address of the remote in hex-colon format  |
+| result.result.status.remoteData[#].connected | bool | Whether the remote is currently connected |
+| result.result.status.remoteData[#].name | string | The friendly name of the remote  |
+| result.result.status.remoteData[#].remoteId | integer | The remote ID of the remote on its network  |
+| result.result.status.remoteData[#].deviceId | integer | The device ID of the remote  |
+| result.result.status.remoteData[#].make | string | The manufacturer of the remote  |
+| result.result.status.remoteData[#].model | string | The model of the remote  |
+| result.result.status.remoteData[#].hwVersion | string | The hardware version of the remote  |
+| result.result.status.remoteData[#].swVersion | string | The software version of the remote  |
+| result.result.status.remoteData[#].btlVersion | string | The bootloader version of the remote  |
+| result.result.status.remoteData[#].serialNumber | string | The serial number of the remote  |
+| result.result.status.remoteData[#].batteryPercent | integer | The battery level of the remote as a percentage (0-100)  |
+| result.result.status.remoteData[#].tvIRCode | string | The programmed TV IR code, or "0" if none  |
+| result.result.status.remoteData[#].ampIRCode | string | The programmed AMP IR code, or "0" if none  |
+| result.result.status.remoteData[#].wakeupKeyCode | integer | The Linux key code that wakes the target from deepsleep  |
+| result.result.status.remoteData[#].upgradeSessionId | string | The active firmware update session identifier for this remote, if any  |
+| result.result.status.remoteData[#].wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all, none, custom |
+| result.result.status.remoteData[#].wakeupCustomList | array | The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom  |
+| result.result.status.remoteData[#].wakeupCustomList[#] | integer |  |
 
 ### Examples
 
@@ -796,7 +816,35 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
             "netTypesSupported": [
                 1
             ],
-            "remoteData": ""
+            "remoteData": [
+                {
+                    "macAddress": "48:d0:cf:00:00:67:eb:df",
+                    "connected": true,
+                    "name": "XR15-20",
+                    "remoteId": 1,
+                    "deviceId": 0,
+                    "make": "UEI",
+                    "model": "XR15-20",
+                    "hwVersion": "2.3.2.0",
+                    "swVersion": "2.2.1.8",
+                    "btlVersion": "0.0.0.0",
+                    "serialNumber": "2060f290411c",
+                    "batteryPercent": 90,
+                    "tvIRCode": "0",
+                    "ampIRCode": "0",
+                    "wakeupKeyCode": 255,
+                    "upgradeSessionId": "12345-abc-def",
+                    "wakeupConfig": "all",
+                    "wakeupCustomList": [
+                        59,
+                        102,
+                        62,
+                        111,
+                        110,
+                        107
+                    ]
+                }
+            ]
         }
     }
 }
@@ -936,7 +984,8 @@ None
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.sessionIdList | string | List of session IDs created for the firmware update(s)  |
+| result.sessionIdList | array | List of session IDs created for the firmware update(s)  |
+| result.sessionIdList[#] | string |  |
 
 ### Examples
 
@@ -995,7 +1044,8 @@ None
 | params?.timeout | integer | <sup>(optional)</sup>Pairing timeout in seconds |
 | params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled |
 | params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled |
-| params?.macAddressList | string | <sup>(optional)</sup>List of MAC addresses to pair with  |
+| params?.macAddressList | array | <sup>(optional)</sup>List of MAC addresses to pair with  |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1179,7 +1229,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.macAddressList | string | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
+| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1283,8 +1334,28 @@ Triggered at any time when the status of any one of the supported STB remote net
 | params.status.netType | integer | The type of remote control network  |
 | params.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
 | params.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| params.status.netTypesSupported | string | The list of supported network types  |
-| params.status.remoteData | string | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
+| params.status.netTypesSupported | array | The list of supported network types  |
+| params.status.netTypesSupported[#] | integer |  |
+| params.status.remoteData | array | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
+| params.status.remoteData[#].macAddress | string | The MAC address of the remote in hex-colon format  |
+| params.status.remoteData[#].connected | bool | Whether the remote is currently connected |
+| params.status.remoteData[#].name | string | The friendly name of the remote  |
+| params.status.remoteData[#].remoteId | integer | The remote ID of the remote on its network  |
+| params.status.remoteData[#].deviceId | integer | The device ID of the remote  |
+| params.status.remoteData[#].make | string | The manufacturer of the remote  |
+| params.status.remoteData[#].model | string | The model of the remote  |
+| params.status.remoteData[#].hwVersion | string | The hardware version of the remote  |
+| params.status.remoteData[#].swVersion | string | The software version of the remote  |
+| params.status.remoteData[#].btlVersion | string | The bootloader version of the remote  |
+| params.status.remoteData[#].serialNumber | string | The serial number of the remote  |
+| params.status.remoteData[#].batteryPercent | integer | The battery level of the remote as a percentage (0-100)  |
+| params.status.remoteData[#].tvIRCode | string | The programmed TV IR code, or "0" if none  |
+| params.status.remoteData[#].ampIRCode | string | The programmed AMP IR code, or "0" if none  |
+| params.status.remoteData[#].wakeupKeyCode | integer | The Linux key code that wakes the target from deepsleep  |
+| params.status.remoteData[#].upgradeSessionId | string | The active firmware update session identifier for this remote, if any  |
+| params.status.remoteData[#].wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all, none, custom |
+| params.status.remoteData[#].wakeupCustomList | array | The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom  |
+| params.status.remoteData[#].wakeupCustomList[#] | integer |  |
 
 ### Examples
 
@@ -1300,7 +1371,35 @@ Triggered at any time when the status of any one of the supported STB remote net
         "netTypesSupported": [
             1
         ],
-        "remoteData": ""
+        "remoteData": [
+            {
+                "macAddress": "48:d0:cf:00:00:67:eb:df",
+                "connected": true,
+                "name": "XR15-20",
+                "remoteId": 1,
+                "deviceId": 0,
+                "make": "UEI",
+                "model": "XR15-20",
+                "hwVersion": "2.3.2.0",
+                "swVersion": "2.2.1.8",
+                "btlVersion": "0.0.0.0",
+                "serialNumber": "2060f290411c",
+                "batteryPercent": 90,
+                "tvIRCode": "0",
+                "ampIRCode": "0",
+                "wakeupKeyCode": 255,
+                "upgradeSessionId": "12345-abc-def",
+                "wakeupConfig": "all",
+                "wakeupCustomList": [
+                    59,
+                    102,
+                    62,
+                    111,
+                    110,
+                    107
+                ]
+            }
+        ]
     }
 }
 ```
@@ -1316,7 +1415,8 @@ Generated for manual pairing validation
 | params | object |  |
 | params.status | object | Validation information including the validation status, the pairing code (KEY_* codes) when generated, and each key that was pressed |
 | params.status.status | string | The validation status of the manual pairing request. Possible values: SUCCESS, PENDING, TIMEOUT, COLLISION, FAILURE, ABORT, FULL_ABORT, FAILED, BIND_TABLE_FULL, IN_PROGRESS, CTRLM_RESTART |
-| params.status.code | string | The pairing code for manual pairing which consists of 3 key codes (KEY_*), only present when the pairing code is first generated  |
+| params.status.code | array | The pairing code for manual pairing which consists of 3 key codes (KEY_*), only present when the pairing code is first generated  |
+| params.status.code[#] | integer |  |
 | params?.status.key | integer | <sup>(optional)</sup>A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode  |
 
 ### Examples

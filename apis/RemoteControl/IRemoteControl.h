@@ -141,8 +141,8 @@ namespace WPEFramework {
             string btlVersion                                          /* @brief The bootloader version of the remote e.g. "0.0.0.0" */;
             string serialNumber                                        /* @brief The serial number of the remote e.g. "2060f290411c" */;
             uint32_t batteryPercent                                     /* @brief The battery level of the remote as a percentage (0-100) ex: 90 */;
-            string tvIRCode                                            /* @brief The programmed TV IR code, or "0" if none ex: "0" */;
-            string ampIRCode                                           /* @brief The programmed AMP IR code, or "0" if none ex: "0" */;
+            string tvIRCode                                            /* @brief The programmed TV IR code, or "0" if none e.g. "0" */;
+            string ampIRCode                                           /* @brief The programmed AMP IR code, or "0" if none e.g. "0" */;
             uint32_t wakeupKeyCode                                      /* @brief The Linux key code that wakes the target from deepsleep ex: 255 */;
             string upgradeSessionId                                    /* @brief The active firmware update session identifier for this remote, if any e.g. "12345-abc-def" */;
             WakeupConfig wakeupConfig                                  /* @brief The deepsleep wakeup key configuration of the remote */;
@@ -344,7 +344,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, const std::vector<string>& macAddressList /* @optional @keep_key @restrict:32 */) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, const std::vector<string>& macAddressList /* @optional @restrict:32 */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
