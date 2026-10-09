@@ -53,7 +53,7 @@ namespace Exchange {
         virtual void Hide(const bool hidden) = 0;
     };
 
-    // @json @text:keep @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
+    // @json @text:legacy_lowercase @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IWebBrowser : virtual public Core::IUnknown {
         enum { ID = ID_WEB_BROWSER };
 
@@ -151,7 +151,7 @@ namespace Exchange {
         virtual uint32_t CollectGarbage() = 0;
     };
 
-    // @json @text:keep @uncompliant:extended
+    // @json @text:legacy_lowercase @uncompliant:extended
     struct EXTERNAL IBrowserResources : virtual public Core::IUnknown {
 
         enum { ID = ID_BROWSER_RESOURCES };
@@ -179,7 +179,7 @@ namespace Exchange {
         virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0;
     };
 
-    // @json @text:keep @uncompliant:extended
+    // @json @text:legacy_lowercase @uncompliant:extended
     struct EXTERNAL IBrowserSecurity : virtual public Core::IUnknown {
 
         enum { ID = ID_BROWSER_SECURITY };
@@ -202,7 +202,7 @@ namespace Exchange {
         virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0;
     };
 
-    /* @json @text:keep */
+    /* @json @text:legacy_lowercase */
     struct EXTERNAL IBrowserScripting : virtual public Core::IUnknown {
         enum { ID = ID_BROWSER_SCRIPTING };
 
@@ -218,7 +218,7 @@ namespace Exchange {
         virtual uint32_t RemoveAllUserScripts() = 0;
     };
 
-    /* @json @text:keep @uncompliant:extended */
+    /* @json @text:legacy_lowercase @uncompliant:extended */
     struct EXTERNAL IBrowserCookieJar : virtual public Core::IUnknown {
         enum { ID = ID_BROWSER_COOKIEJAR };
 

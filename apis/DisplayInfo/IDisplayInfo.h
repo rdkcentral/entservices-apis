@@ -25,7 +25,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    /* @json @text:keep */
+    /* @json @text:legacy_lowercase */
     struct EXTERNAL IGraphicsProperties : virtual public Core::IUnknown {
         enum { ID = ID_GRAPHICS_PROPERTIES };
 
@@ -40,7 +40,7 @@ namespace Exchange {
         virtual Core::hresult FreeGpuRam(uint64_t& free /* @out */) const = 0;
     };
 
-    /* @json @text:keep @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
+    /* @json @text:legacy_lowercase @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IConnectionProperties : virtual public Core::IUnknown {
         enum { ID = ID_CONNECTION_PROPERTIES };
 
@@ -118,7 +118,7 @@ namespace Exchange {
 
     };
 
-    /* @json @text:keep */
+    /* @json @text:legacy_lowercase */
     struct EXTERNAL IHDRProperties : virtual public Core::IUnknown {
         enum { ID = ID_HDR_PROPERTIES };
 
@@ -150,7 +150,7 @@ namespace Exchange {
         virtual Core::hresult HDRSetting(HDRType& type /* @out */) const = 0;
     };
 
-    /* @json @text:keep */
+    /* @json @text:legacy_lowercase */
     struct EXTERNAL IDisplayProperties : virtual public Core::IUnknown {
         enum { ID = ID_DISPLAY_PROPERTIES };
 

@@ -26,7 +26,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    // @json @text:keep
+    // @json @text:legacy_lowercase
     struct EXTERNAL IPlayerProperties : virtual public Core::IUnknown {
         enum { ID = ID_PLAYER_PROPERTIES };
 

@@ -26,7 +26,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    // @json 1.0.0 @text:keep
+    // @json 1.0.0 @text:legacy_lowercase
     struct EXTERNAL IStore2 : virtual public Core::IUnknown {
         enum { ID = ID_STORE2 };
 
