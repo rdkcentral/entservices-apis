@@ -18,10 +18,9 @@ namespace Exchange {
         // @param packageId: Package Id that was installed or removed
         // @param applicationIds: JSON array of strings with the ids of the running
         // applications using the package (e.g. ["app1","app2"]). The string carries a
-        // JSON document (@opaque): over COM the caller receives the plain payload;
-        // over JSON-RPC it is transported as a string result containing that JSON
-        // (e.g. "[\"app1\",\"app2\"]") - clients parse the envelope first, then
-        // parse the string as JSON.
+        // JSON document (@opaque): over COM the caller receives the plain payload
+        // string; over JSON-RPC it is embedded verbatim - the result IS the JSON
+        // array (e.g. {"result": ["app1","app2"]}), no second parse needed.
         // @retval Core::ERROR_NONE: Success; applicationIds carries the JSON array
         //        ("[]" when no running application uses the package)
         // @retval Core::ERROR_UNAVAILABLE: Package cache not initialized yet (plugin
