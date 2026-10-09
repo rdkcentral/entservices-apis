@@ -529,7 +529,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
+| result.configMetadata | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
 
 ### Examples
 
@@ -563,7 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "runtimeConfigPayload": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
+        "configMetadata": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
     }
 }
 ```
@@ -614,7 +614,7 @@ None
 | result | object |  |
 | result.id | string | Package Id |
 | result.version | string | Version |
-| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
+| result.config | object | Opaque JSON runtime configuration object; COM-RPC transports its serialized string representation |
 
 ### Examples
 
@@ -649,7 +649,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "result": {
         "id": "",
         "version": "",
-        "runtimeConfigPayload": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
+        "config": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
     }
 }
 ```

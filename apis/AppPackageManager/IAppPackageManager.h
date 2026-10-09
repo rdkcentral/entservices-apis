@@ -213,7 +213,7 @@ namespace Exchange {
         // @text config
         // @param packageId: Package Id
         // @param version: Version
-        // @param runtimeConfigPayload: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
+        // @param configMetadata: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
         // @retval Core::ERROR_NONE: Runtime configuration returned successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
         // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
@@ -221,7 +221,7 @@ namespace Exchange {
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
-            string &runtimeConfigPayload /* @out @opaque */
+            string &configMetadata /* @out @opaque */
             ) = 0;
 
         struct PackageStateResponse {
@@ -244,12 +244,12 @@ namespace Exchange {
         // @param fileLocator: Locator of the package file
         // @param id: Package Id
         // @param version: Version
-        // @param runtimeConfigPayload: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
+        // @param config: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
         // @retval Core::ERROR_NONE: Package metadata and runtime configuration returned successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
         // @retval Core::ERROR_INVALID_SIGNATURE: File locator is empty
         // @retval Core::ERROR_GENERAL: Package metadata or runtime configuration could not be retrieved
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& runtimeConfigPayload /* @out @opaque */) = 0;
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& config /* @out @opaque */) = 0;
    };
 
 
