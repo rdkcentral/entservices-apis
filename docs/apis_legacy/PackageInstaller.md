@@ -216,7 +216,7 @@ This method takes no parameters.
 <a name="method.config"></a>
 ## *config [<sup>method</sup>](#head.Methods)*
 
-Return the runtime configuration as an opaque serialized JSON string. Array-valued properties such as environment variables, log levels, and FKPS files are represented as JSON arrays within the serialized object; consumers must preserve unknown properties.
+Return the runtime configuration as an opaque JSON object over JSON-RPC. COM-RPC transports the same configuration as a serialized string. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
 
 ### Events
 
@@ -235,7 +235,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
+| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object |
 
 ### Example
 
@@ -260,7 +260,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "runtimeConfigPayload": "{\"dial\":false,\"wanLanAccess\":false,\"thunder\":false,\"systemMemoryLimit\":0,\"gpuMemoryLimit\":0,\"envVariables\":[],\"userId\":0,\"groupId\":0,\"dataImageSize\":0,\"resourceManagerClientEnabled\":false,\"dialId\":\"...\",\"command\":\"...\",\"appType\":\"...\",\"appPath\":\"...\",\"runtimePath\":\"...\"}"
+        "runtimeConfigPayload": {"dial": false, "wanLanAccess": false, "thunder": false, "systemMemoryLimit": 0, "gpuMemoryLimit": 0, "envVariables": [], "userId": 0, "groupId": 0, "dataImageSize": 0, "resourceManagerClientEnabled": false, "dialId": "...", "command": "...", "appType": "...", "appPath": "...", "runtimePath": "..."}
     }
 }
 ```
@@ -317,7 +317,7 @@ No Events
 <a name="method.getConfigForPackage"></a>
 ## *getConfigForPackage [<sup>method</sup>](#head.Methods)*
 
-Return the runtime configuration as an opaque serialized JSON string. Array-valued properties such as environment variables, log levels, and FKPS files are represented as JSON arrays within the serialized object; consumers must preserve unknown properties.
+Return the runtime configuration as an opaque JSON object over JSON-RPC. COM-RPC transports the same configuration as a serialized string. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
 
 ### Events
 
@@ -337,7 +337,7 @@ No Events
 | result | object |  |
 | result.packageId | string | Package Id |
 | result.version | string | Package Version |
-| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
+| result.runtimeConfigPayload | object | Opaque JSON runtime configuration object |
 
 ### Example
 
@@ -363,7 +363,7 @@ No Events
     "result": {
         "packageId": "...",
         "version": "...",
-        "runtimeConfigPayload": "{\"dial\":false,\"wanLanAccess\":false,\"thunder\":false,\"systemMemoryLimit\":0,\"gpuMemoryLimit\":0,\"envVariables\":[],\"userId\":0,\"groupId\":0,\"dataImageSize\":0,\"resourceManagerClientEnabled\":false,\"dialId\":\"...\",\"command\":\"...\",\"appType\":\"...\",\"appPath\":\"...\",\"runtimePath\":\"...\"}"
+        "runtimeConfigPayload": {"dial": false, "wanLanAccess": false, "thunder": false, "systemMemoryLimit": 0, "gpuMemoryLimit": 0, "envVariables": [], "userId": 0, "groupId": 0, "dataImageSize": 0, "resourceManagerClientEnabled": false, "dialId": "...", "command": "...", "appType": "...", "appPath": "...", "runtimePath": "..."}
     }
 }
 ```

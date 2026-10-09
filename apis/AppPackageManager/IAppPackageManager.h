@@ -7,7 +7,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json 2.0.0 @text:keep
+    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
 
@@ -120,7 +120,7 @@ namespace Exchange {
     };
 
 
-    // @json 2.0.0 @text:keep
+    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
@@ -213,7 +213,7 @@ namespace Exchange {
         // @text config
         // @param packageId: Package Id
         // @param version: Version
-        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays
+        // @param runtimeConfigPayload: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
         // @retval Core::ERROR_NONE: Runtime configuration returned successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
         // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
@@ -221,7 +221,7 @@ namespace Exchange {
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
-            string &runtimeConfigPayload /* @out */
+            string &runtimeConfigPayload /* @out @opaque */
             ) = 0;
 
         struct PackageStateResponse {
@@ -244,12 +244,12 @@ namespace Exchange {
         // @param fileLocator: Locator of the package file
         // @param id: Package Id
         // @param version: Version
-        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays
+        // @param runtimeConfigPayload: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
         // @retval Core::ERROR_NONE: Package metadata and runtime configuration returned successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
         // @retval Core::ERROR_INVALID_SIGNATURE: File locator is empty
         // @retval Core::ERROR_GENERAL: Package metadata or runtime configuration could not be retrieved
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& runtimeConfigPayload /* @out */) = 0;
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& runtimeConfigPayload /* @out @opaque */) = 0;
    };
 
 
@@ -290,7 +290,7 @@ namespace Exchange {
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
-            string &runtimeConfigPayload /* @out */,
+            string &runtimeConfigPayload /* @out @opaque */,
             IPackageHandler::ILockIterator*& appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
@@ -319,12 +319,12 @@ namespace Exchange {
             const string &packageId,
             const string &version,
             string &unpackedPath /* @out */,
-            string &runtimeConfigPayload /* @out */,
+            string &runtimeConfigPayload /* @out @opaque */,
             string &gatewayMetadataPath /* @out */,
             bool &locked /* @out */
             ) = 0;
     };
-    // @json 2.0.0 @text:keep
+    // @json 1.0.0 @text:keep
     struct EXTERNAL IAppPackageManagerConfig : virtual public Core::IUnknown {
         enum { ID = ID_APP_PACKAGE_MANAGER_CONFIG };
 

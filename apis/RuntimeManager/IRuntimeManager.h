@@ -93,7 +93,7 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @retval Core::ERROR_NONE: Application runtime started successfully
     // @retval Core::ERROR_INVALID_PARAMETER: Runtime configuration payload is invalid
     // @retval Core::ERROR_GENERAL: Application runtime could not be started
-    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const string& runtimeConfigPayload) = 0;
+    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const string& runtimeConfigPayload /* @opaque */) = 0;
 
     /** @brief Hibernate the application */
     // @text hibernate
