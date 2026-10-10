@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.15)
 
 project(Marshalling)
 
@@ -74,7 +74,7 @@ target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_S
                                              $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>)
 
 foreach(dir ${INTERFACE_DIRS})
-    target_include_directories(${Target} PRIVATE 
+    target_include_directories(${Target} PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${dir}>
 )
 endforeach()
@@ -97,7 +97,7 @@ set_target_properties(${Target} PROPERTIES
         VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         )
-		
+
 string(TOLOWER ${NAMESPACE} NAMESPACE_LIB)
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies
