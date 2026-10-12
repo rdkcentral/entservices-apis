@@ -219,7 +219,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResult& result /* @out */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, const Core::OptionalType<bool>& verbose, GetNetStatusResult& result /* @out */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
