@@ -180,7 +180,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param clientId: The client identifier
   // @example clientId: "org.example.app"
   // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
-  // @example intercepts: [{"keyCode":13,"modifiers":[],"focusOnly":true,"propagate":false}]
+  // @example intercepts: "[{\"keyCode\":13,\"modifiers\":[],\"focusOnly\":true,\"propagate\":false}]"
   // @retval Core::ERROR_NONE: All provided key intercepts were registered successfully
   // @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts
   virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
@@ -203,7 +203,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @text addKeyListener
   // @brief Registers listeners for specific keys.
   // @details Registers the key listener definitions encoded in the supplied JSON string.
-  // @param keyListeners: JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign
+  // @param keyListeners: JSON String format containing the key listeners with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign
   // @example keyListeners: "{"client":"org.example.app","keys":[{"keyCode":13}]}"
   // @retval Core::ERROR_NONE: The key listeners were registered successfully.
   virtual Core::hresult AddKeyListener(const string &keyListeners) = 0;
@@ -212,7 +212,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @text removeKeyListener
   // @brief Removes listeners for specific keys.
   // @details Removes the key listener definitions identified by the supplied JSON string.
-  // @param keyListeners: JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign
+  // @param keyListeners: JSON String format containing the key listeners with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign
   // @example keyListeners: {"client":"org.example.app","keys":[{"keyCode":13}]}
   // @retval Core::ERROR_NONE: The key listeners were removed successfully.
   virtual Core::hresult RemoveKeyListener(const string &keyListeners) = 0;
