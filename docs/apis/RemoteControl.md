@@ -744,6 +744,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.netType | integer | The type of network  |
+| params?.verbose | bool | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -768,7 +769,8 @@ None
     "id": 11,
     "method": "org.rdk.RemoteControl.getNetStatus",
     "params": {
-        "netType": 1
+        "netType": 1,
+        "verbose": true
     }
 }
 ```
@@ -777,7 +779,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 1, "verbose": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
