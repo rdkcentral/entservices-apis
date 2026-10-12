@@ -535,6 +535,8 @@ None
 | params?.audio_file | string | <sup>(optional)</sup>The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types)  |
 | params?.audio_format | string | <sup>(optional)</sup>The audio format of audioFile  |
 | params?.name | string | <sup>(optional)</sup>A friendly name for the simulated session  |
+| params?.macAddr | string | <sup>(optional)</sup> |
+| params?.audioDuration | integer | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -557,7 +559,9 @@ None
         "transcription": "comedy movies",
         "audio_file": "/tmp/audio.wav",
         "audio_format": "pcm",
-        "name": "Test"
+        "name": "Test",
+        "macAddr": "",
+        "audioDuration": 0
     }
 }
 ```
@@ -566,7 +570,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"type": "ptt_transcription", "transcription": "comedy movies", "audio_file": "/tmp/audio.wav", "audio_format": "pcm", "name": "Test"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"type": "ptt_transcription", "transcription": "comedy movies", "audio_file": "/tmp/audio.wav", "audio_format": "pcm", "name": "Test", "macAddr": "", "audioDuration": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
