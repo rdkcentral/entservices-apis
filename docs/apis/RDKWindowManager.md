@@ -170,14 +170,7 @@ None
     "method": "org.rdk.RDKWindowManager.addKeyIntercepts",
     "params": {
         "clientId": "org.example.app",
-        "intercepts": [
-            {
-                "keyCode": 13,
-                "modifiers": [],
-                "focusOnly": true,
-                "propagate": false
-            }
-        ]
+        "intercepts": "[{\\\"keyCode\\\":13,\\\"modifiers\\\":[],\\\"focusOnly\\\":true,\\\"propagate\\\":false}]"
     }
 }
 ```
@@ -186,7 +179,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"clientId": "org.example.app", "intercepts": [{"keyCode": 13, "modifiers": [], "focusOnly": true, "propagate": false}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"clientId": "org.example.app", "intercepts": "[{\\\"keyCode\\\":13,\\\"modifiers\\\":[],\\\"focusOnly\\\":true,\\\"propagate\\\":false}]"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -225,7 +218,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keyListeners | string | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
+| params.keyListeners | string | JSON String format containing the key listeners with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1354,7 +1347,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keyListeners | string | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
+| params.keyListeners | string | JSON String format containing the key listeners with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
