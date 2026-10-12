@@ -49,6 +49,7 @@ namespace WPEFramework {
         enum class VoiceSessionRequestType : uint8_t {
             PTT_TRANSCRIPTION     /* @text ptt_transcription */,
             PTT_AUDIO_FILE        /* @text ptt_audio_file */,
+            PTT_LISTEN            /* @text ptt_listen */,
             FF_TRANSCRIPTION      /* @text ff_transcription */,
             MIC_TRANSCRIPTION     /* @text mic_transcription */,
             MIC_AUDIO_FILE        /* @text mic_audio_file */,
@@ -199,7 +200,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestType type, const Core::OptionalType<string>& transcription, const Core::OptionalType<string>& audioFile /* @text audio_file */, const Core::OptionalType<string>& audioFormat /* @text audio_format */, const Core::OptionalType<string>& name, bool& success /* @out */, Core::OptionalType<string>& sessionId /* @out */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestType type, const Core::OptionalType<string>& transcription, const Core::OptionalType<string>& audioFile /* @text audio_file */, const Core::OptionalType<string>& audioFormat /* @text audio_format */, const Core::OptionalType<string>& name, const Core::OptionalType<string>& macAddr, const Core::OptionalType<uint32_t>& audioDuration, bool& success /* @out */, Core::OptionalType<string>& sessionId /* @out */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
