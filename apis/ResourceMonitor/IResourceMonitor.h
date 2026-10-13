@@ -34,8 +34,11 @@ struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
 
         // @text onReconciliationComplete
         // @brief Triggered when a resource reconciliation pass completes.
-        // @param appId Application identifier associated with the reconciliation request.
-        // @param targetRamAchieved True when enough RAM headroom is available to proceed with loading another application.
+        // @details Called whenever a resource reconciliation pass completes, providing the application identifier and the RAM target achievement status.
+        // @param appId: Application identifier associated with the reconciliation request.
+        // @example appId: "com.example.app"
+        // @param targetRamAchieved: True when enough RAM headroom is available to proceed with loading another application.
+        // @example targetRamAchieved: true
         virtual void OnReconciliationComplete(const string& appId, const bool targetRamAchieved) {}
     };
 
@@ -47,9 +50,14 @@ struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
 
     // @text reconcile
     // @brief Requests a resource reconciliation pass, evicting inactive applications if required and permitted.
-    // @param appId Application identifier associated with the resource request.
-    // @param ramTargetMB Maximum RAM requested by the application, in megabytes.
-    // @param allowTerminate When true, inactive applications may be terminated to free resources.
+    // @details Initiates a resource reconciliation process for the specified application, considering the RAM target and termination allowance.
+    // @param appId: Application identifier associated with the resource request.
+    // @example appId: "com.example.app"
+    // @param ramTargetMB: Maximum RAM requested by the application, in megabytes.
+    // @example ramTargetMB: 512
+    // @param allowTerminate: When true, inactive applications may be terminated to free resources.
+    // @example allowTerminate: true
+    // @retval Core::ERROR_NONE on success
         virtual Core::hresult Reconcile(const string& appId, const uint32_t ramTargetMB, const bool allowTerminate) = 0;
 };
 

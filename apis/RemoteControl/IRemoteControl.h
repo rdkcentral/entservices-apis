@@ -184,19 +184,28 @@ namespace WPEFramework {
 
             // Begin methods
             // @brief Gets the current API version number.
+            // @details Retrieves the current API version number.
             // @param response: The API version response
+            // @example response: { "major": 1, "minor": 0, "patch": 0 }
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
+            // @details Initiates the pairing process for a remote with the STB on the specified network.
             // @param netType(optional): The type of network to pair on
+            // @example netType: 1
             // @param timeout(optional): Pairing timeout in seconds
+            // @example timeout: 60
             // @param screenBindEnable(optional): Whether screen bind pairing is enabled
+            // @example screenBindEnable: true
             // @param scanEnable(optional): Whether scan pairing is enabled
+            // @example scanEnable: true
             // @param macAddressList(optional): List of MAC addresses to pair with e.g. ["AA:BB:CC:DD:EE:FF"]
+            // @example macAddressList: ["AA:BB:CC:DD:EE:FF"]
             // @param result: Whether the request succeeded
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
@@ -204,9 +213,13 @@ namespace WPEFramework {
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
+            // @details Cancels the pairing process for a remote with the STB on the specified network.
             // @param screenBindDisable(optional): Whether screen bind pairing should be disabled
+            // @example screenBindDisable: true
             // @param scanDisable(optional): Whether scan pairing should be disabled
+            // @example scanDisable: true
             // @param result: Whether the request succeeded
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
@@ -214,8 +227,11 @@ namespace WPEFramework {
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
+            // @details Retrieves the status information for the specified network as provided by the last `onStatus` event.
             // @param netType: The type of network ex: 1
+            // @example netType: 1
             // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData
+            // @example result: { "success": true, "status": { "netType": 1, "pairingState": 2, "irProgState": 3, "netTypesSupported": [1, 2], "remoteData": {} } }
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
@@ -223,10 +239,15 @@ namespace WPEFramework {
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
+            // @details Retrieves a list of manufacturer names for the specified AV device type and partial manufacturer name.
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @example avDevType: 1
             // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
+            // @example manufacturer: "Sam"
             // @param success: Whether the request succeeded
+            // @example success: true
             // @param manufacturers: A list of manufacturer names e.g. ["ACME"]
+            // @example manufacturers: ["ACME"]
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
@@ -234,11 +255,17 @@ namespace WPEFramework {
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
+            // @details Retrieves a list of model names for the specified AV device type, manufacturer, and partial model name.
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @example avDevType: 1
             // @param manufacturer: The manufacturer name of the AV device e.g. "ACME"
+            // @example manufacturer: "ACME"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "ACM"
+            // @example model: "ACM"
             // @param success: Whether the request succeeded
+            // @example success: true
             // @param models: A list of model names e.g. ["AH5901068L"]
+            // @example models: ["AH5901068L"]
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
@@ -246,14 +273,23 @@ namespace WPEFramework {
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
+            // @details Retrieves a list of available IR codes for the TV and AVRs specified by the input parameters.
             // @param netType: The type of network ex: 1
+            // @example netType: 1
             // @param tvManufacturer: The TV manufacturer for which codes are provided e.g. "ACME"
+            // @example tvManufacturer: "ACME"
             // @param tvModel: The TV model for which codes are provided e.g. "ACME-TV100"
+            // @example tvModel: "ACME-TV100"
             // @param avrManufacturer: The AVR manufacturer for which codes are provided e.g. "ACME Audio"
+            // @example avrManufacturer: "ACME Audio"
             // @param avrModel: The AVR model for which codes are provided e.g. "ACME-AVR100"
+            // @example avrModel: "ACME-AVR100"
             // @param success: Whether the request succeeded
+            // @example success: true
             // @param tvCodes: A list of TV IR codes e.g. ["1156"]
+            // @example tvCodes: ["1156"]
             // @param avrCodes: A list of AVR IR codes e.g. ["R2467"]
+            // @example avrCodes: ["R2467"]
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
@@ -261,11 +297,17 @@ namespace WPEFramework {
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
+            // @details Retrieves a list of IR codes for the specified AV device based on its type, manufacturer, and model.
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @example avDevType: AVDevType::TV
             // @param manufacturer: The manufacturer name of the AV device e.g. "ACME"
+            // @example manufacturer: "ACME"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "ACM"
+            // @example model: "ACM"
             // @param success: Whether the request succeeded
+            // @example success: true
             // @param codes: A list of IR codes e.g. ["6712"]
+            // @example codes: ["6712"]
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
@@ -273,11 +315,17 @@ namespace WPEFramework {
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
+            // @details Programs an IR code into the specified remote control on the given network.
             // @param remoteId: The remote ID of the target remote on the specified network ex: 1
+            // @example remoteId: 1
             // @param netType: The type of network ex: 1
+            // @example netType: 1
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @example avDevType: AVDevType::TV
             // @param code: The IR code being programmed into the remote e.g. "PANASONIC_3DTV"
+            // @example code: "PANASONIC_3DTV"
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
@@ -285,9 +333,13 @@ namespace WPEFramework {
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
+            // @details Clears all IR codes from the specified remote on the given network.
             // @param remoteId: The remote ID of the target remote on the specified network ex: 1
+            // @example remoteId: 1
             // @param netType: The type of network ex: 1
+            // @example netType: 1
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
@@ -295,7 +347,9 @@ namespace WPEFramework {
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
+            // @details Retrieves the source of the last keypress on the remote.
             // @param response: The last keypress source response
+            // @example response: { "source": "IR" }
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
@@ -303,9 +357,13 @@ namespace WPEFramework {
 
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
+            // @details The wakeupConfig parameter determines which keys can wake the target from deepsleep. If set to custom, the customKeys parameter must be provided with a comma-separated list of Linux key codes.
             // @param wakeupConfig: The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target)
+            // @example wakeupConfig: "custom"
             // @param customKeys: List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199"
+            // @example customKeys: "195,199"
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
@@ -313,8 +371,11 @@ namespace WPEFramework {
 
             // @brief Initializes the IR database
             // @text initializeIRDB
+            // @details Initializes the IR database for the specified network type.
             // @param netType: The type of network ex: 1
+            // @example netType: 1
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
@@ -322,8 +383,11 @@ namespace WPEFramework {
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
+            // @details Tells the most recently used remote to beep at the specified level.
             // @param level(optional): The level at which the remote will beep. Required for the call to succeed; the request fails if omitted.
+            // @example level: "high"
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
@@ -331,7 +395,9 @@ namespace WPEFramework {
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
+            // @details Tells all paired and connected remotes to factory reset.
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
@@ -339,8 +405,11 @@ namespace WPEFramework {
 
             // @brief Unpairs all remotes from the STB
             // @text unpair
+            // @details Unpairs all remotes from the STB. If a list of MAC addresses is provided, only those remotes will be unpaired; otherwise, all remotes will be unpaired.
             // @param result: Whether the request succeeded
+            // @example result: true
             // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes) e.g. ["AA:BB:CC:DD:EE:FF"]
+            // @example macAddressList: ["AA:BB:CC:DD:EE:FF"]
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
@@ -348,12 +417,19 @@ namespace WPEFramework {
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
+            // @details Starts a firmware image update session for the specified remote(s). If a MAC address is provided, only that remote will be updated; otherwise, all remotes will be updated.
             // @param macAddress(optional): Optional MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF"
+            // @example macAddress: "AA:BB:CC:DD:EE:FF"
             // @param fileName: The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin"
+            // @example fileName: "/tmp/remote_firmware.bin"
             // @param fileType(optional): Optional type of firmware image file e.g. "mfg"
+            // @example fileType: "mfg"
             // @param percentIncrement(optional): Optional increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
+            // @example percentIncrement: 10
             // @param success: Whether the request succeeded
+            // @example success: true
             // @param sessionIdList: List of session IDs created for the firmware update(s) e.g. ["12345-abc-def"]
+            // @example sessionIdList: ["12345-abc-def"]
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
@@ -361,8 +437,11 @@ namespace WPEFramework {
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
+            // @details Cancels an active firmware image update session
             // @param sessionId: The session identifier e.g. "12345-abc-def"
+            // @example sessionId: "12345-abc-def"
             // @param result: Whether the request succeeded
+            // @example result: true
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
@@ -370,8 +449,11 @@ namespace WPEFramework {
 
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
+            // @details Returns the status of an active firmware image update session
             // @param sessionId: The session identifier e.g. "12345-abc-def"
+            // @example sessionId: "12345-abc-def"
             // @param response: The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString)
+            // @example response: {"success":true,"status":{"upgradeSessionId":"12345-abc-def","macAddress":"00:11:22:33:44:55","upgradeState":"IN_PROGRESS","percentComplete":50}}
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
@@ -384,24 +466,32 @@ namespace WPEFramework {
 
                 // @brief Triggered at any time when the status of any one of the supported STB remote networks changes
                 // @text onStatus
+                // @details Called whenever the network status changes
                 // @param status: Network status information including network type, pairing state, and IR programming state
+                // @example status: {"networkType":"WIFI","pairingState":"PAIRED","irProgrammingState":"IDLE"}
                 virtual void OnStatus(const NetStatusData& status) {}
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
+                // @details Called whenever manual pairing validation occurs
                 // @param status: Validation information including the validation status, the pairing code (KEY_* codes) when generated, and each key that was pressed
+                // @example status: {"validationStatus":"SUCCESS","pairingCode":["KEY_1","KEY_2"],"pressedKeys":["KEY_1","KEY_2"]}
                 virtual void OnValidation(const ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
                 // @text onFirmwareUpdateProgress
+                // @details Called whenever the firmware update progress changes
                 // @param status: Firmware update status including session ID, MAC address, upgrade state, and percent complete
+                // @example status: {"upgradeSessionId":"12345-abc-def","macAddress":"00:11:22:33:44:55","upgradeState":"IN_PROGRESS","percentComplete":50}
                 virtual void OnFirmwareUpdateProgress(const FirmwareUpdateStatusData& status) {}
             };
 
             // @json:omit
             // @text register
             // @brief Register notification interface
+            // @details Registers the notification interface to receive events from the remote control module
             // @param notification: Notification interface pointer
+            // @example notification: pointer to the notification interface being registered
             // @retval Core::ERROR_NONE: Indicates successful registration of notification interface
             // @retval Core::ERROR_BAD_REQUEST: notification is null
             virtual Core::hresult Register(IRemoteControl::INotification* notification) = 0;
@@ -409,7 +499,9 @@ namespace WPEFramework {
             // @json:omit
             // @text unregister
             // @brief Unregister notification interface
+            // @details Unregisters the notification interface so it will no longer receive events from the remote control module
             // @param notification: Notification interface pointer
+            // @example notification: pointer to the notification interface being unregistered
             // @retval Core::ERROR_NONE: Indicates successful unregistration of notification interface
             // @retval Core::ERROR_BAD_REQUEST: notification is null
             virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
