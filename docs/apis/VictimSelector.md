@@ -64,7 +64,7 @@ The following methods are provided by the IVictimSelector Interface:
 <a id="evict"></a>
 ## *evict*
 
-Determines the best application to terminate using the app priority algorithm.
+Initiates an eviction request for the specified resource and type.
 
 ### Events Triggered
 None
@@ -86,7 +86,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.VictimSelector.evict",
     "params": {
@@ -100,7 +100,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VictimSelector.evict", "params": {"reason": "RAM", "type": "HARD"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VictimSelector.evict", "params": {"reason": "RAM", "type": "HARD"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -119,7 +119,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 5,
@@ -133,7 +133,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 2,
@@ -147,7 +147,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 1,
@@ -170,7 +170,7 @@ The following events are provided by the IVictimSelector Interface:
 <a id="onEvictComplete"></a>
 ## *onEvictComplete*
 
-Triggered when eviction is complete.
+Provides information about the completion of an eviction request.
 
 ### Parameters
 | Name | Type | Description |
@@ -183,12 +183,12 @@ Triggered when eviction is complete.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.VictimSelector.onEvictComplete",
     "params": {
         "evicted": true,
-        "errorCode": "NONE"
+        "errorCode": "EVICT_ERROR_NONE"
     }
 }
 ```
