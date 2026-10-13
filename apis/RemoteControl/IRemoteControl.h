@@ -241,7 +241,7 @@ namespace WPEFramework {
             // @text getIRDBManufacturers
             // @details Retrieves a list of manufacturer names for the specified AV device type and partial manufacturer name.
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
-            // @example avDevType: 1
+            // @example avDevType: "TV"
             // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
             // @example manufacturer: "Sam"
             // @param success: Whether the request succeeded
