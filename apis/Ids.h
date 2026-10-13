@@ -359,6 +359,7 @@ namespace Exchange {
 
         ID_ES1BENCHMARK_ASYNC                        = ID_ENTOS_OFFSET + 0x610,
         ID_ES1BENCHMARK_ASYNC_NOTIFICATION           = ID_ES1BENCHMARK_ASYNC + 1,
+        ID_ES1BENCHMARK_SYNC                         = ID_ENTOS_OFFSET + 0x620,
 
     }; // enum IDS
 
