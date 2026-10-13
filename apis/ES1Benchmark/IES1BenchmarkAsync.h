@@ -53,55 +53,55 @@ namespace Exchange {
             enum { ID = ID_ES1BENCHMARK_ASYNC_NOTIFICATION };
 
             // @text setstringcompleted
-            virtual void SetStringCompleted(const bool success) = 0;
+            virtual void SetStringCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getstringcompleted
-            virtual void GetStringCompleted(const string& value /* @restrict:0..4M */) = 0;
+            virtual void GetStringCompleted(const string& clientId /* @index */, const string& value /* @restrict:0..4M */) = 0;
             // @text setarraycompleted
-            virtual void SetArrayCompleted(const bool success) = 0;
+            virtual void SetArrayCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getarraycompleted
-            virtual void GetArrayCompleted(const std::vector<uint8_t>& value /* @restrict:0..256K */) = 0;
+            virtual void GetArrayCompleted(const string& clientId /* @index */, const std::vector<uint8_t>& value /* @restrict:0..256K */) = 0;
             // @text setmixedarraycompleted
-            virtual void SetMixedArrayCompleted(const bool success) = 0;
+            virtual void SetMixedArrayCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getmixedarraycompleted
-            virtual void GetMixedArrayCompleted(const std::vector<MixedElement>& value /* @restrict:0..4228 */) = 0;
+            virtual void GetMixedArrayCompleted(const string& clientId /* @index */, const std::vector<MixedElement>& value /* @restrict:0..4228 */) = 0;
             // @text setnestedobjectscompleted
-            virtual void SetNestedObjectsCompleted(const bool success) = 0;
+            virtual void SetNestedObjectsCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getnestedobjectscompleted
-            virtual void GetNestedObjectsCompleted(const std::vector<NestedObject>& value /* @restrict:0..1736 */) = 0;
+            virtual void GetNestedObjectsCompleted(const string& clientId /* @index */, const std::vector<NestedObject>& value /* @restrict:0..1736 */) = 0;
             // @text setuint32completed
-            virtual void SetUint32Completed(const bool success) = 0;
+            virtual void SetUint32Completed(const string& clientId /* @index */, const bool success) = 0;
             // @text getuint32completed
-            virtual void GetUint32Completed(const uint32_t value) = 0;
+            virtual void GetUint32Completed(const string& clientId /* @index */, const uint32_t value) = 0;
             // @text setuint64completed
-            virtual void SetUint64Completed(const bool success) = 0;
+            virtual void SetUint64Completed(const string& clientId /* @index */, const bool success) = 0;
             // @text getuint64completed
-            virtual void GetUint64Completed(const uint64_t value) = 0;
+            virtual void GetUint64Completed(const string& clientId /* @index */, const uint64_t value) = 0;
             // @text setboolcompleted
-            virtual void SetBoolCompleted(const bool success) = 0;
+            virtual void SetBoolCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getboolcompleted
-            virtual void GetBoolCompleted(const bool value) = 0;
+            virtual void GetBoolCompleted(const string& clientId /* @index */, const bool value) = 0;
             // @text setfloatcompleted
-            virtual void SetFloatCompleted(const bool success) = 0;
+            virtual void SetFloatCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getfloatcompleted
-            virtual void GetFloatCompleted(const float value) = 0;
+            virtual void GetFloatCompleted(const string& clientId /* @index */, const float value) = 0;
             // @text setdoublecompleted
-            virtual void SetDoubleCompleted(const bool success) = 0;
+            virtual void SetDoubleCompleted(const string& clientId /* @index */, const bool success) = 0;
             // @text getdoublecompleted
-            virtual void GetDoubleCompleted(const double value) = 0;
+            virtual void GetDoubleCompleted(const string& clientId /* @index */, const double value) = 0;
             // @text measurecopycostcompleted
-            virtual void MeasureCopyCostCompleted(const uint64_t microseconds) = 0;
+            virtual void MeasureCopyCostCompleted(const string& clientId /* @index */, const uint64_t microseconds) = 0;
             // @text measurestringresizecostcompleted
-            virtual void MeasureStringResizeCostCompleted(const uint64_t microseconds) = 0;
+            virtual void MeasureStringResizeCostCompleted(const string& clientId /* @index */, const uint64_t microseconds) = 0;
             // @text measuremixedassigncostcompleted
-            virtual void MeasureMixedAssignCostCompleted(const uint64_t microseconds) = 0;
+            virtual void MeasureMixedAssignCostCompleted(const string& clientId /* @index */, const uint64_t microseconds) = 0;
             // @text measurenestedassigncostcompleted
-            virtual void MeasureNestedAssignCostCompleted(const uint64_t microseconds) = 0;
+            virtual void MeasureNestedAssignCostCompleted(const string& clientId /* @index */, const uint64_t microseconds) = 0;
         };
 
         ~IES1BenchmarkAsync() override = default;
 
-        virtual Core::hresult Register(INotification* const notification) = 0;
-        virtual Core::hresult Unregister(const INotification* const notification) = 0;
+        virtual Core::hresult Register(INotification* const notification, const Core::OptionalType<string>& clientId /* @index */) = 0;
+        virtual Core::hresult Unregister(const INotification* const notification, const Core::OptionalType<string>& clientId /* @index */) = 0;
 
         // @text setstring
         virtual Core::hresult SetString(const string& value /* @in @restrict:0..4M */) = 0;
