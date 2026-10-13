@@ -299,7 +299,7 @@ namespace WPEFramework {
             // @text getIRCodesByNames
             // @details Retrieves a list of IR codes for the specified AV device based on its type, manufacturer, and model.
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
-            // @example avDevType: AVDevType::TV
+            // @example avDevType: "TV"
             // @param manufacturer: The manufacturer name of the AV device e.g. "ACME"
             // @example manufacturer: "ACME"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "ACM"
