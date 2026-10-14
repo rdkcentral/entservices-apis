@@ -505,8 +505,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [config](#config) | Return the package runtime configuration as an opaque JSON object |
-| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque JSON runtime configuration |
+| [config](#config) | Return the package runtime configuration as an opaque serialized JSON string |
+| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque serialized JSON runtime configuration |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -515,9 +515,7 @@ The following methods are provided by the IPackageInstaller Interface:
 <a id="config"></a>
 ## *config*
 
-Return the package runtime configuration as an opaque JSON object
-
-`envVariables`, `logLevels`, and `fkpsFiles` are real JSON arrays of strings, not strings containing serialized JSON arrays; consumers must process and preserve them as arrays.
+envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
 
 ### Events Triggered
 None
@@ -531,7 +529,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.configMetadata | object | Opaque JSON runtime configuration object containing real JSON arrays; COM-RPC transports its serialized string representation |
+| result.configMetadata | string | Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -565,7 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "configMetadata": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
+        "configMetadata": ""
     }
 }
 ```
@@ -601,9 +599,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
-Return package metadata and its opaque JSON runtime configuration
-
-`envVariables`, `logLevels`, and `fkpsFiles` are real JSON arrays of strings, not strings containing serialized JSON arrays; consumers must process and preserve them as arrays.
+envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
 
 ### Events Triggered
 None
@@ -618,7 +614,7 @@ None
 | result | object |  |
 | result.id | string | Package Id |
 | result.version | string | Version |
-| result.config | object | Opaque JSON runtime configuration object containing real JSON arrays; COM-RPC transports its serialized string representation |
+| result.config | string | Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -653,7 +649,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "result": {
         "id": "",
         "version": "",
-        "config": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
+        "config": ""
     }
 }
 ```
