@@ -188,7 +188,7 @@ Provides information about the completion of an eviction request.
     "method": "org.rdk.VictimSelector.onEvictComplete",
     "params": {
         "evicted": true,
-        "errorCode": "EVICT_ERROR_NONE"
+        "errorCode": "NONE"
     }
 }
 ```
