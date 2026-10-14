@@ -177,8 +177,7 @@ None
     "params": {
         "keys": [
             {
-                "code": 30,
-                "modifier": 1,
+                "code": "KED_MENU",
                 "delay": 1,
                 "duration": 0
             }
@@ -191,7 +190,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.Tools.generateRemoteKeys", "params": {"keys": [{"code": 30, "modifier": 1, "delay": 1, "duration": 0}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.Tools.generateRemoteKeys", "params": {"keys": [{"code": "KED_MENU", "delay": 1, "duration": 0}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
