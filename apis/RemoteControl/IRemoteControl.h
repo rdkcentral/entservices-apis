@@ -231,7 +231,7 @@ namespace WPEFramework {
             // @param netType: The type of network ex: 1
             // @example netType: 1
             // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData
-            // @example result: { "success": true, "status": { "netType": 1, "pairingState": 2, "irProgState": 3, "netTypesSupported": [1, 2], "remoteData": {} } }
+            // @example result: { "success": true, "status": { "netType": 1, "pairingState": "INITIALISING", "irProgState": "IDLE", "netTypesSupported": [1, 2], "remoteData": [] } }
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
