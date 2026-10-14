@@ -1082,7 +1082,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "
         "status": {
             "upgradeSessionId": "12345-abc-def",
             "macAddress": "00:11:22:33:44:55",
-            "upgradeState": "IN_PROGRESS",
+            "upgradeState": "pending",
             "percentComplete": 50
         }
     }
