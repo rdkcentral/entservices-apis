@@ -61,7 +61,7 @@ struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
         // @param evicted: True when an application was evicted.
         // @example evicted: true
         // @param errorCode: Error code when an application could not be evicted.
-        // @example errorCode: EVICT_ERROR_NONE
+        // @example errorCode: NONE
         virtual void OnEvictComplete(const bool evicted, const EvictErrorReason errorCode) {}
     };
 
