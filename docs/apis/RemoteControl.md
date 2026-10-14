@@ -774,13 +774,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
         "success": true,
         "status": {
             "netType": 1,
-            "pairingState": 2,
-            "irProgState": 3,
+            "pairingState": "INITIALISING",
+            "irProgState": "IDLE",
             "netTypesSupported": [
                 1,
                 2
             ],
-            "remoteData": {}
+            "remoteData": []
         }
     }
 }
