@@ -326,7 +326,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
     // @param method: method name
     // @example method: "speak"
     // @param apps: applications allowed
-    // @example apps: ["App1"]
+    // @example apps: "App1"
     // @retval Core::NONE: Indicates successful update of access control list
     // @retval Core::ERROR_GENERAL: Indicates update of access control list got failed
     virtual Core::hresult SetACL(const string method, const string apps) = 0;
