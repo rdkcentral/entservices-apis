@@ -16,7 +16,7 @@ namespace Exchange {
         // application refreshes its whole dependency chain.
         // @text getRunningApplicationsUsingPackage
         // @param packageId: Package Id that was installed or removed
-        // @param applicationIds: JSON array of strings with the ids of the running
+        // @param applicationIds: Stringified JSON array of strings with the ids of the running
         // applications using the package (e.g. ["app1","app2"]). The string carries a
         // JSON document (@opaque): over COM the caller receives the plain payload
         // string; over JSON-RPC it is embedded verbatim - the result IS the JSON
