@@ -453,7 +453,7 @@ namespace WPEFramework {
             // @param sessionId: The session identifier e.g. "12345-abc-def"
             // @example sessionId: "12345-abc-def"
             // @param response: The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString)
-            // @example response: {"success":true,"status":{"upgradeSessionId":"12345-abc-def","macAddress":"00:11:22:33:44:55","upgradeState":"IN_PROGRESS","percentComplete":50}}
+            // @example response: {"success":true,"status":{"upgradeSessionId":"12345-abc-def","macAddress":"00:11:22:33:44:55","upgradeState":"pending","percentComplete":50}}
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
