@@ -475,7 +475,7 @@ namespace WPEFramework {
                 // @text onValidation
                 // @details Called whenever manual pairing validation occurs
                 // @param status: Validation information including the validation status, the pairing code (KEY_* codes) when generated, and each key that was pressed
-                // @example status: {"validationStatus":"SUCCESS","pairingCode":["KEY_1","KEY_2"],"pressedKeys":["KEY_1","KEY_2"]}
+                // @example status: {"status":"SUCCESS","code":[2,3,4],"key":2}
                 virtual void OnValidation(const ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
