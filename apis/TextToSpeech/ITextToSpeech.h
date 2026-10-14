@@ -132,7 +132,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
         // @text onTTSStateChanged
         // @alt onttsstatechanged
         // @brief Notify TTS enabled/disabled
-        // @detaills Provides detailed information about the TTS state change.
+        // @details Provides detailed information about the TTS state change.
         // @param state: enabled/disabled
         // @example state: true
         virtual void OnTTSStateChanged(const bool /*state*/) {}
