@@ -186,7 +186,7 @@ namespace WPEFramework {
             // @brief Gets the current API version number.
             // @details Retrieves the current API version number.
             // @param response: The API version response
-            // @example response: { "major": 1, "minor": 0, "patch": 0 }
+            // @example response: { "version": 1, "success": true }
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
