@@ -363,7 +363,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
     // @param speechid: returns id for the text
     // @example speechid: 1
     // @param status: return status
-    // @example status: {code: 0, message: "Success"}
+    // @example status: TTS_OK
     // @retval Core::NONE: Indicates successful conversion of text to speech
     // @retval Core::ERROR_GENERAL: Indicates conversion of text to speech got failed
     virtual Core::hresult Speak(const string callsign, const string text, uint32_t& speechid /* @out */, TTSErrorDetail& status /* @out */) = 0;
