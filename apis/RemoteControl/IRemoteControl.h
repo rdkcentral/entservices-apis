@@ -325,7 +325,7 @@ namespace WPEFramework {
             // @param code: The IR code being programmed into the remote e.g. "PANASONIC_3DTV"
             // @example code: "PANASONIC_3DTV"
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
