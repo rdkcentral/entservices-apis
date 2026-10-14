@@ -1266,9 +1266,13 @@ Called whenever the network status changes
     "id": 20,
     "method": "org.rdk.RemoteControl.onStatus",
     "params": {
-        "networkType": "WIFI",
-        "pairingState": "PAIRED",
-        "irProgrammingState": "IDLE"
+        "netType": 1,
+        "pairingState": "INITIALISING",
+        "irProgState": "IDLE",
+        "netTypesSupported": [
+            1
+        ],
+        "remoteData": []
     }
 }
 ```
