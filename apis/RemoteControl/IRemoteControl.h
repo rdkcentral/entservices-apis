@@ -468,7 +468,7 @@ namespace WPEFramework {
                 // @text onStatus
                 // @details Called whenever the network status changes
                 // @param status: Network status information including network type, pairing state, and IR programming state
-                // @example status: {"networkType":"WIFI","pairingState":"PAIRED","irProgrammingState":"IDLE"}
+                // @example status: {"netType":1,"pairingState":"INITIALISING","irProgState":"IDLE","netTypesSupported":[1],"remoteData":[]}
                 virtual void OnStatus(const NetStatusData& status) {}
 
                 // @brief Generated for manual pairing validation
