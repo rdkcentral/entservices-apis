@@ -1299,15 +1299,13 @@ Called whenever manual pairing validation occurs
     "id": 21,
     "method": "org.rdk.RemoteControl.onValidation",
     "params": {
-        "validationStatus": "SUCCESS",
-        "pairingCode": [
-            "KEY_1",
-            "KEY_2"
+        "status": "SUCCESS",
+        "code": [
+            2,
+            3,
+            4
         ],
-        "pressedKeys": [
-            "KEY_1",
-            "KEY_2"
-        ]
+        "key": 2
     }
 }
 ```
