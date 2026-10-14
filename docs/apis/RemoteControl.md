@@ -382,9 +382,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
     "jsonrpc": "2.0",
     "id": 5,
     "result": {
-        "major": 1,
-        "minor": 0,
-        "patch": 0
+        "version": 1,
+        "success": true
     }
 }
 ```
