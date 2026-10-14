@@ -100,8 +100,8 @@ namespace Exchange {
 
         ~IES1BenchmarkAsync() override = default;
 
-        virtual Core::hresult Register(INotification* const notification, const Core::OptionalType<string>& clientid /* @index */) = 0;
-        virtual Core::hresult Unregister(const INotification* const notification, const Core::OptionalType<string>& clientid /* @index */) = 0;
+        virtual Core::hresult Register(INotification* const notification) = 0;
+        virtual Core::hresult Unregister(const INotification* const notification) = 0;
 
         // @text setstring
         virtual Core::hresult SetString(const string& clientid /* @in */, const string& value /* @in @restrict:0..4M */) = 0;
