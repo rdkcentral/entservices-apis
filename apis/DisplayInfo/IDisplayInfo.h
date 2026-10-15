@@ -66,6 +66,7 @@ namespace Exchange {
                 POST_RESOLUTION_CHANGE,
                 HDMI_CHANGE,
                 HDCP_CHANGE,
+                FRAMERATE_CHANGE,
             };
 
             virtual void Updated(const Source event) = 0;
