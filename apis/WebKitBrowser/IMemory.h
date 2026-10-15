@@ -49,7 +49,7 @@ namespace Exchange {
 
         // @brief Retrieves the number of processes.
         // @details Reports the number of processes associated with the memory interface.
-        // @return uint8_t: Number of processes
+        // @retval uint8_t: Number of processes
         virtual uint8_t Processes() const = 0;
 
         // @brief Checks whether the memory interface is operational.
