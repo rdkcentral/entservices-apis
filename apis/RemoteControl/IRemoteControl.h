@@ -349,7 +349,7 @@ namespace WPEFramework {
             // @text getLastKeypressSource
             // @details Retrieves the source of the last keypress on the remote.
             // @param response: The last keypress source response
-            // @example response: { "source": "IR" }
+            // @example response: { "controllerId": 1, "timestamp": 1785344173000, "sourceName": "IR", "sourceType": "REMOTE", "sourceKeyCode": 195, "bIsScreenBindMode": true, "remoteKeypadConfig": 0, "success": true }
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
