@@ -57,7 +57,7 @@ struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
     // @example ramTargetMB: 512
     // @param allowTerminate: When true, inactive applications may be terminated to free resources.
     // @example allowTerminate: true
-    // @retval Core::ERROR_NONE on success
+    // @retval Core::ERROR_NONE: on success
         virtual Core::hresult Reconcile(const string& appId, const uint32_t ramTargetMB, const bool allowTerminate) = 0;
 };
 
