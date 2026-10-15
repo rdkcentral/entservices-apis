@@ -246,6 +246,7 @@ namespace Exchange {
         ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
         ID_APP_PACKAGE_MANAGER_CONFIG                = ID_APP_PACKAGE_MANAGER + 11,
         ID_PACKAGE_CACHE_INITIALIZER                 = ID_APP_PACKAGE_MANAGER + 12,
+        ID_APP_PACKAGES_STATUS                       = ID_APP_PACKAGE_MANAGER + 13,
 
 	ID_APPSTORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
