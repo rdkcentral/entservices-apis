@@ -122,7 +122,7 @@ namespace WPEFramework
             // @brief Generates local key events for each key entry.
             // @details Implementations should generate key press and key release events via /dev/uinput and honor delay/duration values.
             // @param keys: List of keys to generate in order. Each entry supports delay and optional duration.
-            // @example keys: [{ "code": 30, "modifier": 1, "delay": 1, "duration": 0 }]
+            // @example keys: [{ "code": 30, "modifier": "CTRL", "delay": 1, "duration": 0 }]
             // @param success: Indicates whether the operation was successful
             // @example success: true
             // @retval Core::ERROR_NONE: Keys generated successfully
