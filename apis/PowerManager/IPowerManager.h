@@ -392,7 +392,6 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_NONE: Delay accepted.
         // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid client or transaction, or no active round.
         // @retval ErrorCode::ERROR_ILLEGAL_STATE: The negotiation round has completed.
-        // @retval ErrorCode::ERROR_UNAVAILABLE: The implementation is shutting down.
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
 
         /** Get the Wakeup Time in seconds */
@@ -457,7 +456,6 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_NONE: Delay and renegotiation accepted.
         // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid client or transaction, no active round, or negative delay.
         // @retval ErrorCode::ERROR_ILLEGAL_STATE: The negotiation round has completed.
-        // @retval ErrorCode::ERROR_UNAVAILABLE: The implementation is shutting down.
         virtual Core::hresult DelayPowerModeChangeAndRenegotiate(const uint32_t clientId, const int transactionId, const int delayPeriod) = 0;
     };
 
