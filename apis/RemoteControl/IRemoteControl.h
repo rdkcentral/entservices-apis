@@ -339,7 +339,7 @@ namespace WPEFramework {
             // @param netType: The type of network ex: 1
             // @example netType: 1
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
@@ -363,7 +363,7 @@ namespace WPEFramework {
             // @param customKeys: List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199"
             // @example customKeys: "195,199"
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
@@ -375,7 +375,7 @@ namespace WPEFramework {
             // @param netType: The type of network ex: 1
             // @example netType: 1
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
@@ -387,7 +387,7 @@ namespace WPEFramework {
             // @param level(optional): The level at which the remote will beep. Required for the call to succeed; the request fails if omitted.
             // @example level: "high"
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
@@ -397,7 +397,7 @@ namespace WPEFramework {
             // @text factoryReset
             // @details Tells all paired and connected remotes to factory reset.
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
@@ -407,7 +407,7 @@ namespace WPEFramework {
             // @text unpair
             // @details Unpairs all remotes from the STB. If a list of MAC addresses is provided, only those remotes will be unpaired; otherwise, all remotes will be unpaired.
             // @param result: Whether the request succeeded
-            // @example result: true
+            // @example result: { "success": true }
             // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes) e.g. ["AA:BB:CC:DD:EE:FF"]
             // @example macAddressList: ["AA:BB:CC:DD:EE:FF"]
             // @retval ErrorCode::NONE: Unpair executed successfully.
