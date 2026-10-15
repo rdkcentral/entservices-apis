@@ -145,7 +145,6 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network  |
-| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -163,8 +162,7 @@ None
     "id": 1,
     "method": "org.rdk.RemoteControl.clearIRCodes",
     "params": {
-        "remoteId": 1,
-        "netType": 1
+        "remoteId": 1
     }
 }
 ```
@@ -173,7 +171,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 1, "netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -406,10 +404,7 @@ Returns a list of available IR codes for the TV and AVRs specified by the input 
 ### Events Triggered
 None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.netType | integer | The type of network  |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -433,10 +428,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 6,
-    "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
-    "params": {
-        "netType": 1
-    }
+    "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup"
 }
 ```
 
@@ -444,7 +436,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -858,10 +850,7 @@ Initializes the IR database
 ### Events Triggered
 None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.netType | integer | The type of network  |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -877,10 +866,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 12,
-    "method": "org.rdk.RemoteControl.initializeIRDB",
-    "params": {
-        "netType": 1
-    }
+    "method": "org.rdk.RemoteControl.initializeIRDB"
 }
 ```
 
@@ -888,7 +874,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -916,7 +902,6 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network  |
-| params.netType | integer | The type of network  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params.code | string | The IR code being programmed into the remote  |
 ### Results
@@ -937,7 +922,6 @@ None
     "method": "org.rdk.RemoteControl.setIRCode",
     "params": {
         "remoteId": 1,
-        "netType": 1,
         "avDevType": "TV",
         "code": "PANASONIC_3DTV"
     }
@@ -948,7 +932,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1040,7 +1024,6 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.netType | integer | <sup>(optional)</sup>The type of network to pair on |
 | params?.timeout | integer | <sup>(optional)</sup>Pairing timeout in seconds |
 | params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled |
 | params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled |
@@ -1063,7 +1046,6 @@ None
     "id": 15,
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
-        "netType": 1,
         "timeout": 0,
         "screenBindEnable": true,
         "scanEnable": true,
@@ -1078,7 +1060,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 1, "timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

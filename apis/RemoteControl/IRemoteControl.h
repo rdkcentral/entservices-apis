@@ -191,7 +191,6 @@ namespace WPEFramework {
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
-            // @param netType(optional): The type of network to pair on
             // @param timeout(optional): Pairing timeout in seconds
             // @param screenBindEnable(optional): Whether screen bind pairing is enabled
             // @param scanEnable(optional): Whether scan pairing is enabled
@@ -200,7 +199,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& netType, const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, const std::vector<string>& macAddressList /* @optional @restrict:32 */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, const std::vector<string>& macAddressList /* @optional @restrict:32 */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
@@ -246,7 +245,6 @@ namespace WPEFramework {
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
-            // @param netType: The type of network ex: 1
             // @param tvManufacturer: The TV manufacturer for which codes are provided e.g. "ACME"
             // @param tvModel: The TV model for which codes are provided e.g. "ACME-TV100"
             // @param avrManufacturer: The AVR manufacturer for which codes are provided e.g. "ACME Audio"
@@ -257,7 +255,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const uint32_t netType, string& tvManufacturer /* @out */, string& tvModel /* @out */, string& avrManufacturer /* @out */, string& avrModel /* @out */, bool& success /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(string& tvManufacturer /* @out */, string& tvModel /* @out */, string& avrManufacturer /* @out */, string& avrModel /* @out */, bool& success /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
@@ -274,24 +272,22 @@ namespace WPEFramework {
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
             // @param remoteId: The remote ID of the target remote on the specified network ex: 1
-            // @param netType: The type of network ex: 1
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param code: The IR code being programmed into the remote e.g. "PANASONIC_3DTV"
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const uint32_t remoteId, const uint32_t netType, const AVDevType avDevType, const string& code, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult SetIRCode(const uint32_t remoteId, const AVDevType avDevType, const string& code, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
             // @param remoteId: The remote ID of the target remote on the specified network ex: 1
-            // @param netType: The type of network ex: 1
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const uint32_t remoteId, const uint32_t netType, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult ClearIRCodes(const uint32_t remoteId, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
@@ -313,12 +309,11 @@ namespace WPEFramework {
 
             // @brief Initializes the IR database
             // @text initializeIRDB
-            // @param netType: The type of network ex: 1
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const uint32_t netType, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult InitializeIRDB(RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
