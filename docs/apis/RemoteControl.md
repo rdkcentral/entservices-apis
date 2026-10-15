@@ -710,7 +710,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "source": "IR"
+        "controllerId": 1,
+        "timestamp": 1785344173000,
+        "sourceName": "IR",
+        "sourceType": "REMOTE",
+        "sourceKeyCode": 195,
+        "bIsScreenBindMode": true,
+        "remoteKeypadConfig": 0,
+        "success": true
     }
 }
 ```
