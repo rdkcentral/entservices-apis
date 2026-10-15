@@ -34,7 +34,7 @@ namespace Exchange {
 
         // @brief Retrieves the resident memory usage.
         // @details Reports memory currently resident in physical memory, in bytes.
-        // @retval uint64_t: Resident memory usage in bytes
+        // @return Resident memory usage in bytes.
         virtual uint64_t Resident() const = 0;
 
         // @brief Retrieves the allocated memory usage.
