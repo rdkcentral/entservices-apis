@@ -154,7 +154,7 @@ namespace Exchange {
     };
 
 
-    // @json 1.0.0 @text:keep
+    // @json 2.0.0 @text:keep
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
@@ -221,12 +221,10 @@ namespace Exchange {
         // @brief Install
         // @text install
         // @param packageId: Package Id
-        // @param version: Version
         // @param additionalMetadata: Additional Metadata
         // @param fileLocator: File Locator
         virtual Core::hresult Install(
             const string &packageId,
-            const string &version,
             IPackageInstaller::IKeyValueIterator* const& additionalMetadata,
             const string &fileLocator,
             FailReason &failReason /* @out */) = 0;
@@ -246,10 +244,8 @@ namespace Exchange {
         // @brief Config
         // @text config
         // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult Config(
             const string &packageId,
-            const string &version,
             RuntimeConfig &configMetadata /* @out */
             ) = 0;
 
@@ -261,10 +257,8 @@ namespace Exchange {
         // @brief PackageState
         // @text packageState
         // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult PackageState(
             const string &packageId,
-            const string &version,
             InstallState &state /* @out */
             ) = 0;
 
@@ -299,7 +293,6 @@ namespace Exchange {
         // @brief Lock
         // @text lock
         // @param packageId: Package Id
-        // @param version: Version
         // @param lockReason: LockReason
         // @param lockId: Lock Id
         // @param unpackedPath: Unpacked Path
@@ -307,7 +300,6 @@ namespace Exchange {
         // @param appMetadata: App Metadata
         virtual Core::hresult Lock(
             const string &packageId,
-            const string &version,
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
@@ -319,18 +311,14 @@ namespace Exchange {
         // @brief Unlock
         // @text unlock
         // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult Unlock(
-            const string &packageId,
-            const string &version) = 0;
+            const string &packageId) = 0;
 
         // @brief GetLockedInfo
         // @text getLockedInfo
         // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult GetLockedInfo(
             const string &packageId,
-            const string &version,
             string &unpackedPath /* @out */,
             RuntimeConfig &configMetadata /* @out */,
             string &gatewayMetadataPath /* @out */,
