@@ -94,7 +94,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.AppManager.clearAllAppData"
 }
@@ -104,7 +104,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppManager.clearAllAppData"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppManager.clearAllAppData"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -112,7 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -142,7 +142,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.AppManager.clearAppData",
     "params": {
@@ -155,7 +155,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -163,7 +163,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
 }
@@ -193,7 +193,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.AppManager.closeApp",
     "params": {
@@ -206,7 +206,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -214,7 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -246,7 +246,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.AppManager.getAppMetadata",
     "params": {
@@ -260,7 +260,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "", "metaData": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "", "metaData": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -268,7 +268,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "result": ""
@@ -302,7 +302,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.AppManager.getAppProperty",
     "params": {
@@ -316,7 +316,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -324,7 +324,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "value": ""
@@ -354,7 +354,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.AppManager.getInstalledApps"
 }
@@ -364,7 +364,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.AppManager.getInstalledApps"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.AppManager.getInstalledApps"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -372,7 +372,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "apps": ""
@@ -408,7 +408,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.AppManager.getLoadedApps"
 }
@@ -418,7 +418,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.AppManager.getLoadedApps"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.AppManager.getLoadedApps"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -426,7 +426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": [
         {
@@ -466,7 +466,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.AppManager.isInstalled",
     "params": {
@@ -479,7 +479,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -487,7 +487,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "installed": true
@@ -519,7 +519,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.AppManager.killApp",
     "params": {
@@ -532,7 +532,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -540,7 +540,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": null
 }
@@ -572,7 +572,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.AppManager.launchApp",
     "params": {
@@ -587,7 +587,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -595,7 +595,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": null
 }
@@ -628,7 +628,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.AppManager.preloadApp",
     "params": {
@@ -643,7 +643,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -651,7 +651,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
         "error": ""
@@ -664,7 +664,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "error": {
         "code": 1,
@@ -698,7 +698,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.AppManager.sendIntent",
     "params": {
@@ -712,7 +712,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "", "intent": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "", "intent": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -720,7 +720,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": null
 }
@@ -752,7 +752,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.AppManager.setAppProperty",
     "params": {
@@ -767,7 +767,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -775,7 +775,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": null
 }
@@ -805,7 +805,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.AppManager.startSystemApp",
     "params": {
@@ -818,7 +818,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -826,7 +826,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": null
 }
@@ -856,7 +856,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.AppManager.stopSystemApp",
     "params": {
@@ -869,7 +869,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -877,7 +877,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": null
 }
@@ -907,7 +907,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.AppManager.terminateApp",
     "params": {
@@ -920,7 +920,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -928,7 +928,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": null
 }
@@ -965,7 +965,7 @@ Triggered whenever the App is installed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.AppManager.onAppInstalled",
     "params": {
@@ -992,7 +992,7 @@ Triggered whenever there is a request for App Launch.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.AppManager.onAppLaunchRequest",
     "params": {
@@ -1022,7 +1022,7 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.AppManager.onAppLifecycleStateChanged",
     "params": {
@@ -1050,7 +1050,7 @@ Triggered whenever the App is uninstalled.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.AppManager.onAppUninstalled",
     "params": {
@@ -1075,7 +1075,7 @@ Triggered whenever the App is unloaded(terminated).
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.AppManager.onAppUnloaded",
     "params": {
@@ -1117,7 +1117,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.AppManager.getMaxHibernatedApps"
 }
@@ -1127,7 +1127,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AppManager.getMaxHibernatedApps"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.AppManager.getMaxHibernatedApps"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1135,7 +1135,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": {
         "maxHibernatedApps": 0
@@ -1163,7 +1163,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.AppManager.getMaxHibernatedFlashUsage"
 }
@@ -1173,7 +1173,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AppManager.getMaxHibernatedFlashUsage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.AppManager.getMaxHibernatedFlashUsage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1181,7 +1181,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": {
         "maxHibernatedFlashUsage": 0
@@ -1209,7 +1209,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "method": "org.rdk.AppManager.getMaxInactiveRamUsage"
 }
@@ -1219,7 +1219,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.AppManager.getMaxInactiveRamUsage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 23, "method": "org.rdk.AppManager.getMaxInactiveRamUsage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1227,7 +1227,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "result": {
         "maxInactiveRamUsage": 0
@@ -1255,7 +1255,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "method": "org.rdk.AppManager.getMaxRunningApps"
 }
@@ -1265,7 +1265,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.AppManager.getMaxRunningApps"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 24, "method": "org.rdk.AppManager.getMaxRunningApps"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1273,7 +1273,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "result": {
         "maxRunningApps": 0
