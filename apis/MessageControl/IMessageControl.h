@@ -50,14 +50,24 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
 
     // @brief Enables/disables a message control
+    // @details Enables or disables a specific message control based on the provided parameters.
     // @param type Message type
+    // @example type: TRACING
     // @param module Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
+    // @example module: "Plugin_BluetoothControl"
     // @param category Name of the message category (e.g. Information)
+    // @example category: "Information"
     // @param enabled Denotes if control should be enabled (true) or disabled (false)
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: The enable/disable request was accepted successfully.
     virtual Core::hresult Enable(const MessageType type, const string& category, const string& module, const bool enabled) = 0;
 
     // @property
     // @brief Retrieves a list of current message controls
+    // @details Retrieves a list of all current message controls.
+    // @param control Iterator to the list of message controls.
+    // @example control: [ { "type": "TRACING", "category": "Information", "module": "Plugin_BluetoothControl", "enabled": true } ]
+    // @retval Core::ERROR_NONE: The current controls were retrieved successfully.
     virtual Core::hresult Controls(IControlIterator*& control /* @out */) const = 0;
   };
 

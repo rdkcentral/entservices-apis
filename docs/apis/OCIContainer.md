@@ -57,7 +57,7 @@ The following methods are provided by the IOCIContainer Interface:
 | :-------- | :-------- |
 | [annotate](#annotate) | Update container properties |
 | [executeCommand](#executeCommand) | Execute the command in container |
-| [getContainerInfo](#getContainerInfo) | Get the information about container |
+| [getContainerInfo](#getContainerInfo) | Get the information about a specific container |
 | [getContainerState](#getContainerState) | Get the state of container |
 | [hibernateContainer](#hibernateContainer) | Hibernate the container |
 | [listContainers](#listContainers) | Provide list of containers |
@@ -74,7 +74,7 @@ The following methods are provided by the IOCIContainer Interface:
 <a id="annotate"></a>
 ## *annotate*
 
-Update container properties
+Updates the specified property of the container
 
 ### Events Triggered
 None
@@ -89,8 +89,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | indicates whether the annotate operation was successful |
+| result.errorReason | string | provides the reason for failure if any |
 
 ### Examples
 
@@ -99,13 +99,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.OCIContainer.annotate",
     "params": {
-        "containerId": "",
-        "key": "",
-        "value": ""
+        "containerId": "container123",
+        "key": "propertyName",
+        "value": "propertyValue"
     }
 }
 ```
@@ -114,7 +114,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.OCIContainer.annotate", "params": {"containerId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.OCIContainer.annotate", "params": {"containerId": "container123", "key": "propertyName", "value": "propertyValue"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -122,11 +122,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -134,7 +134,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="executeCommand"></a>
 ## *executeCommand*
 
-Execute the command in container
+Executes the specified command within the container
 
 ### Events Triggered
 None
@@ -142,15 +142,15 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params?.options | string | <sup>(optional)</sup>options to be passed to command |
-| params.command | string | command to run in container |
+| params.containerId | string | Identifier of the container |
+| params.options | string | Options to be passed to the command |
+| params.command | string | Command to run in the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -159,13 +159,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.OCIContainer.executeCommand",
     "params": {
-        "containerId": "",
-        "options": "",
-        "command": ""
+        "containerId": "container123",
+        "options": "rw",
+        "command": "/bin/bash"
     }
 }
 ```
@@ -174,7 +174,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.OCIContainer.executeCommand", "params": {"containerId": "", "options": "", "command": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.OCIContainer.executeCommand", "params": {"containerId": "container123", "options": "rw", "command": "/bin/bash"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -182,11 +182,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -194,7 +194,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getContainerInfo"></a>
 ## *getContainerInfo*
 
-Get the information about container
+This API retrieves detailed information about a specific container identified by its container ID.
 
 ### Events Triggered
 None
@@ -202,14 +202,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.info | string |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.info | string | Detailed information about the container in JSON format |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -218,11 +218,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.OCIContainer.getContainerInfo",
     "params": {
-        "containerId": ""
+        "containerId": "container123"
     }
 }
 ```
@@ -231,7 +231,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.OCIContainer.getContainerInfo", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.OCIContainer.getContainerInfo", "params": {"containerId": "container123"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -239,12 +239,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
-        "info": "",
+        "info": "{\\\"containerId\\\": \\\"container123\\\", \\\"name\\\": \\\"myContainer\\\", \\\"state\\\": \\\"running\\\"}",
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -252,7 +252,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getContainerState"></a>
 ## *getContainerState*
 
-Get the state of container
+This API retrieves the current state of a specific container identified by its container ID.
 
 ### Events Triggered
 None
@@ -260,14 +260,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | Possible values: INVALID, STARTING, RUNNING, STOPPING, PAUSED, STOPPED, HIBERNATING, HIBERNATED, AWAKENING |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.state | string | Current state of the container. Possible values: INVALID, STARTING, RUNNING, STOPPING, PAUSED, STOPPED, HIBERNATING, HIBERNATED, AWAKENING |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -276,11 +276,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.OCIContainer.getContainerState",
     "params": {
-        "containerId": ""
+        "containerId": "container123"
     }
 }
 ```
@@ -289,7 +289,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.OCIContainer.getContainerState", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.OCIContainer.getContainerState", "params": {"containerId": "container123"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -297,12 +297,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
-        "state": "INVALID",
+        "state": "running",
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -310,7 +310,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="hibernateContainer"></a>
 ## *hibernateContainer*
 
-Hibernate the container
+This API hibernates the specified container, saving its state and freeing up system resources.
 
 ### Events Triggered
 None
@@ -318,14 +318,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.options | string | options to be passed to command |
+| params.containerId | string | Identifier of the container |
+| params.options | string | Options to be passed to the hibernate command |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -334,12 +334,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.OCIContainer.hibernateContainer",
     "params": {
-        "containerId": "",
-        "options": ""
+        "containerId": "container123",
+        "options": "rw"
     }
 }
 ```
@@ -348,7 +348,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.OCIContainer.hibernateContainer", "params": {"containerId": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.OCIContainer.hibernateContainer", "params": {"containerId": "container123", "options": "rw"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -356,11 +356,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -368,7 +368,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="listContainers"></a>
 ## *listContainers*
 
-Provide list of containers
+This API provides the list of all containers managed by the system.
 
 ### Events Triggered
 None
@@ -378,9 +378,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.containers | string | /json - string |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.containers | string | Output list of containers in JSON format |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -389,7 +389,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.OCIContainer.listContainers"
 }
@@ -399,7 +399,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.OCIContainer.listContainers"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.OCIContainer.listContainers"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -407,12 +407,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
-        "containers": "",
+        "containers": "[{\\\"containerId\\\": \\\"container123\\\", \\\"name\\\": \\\"myContainer\\\", \\\"state\\\": \\\"running\\\"}]",
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -420,7 +420,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="mount"></a>
 ## *mount*
 
-Mount a path in container
+Mounts the specified source path to the target path inside the container
 
 ### Events Triggered
 None
@@ -437,8 +437,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | indicates whether the mount operation was successful |
+| result.errorReason | string | provides the reason for failure if any |
 
 ### Examples
 
@@ -447,15 +447,15 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.OCIContainer.mount",
     "params": {
-        "containerId": "",
-        "source": "",
-        "target": "",
-        "type": "",
-        "options": ""
+        "containerId": "container123",
+        "source": "/host/path",
+        "target": "/container/path",
+        "type": "bind",
+        "options": "rw"
     }
 }
 ```
@@ -464,7 +464,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.OCIContainer.mount", "params": {"containerId": "", "source": "", "target": "", "type": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.OCIContainer.mount", "params": {"containerId": "container123", "source": "/host/path", "target": "/container/path", "type": "bind", "options": "rw"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -472,11 +472,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -484,7 +484,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="pauseContainer"></a>
 ## *pauseContainer*
 
-Pause the container
+This API pauses the specified container, temporarily halting its execution.
 
 ### Events Triggered
 None
@@ -492,13 +492,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -507,11 +507,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.OCIContainer.pauseContainer",
     "params": {
-        "containerId": ""
+        "containerId": "container123"
     }
 }
 ```
@@ -520,7 +520,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.OCIContainer.pauseContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.OCIContainer.pauseContainer", "params": {"containerId": "container123"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -528,11 +528,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -540,7 +540,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="removeAnnotation"></a>
 ## *removeAnnotation*
 
-Remove container property
+Removes the specified property from the container
 
 ### Events Triggered
 None
@@ -554,8 +554,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | indicates whether the remove annotation operation was successful |
+| result.errorReason | string | provides the reason for failure if any |
 
 ### Examples
 
@@ -564,12 +564,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.OCIContainer.removeAnnotation",
     "params": {
-        "containerId": "",
-        "key": ""
+        "containerId": "container123",
+        "key": "propertyName"
     }
 }
 ```
@@ -578,7 +578,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.OCIContainer.removeAnnotation", "params": {"containerId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.OCIContainer.removeAnnotation", "params": {"containerId": "container123", "key": "propertyName"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -586,11 +586,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -598,7 +598,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="resumeContainer"></a>
 ## *resumeContainer*
 
-Resume the container
+This API resumes the specified container, allowing it to continue execution.
 
 ### Events Triggered
 None
@@ -606,13 +606,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -621,11 +621,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.OCIContainer.resumeContainer",
     "params": {
-        "containerId": ""
+        "containerId": "container123"
     }
 }
 ```
@@ -634,7 +634,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.OCIContainer.resumeContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.OCIContainer.resumeContainer", "params": {"containerId": "container123"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -642,11 +642,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -654,7 +654,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="startContainer"></a>
 ## *startContainer*
 
-Start the container from bundle
+This API starts a container using the specified application bundle.
 
 ### Events Triggered
 None
@@ -662,17 +662,17 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.bundlePath | string | path of application bundle |
-| params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
+| params.containerId | string | Identifier of the container |
+| params.bundlePath | string | Path of the application bundle |
+| params.command | string | Command to run in the container |
+| params.westerosSocket | string | Westeros socket the container needs to connect to |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.descriptor | integer |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.descriptor | integer | File descriptor associated with the container |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -681,14 +681,14 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.OCIContainer.startContainer",
     "params": {
-        "containerId": "",
-        "bundlePath": "",
-        "command": "",
-        "westerosSocket": ""
+        "containerId": "container123",
+        "bundlePath": "/path/to/bundle",
+        "command": "/bin/bash",
+        "westerosSocket": "/tmp/westeros.sock"
     }
 }
 ```
@@ -697,7 +697,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.OCIContainer.startContainer", "params": {"containerId": "", "bundlePath": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.OCIContainer.startContainer", "params": {"containerId": "container123", "bundlePath": "/path/to/bundle", "command": "/bin/bash", "westerosSocket": "/tmp/westeros.sock"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -705,12 +705,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "descriptor": 0,
+        "descriptor": 5,
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -718,7 +718,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="startContainerFromDobbySpec"></a>
 ## *startContainerFromDobbySpec*
 
-Start the container from dobby specification
+This API starts a container using the specified dobby specification.
 
 ### Events Triggered
 None
@@ -726,17 +726,17 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.dobbySpec | string | dobby specification as json string |
-| params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
+| params.containerId | string | Identifier of the container |
+| params.dobbySpec | string | Dobby specification as a JSON string |
+| params.command | string | Command to run in the container |
+| params.westerosSocket | string | Westeros socket the container needs to connect to |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.descriptor | integer |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.descriptor | integer | File descriptor associated with the container |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -745,14 +745,14 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.OCIContainer.startContainerFromDobbySpec",
     "params": {
-        "containerId": "",
-        "dobbySpec": "",
-        "command": "",
-        "westerosSocket": ""
+        "containerId": "container123",
+        "dobbySpec": "{\\\"containerId\\\": \\\"container123\\\", \\\"name\\\": \\\"myContainer\\\"}",
+        "command": "/bin/bash",
+        "westerosSocket": "/tmp/westeros.sock"
     }
 }
 ```
@@ -761,7 +761,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.OCIContainer.startContainerFromDobbySpec", "params": {"containerId": "", "dobbySpec": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.OCIContainer.startContainerFromDobbySpec", "params": {"containerId": "container123", "dobbySpec": "{\\\"containerId\\\": \\\"container123\\\", \\\"name\\\": \\\"myContainer\\\"}", "command": "/bin/bash", "westerosSocket": "/tmp/westeros.sock"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -769,12 +769,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
-        "descriptor": 0,
+        "descriptor": 5,
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -782,7 +782,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="stopContainer"></a>
 ## *stopContainer*
 
-Stop the container
+This API stops the specified container, either forcefully or gracefully based on the 'force' parameter.
 
 ### Events Triggered
 None
@@ -790,14 +790,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params?.force | bool | <sup>(optional)</sup>Mention forceful or graceful termination of container |
+| params.containerId | string | Identifier of the container |
+| params.force | bool | Mention forceful or graceful termination of the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -806,11 +806,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.OCIContainer.stopContainer",
     "params": {
-        "containerId": "",
+        "containerId": "container123",
         "force": true
     }
 }
@@ -820,7 +820,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.OCIContainer.stopContainer", "params": {"containerId": "", "force": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.OCIContainer.stopContainer", "params": {"containerId": "container123", "force": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -828,11 +828,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -840,7 +840,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="unmount"></a>
 ## *unmount*
 
-Unmount a path in container
+Unmounts the specified target path from the container
 
 ### Events Triggered
 None
@@ -854,8 +854,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | indicates whether the unmount operation was successful |
+| result.errorReason | string | provides the reason for failure if any |
 
 ### Examples
 
@@ -864,12 +864,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.OCIContainer.unmount",
     "params": {
-        "containerId": "",
-        "target": ""
+        "containerId": "container123",
+        "target": "/container/path"
     }
 }
 ```
@@ -878,7 +878,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.OCIContainer.unmount", "params": {"containerId": "", "target": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.OCIContainer.unmount", "params": {"containerId": "container123", "target": "/container/path"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -886,11 +886,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -898,7 +898,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="wakeupContainer"></a>
 ## *wakeupContainer*
 
-Wakeup the container
+This API wakes up the specified container, restoring it from a hibernated state.
 
 ### Events Triggered
 None
@@ -906,13 +906,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of the container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+| result.errorReason | string | Provides the reason for failure if the operation was not successful |
 
 ### Examples
 
@@ -921,11 +921,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.OCIContainer.wakeupContainer",
     "params": {
-        "containerId": ""
+        "containerId": "container123"
     }
 }
 ```
@@ -934,7 +934,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.OCIContainer.wakeupContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.OCIContainer.wakeupContainer", "params": {"containerId": "container123"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -942,11 +942,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "success": true,
-        "errorReason": ""
+        "errorReason": "Failed to unmount path"
     }
 }
 ```
@@ -968,27 +968,27 @@ The following events are provided by the IOCIContainer Interface:
 <a id="onContainerFailed"></a>
 ## *onContainerFailed*
 
-Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup.
+This event is triggered when the container has failed during execution.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.name | string |  |
-| params.error | integer |  |
+| params.containerId | string | Identifier of the container that failed |
+| params.name | string | Name of the container |
+| params.error | integer | Error code indicating the failure reason |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.OCIContainer.onContainerFailed",
     "params": {
-        "containerId": "",
-        "name": "",
-        "error": 0
+        "containerId": "container123",
+        "name": "myContainer",
+        "error": 1
     }
 }
 ```
@@ -996,25 +996,25 @@ Notifies failure in container execution, only triggered for states start, stop, 
 <a id="onContainerStarted"></a>
 ## *onContainerStarted*
 
-Notifies container is started
+This event is triggered when the container has successfully started.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.name | string |  |
+| params.containerId | string | Identifier of the container that started |
+| params.name | string | Name of the container |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.OCIContainer.onContainerStarted",
     "params": {
-        "containerId": "",
-        "name": ""
+        "containerId": "container123",
+        "name": "myContainer"
     }
 }
 ```
@@ -1022,25 +1022,25 @@ Notifies container is started
 <a id="onContainerStateChanged"></a>
 ## *onContainerStateChanged*
 
-Notifies state change of container
+This event is triggered when the state of the container changes.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.state | string | Possible values: INVALID, STARTING, RUNNING, STOPPING, PAUSED, STOPPED, HIBERNATING, HIBERNATED, AWAKENING |
+| params.containerId | string | Identifier of the container whose state changed |
+| params.state | string | New state of the container. Possible values: INVALID, STARTING, RUNNING, STOPPING, PAUSED, STOPPED, HIBERNATING, HIBERNATED, AWAKENING |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.OCIContainer.onContainerStateChanged",
     "params": {
-        "containerId": "",
-        "state": "INVALID"
+        "containerId": "container123",
+        "state": "running"
     }
 }
 ```
@@ -1048,25 +1048,27 @@ Notifies state change of container
 <a id="onContainerStopped"></a>
 ## *onContainerStopped*
 
-Notifies container is stopped
+This event is triggered when the container has successfully stopped.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params.name | string |  |
+| params.containerId | string | Identifier of the container that stopped |
+| params.name | string | Name of the container |
+| params.exitCode | integer | Exit code of the container process |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.OCIContainer.onContainerStopped",
     "params": {
-        "containerId": "",
-        "name": ""
+        "containerId": "container123",
+        "name": "myContainer",
+        "exitCode": 0
     }
 }
 ```
