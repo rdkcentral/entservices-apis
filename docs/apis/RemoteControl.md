@@ -744,7 +744,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.netType | integer | The type of network  |
-| params?.verbose | bool | <sup>(optional)</sup> |
+| params?.verbose | bool | <sup>(optional)</sup>Whether to include verbose status information |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
