@@ -215,11 +215,12 @@ namespace WPEFramework {
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param netType: The type of network ex: 1
+            // @param verbose(optional): Whether to include verbose status information
             // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResult& result /* @out */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, const Core::OptionalType<bool>& verbose, GetNetStatusResult& result /* @out */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
