@@ -62,7 +62,7 @@ The following methods are provided by the IUnifiedCASManagement Interface:
 <a id="manage"></a>
 ## *manage*
 
-Manage a well-known CAS (setup CAS management session)
+Creates a management session for the selected CAS using the media URL, tune mode, management type, and CAS-specific initialization data.
 
 ### Events Triggered
 None
@@ -88,15 +88,15 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.UnifiedCASManagement.manage",
     "params": {
-        "mediaurl": "",
-        "mode": "MODE_NONE",
+        "mediaurl": "ocap://channel",
+        "mode": "MODE_LIVE",
         "managementType": "MANAGE_FULL",
         "casinitdata": "",
-        "casocdmid": ""
+        "casocdmid": "com.example.cas"
     }
 }
 ```
@@ -105,7 +105,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.UnifiedCASManagement.manage", "params": {"mediaurl": "", "mode": "MODE_NONE", "managementType": "MANAGE_FULL", "casinitdata": "", "casocdmid": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.UnifiedCASManagement.manage", "params": {"mediaurl": "ocap://channel", "mode": "MODE_LIVE", "managementType": "MANAGE_FULL", "casinitdata": "", "casocdmid": "com.example.cas"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -113,7 +113,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -126,7 +126,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 1,
@@ -138,7 +138,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="send"></a>
 ## *send*
 
-Sends data to the remote CAS
+Transfers the supplied payload to the remote CAS and identifies whether the data source is public or private.
 
 ### Events Triggered
 None
@@ -161,11 +161,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.UnifiedCASManagement.send",
     "params": {
-        "payload": "",
+        "payload": "AQID",
         "source": "PUBLIC"
     }
 }
@@ -175,7 +175,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.UnifiedCASManagement.send", "params": {"payload": "", "source": "PUBLIC"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.UnifiedCASManagement.send", "params": {"payload": "AQID", "source": "PUBLIC"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -183,7 +183,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -196,7 +196,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "error": {
         "code": 1,
@@ -208,7 +208,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="unmanage"></a>
 ## *unmanage*
 
-Destroy a management session
+Ends the active CAS management session.
 
 ### Events Triggered
 None
@@ -227,7 +227,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.UnifiedCASManagement.unmanage"
 }
@@ -237,7 +237,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.UnifiedCASManagement.unmanage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.UnifiedCASManagement.unmanage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -245,7 +245,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true
@@ -258,7 +258,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "error": {
         "code": 1,
@@ -281,7 +281,7 @@ The following events are provided by the IUnifiedCASManagement Interface:
 <a id="data"></a>
 ## *data*
 
-Sent when the CAS needs to send data to the caller
+Forwards data received from the CAS to the registered notification callback. The payload may be base64 encoded when required.
 
 ### Parameters
 | Name | Type | Description |
@@ -294,11 +294,11 @@ Sent when the CAS needs to send data to the caller
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.UnifiedCASManagement.data",
     "params": {
-        "payload": "",
+        "payload": "AQID",
         "source": "PUBLIC"
     }
 }

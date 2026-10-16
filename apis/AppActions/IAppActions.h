@@ -37,9 +37,13 @@ namespace Exchange {
 
             /**
              * @brief Notifies when an action start event occurs.
-             * @param initiator The ID of the app/ module initiating the action.
-             * @param intent The intent string describing the action.
-             * @param handlerAppId(optional) The ID of the app handling the action.
+             * @details Called whenever an action start event occurs.
+             * @param initiator: The ID of the app/ module initiating the action.
+             * @example initiator: "com.example.app"
+             * @param intent: The intent string describing the action.
+             * @example intent: "com.example.intent"
+             * @param handlerAppId(optional): The ID of the app handling the action.
+             * @example handlerAppId: "com.example.handler"
              */
             // @text onActionStartRequest
             virtual void OnActionStartRequest(const string& initiator, const string& intent, const string& handlerAppId) {}
@@ -47,12 +51,15 @@ namespace Exchange {
 
         /**
          * @brief Starts an action for the given intent and handler app.
-         * @param initiator The ID of the app/ module initiating the action.
-         * @param intent The intent string describing the action.
-         * @param handlerAppId(optional) The ID of the app handling the action.
+         * @details Initiates an action from the initiator to the AppActions with the specified intent and handler app.
+         * @param initiator: The ID of the app/ module initiating the action.
+         * @example initiator: "com.example.app"
+         * @param intent: The intent string describing the action.
+         * @example intent: "com.example.intent"
+         * @param handlerAppId(optional): The ID of the app handling the action.
+         * @example handlerAppId: "com.example.handler"
          * @retval Core::ERROR_NONE: Success
          * @retval Core::ERROR_GENERAL: Failure
-         * @details Initiates an action from the initiator to the AppActions with the specified intent.
          */
         // @text actionStart
         virtual Core::hresult ActionStart(const string& initiator, const string& intent, const string& handlerAppId) = 0;

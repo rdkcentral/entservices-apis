@@ -64,7 +64,7 @@ The following methods are provided by the IAppActions Interface:
 <a id="actionStart"></a>
 ## *actionStart*
 
-Initiates an action from the initiator to the AppActions with the specified intent.
+Initiates an action from the initiator to the AppActions with the specified intent and handler app.
 
 ### Events Triggered
 None
@@ -87,13 +87,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.AppActions.actionStart",
     "params": {
-        "initiator": "",
-        "intent": "",
-        "handlerAppId": ""
+        "initiator": "com.example.app",
+        "intent": "com.example.intent",
+        "handlerAppId": "com.example.handler"
     }
 }
 ```
@@ -102,7 +102,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppActions.actionStart", "params": {"initiator": "", "intent": "", "handlerAppId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppActions.actionStart", "params": {"initiator": "com.example.app", "intent": "com.example.intent", "handlerAppId": "com.example.handler"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -121,7 +121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 1,
@@ -144,7 +144,7 @@ The following events are provided by the IAppActions Interface:
 <a id="onActionStartRequest"></a>
 ## *onActionStartRequest*
 
-Notifies when an action start event occurs.
+Called whenever an action start event occurs.
 
 ### Parameters
 | Name | Type | Description |
@@ -158,13 +158,13 @@ Notifies when an action start event occurs.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.AppActions.onActionStartRequest",
     "params": {
-        "initiator": "",
-        "intent": "",
-        "handlerAppId": ""
+        "initiator": "com.example.app",
+        "intent": "com.example.intent",
+        "handlerAppId": "com.example.handler"
     }
 }
 ```

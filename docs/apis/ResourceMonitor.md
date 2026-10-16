@@ -60,7 +60,7 @@ The following methods are provided by the IResourceMonitor Interface:
 <a id="reconcile"></a>
 ## *reconcile*
 
-Requests a resource reconciliation pass, evicting inactive applications if required and permitted.
+Initiates a resource reconciliation process for the specified application, considering the RAM target and termination allowance.
 
 ### Events Triggered
 None
@@ -83,12 +83,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.ResourceMonitor.reconcile",
     "params": {
-        "appId": "",
-        "ramTargetMB": 0,
+        "appId": "com.example.app",
+        "ramTargetMB": 512,
         "allowTerminate": true
     }
 }
@@ -98,7 +98,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ResourceMonitor.reconcile", "params": {"appId": "", "ramTargetMB": 0, "allowTerminate": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ResourceMonitor.reconcile", "params": {"appId": "com.example.app", "ramTargetMB": 512, "allowTerminate": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -106,7 +106,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -126,7 +126,7 @@ The following events are provided by the IResourceMonitor Interface:
 <a id="onReconciliationComplete"></a>
 ## *onReconciliationComplete*
 
-Triggered when a resource reconciliation pass completes.
+Called whenever a resource reconciliation pass completes, providing the application identifier and the RAM target achievement status.
 
 ### Parameters
 | Name | Type | Description |
@@ -139,11 +139,11 @@ Triggered when a resource reconciliation pass completes.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.ResourceMonitor.onReconciliationComplete",
     "params": {
-        "appId": "",
+        "appId": "com.example.app",
         "targetRamAchieved": true
     }
 }

@@ -57,8 +57,11 @@ struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
 
         // @text onEvictComplete
         // @brief Triggered when eviction is complete.
-        // @param evicted True when an application was evicted.
-        // @param errorCode Error code when an application could not be evicted.
+        // @details Provides information about the completion of an eviction request.
+        // @param evicted: True when an application was evicted.
+        // @example evicted: true
+        // @param errorCode: Error code when an application could not be evicted.
+        // @example errorCode: NONE
         virtual void OnEvictComplete(const bool evicted, const EvictErrorReason errorCode) {}
     };
 
@@ -79,8 +82,11 @@ struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
 
     // @text evict
     // @brief Determines the best application to terminate using the app priority algorithm.
-    // @param reason Resource requiring eviction: RAM, GPU, or FLASH.
-    // @param type Eviction type: HARD or SOFT.
+    // @details Initiates an eviction request for the specified resource and type.
+    // @param reason: Resource requiring eviction: RAM, GPU, or FLASH.
+    // @example reason: RAM
+    // @param type: Eviction type: HARD or SOFT.
+    // @example type: HARD
     // @retval Core::ERROR_NONE: Eviction request was processed or no candidate was found.
     // @retval Core::ERROR_ILLEGAL_STATE: Another eviction is already in progress and cannot be escalated.
     // @retval Core::ERROR_UNAVAILABLE: The requested resource is unsupported or AppManager is unavailable.

@@ -60,8 +60,11 @@ namespace WPEFramework
                 // @text onDataReceived
                 // @alt data
                 // @brief Sent when the CAS needs to send data to the caller  
+                // @details Forwards data received from the CAS to the registered notification callback. The payload may be base64 encoded when required.
                 // @param payload Data to transfer. Can be base64 coded if required
+                // @example payload: "AQID"
                 // @param source Origin of the data
+                // @example source: PUBLIC
                 virtual void OnDataReceived(const string& payload, const DataSource& source) {}
             };
 
@@ -79,12 +82,19 @@ namespace WPEFramework
 
             // @text manage
             // @brief Manage a well-known CAS (setup CAS management session)
+            // @details Creates a management session for the selected CAS using the media URL, tune mode, management type, and CAS-specific initialization data.
             // @param mediaurl The URL to tune to (tune://, ocap://, http://, https://)
+            // @example mediaurl: "ocap://channel"
             // @param mode The use of the tune request
+            // @example mode: MODE_LIVE
             // @param managementType Type of CAS management
+            // @example managementType: MANAGE_FULL
             // @param casinitdata CAS specific initdata for the selected media
+            // @example casinitdata: ""
             // @param casocdmid The well-known OCDM ID of the CAS to use
+            // @example casocdmid: "com.example.cas"
             // @param success Returns true if the operation succeeded, false otherwise
+            // @example success: true
             // @retval Core::ERROR_NONE: Operation successful
             // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult Manage(const string& mediaurl, 
@@ -96,16 +106,22 @@ namespace WPEFramework
 
             // @text unmanage
             // @brief Destroy a management session
+            // @details Ends the active CAS management session.
             // @param success Returns true if the operation succeeded, false otherwise
+            // @example success: true
             // @retval Core::ERROR_NONE: Operation successful
             // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult Unmanage(bool& success /* @out */) = 0;
 
             // @text send 
             // @brief Sends data to the remote CAS
+            // @details Transfers the supplied payload to the remote CAS and identifies whether the data source is public or private.
             // @param payload Data to transfer. Can be base64 coded if required
+            // @example payload: "AQID"
             // @param source Origin of the data
+            // @example source: PUBLIC
             // @param success Returns true if the operation succeeded, false otherwise
+            // @example success: true
             // @retval Core::ERROR_NONE: Operation successful
             // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult Send(const string& payload, const DataSource& source, bool& success /* @out */) = 0;

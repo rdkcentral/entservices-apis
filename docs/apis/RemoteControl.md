@@ -127,16 +127,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
 {
     "jsonrpc": "2.0",
     "id": 0,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="clearIRCodes"></a>
 ## *clearIRCodes*
 
-Clears the IR codes from the specified remote
+Clears all IR codes from the specified remote on the given network.
 
 ### Events Triggered
 None
@@ -183,16 +181,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 {
     "jsonrpc": "2.0",
     "id": 1,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="configureWakeupKeys"></a>
 ## *configureWakeupKeys*
 
-Configures which keys on the remote will wake the target from deepsleep
+The wakeupConfig parameter determines which keys can wake the target from deepsleep. If set to custom, the customKeys parameter must be provided with a comma-separated list of Linux key codes.
 
 ### Events Triggered
 None
@@ -219,7 +215,7 @@ None
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "wakeupConfig": "all",
+        "wakeupConfig": "custom",
         "customKeys": "195,199"
     }
 }
@@ -229,7 +225,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "all", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "custom", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -239,16 +235,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
 {
     "jsonrpc": "2.0",
     "id": 2,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="factoryReset"></a>
 ## *factoryReset*
 
-Tells all paired and connected remotes to factory reset
+Tells all paired and connected remotes to factory reset.
 
 ### Events Triggered
 None
@@ -287,16 +281,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
 {
     "jsonrpc": "2.0",
     "id": 3,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="findMyRemote"></a>
 ## *findMyRemote*
 
-Tells the most recently used remote to beep
+Tells the most recently used remote to beep at the specified level.
 
 ### Events Triggered
 None
@@ -322,7 +314,7 @@ None
     "id": 4,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "level": "off"
+        "level": "high"
     }
 }
 ```
@@ -331,7 +323,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "off"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "high"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -341,16 +333,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "m
 {
     "jsonrpc": "2.0",
     "id": 4,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="getApiVersionNumber"></a>
 ## *getApiVersionNumber*
 
-Gets the current API version number.
+Retrieves the current API version number.
 
 ### Events Triggered
 None
@@ -401,7 +391,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
 <a id="getIRCodesByAutoLookup"></a>
 ## *getIRCodesByAutoLookup*
 
-Returns a list of available IR codes for the TV and AVRs specified by the input parameters
+Retrieves a list of available IR codes for the TV and AVRs specified by the input parameters.
 
 ### Events Triggered
 None
@@ -473,7 +463,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
 <a id="getIRCodesByNames"></a>
 ## *getIRCodesByNames*
 
-Returns a list of IR codes for the AV device specified by the input parameters
+Retrieves a list of IR codes for the specified AV device based on its type, manufacturer, and model.
 
 ### Events Triggered
 None
@@ -506,7 +496,7 @@ None
     "id": 7,
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "manufacturer": "ACME",
         "model": "ACM"
     }
@@ -517,7 +507,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "ACME", "model": "ACM"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "AVDevType::TV", "manufacturer": "ACME", "model": "ACM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -528,7 +518,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
     "jsonrpc": "2.0",
     "id": 7,
     "result": {
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "manufacturer": "ACME",
         "model": "ACM",
         "success": true,
@@ -542,7 +532,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
 <a id="getIRDBManufacturers"></a>
 ## *getIRDBManufacturers*
 
-Returns a list of manufacturer names based on the specified input parameters
+Retrieves a list of manufacturer names for the specified AV device type and partial manufacturer name.
 
 ### Events Triggered
 None
@@ -572,7 +562,7 @@ None
     "id": 8,
     "method": "org.rdk.RemoteControl.getIRDBManufacturers",
     "params": {
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "manufacturer": "Sam"
     }
 }
@@ -582,7 +572,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "TV", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "AVDevType::TV", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -593,7 +583,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
     "jsonrpc": "2.0",
     "id": 8,
     "result": {
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "success": true,
         "manufacturers": [
             "ACME"
@@ -605,7 +595,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
 <a id="getIRDBModels"></a>
 ## *getIRDBModels*
 
-Returns a list of model names based on the specified input parameters
+Retrieves a list of model names for the specified AV device type, manufacturer, and partial model name.
 
 ### Events Triggered
 None
@@ -637,7 +627,7 @@ None
     "id": 9,
     "method": "org.rdk.RemoteControl.getIRDBModels",
     "params": {
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "manufacturer": "ACME",
         "model": "ACM"
     }
@@ -648,7 +638,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "TV", "manufacturer": "ACME", "model": "ACM"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "AVDevType::TV", "manufacturer": "ACME", "model": "ACM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -659,7 +649,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
     "jsonrpc": "2.0",
     "id": 9,
     "result": {
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "manufacturer": "ACME",
         "success": true,
         "models": [
@@ -672,7 +662,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
 <a id="getLastKeypressSource"></a>
 ## *getLastKeypressSource*
 
-Returns last key press source data
+Retrieves the source of the last keypress on the remote.
 
 ### Events Triggered
 None
@@ -735,7 +725,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 <a id="getNetStatus"></a>
 ## *getNetStatus*
 
-Returns the status information provided by the last `onStatus` event for the specified network.
+Retrieves the status information for the specified network as provided by the last `onStatus` 
 
 ### Events Triggered
 None
@@ -794,9 +784,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
             "pairingState": "INITIALISING",
             "irProgState": "IDLE",
             "netTypesSupported": [
-                1
+                1,
+                2
             ],
-            "remoteData": ""
+            "remoteData": []
         }
     }
 }
@@ -805,7 +796,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
 <a id="initializeIRDB"></a>
 ## *initializeIRDB*
 
-Initializes the IR database
+Initializes the IR database for the specified network type.
 
 ### Events Triggered
 None
@@ -850,16 +841,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "
 {
     "jsonrpc": "2.0",
     "id": 12,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="setIRCode"></a>
 ## *setIRCode*
 
-Programs an IR code into the specified remote control
+Programs an IR code into the specified remote control on the given network.
 
 ### Events Triggered
 None
@@ -890,7 +879,7 @@ None
     "params": {
         "remoteId": 1,
         "netType": 1,
-        "avDevType": "TV",
+        "avDevType": "AVDevType::TV",
         "code": "PANASONIC_3DTV"
     }
 }
@@ -900,7 +889,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "AVDevType::TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -910,16 +899,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "
 {
     "jsonrpc": "2.0",
     "id": 13,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="startFirmwareUpdate"></a>
 ## *startFirmwareUpdate*
 
-Starts a firmware image update session for the specified remote(s)
+Starts a firmware image update session for the specified remote(s). If a MAC address is provided, only that remote will be updated; otherwise, all remotes will be updated.
 
 ### Events Triggered
 None
@@ -983,7 +970,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "
 <a id="startPairing"></a>
 ## *startPairing*
 
-Initiates pairing a remote with the STB on the specified network.
+Initiates the pairing process for a remote with the STB on the specified network.
 
 ### Events Triggered
 None
@@ -1014,7 +1001,7 @@ None
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
         "netType": 1,
-        "timeout": 0,
+        "timeout": 60,
         "screenBindEnable": true,
         "scanEnable": true,
         "macAddressList": [
@@ -1028,7 +1015,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 1, "timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 1, "timeout": 60, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1038,9 +1025,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "
 {
     "jsonrpc": "2.0",
     "id": 15,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
@@ -1103,10 +1088,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "
         "success": true,
         "status": {
             "upgradeSessionId": "12345-abc-def",
-            "macAddress": "AA:BB:CC:DD:EE:FF",
-            "upgradeState": "success",
-            "percentComplete": 50,
-            "errorString": ""
+            "macAddress": "00:11:22:33:44:55",
+            "upgradeState": "pending",
+            "percentComplete": 50
         }
     }
 }
@@ -1115,7 +1099,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "
 <a id="stopPairing"></a>
 ## *stopPairing*
 
-Cancels pairing a remote with the STB on the specified network.
+Cancels the pairing process for a remote with the STB on the specified network.
 
 ### Events Triggered
 None
@@ -1162,16 +1146,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "
 {
     "jsonrpc": "2.0",
     "id": 17,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
 <a id="unpair"></a>
 ## *unpair*
 
-Unpairs all remotes from the STB
+Unpairs all remotes from the STB. If a list of MAC addresses is provided, only those remotes will be unpaired; otherwise, all remotes will be unpaired.
 
 ### Events Triggered
 None
@@ -1218,9 +1200,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "
 {
     "jsonrpc": "2.0",
     "id": 18,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 
@@ -1240,7 +1220,7 @@ The following events are provided by the IRemoteControl Interface:
 <a id="onFirmwareUpdateProgress"></a>
 ## *onFirmwareUpdateProgress*
 
-Generated at 0 and 100 percent and each time a download percent increment is reached
+Called whenever the firmware update progress changes
 
 ### Parameters
 | Name | Type | Description |
@@ -1262,10 +1242,9 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
     "params": {
         "upgradeSessionId": "12345-abc-def",
-        "macAddress": "AA:BB:CC:DD:EE:FF",
-        "upgradeState": "success",
-        "percentComplete": 50,
-        "errorString": ""
+        "macAddress": "00:11:22:33:44:55",
+        "upgradeState": "IN_PROGRESS",
+        "percentComplete": 50
     }
 }
 ```
@@ -1273,7 +1252,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 <a id="onStatus"></a>
 ## *onStatus*
 
-Triggered at any time when the status of any one of the supported STB remote networks changes
+Called whenever the network status changes
 
 ### Parameters
 | Name | Type | Description |
@@ -1300,7 +1279,7 @@ Triggered at any time when the status of any one of the supported STB remote net
         "netTypesSupported": [
             1
         ],
-        "remoteData": ""
+        "remoteData": []
     }
 }
 ```
@@ -1308,7 +1287,7 @@ Triggered at any time when the status of any one of the supported STB remote net
 <a id="onValidation"></a>
 ## *onValidation*
 
-Generated for manual pairing validation
+Called whenever manual pairing validation occurs
 
 ### Parameters
 | Name | Type | Description |
