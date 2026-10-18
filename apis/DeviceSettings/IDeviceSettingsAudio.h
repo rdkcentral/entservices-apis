@@ -260,7 +260,7 @@ namespace Exchange {
             // @text onDolbyAtmosCapabilitiesChanged
             // @details This event is triggered when the Dolby Atmos capabilities change.
             // @param atmosCapability: the dolby atmos capability
-            // @example atmosCapability: ENABLED
+            // @example atmosCapability: AUDIO_DOLBY_ATMOS_METADATA
             // @param status: true (available) or false (not available)
             // @example status: true
             virtual void OnDolbyAtmosCapabilitiesChanged(DolbyAtmosCapability atmosCapability, bool status) { };
