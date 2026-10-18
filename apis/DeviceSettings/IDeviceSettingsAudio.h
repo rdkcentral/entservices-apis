@@ -276,9 +276,9 @@ namespace Exchange {
             // @text onAudioModeEvent
             // @details This event is triggered when the audio mode for a specific audio port changes.
             // @param audioPortType: audio port type see AudioPortType
-            // @example audioPortType: HDMI
+            // @example audioPortType: AUDIO_PORT_TYPE_HDMI
             // @param audioMode: audio mode - see StereoMode
-            // @example audioMode: STEREO
+            // @example audioMode: AUDIO_STEREO_STEREO
             virtual void OnAudioModeEvent(AudioPortType audioPortType, StereoMode audioMode) { };
 
             // @brief Audio level changed
