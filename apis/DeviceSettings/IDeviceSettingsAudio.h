@@ -900,7 +900,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @example handle: 1
         // @param ms12ProfileList: MS12 profile list iterator
-        // @example ms12ProfileList: ["Movie", "Music"]
+        // @example ms12ProfileList: [{"audioProfile": "Movie"}, {"audioProfile": "Music"}]
         // @retval Core::ERROR_NONE: MS12 profile list was retrieved successfully
         virtual Core::hresult GetAudioMS12ProfileList(const int32_t handle , IDeviceSettingsAudioMS12AudioProfileIterator*& ms12ProfileList /* @out */) const = 0;
 
