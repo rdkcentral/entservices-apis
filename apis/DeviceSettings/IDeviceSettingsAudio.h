@@ -269,7 +269,7 @@ namespace Exchange {
             // @text onAudioPortStateChanged
             // @details This event is triggered when the audio port state changes.
             // @param audioPortState: audio port state
-            // @example audioPortState: CONNECTED
+            // @example audioPortState: AUDIO_PORT_STATE_INITIALIZED
             virtual void OnAudioPortStateChanged(AudioPortState audioPortState) { };
 
             // @brief Audio mode for the respective audio port - raised for every type of port
