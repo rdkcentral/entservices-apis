@@ -132,14 +132,11 @@ namespace Exchange {
 
             // @brief Get the native client identifier.
             // @details Returns the platform-native identifier associated with this client, or zero when unavailable.
-            // @retval instanceId: Native client identifier.
-            // @example instanceId: 1
             virtual WPEFramework::Core::instance_id Native() const { return 0; };
 
             // @brief Get the client name.
             // @details Returns the name assigned to this composition client.
             // @retval name: Client name.
-            // @example name: "video-plane"
             virtual string Name() const = 0;
 
             // @brief Set client opacity.
@@ -151,20 +148,17 @@ namespace Exchange {
             // @brief Get client opacity.
             // @details Returns the current opacity of the client.
             // @retval opacity: Current opacity value from minOpacity through maxOpacity.
-            // @example opacity: 255
             virtual uint32_t Opacity() const { return 0; };
 
             // @brief Set client geometry.
             // @details Sets the client position and dimensions on the composition display.
-            // @param rectangle Client bounds in display coordinates.
+            // @param rectangle: Client bounds in display coordinates.
             // @example rectangle: {"x": 0, "y": 0, "width": 1920, "height": 1080}
             // @retval Core::ERROR_NONE: Client geometry was set successfully.
             virtual uint32_t Geometry(const Rectangle& rectangle) = 0;
 
             // @brief Get client geometry.
             // @details Returns the current client position and dimensions on the composition display.
-            // @retval rectangle: Current client bounds in display coordinates.
-            // @example rectangle: {"x": 0, "y": 0, "width": 1920, "height": 1080}
             virtual Rectangle Geometry() const = 0;
 
             // @brief Set the client stacking order.
@@ -176,8 +170,6 @@ namespace Exchange {
 
             // @brief Get the client stacking order.
             // @details Returns the current position of the client in the display stacking order.
-            // @retval index: Current stacking index.
-            // @example index: 10
             virtual uint32_t ZOrder() const = 0;
         };
 
@@ -188,17 +180,14 @@ namespace Exchange {
 
             // @brief Scan out the render surface.
             // @details Presents the prepared render surface to the display.
-            // @example call: ScanOut()
             virtual void ScanOut() = 0;
 
             // @brief Prepare the render surface for scan-out.
             // @details Performs any work required immediately before the render surface is scanned out.
-            // @example call: PreScanOut()
             virtual void PreScanOut() {};
 
             // @brief Complete render-surface scan-out.
             // @details Performs any work required immediately after the render surface has been scanned out.
-            // @example call: PostScanOut()
             virtual void PostScanOut() {};
         };
 
@@ -217,7 +206,7 @@ namespace Exchange {
 
             // @brief Notify that a client was detached.
             // @details Reports that the named composition client is no longer attached.
-            // @param name Name of the detached client.
+            // @param name: Name of the detached client.
             // @example name: "video-plane"
             virtual void Detached(const string& name) = 0;
         };
@@ -230,18 +219,16 @@ namespace Exchange {
             // @brief Get the native display identifier.
             // @details Returns the platform-native identifier associated with this display.
             // @retval instanceId Native display identifier.
-            // @example instanceId: 1
             virtual WPEFramework::Core::instance_id Native() const = 0;
 
             // @brief Get the display port name.
             // @details Returns the port name associated with this display.
             // @retval portName Display port name.
-            // @example portName: "HDMI0"
             virtual string Port() const = 0;
 
             // @brief Create a composition client.
             // @details Creates a client surface with the requested dimensions on this display.
-            // @param name Name to assign to the client.
+            // @param name: Name to assign to the client.
             // @example name: "video-plane"
             // @param width Client surface width in pixels.
             // @example width: 1920
@@ -253,15 +240,11 @@ namespace Exchange {
             // Set and get output resolution
             // @brief Set the display output resolution.
             // @details Sets the output resolution for this display.
-            // @param resolution Resolution to apply.
-            // @example resolution: SCREENRESOLUTION_1080P60HZ
             // @retval Core::ERROR_NONE: Display resolution was set successfully.
             virtual uint32_t Resolution(const ScreenResolution) = 0;
 
             // @brief Get the display output resolution.
             // @details Returns the current output resolution for this display.
-            // @retval resolution Current output resolution.
-            // @example resolution: SCREENRESOLUTION_1080P60HZ
             virtual ScreenResolution Resolution() const = 0;
         };
 
@@ -270,7 +253,7 @@ namespace Exchange {
 
         // @brief Configure the composition service.
         // @details Initializes composition using the framework service interface.
-        // @param service Framework service interface used to configure composition.
+        // @param service: Framework service interface used to configure composition.
         // @example service: PluginHost::IShell instance
         // @retval Core::ERROR_NONE: Composition was configured successfully.
         virtual uint32_t Configure(PluginHost::IShell* service) = 0;
@@ -278,15 +261,12 @@ namespace Exchange {
         // Set and get output resolution
         // @brief Set the output resolution.
         // @details Sets the output resolution for the composition display.
-        // @param resolution Resolution to apply.
-        // @example resolution: SCREENRESOLUTION_1080P60HZ
         // @retval Core::ERROR_NONE: Output resolution was set successfully.
         virtual uint32_t Resolution(const ScreenResolution) = 0;
 
         // @brief Get the output resolution.
         // @details Returns the current output resolution for the composition display.
         // @retval resolution Current output resolution.
-        // @example resolution: SCREENRESOLUTION_1080P60HZ
         virtual ScreenResolution Resolution() const = 0;
     };
 
@@ -302,14 +282,14 @@ namespace Exchange {
 
         // @brief Get SDR graphics brightness in HDR mode.
         // @details Retrieves the configured brightness relationship between SDR graphics and SDR video on an HDR display.
-        // @param brightness Receives the current SDR-to-HDR graphics brightness setting.
+        // @param brightness: Receives the current SDR-to-HDR graphics brightness setting.
         // @example brightness: SdrToHdrGraphicsBrightness_MatchVideo
         // @retval Core::ERROR_NONE: Brightness setting was retrieved successfully.
         virtual uint32_t SdrToHdrGraphicsBrightness(Brightness& brightness /* @out */) const = 0;
 
         // @brief Set SDR graphics brightness in HDR mode.
         // @details Sets the brightness relationship between SDR graphics and SDR video on an HDR display.
-        // @param brightness Brightness setting to apply.
+        // @param brightness: Brightness setting to apply.
         // @example brightness: SdrToHdrGraphicsBrightness_MatchVideo
         // @retval Core::ERROR_NONE: Brightness setting was updated successfully.
         virtual uint32_t SdrToHdrGraphicsBrightness(const Brightness& brightness) = 0;
