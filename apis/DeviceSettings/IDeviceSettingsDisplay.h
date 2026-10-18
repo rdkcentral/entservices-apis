@@ -226,7 +226,7 @@ namespace Exchange {
         // @param edId: EDID information
         // @example edId: {"productCode": 1234, "serialNumber": 5678, "manufactureYear": 2024, "manufactureWeek": 10, "hdmiDeviceType": true, "isRepeater": false}
         // @param supportedResolutionList: Iterator over resolutions supported by the display.
-        // @example supportedResolutionList: ["1080p60", "2160p60"]
+        // @example supportedResolutionList: [{"name": "1920x1080p60", "pixelResolution": "DS_DISPLAY_RESOLUTION_1080P60", "aspectRatio": "DS_DISPLAY_ASPECT_RATIO_16X9", "stereoScopicMode": "DS_DISPLAY_SSMODE_2D", "frameRate": "DS_DISPLAY_FRAMERATE_60", "interlaced": false}]
         // @retval Core::ERROR_NONE: Display EDID and supported resolutions were retrieved successfully
         virtual Core::hresult GetDisplayEdid(const int32_t handle , DisplayEDID &edId /* @out */, IDSVideoPortResolutionIterator*& supportedResolutionList /* @out */) = 0;
 
