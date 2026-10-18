@@ -52,28 +52,76 @@ namespace Exchange {
         struct IIterator {
             virtual ~IIterator() = default;
 
+            // @brief Check whether the iterator refers to a valid plane.
+            // @details Reports whether the iterator is positioned on a valid plane.
+            // @retval valid: True when the iterator refers to a valid plane; otherwise false.
             virtual bool IsValid() const = 0;
+
+            // @brief Reset the plane iterator.
+            // @details Resets the iterator to its initial position before the first plane.
             virtual void Reset() = 0;
+
+            // @brief Advance the plane iterator.
+            // @details Advances the iterator to the next plane and reports whether one exists.
+            // @retval hasNext: True when the iterator advanced to another plane; otherwise false.
             virtual bool Next() = 0;
 
+            // @brief Get the current plane.
+            // @details Returns the plane at the iterator's current position.
+            // @retval plane: Current plane, or nullptr when no valid plane is selected.
             virtual IPlane* Plane() = 0;
         };
 
+        // @brief Add a reference to the buffer.
+        // @details Increments the buffer's reference count to keep it alive.
         virtual void AddRef() const = 0;
+
+        // @brief Release a reference to the buffer.
+        // @details Decrements the buffer's reference count and reports the remaining count.
+        // @retval referenceCount: Number of references remaining after release.
         virtual uint32_t Release() const = 0;
 
+        // @brief Get the buffer identifier.
+        // @details Returns the identifier assigned to this composition buffer.
+        // @retval identifier: Buffer identifier.
         virtual uint32_t Identifier() const = 0;
 
         virtual IIterator* Planes(const uint32_t timeoutMs) = 0; // Access the planes.
-        virtual uint32_t Completed(const bool dirty) = 0; // Called by callee when is done with the planes.
+        
+        // @brief Complete access to the buffer planes.
+        // @details Signals that the caller has finished using the planes and indicates whether the buffer contents changed.
+        // @param dirty True if the buffer contents were modified; otherwise false.
+        // @example dirty: true
+        // @retval Core::ERROR_NONE: Plane access was completed successfully.
+        virtual uint32_t Completed(const bool dirty) = 0;
 
-        virtual void Render() = 0; // Mark for scanout.
+        // @brief Submit the buffer for rendering.
+        // @details Marks the buffer for scan-out by the display.
+        virtual void Render() = 0;
 
-        virtual uint32_t Width() const = 0; // Width of the allocated buffer in pixels
-        virtual uint32_t Height() const = 0; // Height of the allocated buffer in pixels
-        virtual uint32_t Format() const = 0; // Layout of a pixel according the fourcc format
-        virtual uint64_t Modifier() const = 0; // Pixel arrangement in the buffer, used to optimize for hardware
+        // @brief Get the buffer width.
+        // @details Returns the allocated buffer width in pixels.
+        // @retval width: Buffer width in pixels.
+        virtual uint32_t Width() const = 0;
 
+        // @brief Get the buffer height.
+        // @details Returns the allocated buffer height in pixels.
+        // @retval height: Buffer height in pixels.
+        virtual uint32_t Height() const = 0;
+
+        // @brief Get the buffer pixel format.
+        // @details Returns the pixel layout encoded using a FourCC format.
+        // @retval format: FourCC pixel format value.
+        virtual uint32_t Format() const = 0;
+
+        // @brief Get the buffer modifier.
+        // @details Returns the modifier describing the buffer's pixel arrangement for hardware optimization.
+        // @retval modifier: Buffer layout modifier value.
+        virtual uint64_t Modifier() const = 0;
+
+        // @brief Get the buffer data type.
+        // @details Returns whether this buffer contains DMA data, raw data, or an invalid type.
+        // @retval type: Buffer data type.
         virtual DataType Type() const = 0;
     }; // struct ICompositionBuffer
 

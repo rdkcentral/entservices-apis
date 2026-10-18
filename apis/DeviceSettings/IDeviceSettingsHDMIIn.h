@@ -229,186 +229,298 @@ namespace Exchange {
 
             // @brief HDMI Event Hot Plug
             // @text onHDMIInEventHotPlug
+            // @details Notifies clients when an HDMI input port is connected or disconnected.
             // @param port: port 0 or 1 et al
+            // @example port: DS_HDMI_IN_PORT_0
             // @param isConnected: is it connected (true) or not (false)
+            // @example isConnected: true
             virtual void OnHDMIInEventHotPlug(const HDMIInPort port, const bool isConnected) {};
 
             // @brief HDMI Event Signal status
             // @text onHDMIInEventSignalStatus
+            // @details Notifies clients when the signal status of an HDMI input port changes.
             // @param port: port 0 or 1 et al
+            // @example port: DS_HDMI_IN_PORT_0
             // @param signalStatus: Signal Status
+            // @example signalStatus: DS_HDMI_IN_SIGNAL_STATUS_STABLE
             virtual void OnHDMIInEventSignalStatus(const HDMIInPort port, const HDMIInSignalStatus signalStatus) {};
 
             // @brief HDMI Event Signal status
             // @text onHDMIInEventStatus
+            // @details Notifies clients when the active HDMI input port or its presentation state changes.
             // @param activePort: port 0 or 1 et al
+            // @example activePort: DS_HDMI_IN_PORT_0
             // @param isPresented: is it presented or not
+            // @example isPresented: true
             virtual void OnHDMIInEventStatus(const HDMIInPort activePort, const bool isPresented) {};
 
             // @brief HDMI Video Mode update
             // @text onHDMIInVideoModeUpdate
+            // @details Notifies clients when the video mode of an HDMI input port changes.
             // @param port: port 0 or 1 et al
+            // @example port: DS_HDMI_IN_PORT_0
             // @param videoPortResolution: Video port resolution
+            // @example videoPortResolution: {"name": "1920x1080p60", "pixelResolution": "DS_HDMIIN_PIXELRES_1920X1080", "aspectRatio": "DS_HDMIIN_ASPECT_RATIO_16X9", "frameRate": "DS_HDMIIN_FRAMERATE_60", "interlaced": false}
             virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution& videoPortResolution) {};
             
             // @brief HDMI ALLM status
             // @text onHDMIInAllmStatus
+            // @details Notifies clients when Auto Low Latency Mode status changes on an HDMI input port.
             // @param port: port 0 or 1 et al
+            // @example port: DS_HDMI_IN_PORT_0
             // @param allmStatus: allm status
+            // @example allmStatus: true
             virtual void OnHDMIInAllmStatus(const HDMIInPort port, const bool allmStatus) {};
 
             // @brief HDMI Event AVI content type
             // @text onHDMIInAVIContentType
+            // @details Notifies clients when the AVI content type for an HDMI input port changes.
             // @param port: port 0 or 1 et al
+            // @example port: DS_HDMI_IN_PORT_0
             // @param aviContentType: AVI content type
+            // @example aviContentType: DS_HDMIIN_AVICONTENT_TYPE_GAME
             virtual void OnHDMIInAVIContentType(const HDMIInPort port, const HDMIInAviContentType aviContentType) {};
 
             // @brief HDMI Event AV Latency
             // @text onHDMIInAVLatency
-            // @param port: port 0 or 1 et al
-            // @param audioDelay: audio delay
-            // @param videoDelay: video delay
+            // @details Notifies clients when the audio and video latency values change.
+            // @param audioDelay: Audio latency in milliseconds.
+            // @example audioDelay: 40
+            // @param videoDelay: Video latency in milliseconds.
+            // @example videoDelay: 20
             virtual void OnHDMIInAVLatency(const int32_t audioDelay, const int32_t videoDelay) {};
 
             // @brief HDMI VRR status
             // @text onHDMIInVRRStatus
+            // @details Notifies clients when the Variable Refresh Rate type changes on an HDMI input port.
             // @param port: port 0 or 1 et al
+            // @example port: DS_HDMI_IN_PORT_0
             // @param vrrType: VRR type
+            // @example vrrType: DS_HDMIIN_HDMI_VRR
             virtual void OnHDMIInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
         };
 
+        // @brief Register for HDMI input notifications.
+        // @details Subscribes a client notification listener to HDMI input events.
+        // @param clientName: Name identifying the client registering for notifications.
+        // @example clientName: "HDMIInputClient"
+        // @param notification: Listener that receives HDMI input events.
+        // @example notification: IDeviceSettingsHDMIIn::INotification instance
+        // @retval Core::ERROR_NONE: Notification listener was registered successfully
         virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
+
+        // @brief Unregister from HDMI input notifications.
+        // @details Removes a client notification listener from HDMI input events.
+        // @param notification: Listener to remove from the subscription.
+        // @example notification: IDeviceSettingsHDMIIn::INotification instance
+        // @retval Core::ERROR_NONE: Notification listener was unregistered successfully
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
 
         /** Get Number of HDMI Inputs in the platform. */
         // @text getHDMIInNumberOfInputs
         // @brief Get Number of HDMI Inputs in the platform
+        // @details Retrieves the number of HDMI input ports available on the platform.
         // @param count: number of inputs
+        // @example count: 4
+        // @retval Core::ERROR_NONE: Number of HDMI input ports was retrieved successfully
         virtual Core::hresult GetHDMIInNumberOfInputs(int32_t &count /* @out */) = 0;
 
         /** Get HDMIIn Status. */
         // @text getHDMIInStatus
         // @brief Get HDMIIn Status
+        // @details Retrieves the active HDMI input state and connection status for the HDMI input ports.
         // @param hdmiStatus: HDMI Status
+        // @example hdmiStatus: {"isPresented": true, "activePort": "DS_HDMI_IN_PORT_0"}
+        // @param portConnectionStatus: Iterator containing the connection status of each HDMI input port.
+        // @example portConnectionStatus: [{"isPortConnected": true}, {"isPortConnected": false}]
+        // @retval Core::ERROR_NONE: HDMI input status was retrieved successfully
         virtual Core::hresult GetHDMIInStatus(HDMIInStatus &hdmiStatus /* @out */, IHDMIInPortConnectionStatusIterator*& portConnectionStatus /* @out */) = 0;
 
         /** Select HDMIIn Port. */
         // @text selectHDMIInPort
-        // @brief Get HDMIIn Status
+        // @brief Select HDMIIn Port
+        // @details Selects the HDMI input port to use and configures its audio mixing and display plane behavior.
         // @param port: Port to select 
+        // @example port: DS_HDMI_IN_PORT_0
         // @param requestAudioMix: Should audio be mixed on this port
+        // @example requestAudioMix: true
         // @param topMostPlane: Should this be on top for display
+        // @example topMostPlane: true
         // @param videoPlaneType: Primary or secondary
+        // @example videoPlaneType: DS_HDMIIN_VIDEOPLANE_PRIMARY
+        // @retval Core::ERROR_NONE: HDMI input port was selected successfully
         virtual Core::hresult SelectHDMIInPort(const HDMIInPort port , const bool requestAudioMix , const bool topMostPlane , const HDMIVideoPlaneType videoPlaneType ) = 0;
 
         /** Scale HDMIIn Video. */
         // @text scaleHDMIInVideo
         // @brief Scale HDMIIn Video
+        // @details Sets the position and dimensions used to scale HDMI input video.
         // @param videoPosition: co-ordinates to scale
+        // @example videoPosition: {"x": 0, "y": 0, "width": 1920, "height": 1080}
+        // @retval Core::ERROR_NONE: HDMI input video scaling was updated successfully
         virtual Core::hresult ScaleHDMIInVideo(const HDMIInVideoRectangle videoPosition ) = 0;
 
         /** Select HDMIIn Zoom mode. */
         // @text selectHDMIZoomMode
         // @brief Select HDMIIn Zoom mode
+        // @details Selects the zoom mode applied to HDMI input video.
         // @param zoomMode: zoom mode
+        // @example zoomMode: DS_HDMIIN_VIDEO_ZOOM_FULL
+        // @retval Core::ERROR_NONE: HDMI input zoom mode was selected successfully
         virtual Core::hresult SelectHDMIZoomMode(const HDMIInVideoZoom zoomMode ) = 0;
 
         /** Get Supported Game feature list. */
         // @text getSupportedGameFeaturesList
         // @brief Get Supported Game feature list
+        // @details Retrieves the game features supported by the HDMI input implementation.
         // @param gameFeatureList: game feature list
+        // @example gameFeatureList: ["ALLM", "VRR"]
+        // @retval Core::ERROR_NONE: Supported game features were retrieved successfully
         virtual Core::hresult GetSupportedGameFeaturesList(IHDMIInGameFeatureListIterator *& gameFeatureList /* @out */) = 0;
 
         /** Get AV latency. */
         // @text getHDMIInAVLatency
         // @brief Get AV latency
+        // @details Retrieves the current audio and video latency values for HDMI input.
         // @param videoLatency: video latency
+        // @example videoLatency: 20
         // @param audioLatency: audio latency
+        // @example audioLatency: 40
+        // @retval Core::ERROR_NONE: HDMI input audio and video latency values were retrieved successfully
         virtual Core::hresult GetHDMIInAVLatency(uint32_t &videoLatency /* @out */, uint32_t &audioLatency /* @out*/) = 0;
 
         /** Get ALLM Status. */
         // @text getHDMIInAllmStatus
         // @brief Get ALLM Status
+        // @details Retrieves whether Auto Low Latency Mode is active on the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param allmStatus: ALLM status
+        // @example allmStatus: true
+        // @retval Core::ERROR_NONE: ALLM status was retrieved successfully
         virtual Core::hresult GetHDMIInAllmStatus(const HDMIInPort port , bool &allmStatus /* @out*/) = 0;
 
         /** Get EDID to ALLM Supported or not. */
         // @text getHDMIInEdid2AllmSupport
         // @brief Get EDID to ALLM Supported or not
+        // @details Retrieves whether the EDID advertises ALLM support for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param allmSupport: ALLM supported (true) or not (false)
+        // @example allmSupport: true
+        // @retval Core::ERROR_NONE: EDID ALLM support status was retrieved successfully
         virtual Core::hresult GetHDMIInEdid2AllmSupport(const HDMIInPort port , bool &allmSupport /* @out*/) = 0;
 
         /** Set EDID to ALLM Supported or not. */
         // @text setHDMIInEdid2AllmSupport
-        // @brief Get EDID to ALLM Supported or not
+        // @brief Set EDID ALLM support
+        // @details Enables or disables the ALLM support flag advertised in the EDID for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param allmSupport: ALLM supported (true) or not (false)
+        // @example allmSupport: true
+        // @retval Core::ERROR_NONE: EDID ALLM support setting was updated successfully
         virtual Core::hresult SetHDMIInEdid2AllmSupport(const HDMIInPort port , bool allmSupport) = 0;
 
         /** Get EDID bytes. */
         // @text getEdidBytes
         // @brief Get EDID bytes.
+        // @details Retrieves the raw EDID byte sequence for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param edidBytesLength: number of bytes in the edidBytes array
+        // @example edidBytesLength: 128
         // @param edidBytes: EDID information
+        // @example edidBytes: [0, 255, 255, 255, 255, 255, 255, 0]
+        // @retval Core::ERROR_NONE: EDID bytes were retrieved successfully
         virtual Core::hresult GetEdidBytes(const HDMIInPort port , const uint16_t edidBytesLength ,  uint8_t edidBytes[] /* @out @length:edidBytesLength @maxlength:edidBytesLength */) = 0;
 
         /** Get HDMI SPD Information. */
         // @text getHDMISPDInformation
         // @brief Get HDMI SPD Information.
+        // @details Retrieves the Source Product Description information frame bytes for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param spdBytesLength: number of bytes in the spdBytes array
+        // @example spdBytesLength: 31
         // @param spdBytes: SPD information
+        // @example spdBytes: [131, 1, 8, 0]
+        // @retval Core::ERROR_NONE: HDMI SPD information was retrieved successfully
         virtual Core::hresult GetHDMISPDInformation(const HDMIInPort port , const uint16_t spdBytesLength ,  uint8_t spdBytes[] /* @out @length:spdBytesLength @maxlength:spdBytesLength */) = 0;
 
         /** Get HDMI Port EDID version. */
         // @text getHDMIEdidVersion
         // @brief Get HDMI Port EDID version.
+        // @details Retrieves the EDID version configured for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param edidVersion: EDID version
+        // @example edidVersion: HDMI_EDID_VER_20
+        // @retval Core::ERROR_NONE: HDMI EDID version was retrieved successfully
         virtual Core::hresult GetHDMIEdidVersion(const HDMIInPort port , HDMIInEdidVersion &edidVersion /* @out */) = 0;
 
         /** Set HDMI Port EDID version. */
         // @text setHDMIEdidVersion
         // @brief Set HDMI Port EDID version.
+        // @details Sets the EDID version used by the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param edidVersion: EDID version
+        // @example edidVersion: HDMI_EDID_VER_20
+        // @retval Core::ERROR_NONE: HDMI EDID version was set successfully
         virtual Core::hresult SetHDMIEdidVersion(const HDMIInPort port , const HDMIInEdidVersion edidVersion ) = 0;
 
         /** Get HDMI Video mode. */
         // @text getHDMIVideoMode
         // @brief Get HDMI Video mode.
+        // @details Retrieves the current video mode reported for HDMI input.
         // @param videoPortResolution: Video port resolution structure
+        // @example videoPortResolution: {"name": "1920x1080p60", "pixelResolution": "DS_HDMIIN_PIXELRES_1920X1080", "aspectRatio": "DS_HDMIIN_ASPECT_RATIO_16X9", "stereoScopicMode": "DS_HDMIIN_SSMODE_2D", "frameRate": "DS_HDMIIN_FRAMERATE_60", "interlaced": false}
+        // @retval Core::ERROR_NONE: HDMI video mode was retrieved successfully
         virtual Core::hresult GetHDMIVideoMode( HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
 
         /** Get HDMI Supported version. */
         // @text getHDMIVersion
         // @brief Get HDMI Supported Version
+        // @details Retrieves the HDMI capability version supported by the specified input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param capabilityVersion: supported capability version
+        // @example capabilityVersion: HDMI_COMPATIBILITY_VERSION_21
+        // @retval Core::ERROR_NONE: HDMI capability version was retrieved successfully
         virtual Core::hresult GetHDMIVersion(const HDMIInPort port , HDMIInCapabilityVersion &capabilityVersion /* @out */) = 0;
 
         /** Set HDMI VRR Support. */
         // @text setVRRSupport
         // @brief Set HDMI VRR Support.
+        // @details Enables or disables Variable Refresh Rate support for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param vrrSupport: enable (true) or disable (false)
+        // @example vrrSupport: true
+        // @retval Core::ERROR_NONE: HDMI VRR support was updated successfully
         virtual Core::hresult SetVRRSupport(const HDMIInPort port , const bool vrrSupport ) = 0;
 
         /** Get HDMI VRR Support. */
         // @text getVRRSupport
         // @brief Get HDMI VRR Support.
+        // @details Retrieves whether Variable Refresh Rate support is enabled for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param vrrSupport: enabled (true) or disable (false)
+        // @example vrrSupport: true
+        // @retval Core::ERROR_NONE: HDMI VRR support status was retrieved successfully
         virtual Core::hresult GetVRRSupport(const HDMIInPort port , bool &vrrSupport /* @out */) = 0;
 
         /** Get HDMI VRR Status. */
         // @text getVRRStatus
         // @brief Get HDMI VRR Status.
+        // @details Retrieves the Variable Refresh Rate type and frame rate for the specified HDMI input port.
         // @param port: Port number
+        // @example port: DS_HDMI_IN_PORT_0
         // @param vrrStatus: VRR Status
+        // @example vrrStatus: {"vrrType": "DS_HDMIIN_AMD_FREESYNC", "vrrFreeSyncFramerateHz": 60.0}
+        // @retval Core::ERROR_NONE: HDMI VRR status was retrieved successfully
         virtual Core::hresult GetVRRStatus(const HDMIInPort port , HDMIInVRRStatus &vrrStatus /* @out */) = 0;
     };
 
