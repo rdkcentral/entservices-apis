@@ -253,7 +253,7 @@ namespace Exchange {
             // @text onAudioFormatUpdate
             // @details This event is triggered when the audio output format changes.
             // @param audioFormat: Type of audio format see AudioFormat
-            // @example audioFormat: PCM
+            // @example audioFormat: AUDIO_FORMAT_PCM
             virtual void OnAudioFormatUpdate(AudioFormat audioFormat) { };
 
             // @brief Dolby Atmos capabilities changed
