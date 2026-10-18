@@ -374,7 +374,7 @@ namespace Exchange {
         // @brief Get Supported Game feature list
         // @details Retrieves the game features supported by the HDMI input implementation.
         // @param gameFeatureList: game feature list
-        // @example gameFeatureList: ["ALLM", "VRR"]
+        // @example gameFeatureList: [{"gameFeature": "ALLM"}, {"gameFeature": "VRR"}]
         // @retval Core::ERROR_NONE: Supported game features were retrieved successfully
         virtual Core::hresult GetSupportedGameFeaturesList(IHDMIInGameFeatureListIterator *& gameFeatureList /* @out */) = 0;
 
