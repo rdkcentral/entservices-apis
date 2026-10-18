@@ -242,7 +242,7 @@ namespace Exchange {
             // @text onAudioOutHotPlug
             // @details This event is triggered when an audio output port is hot plugged.
             // @param portType: Type of audio port see AudioPortType
-            // @example portType: AudioPortType::HDMI
+            // @example portType: AUDIO_PORT_TYPE_HDMI
             // @param uiPortNumber: The port number assigned by UI
             // @example uiPortNumber: 1
             // @param isPortConnected: true (connected) or false (not connected)
