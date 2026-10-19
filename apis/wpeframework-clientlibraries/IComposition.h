@@ -124,9 +124,24 @@ namespace Exchange {
 
                 ~IProperties() override = default;
 
+                // @brief Get the buffer stride.
+                // @details Returns the number of bytes per row for the buffer.
+                // @retval stride: Buffer row stride in bytes.
                 virtual uint32_t Stride() = 0; // bytes per row [(bit-per-pixel/8) * width]
+
+                // @brief Get the buffer pixel format.
+                // @details Returns the pixel arrangement encoded as a FourCC value.
+                // @retval format: FourCC pixel format identifier.
                 virtual uint32_t Format() = 0; // pixel arrangement according the fourcc format
+
+                // @brief Get the buffer data offset.
+                // @details Returns the byte offset from the start of the buffer to the pixel data.
+                // @retval offset: Pixel data offset in bytes.
                 virtual uint32_t Offset() = 0;
+
+                // @brief Get the buffer format modifier.
+                // @details Returns the modifier describing the buffer's pixel layout.
+                // @retval modifier: Buffer layout modifier value.
                 virtual uint64_t Modifier() = 0;
             };
 
@@ -170,6 +185,7 @@ namespace Exchange {
 
             // @brief Get the client stacking order.
             // @details Returns the current position of the client in the display stacking order.
+            // @retval index: Current stacking index.
             virtual uint32_t ZOrder() const = 0;
         };
 
@@ -248,7 +264,14 @@ namespace Exchange {
             virtual ScreenResolution Resolution() const = 0;
         };
 
+        // @brief Register for composition notifications.
+        // @details Subscribes the callback interface to notifications from the composition service.
+        // @param notification: Callback interface that receives composition notifications.
         virtual void Register(IComposition::INotification* notification) = 0;
+
+        // @brief Unregister from composition notifications.
+        // @details Removes the callback interface's subscription to composition notifications.
+        // @param notification: Callback interface previously registered for composition notifications.
         virtual void Unregister(IComposition::INotification* notification) = 0;
 
         // @brief Configure the composition service.
