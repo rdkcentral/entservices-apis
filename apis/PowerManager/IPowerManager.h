@@ -112,7 +112,15 @@ namespace WPEFramework
             // @param rebootRequestor: Reboot requested by
             virtual void OnRebootBegin(const string &rebootReasonCustom, const string &rebootReasonOther, const string &rebootRequestor) {};
         };
+        // @brief Register for reboot notifications.
+        // @param notification: Subscriber callback.
+        // @retval ErrorCode::ERROR_NONE: Callback registered.
+        // @retval ErrorCode::ERROR_GENERAL: Callback already registered.
         virtual Core::hresult Register(Exchange::IPowerManager::IRebootNotification* notification ) = 0;
+        // @brief Unregister a reboot-notification callback.
+        // @param notification: Previously registered callback.
+        // @retval ErrorCode::ERROR_NONE: Callback removed.
+        // @retval ErrorCode::ERROR_GENERAL: Callback not registered.
         virtual Core::hresult Unregister(const Exchange::IPowerManager::IRebootNotification* notification ) = 0;
 
         // @event
@@ -213,6 +221,7 @@ namespace WPEFramework
         //        Added client should call either
         //          - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.
         //          - Or `DelayPowerModeChangeBy` API to delay the power mode change.
+        //          - Or `DelayPowerModeChangeAndRenegotiate` to delay and request a fresh pre-change round.
         //        If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete
         //        after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).
         //
@@ -380,6 +389,9 @@ namespace WPEFramework
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
+        // @retval ErrorCode::ERROR_NONE: Delay accepted.
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid client or transaction, or no active round.
+        // @retval ErrorCode::ERROR_ILLEGAL_STATE: The negotiation round has completed.
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
 
         /** Get the Wakeup Time in seconds */
@@ -432,6 +444,19 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetRebootReason(string &reason /* @out */) = 0;
+
+        // @text delayPowerModeChangeAndRenegotiate
+        // @brief Delay a power-mode change and restart pre-change negotiation when the timer expires.
+        //        Uses the existing delay rule: an already later deadline is not shortened.
+        //        Subsequent valid delays can extend this round; acknowledgements cannot bypass the restart.
+        //        The fresh round has a new transaction identifier and includes currently registered clients.
+        // @param clientId: Identifier returned by AddPowerModePreChangeClient.
+        // @param transactionId: Transaction identifier received in OnPowerModePreChange.
+        // @param delayPeriod: Non-negative delay in seconds.
+        // @retval ErrorCode::ERROR_NONE: Delay and renegotiation accepted.
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid client or transaction, no active round, or negative delay.
+        // @retval ErrorCode::ERROR_ILLEGAL_STATE: The negotiation round has completed.
+        virtual Core::hresult DelayPowerModeChangeAndRenegotiate(const uint32_t clientId, const int transactionId, const int delayPeriod) = 0;
     };
 
 } // namespace Exchange
