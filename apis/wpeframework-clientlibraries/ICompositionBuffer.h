@@ -86,6 +86,9 @@ namespace Exchange {
         // @retval identifier: Buffer identifier.
         virtual uint32_t Identifier() const = 0;
 
+        // @brief Get an iterator for the buffer planes.
+        // @param timeoutMs: Maximum time to wait for plane access, in milliseconds.
+        // @retval iterator: Iterator used to traverse the buffer's planes.
         virtual IIterator* Planes(const uint32_t timeoutMs) = 0; // Access the planes.
         
         // @brief Complete access to the buffer planes.
@@ -93,31 +96,31 @@ namespace Exchange {
         // @param dirty True if the buffer contents were modified; otherwise false.
         // @example dirty: true
         // @retval Core::ERROR_NONE: Plane access was completed successfully.
-        virtual uint32_t Completed(const bool dirty) = 0;
+        virtual uint32_t Completed(const bool dirty) = 0; // Called by callee when is done with the planes.
 
         // @brief Submit the buffer for rendering.
         // @details Marks the buffer for scan-out by the display.
-        virtual void Render() = 0;
+        virtual void Render() = 0; // Mark for scanout.
 
         // @brief Get the buffer width.
         // @details Returns the allocated buffer width in pixels.
         // @retval width: Buffer width in pixels.
-        virtual uint32_t Width() const = 0;
+        virtual uint32_t Width() const = 0; // Width of the allocated buffer in pixels
 
         // @brief Get the buffer height.
         // @details Returns the allocated buffer height in pixels.
         // @retval height: Buffer height in pixels.
-        virtual uint32_t Height() const = 0;
+        virtual uint32_t Height() const = 0; // Height of the allocated buffer in pixels
 
         // @brief Get the buffer pixel format.
         // @details Returns the pixel layout encoded using a FourCC format.
         // @retval format: FourCC pixel format value.
-        virtual uint32_t Format() const = 0;
+        virtual uint32_t Format() const = 0; // Layout of a pixel according the fourcc format
 
         // @brief Get the buffer modifier.
         // @details Returns the modifier describing the buffer's pixel arrangement for hardware optimization.
         // @retval modifier: Buffer layout modifier value.
-        virtual uint64_t Modifier() const = 0;
+        virtual uint64_t Modifier() const = 0; // Pixel arrangement in the buffer, used to optimize for hardware
 
         // @brief Get the buffer data type.
         // @details Returns whether this buffer contains DMA data, raw data, or an invalid type.
