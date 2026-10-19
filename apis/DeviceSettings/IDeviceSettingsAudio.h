@@ -288,8 +288,18 @@ namespace Exchange {
             // @example audioLevel: 75
             virtual void OnAudioLevelChanged(int32_t audioLevel) { };
         };
-
+        
+        // @brief Register a client to receive audio notifications.
+        // @details This method registers a client to receive audio notifications.
+        // @param clientName: Name identifying the client registering for notifications.
+        // @param notification: Callback interface that receives audio notifications.
+        // @retval Core::ERROR_NONE: The client was registered successfully.
         virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsAudio::INotification* notification )   = 0;
+
+        // @brief Unregister a client from audio notifications.
+        // @details This method unregisters a client from receiving audio notifications.
+        // @param notification: Callback interface previously registered to receive audio notifications.
+        // @retval Core::ERROR_NONE: The client was unregistered successfully.
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsAudio::INotification* notification ) = 0;
 
         /** Get Audio Port . */
@@ -358,7 +368,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @example handle: 1
         // @param arcStatus: ARC param
-        // @example arcStatus: {"arcType": AUDIO_ARCTYPE_ARC, "status": true}
+        // @example arcStatus: {"arcType": "AUDIO_ARCTYPE_ARC", "status": true}
         // @retval Core::ERROR_NONE: ARC state was updated successfully
         virtual Core::hresult EnableARC(const int32_t handle , const AudioARCStatus arcStatus ) = 0;
 
