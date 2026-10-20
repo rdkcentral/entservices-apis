@@ -47,7 +47,9 @@ namespace Exchange {
 
             // @text onDolbyAtmosExperienceChanged
             // @brief Notifies subscribers when the Dolby Atmos Experience state changes
+            // @details Called whenever the Dolby Atmos Experience state changes
             // @param dolbyAtmosExperience: true if Dolby Atmos Experience is now enabled
+            // @example dolbyAtmosExperience: true
             virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {}
         };
 
@@ -61,6 +63,7 @@ namespace Exchange {
         //          current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO)
         //          to determine the Dolby Atmos Experience state.
         // @param enabled: true if Dolby Atmos Experience is enabled, false otherwise
+        // @example enabled: true
         // @retval Core::ERROR_NONE on success
         virtual Core::hresult DolbyAtmosExperience(bool& enabled /* @out */) const = 0;
     };

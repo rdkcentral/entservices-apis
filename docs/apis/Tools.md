@@ -65,7 +65,10 @@ Implementations should generate key press and key release events via /dev/uinput
 ### Events Triggered
 None
 ### Parameters
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.keys | string | List of keys to generate in order. Each entry supports delay and optional duration. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -79,9 +82,19 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
-    "method": "org.rdk.Tools.generateKeys"
+    "method": "org.rdk.Tools.generateKeys",
+    "params": {
+        "keys": [
+            {
+                "code": 30,
+                "modifier": "CTRL",
+                "delay": 1,
+                "duration": 0
+            }
+        ]
+    }
 }
 ```
 
@@ -89,7 +102,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,  "method": "org.rdk.Tools.generateKeys",  "params": {"keys" : [{"code": 1,"modifier": "CTRL","delay": 0,"duration": 0}] } }' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.Tools.generateKeys", "params": {"keys": [{"code": 30, "modifier": "CTRL", "delay": 1, "duration": 0}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -97,7 +110,7 @@ curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -110,7 +123,7 @@ curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 1,
@@ -124,7 +137,7 @@ curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 14,
@@ -132,6 +145,7 @@ curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,
     }
 }
 ```
+
 <a id="generateRemoteKeys"></a>
 ## *generateRemoteKeys*
 
@@ -140,7 +154,10 @@ Implementations should generate key press and key release events via /dev/uinput
 ### Events Triggered
 None
 ### Parameters
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.keys | string | List of remote keys to generate in order. Each entry supports delay and optional duration. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -154,9 +171,18 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
-    "method": "org.rdk.Tools.generateRemoteKeys"
+    "method": "org.rdk.Tools.generateRemoteKeys",
+    "params": {
+        "keys": [
+            {
+                "code": "KED_MENU",
+                "delay": 1,
+                "duration": 0
+            }
+        ]
+    }
 }
 ```
 
@@ -164,7 +190,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Tools.generateRemoteKeys"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.Tools.generateRemoteKeys", "params": {"keys": [{"code": "KED_MENU", "delay": 1, "duration": 0}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -172,7 +198,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -185,7 +211,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "error": {
         "code": 1,
@@ -199,7 +225,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "error": {
         "code": 14,

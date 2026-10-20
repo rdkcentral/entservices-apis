@@ -119,7 +119,7 @@ The following events are provided by the IAudioOutput Interface:
 <a id="onDolbyAtmosExperienceChanged"></a>
 ## *onDolbyAtmosExperienceChanged*
 
-Notifies subscribers when the Dolby Atmos Experience state changes
+Called whenever the Dolby Atmos Experience state changes
 
 ### Parameters
 | Name | Type | Description |

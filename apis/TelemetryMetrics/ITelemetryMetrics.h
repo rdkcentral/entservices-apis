@@ -30,17 +30,26 @@ struct EXTERNAL ITelemetryMetrics : virtual public Core::IUnknown {
 
     /** @brief Record the telementryMetrics add new hash values to existing hash */
     // @text record
-    // @param id  string identifier for the telemetry record.
-    // @param telemetryMetrics  jsonString hash  contains key value pair of telemetryData
-    // @param markerName Groups related metrics
+    // @details Merges the key-value pairs in telemetryMetrics into the record identified by id and associates them with markerName.
+    // @param id:  string identifier for the telemetry record.
+    // @example id: "device-health"
+    // @param telemetryMetrics:  jsonString hash  contains key value pair of telemetryData
+    // @example telemetryMetrics: "{\"temperature\":\"72\"}"
+    // @param markerName: Groups related metrics
+    // @example markerName: "system"
+    // @retval Core::ERROR_NONE: The telemetry metrics were recorded successfully.
     virtual Core::hresult Record(const string& id, const string& telemetryMetrics, const string& markerName) = 0;
 
     /** @brief Publish the Telemetry Data 
             makes a T2 call that records all the key / value pairs in 
             hash. The existing id and hash are cleared after publish.*/
     // @text publish
-    // @param id string identifier for the telemetry record.
-    // @param markerName Groups related metrics
+    // @details Sends the record's key-value pairs to T2. After publishing, the existing record and its hash are cleared.
+    // @param id: string identifier for the telemetry record.
+    // @example id: "device-health"
+    // @param markerName: Groups related metrics
+    // @example markerName: "system"
+    // @retval Core::ERROR_NONE: The telemetry data was published successfully.
     virtual Core::hresult Publish(const string& id, const string& markerName) = 0;
 };
 }// namespace Exchange
