@@ -350,7 +350,7 @@ namespace Exchange {
 
         /** Set SAD */
         // @text setSAD
-        // @brief Get Supported ARC types
+        // @brief Set Short Audio Descriptor list
         // @details This method sets the SAD (Short Audio Descriptor) list for the specified audio port.
         // @param handle: handle returned in GetAudioPort()
         // @example handle: 1
@@ -363,7 +363,7 @@ namespace Exchange {
 
         /** Enable ARC */
         // @text enableARC
-        // @brief Get Supported ARC types
+        // @brief Enable or disable ARC types
         // @details This method enables or disables the ARC (Audio Return Channel) for the specified audio port.
         // @param handle: handle returned in GetAudioPort()
         // @example handle: 1
@@ -1040,7 +1040,7 @@ namespace Exchange {
 
         /** Get Audio Capabilities     */
         // @text getAudioCapabilities
-        // @brief Get Audio capabilites
+        // @brief Get Audio capabilities
         // @details Retrieves the audio capability bitmask for the specified audio port.
         // @param handle: handle returned in GetAudioPort()
         // @example handle: 1
@@ -1051,7 +1051,7 @@ namespace Exchange {
 
         /** Get Audio MS12 Capabilities     */
         // @text getAudioMS12Capabilities
-        // @brief Get Audio MS12 capabilites
+        // @brief Get Audio MS12 capabilities
         // @details Retrieves the MS12 capability bitmask for the specified audio port.
         // @param handle: handle returned in GetAudioPort()
         // @example handle: 1
