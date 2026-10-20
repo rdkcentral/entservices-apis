@@ -126,7 +126,7 @@ namespace Exchange {
         // @details Configures the blink duration and repetition count for a front panel indicator.
         // @param indicator: Type of indicator
         // @example indicator: DS_FPD_INDICATOR_POWER
-        // @param blinkDuration: Time in seconds for which the indictor has to be blinked
+        // @param blinkDuration: Time in seconds for which the indicator has to be blinked
         // @example blinkDuration: 1
         // @param blinkIterations: number of times the blink has to be done for the blink duration
         // @example blinkIterations: 3
