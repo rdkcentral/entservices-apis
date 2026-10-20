@@ -503,7 +503,7 @@ public:
     IMediaKeysExt(void) = default;
     virtual ~IMediaKeysExt(void) = default;
 
-    virtual uint64_t GetDrmSystemTime() const = 0;
+    virtual uint64_t GetDrmSystemTime(const std::string& keySystem) const = 0;
 
     virtual std::string GetVersionExt() const = 0;
 
@@ -516,12 +516,14 @@ public:
     virtual uint32_t ResetSecureStops() = 0;
 
     virtual CDMi_RESULT GetSecureStopIds(
+        const std::string& keySystem,
         uint8_t ids[],
         uint16_t idsLength,
         uint32_t& count)
         = 0;
 
     virtual CDMi_RESULT GetSecureStop(
+        const std::string& keySystem,
         const uint8_t sessionID[],
         uint32_t sessionIDLength,
         uint8_t* rawData,
@@ -529,6 +531,7 @@ public:
         = 0;
 
     virtual CDMi_RESULT CommitSecureStop(
+        const std::string& keySystem,
         const uint8_t sessionID[],
         uint32_t sessionIDLength,
         const uint8_t serverResponse[],
@@ -537,7 +540,7 @@ public:
 
     virtual CDMi_RESULT DeleteKeyStore() = 0;
 
-    virtual CDMi_RESULT DeleteSecureStore() = 0;
+    virtual CDMi_RESULT DeleteSecureStore(const std::string& keySystem) = 0;
 
     virtual CDMi_RESULT GetKeyStoreHash(
         uint8_t secureStoreHash[],
@@ -545,6 +548,7 @@ public:
         = 0;
 
     virtual CDMi_RESULT GetSecureStoreHash(
+        const std::string& keySystem,
         uint8_t secureStoreHash[],
         uint32_t secureStoreHashLength)
         = 0;
