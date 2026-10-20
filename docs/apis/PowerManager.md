@@ -938,6 +938,8 @@ Power mode changed
 | params | object |  |
 | params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 | params.newState | string | New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.reason | string | Reason for the power state change |
+| params.requestors | string | Name/ID of requesting client(s), only for deep sleep timer wakeup. Can be a space-separated list when multiple clients scheduled the same wakeup (e.g. "requestor1 requestor2") |
 
 ### Examples
 
@@ -948,7 +950,9 @@ Power mode changed
     "method": "org.rdk.PowerManager.onPowerModeChanged",
     "params": {
         "currentState": "UNKNOWN",
-        "newState": "UNKNOWN"
+        "newState": "UNKNOWN",
+        "reason": "DeepSleep timed out",
+        "requestors": "requestor1 requestor2"
     }
 }
 ```
