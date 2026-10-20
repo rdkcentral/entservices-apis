@@ -147,6 +147,7 @@ namespace Exchange {
 
             // @brief Get the native client identifier.
             // @details Returns the platform-native identifier associated with this client, or zero when unavailable.
+            // @retval instanceId: Native client identifier.
             virtual WPEFramework::Core::instance_id Native() const { return 0; };
 
             // @brief Get the client name.
