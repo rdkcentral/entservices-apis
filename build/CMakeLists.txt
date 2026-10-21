@@ -55,6 +55,16 @@ if(WITH_COMMON_FILES)
     list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids_comcast.h")
 endif()
 
+install(
+        FILES ${JSON_LINK_HEADERS}
+        DESTINATION include/${NAMESPACE}/interfaces/json
+)
+
+# APIs without JSON-RPC enums (e.g. COM-only ones) have no Definitions library
+if(NOT JSON_ENUM_SOURCES)
+    return()
+endif()
+
 add_library(${Target} SHARED
         ${JSON_ENUM_SOURCES}
         )
@@ -84,11 +94,6 @@ install(
         RUNTIME DESTINATION bin COMPONENT libs      # binaries
         FRAMEWORK DESTINATION bin/ COMPONENT libs    # for mac
         INCLUDES DESTINATION include/${NAMESPACE}   # default include path
-)
-
-install(
-        FILES ${JSON_LINK_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces/json
 )
 
 InstallPackageConfig(

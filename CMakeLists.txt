@@ -112,9 +112,14 @@ ProxyStubGenerator(INPUT "${API_INTERFACE_HEADERS}" OUTDIR "${CMAKE_CURRENT_BINA
 set(INTERFACES_HEADERS ${API_INTERFACE_HEADERS} ${API_COMMON_HEADERS})
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
 file(MAKE_DIRECTORY ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces)
-add_custom_target(install_headers ALL
-        COMMAND ${CMAKE_COMMAND} -E copy ${INTERFACES_HEADERS} ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces
-)
+if(INTERFACES_HEADERS)
+    add_custom_target(install_headers ALL
+            COMMAND ${CMAKE_COMMAND} -E copy ${INTERFACES_HEADERS} ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces
+    )
+else()
+    # Nothing to copy (e.g. a JSON-only standalone API); the target still orders the libraries
+    add_custom_target(install_headers)
+endif()
 
 add_library(${Target} SHARED
         ./apis/Module.cpp
@@ -158,4 +163,6 @@ install(
 )
 
 add_subdirectory(build)
-add_dependencies(${DefinitionsTarget} install_headers)
+if(TARGET ${DefinitionsTarget})
+    add_dependencies(${DefinitionsTarget} install_headers)
+endif()
