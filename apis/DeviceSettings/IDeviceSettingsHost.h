@@ -30,14 +30,21 @@ namespace Exchange {
         /** Get EDID Bytes. */
         // @text getEDID
         // @brief Get EDID.
+        // @details Retrieves the raw EDID byte sequence reported by the host display device.
         // @param edId: EDID in bytes
+        // @example edId: [0, 255, 255, 255, 255, 255, 255, 0]
         // @param edIdLength: number of bytes in edId array
+        // @example edIdLength: 128
+        // @retval Core::ERROR_NONE: EDID bytes were retrieved successfully
         virtual Core::hresult GetEDID(uint8_t edId[] /* @out @length:edIdLength @maxlength:edIdLength */, const uint16_t edIdLength ) = 0;
 
         /** Get MS12 Config type. */
         // @text getMS12ConfigType
         // @brief Get MS12 Config
+        // @details Retrieves the MS12 configuration type used by the host audio implementation.
         // @param ms12Config: MS12 config type
+        // @example ms12Config: "MS12"
+        // @retval Core::ERROR_NONE: MS12 configuration type was retrieved successfully
         virtual Core::hresult GetMS12ConfigType(string &ms12Config /* @out */) = 0;
     };
 
