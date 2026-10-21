@@ -1722,7 +1722,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.path | string | Path to the pre-downloaded splash screen file location. Full path with file name |
+| params.path | string | Path to the pre-downloaded splash screen file location. Full path with file name. The path is canonicalized to an absolute path and must exist as a regular file (not a directory or symlink) located under one of these approved directories: `/opt/`, `/tmp/`, or `/media/`. Paths are validated before being forwarded to the platform operation |
 
 ### Result
 
@@ -1730,6 +1730,12 @@ No Events
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | boolean | Whether the request succeeded |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| -32001 | Invalid path | The path does not meet validation requirements (must be a regular file under `/opt/`, `/tmp/`, or `/media/`) |
 
 ### Example
 
