@@ -67,27 +67,48 @@ namespace Exchange {
 
             // @property
             // @brief Atmos capabilities of Sink
+            // @details Retrieves whether the connected sink supports Dolby Atmos.
+            // @param supported: Receives true when Atmos is supported by the sink; otherwise false.
+            // @example supported: true
+            // @retval Core::ERROR_NONE: The Atmos capability was retrieved successfully.
             // @text dolby_atmosmetadata
             // @return supported: atmos supported or unsupported
             virtual uint32_t AtmosMetadata(bool& supported /* @out */) const = 0;
 
             // @property
             // @brief Sound Mode - Mono/Stereo/Surround
+            // @details Retrieves the current sound mode of the Dolby output.
+            // @param mode: Receives the current sound mode.
+            // @example mode: "STEREO"
+            // @retval Core::ERROR_NONE: The current sound mode was retrieved successfully.
             // @text dolby_soundmode
             // @return mode: sound mode
             virtual uint32_t SoundMode(Dolby::IOutput::SoundModes& mode /* @out */) const = 0;
 
             // @property
             // @brief Enable Atmos Audio Output
+            // @details Enables or disables Dolby Atmos audio output.
             // @param enable: enable/disable
+            // @example enable: true
+            // @retval Core::ERROR_NONE: The Atmos output setting was applied successfully.
             // @text dolby_enableatmosoutput
             virtual uint32_t EnableAtmosOutput(const bool& enable) = 0;
 
             // @property
             // @brief Dolby Mode
+            // @details Sets the Dolby output mode. Supported values are DIGITAL_PCM, DIGITAL_PLUS, DIGITAL_AC3, AUTO, DIGITAL_PASSTHROUGH, and MS12.
             // @param mode: dolby mode type
+            // @example mode: "DIGITAL_PCM"
+            // @retval Core::ERROR_NONE: The Dolby output mode was set successfully.
             // @text dolby_mode
             virtual uint32_t Mode(const Dolby::IOutput::Type& mode) = 0;
+
+            // @property
+            // @brief Returns the current Dolby output mode.
+            // @details Retrieves the configured Dolby output mode.
+            // @param mode: Receives the current Dolby output mode.
+            // @example mode: "DIGITAL_PCM"
+            // @retval Core::ERROR_NONE: The Dolby output mode was retrieved successfully.
             virtual uint32_t Mode(Dolby::IOutput::Type& mode /* @out */) const = 0;
 
         };

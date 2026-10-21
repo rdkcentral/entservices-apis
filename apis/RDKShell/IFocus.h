@@ -27,6 +27,11 @@ namespace Exchange {
         enum { ID = ID_FOCUS };
 
         // @brief focused state
+        // @details Indicates whether the current element has focus.
+        // @param focused: True if the element is focused, false otherwise.
+        // @example focused: true
+        // @retval Core::ERROR_NONE: Focus state was successfully updated.
+        // @retval Core::ERROR_GENERAL: Failed to update the focus state.
         virtual uint32_t Focused(const bool focused) = 0;
     };
 
