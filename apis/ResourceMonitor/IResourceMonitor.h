@@ -24,6 +24,29 @@
 namespace WPEFramework {
 namespace Exchange {
 
+	struct EXTERNAL ResourceMonitorStats {
+            uint64_t systemMemTotal;
+            uint64_t systemMemUsed;
+            uint64_t systemMemAvailable;
+            uint64_t peakSystemMemUsed;
+
+            uint64_t gpuMemTotal;
+            uint64_t gpuMemUsed;
+            uint64_t gpuMemAvailable;
+            uint64_t peakGpuMemUsed;
+
+            uint64_t swapTotal;
+            uint64_t swapFree;
+            uint64_t swapUsed;
+            uint64_t peakSwapUsed;
+
+            uint64_t flashSpaceTotal;
+            uint64_t flashSpaceUsed;
+            uint64_t flashSpaceAvailable;
+            uint64_t peakFlashSpaceUsed;
+        };
+
+
 // @json 1.0.0 @text:keep
 struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
     enum { ID = ID_RESOURCE_MONITOR };
@@ -39,11 +62,39 @@ struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
         virtual void OnReconciliationComplete(const string& appId, const bool targetRamAchieved) {}
     };
 
+    virtual uint32_t SetConfig(const string& config) = 0;
+
     /** Register notification interface */
     virtual Core::hresult Register(INotification* notification) = 0;
 
     /** Unregister notification interface */
     virtual Core::hresult Unregister(INotification* notification) = 0;
+
+    // @text GetMemInfo
+    // @brief Returns memory information.
+    virtual Core::hresult GetMemInfo(uint64_t& memAvailable /* @out */,
+                           uint64_t& swapFree /* @out */,
+                           uint64_t& swapTotal /* @out */) = 0;
+
+    // @text GetPsiMetrics
+    // @brief Returns PSI metrics.
+    virtual Core::hresult GetPsiMetrics(const string& metric,
+                           double& value /* @out */,
+			   uint64_t& total /* @out */) = 0;
+
+    // @text GetFlashSpace
+    // @brief Returns flash usage.
+    virtual Core::hresult GetFlashSpace(uint64_t& total /* @out */, uint64_t& used /* @out */,
+                           uint64_t& available /* @out */) = 0;
+
+    // @text GetSwapUsed
+    // @brief Returns swap usage.
+    virtual Core::hresult GetSwapUsed(uint64_t& swapUsed /* @out */,
+                            uint64_t& memUsedTotal /* @out */) = 0;
+
+    // @text GetStats
+    // @brief Returns resource statistics.
+    virtual Core::hresult GetStats(ResourceMonitorStats& stats /* @out */) = 0;
 
     // @text reconcile
     // @brief Requests a resource reconciliation pass, evicting inactive applications if required and permitted.
