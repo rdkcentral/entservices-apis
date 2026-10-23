@@ -120,7 +120,7 @@ namespace Exchange {
     };
 
 
-    // @json 2.0.0 @text:keep
+    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
