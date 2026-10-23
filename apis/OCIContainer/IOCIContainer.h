@@ -127,7 +127,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param containerId: Identifier of the container
     // @example containerId: "container123"
     // @param state: Current state of the container
-    // @example state: "running"
+    // @example state: RUNNING
     // @param success: Indicates whether the operation was successful
     // @example success: true
     // @param errorReason: Provides the reason for failure if the operation was not successful
