@@ -60,7 +60,9 @@ namespace WPEFramework
 
                 // @text onAVDecoderStatusChanged
                 // @brief Triggered when the most active status of audio/video decoder/pipeline changes
-                // @param avDecoderStatusChange - in - string
+                // @details The OnAVDecoderStatusChanged event is triggered when the most active status of audio/video decoder/pipeline changes. The event provides a string parameter that describes the new status of the audio/video decoder/pipeline.
+                // @param avDecoderStatusChange: Status change of the audio/video decoder/pipeline
+                // @example avDecoderStatusChange: "Active"
                 virtual void OnAVDecoderStatusChanged(const string& avDecoderStatusChange) {};
             };
 
@@ -69,32 +71,52 @@ namespace WPEFramework
 
             // @text getConfiguration
             // @brief Gets the values associated with the corresponding property names
-            // @param names - in - String array of property names
-            // @param paramList - out - specified properties and their values
-            // @param success - out - boolean
+            // @details Retrieves the configuration values corresponding to the supplied property names from the device.
+            // @param names: String array of property names
+            // @example names: ["DeviceInfo", "FirmwareVersion", "SerialNumber"]
+            // @param paramList: specified properties and their values
+            // @example paramList: [{"name":"DeviceInfo","value":"X1"}]
+            // @param success: boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Successfully retrieved configuration
             virtual Core::hresult GetConfiguration(IStringIterator* const& names , IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
 
             // @text getMilestones
             // @brief Returns the list of milestones
-            // @param milestones - out - A string [] of milestones
-            // @param success - out - boolean
+            // @details Retrieves the list of milestones from the device.
+            // @param milestones: A string [] of milestones
+            // @example milestones: ["BootStart", "NetworkReady", "BootComplete"]
+            // @param success: boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Successfully retrieved milestones
             virtual Core::hresult GetMilestones(IStringIterator*& milestones /* @out */, bool& success /* @out */) = 0;
 
             // @text logMilestone
             // @brief Log marker string to rdk milestones log
-            // @param marker - in - string
-            // @param success - out - boolean
+            // @details Logs the provided marker string to the RDK milestones log for tracking and analysis purposes.
+            // @param marker: Milestone marker string
+            // @example marker: "NetworkReady"
+            // @param success: boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Successfully logged the milestone
             virtual Core::hresult LogMilestone(const string& marker , bool& success /* @out */) = 0;
 
             // @text getAVDecoderStatus
             // @brief Gets the most active status of audio/video decoder/pipeline
-            // @param AVDecoderStatus - out
+            // @details Retrieves the most active status of audio/video decoder/pipeline from the device.
+            // @param AVDecoderStatus: The audio/video decoder status
+            // @example AVDecoderStatus: {"avDecoderStatus":"Active"}
+            // @retval Core::ERROR_NONE: Successfully retrieved the AV decoder status    
             virtual Core::hresult GetAVDecoderStatus(AvDecoderStatusResult& AVDecoderStatus /* @out */) = 0;
 
             // @text getPreviousRebootInfo
             // @brief Returns information about the previous reboot including timestamp, source, and reason
+            // @details Retrieves information about the previous reboot from the device, including the timestamp, source, and reason for the reboot.
             // @param rebootInfo: Contains previous reboot information
+            // @example rebootInfo: {"timestamp":"2023-05-15T10:30:00Z","source":"PowerButton","reason":"UserInitiated","customReason":"N/A","otherReason":"N/A","lastHardPowerReset":"2023-05-14T08:15:00Z"}
             // @param success: Indicates whether the operation was successful
+            // @example success: true
+            // @retval Core::ERROR_NONE: Successfully retrieved the previous reboot information
             virtual Core::hresult GetPreviousRebootInfo(RebootInfo& rebootInfo /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange

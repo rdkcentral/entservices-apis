@@ -42,7 +42,9 @@ namespace WPEFramework
 
                 // @text onReportUpload
                 // @brief Triggered by callback from Telemetry after report uploading
-                // @param telemetryUploadStatus - in - string
+                // @details Invoked by the Telemetry service after a report has been uploaded. Components implementing this interface should handle the upload status accordingly.
+                // @param telemetryUploadStatus: String The status of the telemetry upload.
+                // @example telemetryUploadStatus: "success"
                 virtual void OnReportUpload(const string& telemetryUploadStatus) {};
             };
 
@@ -52,43 +54,62 @@ namespace WPEFramework
             /**********************setReportProfileStatus() - start****************************/
             // @text setReportProfileStatus
             // @brief Sets the status of telemetry reporting
-            // @param status - in - string
+            // @details Invoked by the Telemetry service to set the status of telemetry reporting. Components implementing this interface should update their internal state to reflect the new reporting status.
+            // @param status: String The new status of telemetry reporting.
+            // @example status: "enabled"
+            // @retval Core::ERROR_NONE: The status was set successfully.
             virtual Core::hresult SetReportProfileStatus(const string& status) = 0;
             /**********************setReportProfileStatus() - end******************************/
 
             /**********************logApplicationEvent() - start*******************************/
             // @text logApplicationEvent
-            // @brief Logs an application
-            // @param eventName - in - string
-            // @param eventValue - in - string
+            // @brief Logs an application event
+            // @details Invoked by the Telemetry service to log an application event. Components implementing this interface should record the event with the provided name and value.
+            // @param eventName: String The name of the application event.
+            // @example eventName: "UserLogin"
+            // @param eventValue: String The value associated with the application event.
+            // @example eventValue: "Success"
+            // @retval Core::ERROR_NONE: The event was logged successfully.
             virtual Core::hresult LogApplicationEvent(const string& eventName , const string& eventValue) = 0;
             /**********************logApplicationEvent() - end*********************************/
 
             /**********************uploadReport() - start**************************************/
             // @text uploadReport
             // @brief Uploading of telemetry report
+            // @details Invoked by the Telemetry service to upload a telemetry report. Components implementing this interface should initiate the report upload process and handle the result accordingly.
+            // @retval Core::ERROR_NONE: The report upload was initiated successfully.
             virtual Core::hresult UploadReport() = 0;
             /**********************uploadReport() - end****************************************/
 
             /**********************abortReport() - start***************************************/
             // @text abortReport
             // @brief Abort report upload
+            // @details Invoked by the Telemetry service to abort an ongoing telemetry report upload. Components implementing this interface should terminate the upload process and handle any necessary cleanup.
+            // @retval Core::ERROR_NONE: The report upload was aborted successfully.
             virtual Core::hresult AbortReport() = 0;
             /**********************abortReport() - end*****************************************/
 
             /**********************setOptOutTelemetry() - start***************************************/
             // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
-            // @param OptOut  - in - boolean
-            // @param  - out - struct
+            // @details Invoked by the Telemetry service to set the opt-out status for telemetry reporting. Components implementing this interface should update their internal configuration to reflect the user's preference regarding telemetry data collection. 
+            // @param optOut: boolean The desired opt-out status for telemetry reporting.
+            // @example optOut: true
+            // @param successResult: Output structure containing the operation result.
+            // @example successResult: { "success": true }
+            // @retval Core::ERROR_NONE: The OptOut status was set successfully.
             virtual Core::hresult SetOptOutTelemetry(const bool optOut /* @text Opt-Out */, TelemetrySuccess& successResult /* @out */) = 0;
             /**********************setOptOutTelemetry() - end*****************************************/
 
             /**********************isOptOutTelemetry() - start***************************************/
 	        // @text isOptOutTelemetry
             // @brief Checks the telemetry opt-out status.
-            // @param OptOut  - out - boolean
-            // @param success - out - boolean
+            // @details Invoked by the Telemetry service to check the current opt-out status for telemetry reporting. Components implementing this interface should return the current configuration indicating whether telemetry data collection is opted out.
+            // @param optOut: Boolean The current opt-out status for telemetry reporting.
+            // @example optOut: true
+            // @param success: Boolean Indicates whether the operation was successful.
+            // @example success: true
+            // @retval Core::ERROR_NONE: The opt-out status was retrieved successfully.
             virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0;
             /**********************isOptOutTelemetry() - end*****************************************/
         };

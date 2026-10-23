@@ -59,6 +59,11 @@ namespace Exchange {
 
     class DataExchange : public Core::SharedBuffer {
     private:
+        struct MultiSampleInfo {
+            uint8_t  iv[24];
+            uint8_t  ivLength;
+            uint16_t subSampleLength;
+        };
         struct Administration {
             uint32_t Status;
             uint8_t  EncScheme;
@@ -73,7 +78,61 @@ namespace Exchange {
             uint16_t StreamHeight;
             uint16_t StreamWidth;
             uint8_t  StreamType;
+
+            // Multi-sample decrypt additions (additive; legacy fields above unchanged).
+            // SampleLength defaults to 0 (buffer is zero-initialized), so existing single-sample
+            // callers that never call SetSamples() are unaffected.
+            // Multi-sample decryption requires same KeyId, EncScheme and Clear / Enc Pattern
+            // Related fields are re-used in single and multi sample decryption cases - to avoid enlarging Administration structure.
+            // SubSamples array is also re-used in multi-sample decryption case.
+            uint16_t SampleLength;
+            MultiSampleInfo Samples[32];
+
+	    uint32_t fps_version;
+	    uint64_t fps_movieID;
+	    uint64_t fps_cryptorID;
+	    uint32_t fps_contentType;
+	    CDMi::Cdmi_FPSSliceInfo fps_sliceInfo[4]; // Lets out an arbitary size for now.
+	    uint32_t fps_sliceInfoArrayCount;
+	    uint32_t fps_svpmemoryHandle;
+
         };
+
+    private:
+        // ---- helpers for the additive multi-sample array (Administration::Samples) ----
+        void SetIV(MultiSampleInfo& sampleInfo, const uint8_t ivDataLength, const uint8_t ivData[])
+        {
+            VERIFY(ivDataLength <= sizeof(MultiSampleInfo::iv));
+            sampleInfo.ivLength = (ivDataLength > sizeof(MultiSampleInfo::iv) ? sizeof(MultiSampleInfo::iv) : ivDataLength);
+            ::memcpy(sampleInfo.iv, ivData, sampleInfo.ivLength);
+            if (sampleInfo.ivLength < sizeof(MultiSampleInfo::iv)) {
+                ::memset(&(sampleInfo.iv[sampleInfo.ivLength]), 0, (sizeof(MultiSampleInfo::iv) - sampleInfo.ivLength));
+            }
+        }
+        const uint8_t* IVKey(const MultiSampleInfo& sampleInfo) const
+        {
+            return (&sampleInfo.iv[0]);
+        }
+        uint8_t IVKeyLength(const MultiSampleInfo& sampleInfo) const
+        {
+            return (sampleInfo.ivLength);
+        }
+        uint16_t SubSampleLength(const MultiSampleInfo& sampleInfo) const
+        {
+            return (sampleInfo.subSampleLength);
+        }
+        void SetSubSampleLength(MultiSampleInfo& sampleInfo, const uint16_t length)
+        {
+            sampleInfo.subSampleLength = std::min(static_cast<uint16_t>(UINT8_MAX), length);
+        }
+        void SetSubSamples(const uint16_t startIdx, const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            for(uint16_t index = 0; index < length; index++) {
+                admin->SubSamples[index + startIdx].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
+                admin->SubSamples[index + startIdx].clear_bytes = subSampleInfo[index].clear_bytes;
+            }
+        }
 
     public:
         DataExchange() = delete;
@@ -112,6 +171,27 @@ namespace Exchange {
             admin->StreamHeight = 0;
             admin->StreamWidth = 0;
             admin->StreamType = 0;
+            
+	    admin->SampleLength = 0;
+	    
+	    admin->fps_version = 0;
+	    admin->fps_movieID = 0;
+	    admin->fps_cryptorID = 0;
+	    admin->fps_contentType = 0;
+	    admin->fps_sliceInfo[0].offset = 0;
+            admin->fps_sliceInfo[0].size   = 0;
+
+            admin->fps_sliceInfo[1].offset = 0;
+            admin->fps_sliceInfo[1].size   = 0;
+
+	    admin->fps_sliceInfo[2].offset = 0;
+            admin->fps_sliceInfo[2].size   = 0;
+
+	    admin->fps_sliceInfo[3].offset = 0;
+            admin->fps_sliceInfo[3].size   = 0;
+
+	    admin->fps_sliceInfoArrayCount = 0;
+	    admin->fps_svpmemoryHandle = 0;
         }
         void Status(uint32_t status)
         {
@@ -151,9 +231,9 @@ namespace Exchange {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             admin->EncScheme = encScheme;
         }
-        uint8_t EncScheme()
+        uint8_t EncScheme() const
         {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             return admin->EncScheme;
         }
         void SetEncPattern(const uint32_t encBlocks, const uint32_t clearBlocks)
@@ -162,9 +242,9 @@ namespace Exchange {
             admin->PatternEncBlocks = encBlocks;
             admin->PatternClearBlocks = clearBlocks;
         }
-        void EncPattern(uint32_t& encBlocks, uint32_t& clearBlocks)
+        void EncPattern(uint32_t& encBlocks, uint32_t& clearBlocks) const
         {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             encBlocks = admin->PatternEncBlocks;
             clearBlocks = admin->PatternClearBlocks;
         }
@@ -186,6 +266,48 @@ namespace Exchange {
             for(uint8_t index = 0; index < admin->SubSampleLength; index++) {
                 admin->SubSamples[index].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
                 admin->SubSamples[index].clear_bytes = subSampleInfo[index].clear_bytes;
+            }
+        }
+        void SetSampleLength(const uint16_t length)
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            admin->SampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::Samples)/sizeof(MultiSampleInfo)), length);
+        }
+        uint16_t SampleLength() const
+        {
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
+            return (admin->SampleLength);
+        }
+        void Samples(CDMi::SampleInfo *samplesInfo, const uint16_t length) const
+        {
+            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
+            VERIFY(admin->SampleLength >= length);
+            uint16_t retLength = (length > admin->SampleLength) ? admin->SampleLength : length;
+            for(uint16_t index = 0, subSampleIdx = 0; index < retLength; index++) {
+                samplesInfo[index].keyId = const_cast<uint8_t *>(KeyId(samplesInfo[index].keyIdLength));
+                samplesInfo[index].scheme = static_cast<CDMi::EncryptionScheme>(EncScheme());
+                EncPattern(samplesInfo[index].pattern.encrypted_blocks, samplesInfo[index].pattern.clear_blocks);
+
+                samplesInfo[index].ivLength = IVKeyLength(admin->Samples[index]);
+                samplesInfo[index].iv = const_cast<uint8_t *>(IVKey(admin->Samples[index]));
+                samplesInfo[index].subSample = const_cast<CDMi::SubSampleInfo *>(&(admin->SubSamples[subSampleIdx]));
+                samplesInfo[index].subSampleCount = SubSampleLength(admin->Samples[index]);
+                subSampleIdx += samplesInfo[index].subSampleCount;
+            }
+        }
+        void SetSample(const uint16_t idx, const uint8_t ivLength, const uint8_t* iv, const uint16_t subSampleLength, const CDMi::SubSampleInfo subSampleInfo[])
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            VERIFY(admin->SampleLength > idx);
+            if (admin->SampleLength > idx) {
+                const uint16_t maxSubSamples = static_cast<uint16_t>(sizeof(Administration::SubSamples) / sizeof(CDMi::SubSampleInfo));
+                const uint16_t remaining = (maxSubSamples > admin->SubSampleLength ? (maxSubSamples - admin->SubSampleLength) : 0);
+                const uint16_t actualSubSampleLength = std::min<uint16_t>(subSampleLength, remaining);
+
+                SetIV(admin->Samples[idx], ivLength, iv);
+                SetSubSampleLength(admin->Samples[idx], actualSubSampleLength);
+                SetSubSamples(admin->SubSampleLength, actualSubSampleLength, subSampleInfo);
+                admin->SubSampleLength += actualSubSampleLength;
             }
         }
         void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
@@ -238,6 +360,97 @@ namespace Exchange {
             VERIFY(length <= 16);
             return (length > 0 ? &admin->KeyId[1] : nullptr);
         }
+
+        // FPS specific
+        void SetFPSVersion(const uint32_t version)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_version = version;
+        }
+
+        uint32_t FPSVersion() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_version);
+        }
+
+        void SetFPSMovieId(const uint64_t movieId)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_movieID = movieId;
+        }
+
+        uint64_t FPSMovieId() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_movieID);
+        }
+
+        void SetFPSCryptorId(const uint64_t cryptorId)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_cryptorID = cryptorId;
+        }
+
+        uint64_t FPSCryptorId() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_cryptorID);
+        }
+
+        void SetFPSContentType(const uint32_t contentType)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_contentType = contentType;
+        }
+
+        uint32_t FPSContentType() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_contentType);
+        }
+
+       void SetFPSSliceInfoArray(const uint32_t sliceinfocount, const CDMi::Cdmi_FPSSliceInfo sliceInfo[])
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_sliceInfoArrayCount = sliceinfocount;
+            for (uint8_t index = 0; index < sliceinfocount; index++)
+            {
+                admin->fps_sliceInfo[index].offset = sliceInfo[index].offset;
+                admin->fps_sliceInfo[index].size = sliceInfo[index].size;
+            }
+        }
+
+        const CDMi::Cdmi_FPSSliceInfo *FPSSliceInfoArray() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (&(admin->fps_sliceInfo[0]));
+        }
+
+        void SetFPSSliceInfoArrayCount(const uint32_t sliceInfoArrayCount)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_sliceInfoArrayCount = sliceInfoArrayCount;
+        }
+
+        uint32_t FPSSliceInfoArrayCoun() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_sliceInfoArrayCount);
+        }
+
+        void SetFPSSvpOut(uint32_t svpmemoryhandle)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_svpmemoryHandle = svpmemoryhandle;
+        }
+
+	uint32_t FPSSvpOut(void)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            return (admin->fps_svpmemoryHandle);
+        }
+
     };
 }
 }

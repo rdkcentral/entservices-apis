@@ -65,7 +65,7 @@ The following methods are provided by the IBackupManager Interface:
 <a id="backupSettings"></a>
 ## *backupSettings*
 
-Backup settings across the system
+Invokes all registered backup providers and requests them to persist their settings into the location specified by the supplied BackupContext. The backup operation is performed for the given scenario and variant.
 
 ### Events Triggered
 None
@@ -94,8 +94,8 @@ None
     "method": "org.rdk.Backup.backupSettings",
     "params": {
         "scenario": "HOSPITALITY_RESET",
-        "variant": "",
-        "persistentPath": ""
+        "variant": "generic",
+        "persistentPath": "/opt/secure/persistent/settings_backup/"
     }
 }
 ```
@@ -104,7 +104,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -121,7 +121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="deleteBackup"></a>
 ## *deleteBackup*
 
-Deletes the previously backed up settings across the system
+Locates the backup directory specified by the BackupContext and removes all archived settings data associated with the given scenario and variant.
 
 ### Events Triggered
 None
@@ -150,8 +150,8 @@ None
     "method": "org.rdk.Backup.deleteBackup",
     "params": {
         "scenario": "HOSPITALITY_RESET",
-        "variant": "",
-        "persistentPath": ""
+        "variant": "generic",
+        "persistentPath": "/opt/secure/persistent/settings_backup/"
     }
 }
 ```
@@ -160,7 +160,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.deleteBackup", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.deleteBackup", "params": {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -177,7 +177,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="restoreSettings"></a>
 ## *restoreSettings*
 
-Restore settings across the system
+Invokes all registered backup providers and requests them to restore their settings from the location specified by the supplied BackupContext. The restore operation is performed for the given scenario and variant.
 
 ### Events Triggered
 None
@@ -206,8 +206,8 @@ None
     "method": "org.rdk.Backup.restoreSettings",
     "params": {
         "scenario": "HOSPITALITY_RESET",
-        "variant": "",
-        "persistentPath": ""
+        "variant": "generic",
+        "persistentPath": "/opt/secure/persistent/settings_backup/"
     }
 }
 ```
@@ -216,7 +216,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

@@ -36,14 +36,18 @@ namespace Exchange {
 
         // @text getLastCheckoutResetTime
         // @brief Gets the last reset time for Hotel Checkout.
+        // @details Retrieves the recorded UTC epoch timestamp indicating when the hotel checkout state was last cleared.
         // @param resetTime: Time in UTC. Returns 0, if time is not available.
-        // @retval Core::ERROR_NONE Last Checkout reset time is successfully retrieved
+        // @example resetTime: {"resetTime": 1719824400}
+        // @retval Core::ERROR_NONE: Last Checkout reset time is successfully retrieved
         virtual Core::hresult GetLastCheckoutResetTime(GetLastCheckoutResetTimeResult& resetTime /* @out */) const = 0;
 
         // @text setLastCheckoutResetTime
         // @brief Sets the last reset time for Hotel Checkout.
+        // @details Configures a new explicit UTC epoch timestamp for the system hotel checkout tracking marker.
         // @param resetTime: Time in UTC.
-        // @retval Core::ERROR_NONE Last Checkout reset time is successfully set
+        // @example resetTime: 1719824400
+        // @retval Core::ERROR_NONE: Last Checkout reset time is successfully set
         virtual Core::hresult SetLastCheckoutResetTime(const uint64_t resetTime) = 0;
     };
 }

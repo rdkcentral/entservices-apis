@@ -26,6 +26,11 @@ namespace Exchange {
     struct EXTERNAL IConfiguration : virtual public Core::IUnknown {
         enum { ID = ID_CONFIGURATION };
 
+        // @brief Configures the component using the framework shell.
+        // @details Initializes and configures the component using the provided framework shell instance.
+        // @param framework: Framework shell instance
+        // @example framework: "IShell instance"
+        // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult Configure(PluginHost::IShell* framework) = 0;
     };
 }

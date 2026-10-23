@@ -60,7 +60,7 @@ The following methods are provided by the IAccount Interface:
 <a id="getLastCheckoutResetTime"></a>
 ## *getLastCheckoutResetTime*
 
-Gets the last reset time for Hotel Checkout.
+Retrieves the recorded UTC epoch timestamp indicating when the hotel checkout state was last cleared.
 
 ### Events Triggered
 None
@@ -100,7 +100,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "resetTime": 0
+        "resetTime": 1719824400
     }
 }
 ```
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="setLastCheckoutResetTime"></a>
 ## *setLastCheckoutResetTime*
 
-Sets the last reset time for Hotel Checkout.
+Configures a new explicit UTC epoch timestamp for the system hotel checkout tracking marker.
 
 ### Events Triggered
 None
@@ -133,7 +133,7 @@ None
     "id": 1,
     "method": "org.rdk.Account.setLastCheckoutResetTime",
     "params": {
-        "resetTime": 0
+        "resetTime": 1719824400
     }
 }
 ```
@@ -142,7 +142,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Account.setLastCheckoutResetTime", "params": {"resetTime": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Account.setLastCheckoutResetTime", "params": {"resetTime": 1719824400}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
