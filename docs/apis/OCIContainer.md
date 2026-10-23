@@ -300,7 +300,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
     "jsonrpc": "2.0",
     "id": 3,
     "result": {
-        "state": "running",
+        "state": "RUNNING",
         "success": true,
         "errorReason": "Failed to unmount path"
     }
@@ -1040,7 +1040,7 @@ This event is triggered when the state of the container changes.
     "method": "org.rdk.OCIContainer.onContainerStateChanged",
     "params": {
         "containerId": "container123",
-        "state": "running"
+        "state": "RUNNING"
     }
 }
 ```
