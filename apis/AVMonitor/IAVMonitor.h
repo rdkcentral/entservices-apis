@@ -29,54 +29,6 @@ namespace Exchange {
     struct EXTERNAL IAVMonitor : virtual public Core::IUnknown {
         enum { ID = ID_AVMONITOR };
 
-        struct EventInfo
-        {
-            enum GstStateChange : int
-            {
-                GST_STATE_UNKNOWN = 0                       /* @text: UNKNOWN */,
-                GST_STATE_CHANGE_NULL_TO_READY = 10         /* @text: GST_STATE_CHANGE_NULL_TO_READY */,
-                GST_STATE_CHANGE_READY_TO_PAUSED = 19       /* @text: GST_STATE_CHANGE_READY_TO_PAUSED */,
-                GST_STATE_CHANGE_PAUSED_TO_PLAYING = 28     /* @text: GST_STATE_CHANGE_PAUSED_TO_PLAYING */,
-                GST_STATE_CHANGE_PLAYING_TO_PAUSED = 35     /* @text: GST_STATE_CHANGE_PLAYING_TO_PAUSED */,
-                GST_STATE_CHANGE_PAUSED_TO_READY = 26       /* @text: GST_STATE_CHANGE_PAUSED_TO_READY */,
-                GST_STATE_CHANGE_READY_TO_NULL = 17         /* @text: GST_STATE_CHANGE_READY_TO_NULL */,
-                GST_STATE_CHANGE_NULL_TO_NULL = 9           /* @text: GST_STATE_CHANGE_NULL_TO_NULL */,
-                GST_STATE_CHANGE_READY_TO_READY = 18        /* @text: GST_STATE_CHANGE_READY_TO_READY */,
-                GST_STATE_CHANGE_PAUSED_TO_PAUSED = 27      /* @text: GST_STATE_CHANGE_PAUSED_TO_PAUSED */,
-                GST_STATE_CHANGE_PLAYING_TO_PLAYING = 36    /* @text: GST_STATE_CHANGE_PLAYING_TO_PLAYING */,
-            };
-            enum EventType : uint8_t
-            {
-                UNKNOWN = 0                 /* @text: UNKNOWN */,
-                CAPTURE_START = 0x01        /* @text: CAPTURE_START */,
-                STATE_CHANGE = 0x02         /* @text: STATE_CHANGE */,
-                RESOLUTION_CHANGE = 0x03    /* @text: RESOLUTION_CHANGE */,
-                SINK_STATS = 0x04           /* @text: SINK_STATS */,
-                Z_ORDER_CHANGE = 0x05       /* @text: Z_ORDER_CHANGE */,
-                EOS = 0x06                  /* @text: EOS */,
-                CAPS = 0x07                 /* @text: CAPS */,
-                CAPTURE_STOP = 0x08         /* @text: CAPTURE_STOP */,
-            };
-
-            uint64_t timeStamp;
-            uint64_t id;
-            EventType type;
-            GstStateChange stateChange;
-            int16_t windowWidth;
-            int16_t windowHeight;
-            int8_t visible;
-            int8_t zorder;
-            int64_t startPTS;
-            int64_t firstPTS;
-            int64_t currentPTS;
-            int64_t position;
-            int64_t frameRenderCount;
-            int64_t frameDropCount;
-            int8_t fps;
-            int8_t fpsMean;
-            string gstCaps;
-        };
-
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_AVMONITOR_NOTIFICATION };
@@ -84,7 +36,7 @@ namespace Exchange {
 
             // @brief Notifies that new events have been retrieved
             // @text onnewevent
-            virtual void OnNewEvent(const EventInfo& event) = 0;
+            virtual void OnNewEvent(const string& event) = 0;
 
             // @brief Notification with all events send after stop capture
             // @text onsummary
@@ -111,7 +63,7 @@ namespace Exchange {
         virtual uint32_t StopCapture() = 0;
 
         /* @json:omit */
-        virtual uint32_t RegisterEvent(const EventInfo& event /* @in */) = 0;
+        virtual uint32_t RegisterEvent(const string& event /* @in */) = 0;
 
     };
 }
