@@ -2,7 +2,7 @@
 <a id="WebKitBrowser_Module"></a>
 # WebKitBrowser Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/WebKitBrowser/IApplication.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/WebKitBrowser/IMemory.h)**
 
 A WebKitBrowser module for Thunder framework.
 
