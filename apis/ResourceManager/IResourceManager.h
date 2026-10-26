@@ -40,30 +40,51 @@ namespace WPEFramework
             /** Sets AV blocking status for an application */
             // @text setAVBlocked
             // @brief Adds/removes the application with the given callsign to/from the AV blacklist
-            // @param appid The application identifier (callsign)
-            // @param blocked Whether to block (true) or unblock (false) AV access for the application
-            // @param result The result of the operation
+            // @details Adds or removes the application with the given callsign to/from the AV blacklist.
+            // @param appid: The application identifier (callsign)
+            // @example appid: "org.example.app"
+            // @param blocked: Whether to block (true) or unblock (false) AV access for the application
+            // @example blocked: true
+            // @param result: The result of the operation
+            // @example result: { "success": true }
+            // @retval Core::ERROR_NONE: Operation completed successfully
+            // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult SetAVBlocked(const string& appid, const bool blocked, Success& result /* @out */) = 0;
 
             /** Gets a list of blacklisted clients */
             // @text getBlockedAVApplications
             // @brief Gets a list of blacklisted clients
-            // @param clients Iterator containing the list of blocked applications
-            // @param success Indicates whether the operation succeeded
+            // @details Retrieves the list of applications that are currently blocked from AV access.
+            // @param clients: Iterator containing the list of blocked applications
+            // @example clients: [ "org.example.app" ]
+            // @param success: Indicates whether the operation succeeded
+            // @example success: true
+            // @retval Core::ERROR_NONE: Operation completed successfully
+            // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult GetBlockedAVApplications(IStringIterator*& clients /* @out */, bool& success /* @out */) const = 0;
 
             /** Reserves the Text To Speech resource for a specified client */
             // @text reserveTTSResource
             // @brief Reserves the Text To Speech resource for a specified client
-            // @param appid The application identifier (callsign)
-            // @param result The result of the reservation operation
+            // @details Reserves the Text To Speech resource for the specified client.
+            // @param appid: The application identifier (callsign)
+            // @example appid: "org.example.app"
+            // @param result: The result of the reservation operation
+            // @example result: { "success": true }
+            // @retval Core::ERROR_NONE: Operation completed successfully
+            // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult ReserveTTSResource(const string& appid, Success& result /* @out */) = 0;
 
             /** Reserves the Text To Speech resource for specified clients */
             // @text reserveTTSResourceForApps
             // @brief Reserves the Text To Speech resource for specified clients
-            // @param appids Iterator containing the list of application identifiers (callsigns)
-            // @param result The result of the reservation operation
+            // @details Reserves the Text To Speech resource for the specified clients.
+            // @param appids: Iterator containing the list of application identifiers (callsigns)
+            // @example appids: [ "org.example.app" ]
+            // @param result: The result of the reservation operation
+            // @example result: { "success": true }
+            // @retval Core::ERROR_NONE: Operation completed successfully
+            // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult ReserveTTSResourceForApps(IStringIterator* const appids, Success& result /* @out */) = 0;
         };
     } // namespace Exchange

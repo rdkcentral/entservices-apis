@@ -43,11 +43,14 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
 
     // @text onAppInstallationStatus
     // @brief Emitted when the installation of a preinstalled app succeeds or fails.
+    // @details Provides detailed information about the installation status of a preinstalled app.
     // @param jsonresponse: Output installation status details as string object
+    // @example jsonresponse: "{\"app\":\"com.example.app\",\"status\":\"success\"}"
     // @deprecated
     virtual void OnAppInstallationStatus(const string& jsonresponse /* @opaque */) {};
     // @text onPreinstallationComplete
     // @brief Emitted when the preinstallation process completes
+    // @details Indicates that the preinstallation process has finished, regardless of success or failure.
     virtual void OnPreinstallationComplete() {};
   };
 
@@ -58,14 +61,18 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
 
   // @text startPreinstall
   // @brief Checks the preinstall directory for packages to be preinstalled and installs them as needed.
+  // @details Initiates the preinstallation process for apps found in the preinstall directory.
   // @param forceInstall: If true always install the app; if false then install only if not installed or existing is older version
+  // @example forceInstall: true
   // @retval Core::ERROR_NONE: Preinstallation completed or started successfully.
   // @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation.
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
 
   // @text getPreinstallState
   // @brief Provides the state of the preinstallation process.
-  // @param[out] state: Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
+  // @details Retrieves the current state of the preinstallation process, indicating whether it has not started, is in progress, or has completed.
+  // @param state: Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
+  // @example state: "NOT_STARTED"
   // @retval Core::ERROR_NONE: State retrieved successfully.
   // @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state.
   virtual Core::hresult GetPreinstallState(State& state /* @out */) = 0;
