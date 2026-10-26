@@ -50,7 +50,7 @@ The table below lists configuration options of the plugin.
 
 ### Description
 
-Structure for the Resource monitor stats
+Highest observed flash storage usage in bytes since ResourceMonitor startup.
 
 <a id="IResourceMonitor-Methods"></a>
 ### Methods
@@ -59,16 +59,16 @@ The following methods are provided by the IResourceMonitor Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [GetFlashSpace](#GetFlashSpace) | Returns flash usage. |
-| [GetMemInfo](#GetMemInfo) | Returns memory information. |
-| [GetPsiMetrics](#GetPsiMetrics) | Returns PSI metrics. |
-| [GetStats](#GetStats) | Returns resource statistics. |
-| [GetSwapUsed](#GetSwapUsed) | Returns swap usage. |
+| [getFlashSpace](#getFlashSpace) | Returns flash usage. |
+| [getMemInfo](#getMemInfo) | Returns memory information. |
+| [getPsiMetrics](#getPsiMetrics) | Returns PSI metrics. |
+| [getStats](#getStats) | Returns resource statistics. |
+| [getSwapUsed](#getSwapUsed) | Returns swap usage. |
 | [reconcile](#reconcile) | Requests a resource reconciliation pass, evicting inactive applications if required and permitted. |
-| [SetConfig](#SetConfig) | Loads Resource Monitor Configuration |
+| [setConfig](#setConfig) | Loads Resource Monitor Configuration |
 
-<a id="GetFlashSpace"></a>
-## *GetFlashSpace*
+<a id="getFlashSpace"></a>
+## *getFlashSpace*
 
 Returns flash usage.
 
@@ -93,7 +93,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 0,
-    "method": "org.rdk.ResourceMonitor.GetFlashSpace"
+    "method": "org.rdk.ResourceMonitor.getFlashSpace"
 }
 ```
 
@@ -101,7 +101,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ResourceMonitor.GetFlashSpace"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ResourceMonitor.getFlashSpace"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -133,8 +133,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
 }
 ```
 
-<a id="GetMemInfo"></a>
-## *GetMemInfo*
+<a id="getMemInfo"></a>
+## *getMemInfo*
 
 Returns memory information.
 
@@ -159,7 +159,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 1,
-    "method": "org.rdk.ResourceMonitor.GetMemInfo"
+    "method": "org.rdk.ResourceMonitor.getMemInfo"
 }
 ```
 
@@ -167,7 +167,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.ResourceMonitor.GetMemInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.ResourceMonitor.getMemInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -199,8 +199,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 }
 ```
 
-<a id="GetPsiMetrics"></a>
-## *GetPsiMetrics*
+<a id="getPsiMetrics"></a>
+## *getPsiMetrics*
 
 Returns PSI metrics.
 
@@ -227,7 +227,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 2,
-    "method": "org.rdk.ResourceMonitor.GetPsiMetrics",
+    "method": "org.rdk.ResourceMonitor.getPsiMetrics",
     "params": {
         "metric": ""
     }
@@ -238,7 +238,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.ResourceMonitor.GetPsiMetrics", "params": {"metric": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.ResourceMonitor.getPsiMetrics", "params": {"metric": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -297,8 +297,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
 }
 ```
 
-<a id="GetStats"></a>
-## *GetStats*
+<a id="getStats"></a>
+## *getStats*
 
 Returns resource statistics.
 
@@ -337,7 +337,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 3,
-    "method": "org.rdk.ResourceMonitor.GetStats"
+    "method": "org.rdk.ResourceMonitor.getStats"
 }
 ```
 
@@ -345,7 +345,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.ResourceMonitor.GetStats"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.ResourceMonitor.getStats"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -390,8 +390,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
 }
 ```
 
-<a id="GetSwapUsed"></a>
-## *GetSwapUsed*
+<a id="getSwapUsed"></a>
+## *getSwapUsed*
 
 Returns swap usage.
 
@@ -415,7 +415,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 4,
-    "method": "org.rdk.ResourceMonitor.GetSwapUsed"
+    "method": "org.rdk.ResourceMonitor.getSwapUsed"
 }
 ```
 
@@ -423,7 +423,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.ResourceMonitor.GetSwapUsed"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.ResourceMonitor.getSwapUsed"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -509,8 +509,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
 }
 ```
 
-<a id="SetConfig"></a>
-## *SetConfig*
+<a id="setConfig"></a>
+## *setConfig*
 
 Loads Resource Monitor Configuration
 
@@ -535,7 +535,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 6,
-    "method": "org.rdk.ResourceMonitor.SetConfig",
+    "method": "org.rdk.ResourceMonitor.setConfig",
     "params": {
         "config": ""
     }
@@ -546,7 +546,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.ResourceMonitor.SetConfig", "params": {"config": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.ResourceMonitor.setConfig", "params": {"config": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
