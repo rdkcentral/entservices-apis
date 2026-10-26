@@ -143,14 +143,19 @@ namespace Exchange {
         // @json:omit
         // @text configure
         // @brief Configure DeviceSettings plugin
+        // @details Initializes the plugin using the framework service interface provided during plugin startup.
         // @param service: Framework service interface instance
+        // @example service: Framework-provided PluginHost::IShell instance
         // @retval Core::NONE: Indicates successful configuration
         virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
 
         /** Get all DeviceSettings static configuration in a single call. */
         // @text getDeviceSettingConfigs
         // @brief Get all DeviceSettings static configuration loaded by DeviceSettings plugin.
+        // @details Returns the platform configuration loaded by the DeviceSettings plugin. Video resolutions are returned for the default video port type.
         // @param configs: structure holding audio, FPD, video device and video port config arrays
+        // @example configs: {"audioTypes": [], "audioPorts": [], "textDisplays": [], "indicators": [], "colors": [], "colorBindings": [], "videoConfigs": [], "videoPortTypes": [], "videoPorts": [], "videoPortResolutions": []}
+        // @retval Core::ERROR_NONE: Configuration was retrieved successfully
         virtual Core::hresult GetDeviceSettingConfigs(DeviceSettingConfigs& configs /* @out */) = 0;
 
     };
