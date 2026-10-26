@@ -48,6 +48,10 @@ The table below lists configuration options of the plugin.
 <a id="IResourceMonitor"></a>
 ## IResourceMonitor Interface
 
+### Description
+
+Structure for the Resource monitor stats
+
 <a id="IResourceMonitor-Methods"></a>
 ### Methods
 
@@ -61,7 +65,7 @@ The following methods are provided by the IResourceMonitor Interface:
 | [GetStats](#GetStats) | Returns resource statistics. |
 | [GetSwapUsed](#GetSwapUsed) | Returns swap usage. |
 | [reconcile](#reconcile) | Requests a resource reconciliation pass, evicting inactive applications if required and permitted. |
-| [setConfig](#setConfig) |  |
+| [SetConfig](#SetConfig) | Loads Resource Monitor Configuration |
 
 <a id="GetFlashSpace"></a>
 ## *GetFlashSpace*
@@ -71,16 +75,14 @@ Returns flash usage.
 ### Events Triggered
 None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.total | integer |  |
-| params.used | integer |  |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.available | integer |  |
+| result.total | integer | Total flash storage quota for hibernated apps. |
+| result.used | integer | Flash storage currently consumed by hibernated apps. |
+| result.available | integer | Remaining flash storage available to hibernated apps. |
 
 ### Examples
 
@@ -91,11 +93,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 0,
-    "method": "org.rdk.ResourceMonitor.GetFlashSpace",
-    "params": {
-        "total": 0,
-        "used": 0
-    }
+    "method": "org.rdk.ResourceMonitor.GetFlashSpace"
 }
 ```
 
@@ -103,7 +101,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ResourceMonitor.GetFlashSpace", "params": {"total": 0, "used": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ResourceMonitor.GetFlashSpace"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -114,7 +112,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
     "jsonrpc": "2.0",
     "id": 0,
     "result": {
+        "total": 0,
+        "used": 0,
         "available": 0
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Failed to access flash storage information."
     }
 }
 ```
@@ -132,9 +146,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.memAvailable | integer |  |
-| result.swapFree | integer |  |
-| result.swapTotal | integer |  |
+| result.memAvailable | integer | Amount of available RAM in KiB. |
+| result.swapFree | integer | Amount of free swap space in KiB. |
+| result.swapTotal | integer | Total configured swap space in KiB. |
 
 ### Examples
 
@@ -171,6 +185,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Failed to read memory information from the system."
+    }
+}
+```
+
 <a id="GetPsiMetrics"></a>
 ## *GetPsiMetrics*
 
@@ -182,13 +210,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.metric | string |  |
+| params.metric | string | PSI metric selector |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.value | double |  |
-| result.total | integer |  |
+| result.value | double | PSI percentage value |
+| result.total | integer | PSI total value |
 
 ### Examples
 
@@ -227,6 +255,48 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
 }
 ```
 
+
+#### Error Response (Core::ERROR_BAD_REQUEST)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "error": {
+        "code": 240,
+        "message": "Invalid metric selector."
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "error": {
+        "code": 2,
+        "message": "PSI monitoring is disabled."
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Failed to access PSI statistics."
+    }
+}
+```
+
 <a id="GetStats"></a>
 ## *GetStats*
 
@@ -240,7 +310,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.stats | object |  |
+| result.stats | object | Structure containing memory, swap, flash, GPU and peak usage statistics. |
 | result.stats.systemMemTotal | integer |  |
 | result.stats.systemMemUsed | integer |  |
 | result.stats.systemMemAvailable | integer |  |
@@ -306,6 +376,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Failed to gather one or more resource statistics."
+    }
+}
+```
+
 <a id="GetSwapUsed"></a>
 ## *GetSwapUsed*
 
@@ -319,8 +403,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.swapUsed | integer |  |
-| result.memUsedTotal | integer |  |
+| result.swapUsed | integer | Uncompressed swap data currently stored in zram. |
+| result.memUsedTotal | integer | Actual memory consumed by zram. |
 
 ### Examples
 
@@ -352,6 +436,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "m
     "result": {
         "swapUsed": 0,
         "memUsedTotal": 0
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Failed to access zram statistics."
     }
 }
 ```
@@ -411,10 +509,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
 }
 ```
 
-<a id="setConfig"></a>
-## *setConfig*
+<a id="SetConfig"></a>
+## *SetConfig*
 
-
+Loads Resource Monitor Configuration
 
 ### Events Triggered
 None
@@ -437,7 +535,7 @@ None
 {
     "jsonrpc": "2.0",
     "id": 6,
-    "method": "org.rdk.ResourceMonitor.setConfig",
+    "method": "org.rdk.ResourceMonitor.SetConfig",
     "params": {
         "config": ""
     }
@@ -448,7 +546,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.ResourceMonitor.setConfig", "params": {"config": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.ResourceMonitor.SetConfig", "params": {"config": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -459,6 +557,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
     "jsonrpc": "2.0",
     "id": 6,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_BAD_REQUEST)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 6,
+    "error": {
+        "code": 240,
+        "message": "Invalid JSON configuration."
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_ILLEGAL_STATE)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 6,
+    "error": {
+        "code": 5,
+        "message": "Configuration change attempted after initialization."
+    }
 }
 ```
 
