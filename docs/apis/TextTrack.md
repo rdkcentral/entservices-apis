@@ -65,33 +65,33 @@ The following methods are provided by the ITextTrackClosedCaptionsStyle Interfac
 
 | Method | Description |
 | :-------- | :-------- |
-| [getBackgroundColor](#getBackgroundColor) | Getter for BackgroundColor |
-| [getBackgroundOpacity](#getBackgroundOpacity) | Getter for BackgroundOpacity |
+| [getBackgroundColor](#getBackgroundColor) | Gets the closed-caption background color. |
+| [getBackgroundOpacity](#getBackgroundOpacity) | Gets the closed-caption background opacity. |
 | [getClosedCaptionsStyle](#getClosedCaptionsStyle) | Gets the current ClosedCaptionsStyle settings. |
-| [getFontColor](#getFontColor) | Getter for FontColor |
-| [getFontEdge](#getFontEdge) | Getter for FontEdge |
-| [getFontEdgeColor](#getFontEdgeColor) | Getter for FontEdgeColor |
-| [getFontFamily](#getFontFamily) | Getter for FontFamily |
-| [getFontOpacity](#getFontOpacity) | Getter for FontOpacity |
-| [getFontSize](#getFontSize) | Getter for FontSize |
-| [getWindowColor](#getWindowColor) | Getter for WindowColor |
-| [getWindowOpacity](#getWindowOpacity) | Getter for WindowOpacity |
-| [setBackgroundColor](#setBackgroundColor) | Setter for BackgroundColor |
-| [setBackgroundOpacity](#setBackgroundOpacity) | Setter for BackgroundOpacity |
+| [getFontColor](#getFontColor) | Gets the closed-caption font color. |
+| [getFontEdge](#getFontEdge) | Gets the closed-caption font edge effect. |
+| [getFontEdgeColor](#getFontEdgeColor) | Gets the closed-caption font edge color. |
+| [getFontFamily](#getFontFamily) | Gets the closed-caption font family. |
+| [getFontOpacity](#getFontOpacity) | Gets the closed-caption font opacity. |
+| [getFontSize](#getFontSize) | Gets the closed-caption font size. |
+| [getWindowColor](#getWindowColor) | Gets the closed-caption window color. |
+| [getWindowOpacity](#getWindowOpacity) | Gets the closed-caption window opacity. |
+| [setBackgroundColor](#setBackgroundColor) | Sets the closed-caption background color. |
+| [setBackgroundOpacity](#setBackgroundOpacity) | Sets the closed-caption background opacity. |
 | [setClosedCaptionsStyle](#setClosedCaptionsStyle) | Sets the ClosedCaptionsStyle. |
-| [setFontColor](#setFontColor) | Setter for FontColor |
-| [setFontEdge](#setFontEdge) | Setter for FontEdge |
-| [setFontEdgeColor](#setFontEdgeColor) | Setter for FontEdgeColor |
-| [setFontFamily](#setFontFamily) | Setter for FontFamily |
-| [setFontOpacity](#setFontOpacity) | Setter for FontOpacity |
-| [setFontSize](#setFontSize) | Setter for FontSize |
-| [setWindowColor](#setWindowColor) | Setter for WindowColor |
-| [setWindowOpacity](#setWindowOpacity) | Setter for WindowOpacity |
+| [setFontColor](#setFontColor) | Sets the closed-caption font color. |
+| [setFontEdge](#setFontEdge) | Sets the closed-caption font edge effect. |
+| [setFontEdgeColor](#setFontEdgeColor) | Sets the closed-caption font edge color. |
+| [setFontFamily](#setFontFamily) | Sets the closed-caption font family. |
+| [setFontOpacity](#setFontOpacity) | Sets the closed-caption font opacity. |
+| [setFontSize](#setFontSize) | Sets the closed-caption font size. |
+| [setWindowColor](#setWindowColor) | Sets the closed-caption window color. |
+| [setWindowOpacity](#setWindowOpacity) | Sets the closed-caption window opacity. |
 
 <a id="getBackgroundColor"></a>
 ## *getBackgroundColor*
 
-Getter for BackgroundColor
+Returns the configured #rrggbb color or an empty string when using the stream default.
 
 ### Events Triggered
 None
@@ -101,7 +101,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.color | string |  |
+| result.color | string | Receives the configured background color. |
 
 ### Examples
 
@@ -110,7 +110,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.TextTrack.getBackgroundColor"
 }
@@ -120,7 +120,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.TextTrack.getBackgroundColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.TextTrack.getBackgroundColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -128,10 +128,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "result": {
-        "color": ""
+        "color": "#000000"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 18,
+    "error": {
+        "code": 1,
+        "message": "Background color could not be retrieved."
     }
 }
 ```
@@ -139,7 +153,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 <a id="getBackgroundOpacity"></a>
 ## *getBackgroundOpacity*
 
-Getter for BackgroundOpacity
+Returns the configured opacity percentage, or -1 when using the stream default.
 
 ### Events Triggered
 None
@@ -149,7 +163,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.opacity | integer |  |
+| result.opacity | integer | Receives the configured background opacity. |
 
 ### Examples
 
@@ -158,7 +172,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.TextTrack.getBackgroundOpacity"
 }
@@ -168,7 +182,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.TextTrack.getBackgroundOpacity"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 19, "method": "org.rdk.TextTrack.getBackgroundOpacity"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -176,10 +190,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "result": {
-        "opacity": 0
+        "opacity": 50
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 19,
+    "error": {
+        "code": 1,
+        "message": "Background opacity could not be retrieved."
     }
 }
 ```
@@ -187,7 +215,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 <a id="getClosedCaptionsStyle"></a>
 ## *getClosedCaptionsStyle*
 
-Gets the current ClosedCaptionsStyle settings.
+Returns the global closed-caption style configuration.
 
 ### Events Triggered
 None
@@ -197,7 +225,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.style | object | Contains the chosen styles |
+| result.style | object | Receives the current style settings. |
 | result.style.fontFamily | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 | result.style.fontSize | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 | result.style.fontColor | string |  |
@@ -216,7 +244,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.TextTrack.getClosedCaptionsStyle"
 }
@@ -226,7 +254,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.TextTrack.getClosedCaptionsStyle"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 20, "method": "org.rdk.TextTrack.getClosedCaptionsStyle"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -234,19 +262,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
-    "result": {
-        "fontFamily": "CONTENT_DEFAULT",
-        "fontSize": "CONTENT_DEFAULT",
-        "fontColor": "",
-        "fontOpacity": 0,
-        "fontEdge": "CONTENT_DEFAULT",
-        "fontEdgeColor": "",
-        "backgroundColor": "",
-        "backgroundOpacity": 0,
-        "windowColor": "",
-        "windowOpacity": 0
+    "result": "{fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR}"
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 20,
+    "error": {
+        "code": 1,
+        "message": "Style could not be retrieved."
     }
 }
 ```
@@ -254,7 +285,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 <a id="getFontColor"></a>
 ## *getFontColor*
 
-Getter for FontColor
+Returns the configured #rrggbb color or an empty string when using the stream default.
 
 ### Events Triggered
 None
@@ -264,7 +295,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.color | string |  |
+| result.color | string | Receives the configured font color. |
 
 ### Examples
 
@@ -273,7 +304,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.TextTrack.getFontColor"
 }
@@ -283,7 +314,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.TextTrack.getFontColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.TextTrack.getFontColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -291,10 +322,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": {
-        "color": ""
+        "color": "#000000"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 21,
+    "error": {
+        "code": 1,
+        "message": "Font color could not be retrieved."
     }
 }
 ```
@@ -302,7 +347,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 <a id="getFontEdge"></a>
 ## *getFontEdge*
 
-Getter for FontEdge
+Returns the currently configured global font edge effect.
 
 ### Events Triggered
 None
@@ -312,7 +357,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.edge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
+| result.edge | string | Receives the configured font edge effect. Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 
 ### Examples
 
@@ -321,7 +366,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.TextTrack.getFontEdge"
 }
@@ -331,7 +376,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.TextTrack.getFontEdge"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.TextTrack.getFontEdge"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -339,10 +384,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": {
-        "edge": "CONTENT_DEFAULT"
+        "edge": "RAISED"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 22,
+    "error": {
+        "code": 1,
+        "message": "Font edge could not be retrieved."
     }
 }
 ```
@@ -350,7 +409,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 <a id="getFontEdgeColor"></a>
 ## *getFontEdgeColor*
 
-Getter for FontEdgeColor
+Returns the configured #rrggbb color or an empty string when using the stream default.
 
 ### Events Triggered
 None
@@ -360,7 +419,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.color | string |  |
+| result.color | string | Receives the configured font edge color. |
 
 ### Examples
 
@@ -369,7 +428,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "method": "org.rdk.TextTrack.getFontEdgeColor"
 }
@@ -379,7 +438,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.TextTrack.getFontEdgeColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 23, "method": "org.rdk.TextTrack.getFontEdgeColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -387,10 +446,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "result": {
-        "color": ""
+        "color": "#000000"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 23,
+    "error": {
+        "code": 1,
+        "message": "Font edge color could not be retrieved."
     }
 }
 ```
@@ -398,7 +471,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 <a id="getFontFamily"></a>
 ## *getFontFamily*
 
-Getter for FontFamily
+Returns the currently configured global font family.
 
 ### Events Triggered
 None
@@ -408,7 +481,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.font | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
+| result.font | string | Receives the configured font family. Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 
 ### Examples
 
@@ -417,7 +490,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "method": "org.rdk.TextTrack.getFontFamily"
 }
@@ -427,7 +500,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.TextTrack.getFontFamily"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 24, "method": "org.rdk.TextTrack.getFontFamily"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -435,10 +508,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "result": {
-        "font": "CONTENT_DEFAULT"
+        "font": "PROPORTIONAL_SANS_SERIF"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 24,
+    "error": {
+        "code": 1,
+        "message": "Font family could not be retrieved."
     }
 }
 ```
@@ -446,7 +533,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 <a id="getFontOpacity"></a>
 ## *getFontOpacity*
 
-Getter for FontOpacity
+Returns the configured opacity percentage, or -1 when using the stream default.
 
 ### Events Triggered
 None
@@ -456,7 +543,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.opacity | integer |  |
+| result.opacity | integer | Receives the configured font opacity. |
 
 ### Examples
 
@@ -465,7 +552,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "method": "org.rdk.TextTrack.getFontOpacity"
 }
@@ -475,7 +562,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.TextTrack.getFontOpacity"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 25, "method": "org.rdk.TextTrack.getFontOpacity"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -483,10 +570,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "result": {
-        "opacity": 0
+        "opacity": 50
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 25,
+    "error": {
+        "code": 1,
+        "message": "Font opacity could not be retrieved."
     }
 }
 ```
@@ -494,7 +595,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 <a id="getFontSize"></a>
 ## *getFontSize*
 
-Getter for FontSize
+Returns the currently configured global font size.
 
 ### Events Triggered
 None
@@ -504,7 +605,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.size | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
+| result.size | string | Receives the configured font size. Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 
 ### Examples
 
@@ -513,7 +614,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "method": "org.rdk.TextTrack.getFontSize"
 }
@@ -523,7 +624,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.TextTrack.getFontSize"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 26, "method": "org.rdk.TextTrack.getFontSize"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -531,10 +632,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "result": {
-        "size": "CONTENT_DEFAULT"
+        "size": "REGULAR"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 26,
+    "error": {
+        "code": 1,
+        "message": "Font size could not be retrieved."
     }
 }
 ```
@@ -542,7 +657,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 <a id="getWindowColor"></a>
 ## *getWindowColor*
 
-Getter for WindowColor
+Returns the configured #rrggbb color or an empty string when using the stream default.
 
 ### Events Triggered
 None
@@ -552,7 +667,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.color | string |  |
+| result.color | string | Receives the configured window color. |
 
 ### Examples
 
@@ -561,7 +676,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "method": "org.rdk.TextTrack.getWindowColor"
 }
@@ -571,7 +686,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.TextTrack.getWindowColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 27, "method": "org.rdk.TextTrack.getWindowColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -579,10 +694,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "result": {
-        "color": ""
+        "color": "#000000"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 27,
+    "error": {
+        "code": 1,
+        "message": "Window color could not be retrieved."
     }
 }
 ```
@@ -590,7 +719,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 <a id="getWindowOpacity"></a>
 ## *getWindowOpacity*
 
-Getter for WindowOpacity
+Returns the configured opacity percentage, or -1 when using the stream default.
 
 ### Events Triggered
 None
@@ -600,7 +729,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.opacity | integer |  |
+| result.opacity | integer | Receives the configured window opacity. |
 
 ### Examples
 
@@ -609,7 +738,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "method": "org.rdk.TextTrack.getWindowOpacity"
 }
@@ -619,7 +748,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.TextTrack.getWindowOpacity"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 28, "method": "org.rdk.TextTrack.getWindowOpacity"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -627,10 +756,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "result": {
-        "opacity": 0
+        "opacity": 50
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 28,
+    "error": {
+        "code": 1,
+        "message": "Window opacity could not be retrieved."
     }
 }
 ```
@@ -638,7 +781,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 <a id="setBackgroundColor"></a>
 ## *setBackgroundColor*
 
-Setter for BackgroundColor
+Provide a #rrggbb color or an empty string to use the stream default.
 
 ### Events Triggered
 None
@@ -646,7 +789,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Background color to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -659,11 +802,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "method": "org.rdk.TextTrack.setBackgroundColor",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -672,7 +815,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.TextTrack.setBackgroundColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 29, "method": "org.rdk.TextTrack.setBackgroundColor", "params": {"color": "#000000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -680,16 +823,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 29,
+    "error": {
+        "code": 1,
+        "message": "Background color could not be updated."
+    }
 }
 ```
 
 <a id="setBackgroundOpacity"></a>
 ## *setBackgroundOpacity*
 
-Setter for BackgroundOpacity
+Opacity is a percentage from 0 (transparent) to 100 (solid); -1 uses the stream default.
 
 ### Events Triggered
 None
@@ -697,7 +854,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.opacity | integer |  |
+| params.opacity | integer | Background opacity to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -710,11 +867,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "method": "org.rdk.TextTrack.setBackgroundOpacity",
     "params": {
-        "opacity": 0
+        "opacity": 50
     }
 }
 ```
@@ -723,7 +880,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.TextTrack.setBackgroundOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 30, "method": "org.rdk.TextTrack.setBackgroundOpacity", "params": {"opacity": 50}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -731,9 +888,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 30,
+    "error": {
+        "code": 1,
+        "message": "Background opacity could not be updated."
+    }
 }
 ```
 
@@ -771,21 +942,10 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "method": "org.rdk.TextTrack.setClosedCaptionsStyle",
-    "params": {
-        "fontFamily": "CONTENT_DEFAULT",
-        "fontSize": "CONTENT_DEFAULT",
-        "fontColor": "",
-        "fontOpacity": 0,
-        "fontEdge": "CONTENT_DEFAULT",
-        "fontEdgeColor": "",
-        "backgroundColor": "",
-        "backgroundOpacity": 0,
-        "windowColor": "",
-        "windowOpacity": 0
-    }
+    "params": "{fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR}"
 }
 ```
 
@@ -793,7 +953,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.TextTrack.setClosedCaptionsStyle", "params": {"fontFamily": "CONTENT_DEFAULT", "fontSize": "CONTENT_DEFAULT", "fontColor": "", "fontOpacity": 0, "fontEdge": "CONTENT_DEFAULT", "fontEdgeColor": "", "backgroundColor": "", "backgroundOpacity": 0, "windowColor": "", "windowOpacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 31, "method": "org.rdk.TextTrack.setClosedCaptionsStyle", "params": "{fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR}"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -801,16 +961,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 31,
+    "error": {
+        "code": 1,
+        "message": "Style could not be updated."
+    }
 }
 ```
 
 <a id="setFontColor"></a>
 ## *setFontColor*
 
-Setter for FontColor
+Provide a #rrggbb color or an empty string to use the stream default.
 
 ### Events Triggered
 None
@@ -818,7 +992,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Font color to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -831,11 +1005,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "method": "org.rdk.TextTrack.setFontColor",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -844,7 +1018,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.TextTrack.setFontColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 32, "method": "org.rdk.TextTrack.setFontColor", "params": {"color": "#000000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -852,16 +1026,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 32,
+    "error": {
+        "code": 1,
+        "message": "Font color could not be updated."
+    }
 }
 ```
 
 <a id="setFontEdge"></a>
 ## *setFontEdge*
 
-Setter for FontEdge
+The edge effect improves the visual separation of caption text from its background.
 
 ### Events Triggered
 None
@@ -869,7 +1057,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.edge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
+| params.edge | string | Font edge effect to apply. Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -882,11 +1070,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "method": "org.rdk.TextTrack.setFontEdge",
     "params": {
-        "edge": "CONTENT_DEFAULT"
+        "edge": "RAISED"
     }
 }
 ```
@@ -895,7 +1083,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.TextTrack.setFontEdge", "params": {"edge": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 33, "method": "org.rdk.TextTrack.setFontEdge", "params": {"edge": "RAISED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -903,16 +1091,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 33,
+    "error": {
+        "code": 1,
+        "message": "Font edge could not be updated."
+    }
 }
 ```
 
 <a id="setFontEdgeColor"></a>
 ## *setFontEdgeColor*
 
-Setter for FontEdgeColor
+Provide a #rrggbb color or an empty string to use the stream default.
 
 ### Events Triggered
 None
@@ -920,7 +1122,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Font edge color to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -933,11 +1135,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "method": "org.rdk.TextTrack.setFontEdgeColor",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -946,7 +1148,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.TextTrack.setFontEdgeColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 34, "method": "org.rdk.TextTrack.setFontEdgeColor", "params": {"color": "#000000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -954,16 +1156,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 34,
+    "error": {
+        "code": 1,
+        "message": "Font edge color could not be updated."
+    }
 }
 ```
 
 <a id="setFontFamily"></a>
 ## *setFontFamily*
 
-Setter for FontFamily
+The selected family is applied unless the stream or a session-specific style overrides it.
 
 ### Events Triggered
 None
@@ -971,7 +1187,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.font | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
+| params.font | string | Font family to apply. Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -984,11 +1200,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "method": "org.rdk.TextTrack.setFontFamily",
     "params": {
-        "font": "CONTENT_DEFAULT"
+        "font": "PROPORTIONAL_SANS_SERIF"
     }
 }
 ```
@@ -997,7 +1213,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.TextTrack.setFontFamily", "params": {"font": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 35, "method": "org.rdk.TextTrack.setFontFamily", "params": {"font": "PROPORTIONAL_SANS_SERIF"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1005,16 +1221,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 35,
+    "error": {
+        "code": 1,
+        "message": "Font family could not be updated."
+    }
 }
 ```
 
 <a id="setFontOpacity"></a>
 ## *setFontOpacity*
 
-Setter for FontOpacity
+Opacity is a percentage from 0 (transparent) to 100 (solid); -1 uses the stream default.
 
 ### Events Triggered
 None
@@ -1022,7 +1252,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.opacity | integer |  |
+| params.opacity | integer | Font opacity to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1035,11 +1265,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "method": "org.rdk.TextTrack.setFontOpacity",
     "params": {
-        "opacity": 0
+        "opacity": 50
     }
 }
 ```
@@ -1048,7 +1278,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.TextTrack.setFontOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 36, "method": "org.rdk.TextTrack.setFontOpacity", "params": {"opacity": 50}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1056,16 +1286,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 36,
+    "error": {
+        "code": 1,
+        "message": "Font opacity could not be updated."
+    }
 }
 ```
 
 <a id="setFontSize"></a>
 ## *setFontSize*
 
-Setter for FontSize
+The size can use the content default or a configured caption size.
 
 ### Events Triggered
 None
@@ -1073,7 +1317,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.size | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
+| params.size | string | Font size to apply. Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1086,11 +1330,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "method": "org.rdk.TextTrack.setFontSize",
     "params": {
-        "size": "CONTENT_DEFAULT"
+        "size": "REGULAR"
     }
 }
 ```
@@ -1099,7 +1343,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.TextTrack.setFontSize", "params": {"size": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 37, "method": "org.rdk.TextTrack.setFontSize", "params": {"size": "REGULAR"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1107,16 +1351,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 37,
+    "error": {
+        "code": 1,
+        "message": "Font size could not be updated."
+    }
 }
 ```
 
 <a id="setWindowColor"></a>
 ## *setWindowColor*
 
-Setter for WindowColor
+Provide a #rrggbb color or an empty string to use the stream default.
 
 ### Events Triggered
 None
@@ -1124,7 +1382,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Window color to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1137,11 +1395,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "method": "org.rdk.TextTrack.setWindowColor",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -1150,7 +1408,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.TextTrack.setWindowColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 38, "method": "org.rdk.TextTrack.setWindowColor", "params": {"color": "#000000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1158,16 +1416,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 38,
+    "error": {
+        "code": 1,
+        "message": "Window color could not be updated."
+    }
 }
 ```
 
 <a id="setWindowOpacity"></a>
 ## *setWindowOpacity*
 
-Setter for WindowOpacity
+Opacity is a percentage from 0 (transparent) to 100 (solid); -1 uses the stream default.
 
 ### Events Triggered
 None
@@ -1175,7 +1447,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.opacity | integer |  |
+| params.opacity | integer | Window opacity to apply. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1188,11 +1460,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "method": "org.rdk.TextTrack.setWindowOpacity",
     "params": {
-        "opacity": 0
+        "opacity": 50
     }
 }
 ```
@@ -1201,7 +1473,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.TextTrack.setWindowOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 39, "method": "org.rdk.TextTrack.setWindowOpacity", "params": {"opacity": 50}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1209,9 +1481,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 39,
+    "error": {
+        "code": 1,
+        "message": "Window opacity could not be updated."
+    }
 }
 ```
 
@@ -1224,38 +1510,38 @@ The following events are provided by the ITextTrackClosedCaptionsStyle Interface
 
 | Event | Description |
 | :-------- | :-------- |
-| [onBackgroundColorChanged](#onBackgroundColorChanged) | Notify backgroundColor Changed |
-| [onBackgroundOpacityChanged](#onBackgroundOpacityChanged) | Notify backgroundOpacity Changed |
+| [onBackgroundColorChanged](#onBackgroundColorChanged) | Notifies that the configured background color changed. |
+| [onBackgroundOpacityChanged](#onBackgroundOpacityChanged) | Notifies that the configured background opacity changed. |
 | [onClosedCaptionsStyleChanged](#onClosedCaptionsStyleChanged) | The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to get the new settings. |
-| [onFontColorChanged](#onFontColorChanged) | Notify fontColor Changed |
-| [onFontEdgeChanged](#onFontEdgeChanged) | Notify fontEdge Changed |
-| [onFontEdgeColorChanged](#onFontEdgeColorChanged) | Notify fontEdgeColor Changed |
-| [onFontFamilyChanged](#onFontFamilyChanged) | Notify fontFamily Changed |
-| [onFontOpacityChanged](#onFontOpacityChanged) | Notify fontOpacity Changed |
-| [onFontSizeChanged](#onFontSizeChanged) | Notify fontSize Changed |
-| [onWindowColorChanged](#onWindowColorChanged) | Notify windowColor Changed |
-| [onWindowOpacityChanged](#onWindowOpacityChanged) | Notify windowOpacity Changed |
+| [onFontColorChanged](#onFontColorChanged) | Notifies that the configured font color changed. |
+| [onFontEdgeChanged](#onFontEdgeChanged) | Notifies that the configured font edge changed. |
+| [onFontEdgeColorChanged](#onFontEdgeColorChanged) | Notifies that the configured font edge color changed. |
+| [onFontFamilyChanged](#onFontFamilyChanged) | Notifies that the configured font family changed. |
+| [onFontOpacityChanged](#onFontOpacityChanged) | Notifies that the configured font opacity changed. |
+| [onFontSizeChanged](#onFontSizeChanged) | Notifies that the configured font size changed. |
+| [onWindowColorChanged](#onWindowColorChanged) | Notifies that the configured window color changed. |
+| [onWindowOpacityChanged](#onWindowOpacityChanged) | Notifies that the configured window opacity changed. |
 
 <a id="onBackgroundColorChanged"></a>
 ## *onBackgroundColorChanged*
 
-Notify backgroundColor Changed
+The new value can be retrieved with GetBackgroundColor().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Updated background color. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.TextTrack.onBackgroundColorChanged",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -1263,23 +1549,23 @@ Notify backgroundColor Changed
 <a id="onBackgroundOpacityChanged"></a>
 ## *onBackgroundOpacityChanged*
 
-Notify backgroundOpacity Changed
+The new value can be retrieved with GetBackgroundOpacity().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.opacity | integer |  |
+| params.opacity | integer | Updated background opacity percentage, or -1 for the stream default. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 43,
     "method": "org.rdk.TextTrack.onBackgroundOpacityChanged",
     "params": {
-        "opacity": 0
+        "opacity": 50
     }
 }
 ```
@@ -1287,13 +1573,13 @@ Notify backgroundOpacity Changed
 <a id="onClosedCaptionsStyleChanged"></a>
 ## *onClosedCaptionsStyleChanged*
 
-The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to get the new settings.
+The notification carries the updated global style values.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.style | object | Contains the chosen styles |
+| params.style | object | Updated closed-caption style. |
 | params.style.fontFamily | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 | params.style.fontSize | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 | params.style.fontColor | string |  |
@@ -1309,44 +1595,33 @@ The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to g
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 44,
     "method": "org.rdk.TextTrack.onClosedCaptionsStyleChanged",
-    "params": {
-        "fontFamily": "CONTENT_DEFAULT",
-        "fontSize": "CONTENT_DEFAULT",
-        "fontColor": "",
-        "fontOpacity": 0,
-        "fontEdge": "CONTENT_DEFAULT",
-        "fontEdgeColor": "",
-        "backgroundColor": "",
-        "backgroundOpacity": 0,
-        "windowColor": "",
-        "windowOpacity": 0
-    }
+    "params": "{fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR}"
 }
 ```
 
 <a id="onFontColorChanged"></a>
 ## *onFontColorChanged*
 
-Notify fontColor Changed
+The new value can be retrieved with GetFontColor().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Updated font color. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 45,
     "method": "org.rdk.TextTrack.onFontColorChanged",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -1354,23 +1629,23 @@ Notify fontColor Changed
 <a id="onFontEdgeChanged"></a>
 ## *onFontEdgeChanged*
 
-Notify fontEdge Changed
+The new value can be retrieved with GetFontEdge().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.edge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
+| params.edge | string | Updated font edge effect. Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 46,
     "method": "org.rdk.TextTrack.onFontEdgeChanged",
     "params": {
-        "edge": "CONTENT_DEFAULT"
+        "edge": "RAISED"
     }
 }
 ```
@@ -1378,23 +1653,23 @@ Notify fontEdge Changed
 <a id="onFontEdgeColorChanged"></a>
 ## *onFontEdgeColorChanged*
 
-Notify fontEdgeColor Changed
+The new value can be retrieved with GetFontEdgeColor().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Updated font edge color. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 47,
     "method": "org.rdk.TextTrack.onFontEdgeColorChanged",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -1402,23 +1677,23 @@ Notify fontEdgeColor Changed
 <a id="onFontFamilyChanged"></a>
 ## *onFontFamilyChanged*
 
-Notify fontFamily Changed
+The new value can be retrieved with GetFontFamily().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.font | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
+| params.font | string | Updated font family. Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 48,
     "method": "org.rdk.TextTrack.onFontFamilyChanged",
     "params": {
-        "font": "CONTENT_DEFAULT"
+        "font": "PROPORTIONAL_SANS_SERIF"
     }
 }
 ```
@@ -1426,23 +1701,23 @@ Notify fontFamily Changed
 <a id="onFontOpacityChanged"></a>
 ## *onFontOpacityChanged*
 
-Notify fontOpacity Changed
+The new value can be retrieved with GetFontOpacity().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.opacity | integer |  |
+| params.opacity | integer | Updated font opacity percentage, or -1 for the stream default. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 49,
     "method": "org.rdk.TextTrack.onFontOpacityChanged",
     "params": {
-        "opacity": 0
+        "opacity": 50
     }
 }
 ```
@@ -1450,23 +1725,23 @@ Notify fontOpacity Changed
 <a id="onFontSizeChanged"></a>
 ## *onFontSizeChanged*
 
-Notify fontSize Changed
+The new value can be retrieved with GetFontSize().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.size | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
+| params.size | string | Updated font size. Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 50,
     "method": "org.rdk.TextTrack.onFontSizeChanged",
     "params": {
-        "size": "CONTENT_DEFAULT"
+        "size": "REGULAR"
     }
 }
 ```
@@ -1474,23 +1749,23 @@ Notify fontSize Changed
 <a id="onWindowColorChanged"></a>
 ## *onWindowColorChanged*
 
-Notify windowColor Changed
+The new value can be retrieved with GetWindowColor().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.color | string |  |
+| params.color | string | Updated window color. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 52,
     "method": "org.rdk.TextTrack.onWindowColorChanged",
     "params": {
-        "color": ""
+        "color": "#000000"
     }
 }
 ```
@@ -1498,23 +1773,23 @@ Notify windowColor Changed
 <a id="onWindowOpacityChanged"></a>
 ## *onWindowOpacityChanged*
 
-Notify windowOpacity Changed
+The new value can be retrieved with GetWindowOpacity().
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.opacity | integer |  |
+| params.opacity | integer | Updated window opacity percentage, or -1 for the stream default. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 53,
     "method": "org.rdk.TextTrack.onWindowOpacityChanged",
     "params": {
-        "opacity": 0
+        "opacity": 50
     }
 }
 ```
@@ -1537,7 +1812,7 @@ The following methods are provided by the ITextTrackTtmlStyle Interface:
 <a id="getTtmlStyleOverrides"></a>
 ## *getTtmlStyleOverrides*
 
-Gets the global TTML style overrides
+Returns the persisted global override string applied to TTML sessions.
 
 ### Events Triggered
 None
@@ -1556,7 +1831,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "method": "org.rdk.TextTrack.getTtmlStyleOverrides"
 }
@@ -1566,7 +1841,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.TextTrack.getTtmlStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 40, "method": "org.rdk.TextTrack.getTtmlStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1574,10 +1849,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "result": {
-        "style": ""
+        "style": "color: white;fontSize: 1.2em"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 40,
+    "error": {
+        "code": 1,
+        "message": "TTML style overrides could not be retrieved."
     }
 }
 ```
@@ -1606,11 +1895,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "method": "org.rdk.TextTrack.setTtmlStyleOverrides",
     "params": {
-        "style": ""
+        "style": "color: white;fontSize: 1.2em"
     }
 }
 ```
@@ -1619,7 +1908,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.TextTrack.setTtmlStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 41, "method": "org.rdk.TextTrack.setTtmlStyleOverrides", "params": {"style": "color: white;fontSize: 1.2em"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1627,9 +1916,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 41,
+    "error": {
+        "code": 1,
+        "message": "TTML style overrides could not be updated."
+    }
 }
 ```
 
@@ -1647,23 +1950,23 @@ The following events are provided by the ITextTrackTtmlStyle Interface:
 <a id="onTtmlStyleOverridesChanged"></a>
 ## *onTtmlStyleOverridesChanged*
 
-The TTML Style override settings has changed.
+The notification contains the updated global TTML style override string.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.style | string | Contains the chosen override for styles |
+| params.style | string | Updated TTML style overrides. |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 51,
     "method": "org.rdk.TextTrack.onTtmlStyleOverridesChanged",
     "params": {
-        "style": ""
+        "style": "color: white;fontSize: 1.2em"
     }
 }
 ```
@@ -1686,7 +1989,7 @@ The following methods are provided by the ITextTrackCapabilities Interface:
 <a id="getCapabilities"></a>
 ## *getCapabilities*
 
-Retrieves an iterator over all supported TextTrack capabilities.
+Enumerates the capabilities supported by this implementation.
 
 ### Events Triggered
 None
@@ -1706,7 +2009,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.TextTrack.getCapabilities"
 }
@@ -1716,7 +2019,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.getCapabilities"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.TextTrack.getCapabilities"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1724,10 +2027,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "result": [
-        "UNSET"
+        "[FIREBOLT_MIGRATION]"
     ]
 }
 ```
@@ -1737,7 +2040,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "error": {
         "code": 22,
@@ -1749,7 +2052,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 <a id="getCapability"></a>
 ## *getCapability*
 
-Queries whether a specific TextTrack capability is supported by the implementation.
+Query support before relying on optional TextTrack functionality.
 
 ### Events Triggered
 None
@@ -1771,7 +2074,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.TextTrack.getCapability",
     "params": {
@@ -1784,7 +2087,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "FIREBOLT_MIGRATION"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "FIREBOLT_MIGRATION"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1792,7 +2095,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "result": {
         "hasCapability": true
@@ -1805,7 +2108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "error": {
         "code": 22,
@@ -1827,11 +2130,11 @@ The following methods are provided by the ITextTrack Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [closeSession](#closeSession) | Closes a previously opened render session. |
-| [muteSession](#muteSession) | Mute will hide rendering of Captions |
+| [muteSession](#muteSession) | Mutes a render session. |
 | [openSession](#openSession) | Opens a new renderSession. |
 | [pauseSession](#pauseSession) | Pauses a render session. |
 | [resetSession](#resetSession) | Resets a previously opened render session back to its opened state. |
-| [resumeSession](#resumeSession) | Resumed a paused session |
+| [resumeSession](#resumeSession) | Resumes a paused render session. |
 | [sendSessionData](#sendSessionData) | Sends data of Closed Captions, Captions or Timed Text data to a render session. |
 | [sendSessionTimestamp](#sendSessionTimestamp) | Sends the current timestamp from a media player to a render session. |
 | [setPreviewText](#setPreviewText) | Sets a static text in the display for preview purposes. |
@@ -1867,7 +2170,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.TextTrack.closeSession",
     "params": {
@@ -1880,7 +2183,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.TextTrack.closeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.TextTrack.closeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1888,16 +2191,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Session could not be closed."
+    }
 }
 ```
 
 <a id="muteSession"></a>
 ## *muteSession*
 
-Mute will hide rendering of Captions
+Caption rendering is hidden until the session is unmuted.
 
 ### Events Triggered
 None
@@ -1918,7 +2235,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.TextTrack.muteSession",
     "params": {
@@ -1931,7 +2248,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextTrack.muteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.TextTrack.muteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1939,9 +2256,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Session could not be muted."
+    }
 }
 ```
 
@@ -1970,11 +2301,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.TextTrack.openSession",
     "params": {
-        "displayHandle": ""
+        "displayHandle": "wayland-0"
     }
 }
 ```
@@ -1983,7 +2314,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": "wayland-0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1991,10 +2322,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "sessionId": 1
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Session could not be opened."
     }
 }
 ```
@@ -2023,7 +2368,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.TextTrack.pauseSession",
     "params": {
@@ -2036,7 +2381,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextTrack.pauseSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.TextTrack.pauseSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2044,9 +2389,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Session could not be paused."
+    }
 }
 ```
 
@@ -2074,7 +2433,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.TextTrack.resetSession",
     "params": {
@@ -2087,7 +2446,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.resetSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.TextTrack.resetSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2095,16 +2454,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Session could not be reset."
+    }
 }
 ```
 
 <a id="resumeSession"></a>
 ## *resumeSession*
 
-Resumed a paused session
+Rendering continues for the session after it has been resumed.
 
 ### Events Triggered
 None
@@ -2125,7 +2498,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.TextTrack.resumeSession",
     "params": {
@@ -2138,7 +2511,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextTrack.resumeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.TextTrack.resumeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2146,16 +2519,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Session could not be resumed."
+    }
 }
 ```
 
 <a id="sendSessionData"></a>
 ## *sendSessionData*
 
-Sends data of Closed Captions, Captions or Timed Text data to a render session.
+Data is decoded according to the selected session type and rendered according to its presentation timestamps.
 
 ### Events Triggered
 None
@@ -2179,14 +2566,14 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.TextTrack.sendSessionData",
     "params": {
         "sessionId": 1,
-        "type": "PES",
+        "type": "TTML",
         "displayOffsetMs": 0,
-        "data": ""
+        "data": "<tt>Caption</tt>"
     }
 }
 ```
@@ -2195,7 +2582,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextTrack.sendSessionData", "params": {"sessionId": 1, "type": "PES", "displayOffsetMs": 0, "data": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.TextTrack.sendSessionData", "params": {"sessionId": 1, "type": "TTML", "displayOffsetMs": 0, "data": "<tt>Caption</tt>"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2203,9 +2590,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "Session data could not be sent."
+    }
 }
 ```
 
@@ -2234,12 +2635,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.TextTrack.sendSessionTimestamp",
     "params": {
         "sessionId": 1,
-        "mediaTimestampMs": 0
+        "mediaTimestampMs": 123456
     }
 }
 ```
@@ -2248,7 +2649,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextTrack.sendSessionTimestamp", "params": {"sessionId": 1, "mediaTimestampMs": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.TextTrack.sendSessionTimestamp", "params": {"sessionId": 1, "mediaTimestampMs": 123456}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2256,9 +2657,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "Session timestamp could not be sent."
+    }
 }
 ```
 
@@ -2287,12 +2702,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.TextTrack.setPreviewText",
     "params": {
         "sessionId": 1,
-        "text": ""
+        "text": "Sample captions"
     }
 }
 ```
@@ -2301,7 +2716,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextTrack.setPreviewText", "params": {"sessionId": 1, "text": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.TextTrack.setPreviewText", "params": {"sessionId": 1, "text": "Sample captions"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2309,7 +2724,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": null
 }
@@ -2320,7 +2735,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "error": {
         "code": 22,
@@ -2354,7 +2769,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.TextTrack.setSessionClosedCaptionsService",
     "params": {
@@ -2368,7 +2783,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextTrack.setSessionClosedCaptionsService", "params": {"sessionId": 1, "service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.TextTrack.setSessionClosedCaptionsService", "params": {"sessionId": 1, "service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2376,16 +2791,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "Closed-caption service could not be selected."
+    }
 }
 ```
 
 <a id="setSessionDvbSubtitleSelection"></a>
 ## *setSessionDvbSubtitleSelection*
 
-Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
+Selects the composition and ancillary pages used to decode and present DVB subtitles in the render session.
 
 ### Events Triggered
 None
@@ -2408,13 +2837,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection",
     "params": {
         "sessionId": 1,
-        "compositionPageId": 0,
-        "ancillaryPageId": 0
+        "compositionPageId": 1,
+        "ancillaryPageId": 1
     }
 }
 ```
@@ -2423,7 +2852,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection", "params": {"sessionId": 1, "compositionPageId": 0, "ancillaryPageId": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection", "params": {"sessionId": 1, "compositionPageId": 1, "ancillaryPageId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2431,16 +2860,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "DVB subtitle pages could not be selected."
+    }
 }
 ```
 
 <a id="setSessionSCTESelection"></a>
 ## *setSessionSCTESelection*
 
-Set the render session into SCTE mode
+Selects SCTE data for decoding and presentation in the render session.
 
 ### Events Triggered
 None
@@ -2461,7 +2904,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.TextTrack.setSessionSCTESelection",
     "params": {
@@ -2474,7 +2917,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextTrack.setSessionSCTESelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.TextTrack.setSessionSCTESelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2482,16 +2925,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "SCTE mode could not be selected."
+    }
 }
 ```
 
 <a id="setSessionTTMLSelection"></a>
 ## *setSessionTTMLSelection*
 
-Set the render session into TTML mode
+Selects TTML data for decoding and presentation in the render session.
 
 ### Events Triggered
 None
@@ -2512,7 +2969,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.TextTrack.setSessionTTMLSelection",
     "params": {
@@ -2525,7 +2982,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextTrack.setSessionTTMLSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.TextTrack.setSessionTTMLSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2533,16 +2990,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 12,
+    "error": {
+        "code": 1,
+        "message": "TTML mode could not be selected."
+    }
 }
 ```
 
 <a id="setSessionTeletextSelection"></a>
 ## *setSessionTeletextSelection*
 
-Set the render session into Teletext mode, providing the teletext caption page for presentation
+Selects the requested Teletext page for decoding and presentation in the render session.
 
 ### Events Triggered
 None
@@ -2564,12 +3035,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.TextTrack.setSessionTeletextSelection",
     "params": {
         "sessionId": 1,
-        "page": 0
+        "page": 100
     }
 }
 ```
@@ -2578,7 +3049,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.TextTrack.setSessionTeletextSelection", "params": {"sessionId": 1, "page": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.TextTrack.setSessionTeletextSelection", "params": {"sessionId": 1, "page": 100}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2586,16 +3057,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 13,
+    "error": {
+        "code": 1,
+        "message": "Teletext page could not be selected."
+    }
 }
 ```
 
 <a id="setSessionWebVTTSelection"></a>
 ## *setSessionWebVTTSelection*
 
-Set the render session into WebVTT mode
+Selects WebVTT data for decoding and presentation in the render session.
 
 ### Events Triggered
 None
@@ -2616,7 +3101,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.TextTrack.setSessionWebVTTSelection",
     "params": {
@@ -2629,7 +3114,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.TextTrack.setSessionWebVTTSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.TextTrack.setSessionWebVTTSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2637,9 +3122,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 14,
+    "error": {
+        "code": 1,
+        "message": "WebVTT mode could not be selected."
+    }
 }
 ```
 
@@ -2667,7 +3166,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.TextTrack.unMuteSession",
     "params": {
@@ -2680,7 +3179,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.TextTrack.unMuteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.TextTrack.unMuteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2688,9 +3187,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 15,
+    "error": {
+        "code": 1,
+        "message": "Session could not be unmuted."
+    }
 }
 ```
 

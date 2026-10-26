@@ -111,57 +111,90 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
 
         /**
          * @brief The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to get the new settings.
+         * @details The notification carries the updated global style values.
+         * @param style Updated closed-caption style.
+         * @example style: {fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR}
          * @text onClosedCaptionsStyleChanged
          */
         virtual void OnClosedCaptionsStyleChanged(const ClosedCaptionsStyle &style) = 0; // Works with ThunderTools >= 4.4.3
 
         /**
-         * @brief Notify fontFamily Changed
+         * @brief Notifies that the configured font family changed.
+         * @details The new value can be retrieved with GetFontFamily().
+         * @param font Updated font family.
+         * @example font: PROPORTIONAL_SANS_SERIF
          * @text onFontFamilyChanged
          */
         virtual void OnFontFamilyChanged(const FontFamily font) {};
         /**
-         * @brief Notify fontSize Changed
+         * @brief Notifies that the configured font size changed.
+         * @details The new value can be retrieved with GetFontSize().
+         * @param size Updated font size.
+         * @example size: REGULAR
          * @text onFontSizeChanged
          */
         virtual void OnFontSizeChanged(const FontSize size) {};
         /**
-         * @brief Notify fontColor Changed
+         * @brief Notifies that the configured font color changed.
+         * @details The new value can be retrieved with GetFontColor().
+         * @param color Updated font color.
+         * @example color: "#ffffff"
          * @text onFontColorChanged
          */
         virtual void OnFontColorChanged(const string &color) {};
         /**
-         * @brief Notify fontOpacity Changed
+         * @brief Notifies that the configured font opacity changed.
+         * @details The new value can be retrieved with GetFontOpacity().
+         * @param opacity Updated font opacity percentage, or -1 for the stream default.
+         * @example opacity: 100
          * @text onFontOpacityChanged
          */
         virtual void OnFontOpacityChanged(const int8_t opacity) {};
         /**
-         * @brief Notify fontEdge Changed
+         * @brief Notifies that the configured font edge changed.
+         * @details The new value can be retrieved with GetFontEdge().
+         * @param edge Updated font edge effect.
+         * @example edge: RAISED
          * @text onFontEdgeChanged
          */
         virtual void OnFontEdgeChanged(const FontEdge edge) {};
         /**
-         * @brief Notify fontEdgeColor Changed
+         * @brief Notifies that the configured font edge color changed.
+         * @details The new value can be retrieved with GetFontEdgeColor().
+         * @param color Updated font edge color.
+         * @example color: "#000000"
          * @text onFontEdgeColorChanged
          */
         virtual void OnFontEdgeColorChanged(const string &color) {};
         /**
-         * @brief Notify backgroundColor Changed
+         * @brief Notifies that the configured background color changed.
+         * @details The new value can be retrieved with GetBackgroundColor().
+         * @param color Updated background color.
+         * @example color: "#000000"
          * @text onBackgroundColorChanged
          */
         virtual void OnBackgroundColorChanged(const string &color) {};
         /**
-         * @brief Notify backgroundOpacity Changed
+         * @brief Notifies that the configured background opacity changed.
+         * @details The new value can be retrieved with GetBackgroundOpacity().
+         * @param opacity Updated background opacity percentage, or -1 for the stream default.
+         * @example opacity: 50
          * @text onBackgroundOpacityChanged
          */
         virtual void OnBackgroundOpacityChanged(const int8_t opacity) {};
         /**
-         * @brief Notify windowColor Changed
+         * @brief Notifies that the configured window color changed.
+         * @details The new value can be retrieved with GetWindowColor().
+         * @param color Updated window color.
+         * @example color: "#000000"
          * @text onWindowColorChanged
          */
         virtual void OnWindowColorChanged(const string &color) {};
         /**
-         * @brief Notify windowOpacity Changed
+         * @brief Notifies that the configured window opacity changed.
+         * @details The new value can be retrieved with GetWindowOpacity().
+         * @param opacity Updated window opacity percentage, or -1 for the stream default.
+         * @example opacity: 50
          * @text onWindowOpacityChanged
          */
         virtual void OnWindowOpacityChanged(const int8_t opacity) {};
@@ -181,11 +214,19 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
      * @details For all values it is possible to keep or override the stream default.
      * The style setting will take effect immediately in all running (Closed Captions) sessions, which has not applied a custom style.
      * @param style Contains the chosen styles
+     * @example style: {fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR, fontColor: "#ffffff"}
+     * @retval Core::ERROR_NONE: Style updated successfully.
+     * @retval Core::ERROR_GENERAL: Style could not be updated.
      * @text setClosedCaptionsStyle
      */
     virtual Core::hresult SetClosedCaptionsStyle(const ClosedCaptionsStyle &style) = 0;
     /**
      * @brief Gets the current ClosedCaptionsStyle settings.
+     * @details Returns the global closed-caption style configuration.
+     * @param style Receives the current style settings.
+     * @example style: {fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR, fontColor: "#ffffff"}
+     * @retval Core::ERROR_NONE: Style retrieved successfully.
+     * @retval Core::ERROR_GENERAL: Style could not be retrieved.
      * @text getClosedCaptionsStyle
      */
     virtual Core::hresult GetClosedCaptionsStyle(ClosedCaptionsStyle &style /* @out */) const = 0;
@@ -196,110 +237,210 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
      */
 
     /**
-     * @brief Setter for FontFamily
+    * @brief Sets the closed-caption font family.
+    * @details The selected family is applied unless the stream or a session-specific style overrides it.
+    * @param font Font family to apply.
+    * @example font: PROPORTIONAL_SANS_SERIF
+    * @retval Core::ERROR_NONE: Font family updated successfully.
+    * @retval Core::ERROR_GENERAL: Font family could not be updated.
      * @text setFontFamily
      */
     virtual Core::hresult SetFontFamily(const FontFamily font) = 0;
     /**
-     * @brief Getter for FontFamily
+    * @brief Gets the closed-caption font family.
+    * @details Returns the currently configured global font family.
+    * @param font Receives the configured font family.
+    * @example font: PROPORTIONAL_SANS_SERIF
+    * @retval Core::ERROR_NONE: Font family retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Font family could not be retrieved.
      * @text getFontFamily
      */
     virtual Core::hresult GetFontFamily(FontFamily &font /* @out */) const = 0;
 
     /**
-     * @brief Setter for FontSize
+    * @brief Sets the closed-caption font size.
+    * @details The size can use the content default or a configured caption size.
+    * @param size Font size to apply.
+    * @example size: REGULAR
+    * @retval Core::ERROR_NONE: Font size updated successfully.
+    * @retval Core::ERROR_GENERAL: Font size could not be updated.
      * @text setFontSize
      */
     virtual Core::hresult SetFontSize(const FontSize size) = 0;
     /**
-     * @brief Getter for FontSize
+    * @brief Gets the closed-caption font size.
+    * @details Returns the currently configured global font size.
+    * @param size Receives the configured font size.
+    * @example size: REGULAR
+    * @retval Core::ERROR_NONE: Font size retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Font size could not be retrieved.
      * @text getFontSize
      */
     virtual Core::hresult GetFontSize(FontSize &size /* @out */) const = 0;
     /**
-     * @brief Setter for FontColor
+    * @brief Sets the closed-caption font color.
+    * @details Provide a #rrggbb color or an empty string to use the stream default.
+    * @param color Font color to apply.
+    * @example color: "#ffffff"
+    * @retval Core::ERROR_NONE: Font color updated successfully.
+    * @retval Core::ERROR_GENERAL: Font color could not be updated.
      * @text setFontColor
      */
     virtual Core::hresult SetFontColor(const string &color) = 0;
 
     /**
-     * @brief Getter for FontColor
+    * @brief Gets the closed-caption font color.
+    * @details Returns the configured #rrggbb color or an empty string when using the stream default.
+    * @param color Receives the configured font color.
+    * @example color: "#ffffff"
+    * @retval Core::ERROR_NONE: Font color retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Font color could not be retrieved.
      * @text getFontColor
      */
     virtual Core::hresult GetFontColor(string &color /* @out */) const = 0;
     /**
-     * @brief Setter for FontOpacity
+    * @brief Sets the closed-caption font opacity.
+    * @details Opacity is a percentage from 0 (transparent) to 100 (solid); -1 uses the stream default.
+    * @param opacity Font opacity to apply.
+    * @example opacity: 100
+    * @retval Core::ERROR_NONE: Font opacity updated successfully.
+    * @retval Core::ERROR_GENERAL: Font opacity could not be updated.
      * @text setFontOpacity
      */
     virtual Core::hresult SetFontOpacity(const int8_t opacity) = 0;
 
     /**
-     * @brief Getter for FontOpacity
+    * @brief Gets the closed-caption font opacity.
+    * @details Returns the configured opacity percentage, or -1 when using the stream default.
+    * @param opacity Receives the configured font opacity.
+    * @example opacity: 100
+    * @retval Core::ERROR_NONE: Font opacity retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Font opacity could not be retrieved.
      * @text getFontOpacity
      */
     virtual Core::hresult GetFontOpacity(int8_t &opacity /* @out */) const = 0;
     /**
-     * @brief Setter for FontEdge
+    * @brief Sets the closed-caption font edge effect.
+    * @details The edge effect improves the visual separation of caption text from its background.
+    * @param edge Font edge effect to apply.
+    * @example edge: RAISED
+    * @retval Core::ERROR_NONE: Font edge updated successfully.
+    * @retval Core::ERROR_GENERAL: Font edge could not be updated.
      * @text setFontEdge
      */
     virtual Core::hresult SetFontEdge(const FontEdge edge) = 0;
     /**
-     * @brief Getter for FontEdge
+    * @brief Gets the closed-caption font edge effect.
+    * @details Returns the currently configured global font edge effect.
+    * @param edge Receives the configured font edge effect.
+    * @example edge: RAISED
+    * @retval Core::ERROR_NONE: Font edge retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Font edge could not be retrieved.
      * @text getFontEdge
      */
     virtual Core::hresult GetFontEdge(FontEdge &edge /* @out */) const = 0;
 
     /**
-     * @brief Setter for FontEdgeColor
+    * @brief Sets the closed-caption font edge color.
+    * @details Provide a #rrggbb color or an empty string to use the stream default.
+    * @param color Font edge color to apply.
+    * @example color: "#000000"
+    * @retval Core::ERROR_NONE: Font edge color updated successfully.
+    * @retval Core::ERROR_GENERAL: Font edge color could not be updated.
      * @text setFontEdgeColor
      */
     virtual Core::hresult SetFontEdgeColor(const string &color) = 0;
     /**
-     * @brief Getter for FontEdgeColor
+    * @brief Gets the closed-caption font edge color.
+    * @details Returns the configured #rrggbb color or an empty string when using the stream default.
+    * @param color Receives the configured font edge color.
+    * @example color: "#000000"
+    * @retval Core::ERROR_NONE: Font edge color retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Font edge color could not be retrieved.
      * @text getFontEdgeColor
      */
     virtual Core::hresult GetFontEdgeColor(string &color /* @out */) const = 0;
 
     /**
-     * @brief Setter for BackgroundColor
+    * @brief Sets the closed-caption background color.
+    * @details Provide a #rrggbb color or an empty string to use the stream default.
+    * @param color Background color to apply.
+    * @example color: "#000000"
+    * @retval Core::ERROR_NONE: Background color updated successfully.
+    * @retval Core::ERROR_GENERAL: Background color could not be updated.
      * @text setBackgroundColor
      */
     virtual Core::hresult SetBackgroundColor(const string &color) = 0;
     /**
-     * @brief Getter for BackgroundColor
+    * @brief Gets the closed-caption background color.
+    * @details Returns the configured #rrggbb color or an empty string when using the stream default.
+    * @param color Receives the configured background color.
+    * @example color: "#000000"
+    * @retval Core::ERROR_NONE: Background color retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Background color could not be retrieved.
      * @text getBackgroundColor
      */
     virtual Core::hresult GetBackgroundColor(string &color /* @out */) const = 0;
 
     /**
-     * @brief Setter for BackgroundOpacity
+    * @brief Sets the closed-caption background opacity.
+    * @details Opacity is a percentage from 0 (transparent) to 100 (solid); -1 uses the stream default.
+    * @param opacity Background opacity to apply.
+    * @example opacity: 50
+    * @retval Core::ERROR_NONE: Background opacity updated successfully.
+    * @retval Core::ERROR_GENERAL: Background opacity could not be updated.
      * @text setBackgroundOpacity
      */
     virtual Core::hresult SetBackgroundOpacity(const int8_t opacity) = 0;
     /**
-     * @brief Getter for BackgroundOpacity
+    * @brief Gets the closed-caption background opacity.
+    * @details Returns the configured opacity percentage, or -1 when using the stream default.
+    * @param opacity Receives the configured background opacity.
+    * @example opacity: 50
+    * @retval Core::ERROR_NONE: Background opacity retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Background opacity could not be retrieved.
      * @text getBackgroundOpacity
      */
     virtual Core::hresult GetBackgroundOpacity(int8_t &opacity /* @out */) const = 0;
 
     /**
-     * @brief Setter for WindowColor
+    * @brief Sets the closed-caption window color.
+    * @details Provide a #rrggbb color or an empty string to use the stream default.
+    * @param color Window color to apply.
+    * @example color: "#000000"
+    * @retval Core::ERROR_NONE: Window color updated successfully.
+    * @retval Core::ERROR_GENERAL: Window color could not be updated.
      * @text setWindowColor
      */
     virtual Core::hresult SetWindowColor(const string &color) = 0;
     /**
-     * @brief Getter for WindowColor
+    * @brief Gets the closed-caption window color.
+    * @details Returns the configured #rrggbb color or an empty string when using the stream default.
+    * @param color Receives the configured window color.
+    * @example color: "#000000"
+    * @retval Core::ERROR_NONE: Window color retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Window color could not be retrieved.
      * @text getWindowColor
      */
     virtual Core::hresult GetWindowColor(string &color /* @out */) const = 0;
 
     /**
-     * @brief Setter for WindowOpacity
+    * @brief Sets the closed-caption window opacity.
+    * @details Opacity is a percentage from 0 (transparent) to 100 (solid); -1 uses the stream default.
+    * @param opacity Window opacity to apply.
+    * @example opacity: 50
+    * @retval Core::ERROR_NONE: Window opacity updated successfully.
+    * @retval Core::ERROR_GENERAL: Window opacity could not be updated.
      * @text setWindowOpacity
      */
     virtual Core::hresult SetWindowOpacity(const int8_t opacity) = 0;
     /**
-     * @brief Getter for WindowOpacity
+    * @brief Gets the closed-caption window opacity.
+    * @details Returns the configured opacity percentage, or -1 when using the stream default.
+    * @param opacity Receives the configured window opacity.
+    * @example opacity: 50
+    * @retval Core::ERROR_NONE: Window opacity retrieved successfully.
+    * @retval Core::ERROR_GENERAL: Window opacity could not be retrieved.
      * @text getWindowOpacity
      */
     virtual Core::hresult GetWindowOpacity(int8_t &opacity /* @out */) const = 0;
@@ -325,16 +466,31 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 
         /**
          * @brief The TTML Style override settings has changed.
+         * @details The notification contains the updated global TTML style override string.
+         * @param style Updated TTML style overrides.
+         * @example style: "color: white;fontSize: 1.2em"
          * @text onTtmlStyleOverridesChanged
          */
         virtual void OnTtmlStyleOverridesChanged(const string &style) {};
     };
 
-    /** Register notification interface.
-     * The callback will be called with the current settings.
+    /**
+     * @brief Registers a listener for TTML style override changes.
+     * @details The listener receives a notification when the global TTML style overrides change.
+     * @param notification Listener to register.
+     * @example notification: ITextTrackTtmlStyle::INotification implementation
+     * @retval Core::ERROR_NONE: Listener registered successfully.
+     * @retval Core::ERROR_GENERAL: Listener could not be registered.
      */
     virtual Core::hresult Register(INotification *notification) = 0;
-    /** Unregister notification interface */
+    /**
+     * @brief Unregisters a listener for TTML style override changes.
+     * @details The listener will no longer receive TTML style-change notifications.
+     * @param notification Listener to unregister.
+     * @example notification: ITextTrackTtmlStyle::INotification implementation
+     * @retval Core::ERROR_NONE: Listener unregistered successfully.
+     * @retval Core::ERROR_GENERAL: Listener could not be unregistered.
+     */
     virtual Core::hresult Unregister(const INotification *notification) = 0;
 
     /**
@@ -344,13 +500,20 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
      * The value will be persisted in the system.
      * The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
      * @param style Contains the chosen override for styles
+     * @example style: "color: white;fontSize: 1.2em"
+     * @retval Core::ERROR_NONE: TTML style overrides updated successfully.
+     * @retval Core::ERROR_GENERAL: TTML style overrides could not be updated.
      * @text setTtmlStyleOverrides
      */
     virtual Core::hresult SetTtmlStyleOverrides(const string& style) = 0;
 
     /**
      * @brief Gets the global TTML style overrides
+     * @details Returns the persisted global override string applied to TTML sessions.
      * @param style Will receive the style overrides
+     * @example style: "color: white;fontSize: 1.2em"
+     * @retval Core::ERROR_NONE: TTML style overrides retrieved successfully.
+     * @retval Core::ERROR_GENERAL: TTML style overrides could not be retrieved.
      * @text getTtmlStyleOverrides
      */
     virtual Core::hresult GetTtmlStyleOverrides(string& style /* @out */) const = 0;
@@ -376,15 +539,19 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
 
     // @text getCapability
     // @brief Queries whether a specific TextTrack capability is supported by the implementation.
+    // @details Query support before relying on optional TextTrack functionality.
     // @param capability The capability to query ex: FIREBOLT_MIGRATION
     // @param hasCapability Indicates whether the queried capability is supported.
+    // @example capability: FIREBOLT_MIGRATION, hasCapability: true
     // @retval Core::ERROR_NONE The capability query completed successfully.
     // @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported.
     virtual Core::hresult GetCapability(const Capability capability, bool &hasCapability /* @out */) const = 0;
 
     // @text getCapabilities
     // @brief Retrieves an iterator over all supported TextTrack capabilities.
+    // @details Enumerates the capabilities supported by this implementation.
     // @param capabilities Iterator providing the list of supported capabilities.
+    // @example capabilities: [FIREBOLT_MIGRATION]
     // @retval Core::ERROR_NONE The list of capabilities was retrieved successfully.
     // @retval Core::ERROR_NOT_SUPPORTED Retrieving capabilities is not supported.
     virtual Core::hresult GetCapabilities(IIterator *&capabilities /* @out */) const = 0;
@@ -437,7 +604,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * returned. If the session is instead newly opened, the session type is not set and display is muted. Use one
      * of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
      * @param displayHandle Is an encoding of the wayland display name
+     * @example displayHandle: "wayland-0"
      * @param sessionId On success the returned session id ex: 1
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session opened successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be opened.
      * @text openSession
      */
     virtual Core::hresult OpenSession(const string &displayHandle, uint32_t &sessionId /* @out */) = 0;
@@ -445,6 +616,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief Closes a previously opened render session.
      * @details Any created windows and surfaces is destroyed
      * @param sessionId Is the session to close
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session closed successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be closed.
      * @text closeSession
      */
     virtual Core::hresult CloseSession(const uint32_t sessionId) = 0;
@@ -452,6 +626,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief Resets a previously opened render session back to its opened state.
      * @details The state will be like after calling OpenSession()
      * @param sessionId Is the session to reset
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session reset successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be reset.
      * @text resetSession
      */
     virtual Core::hresult ResetSession(const uint32_t sessionId) = 0;
@@ -460,18 +637,29 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @details Any text rendered remains on screen and any text due to be rendered soon
      * is held until the render session is resumed.
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session paused successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be paused.
      * @text pauseSession
      */
     virtual Core::hresult PauseSession(const uint32_t sessionId) = 0;
     /**
-     * @brief Resumed a paused session
+     * @brief Resumes a paused render session.
+     * @details Rendering continues for the session after it has been resumed.
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session resumed successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be resumed.
      * @text resumeSession
      */
     virtual Core::hresult ResumeSession(const uint32_t sessionId) = 0;
     /**
-     * @brief Mute will hide rendering of Captions
+     * @brief Mutes a render session.
+     * @details Caption rendering is hidden until the session is unmuted.
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session muted successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be muted.
      * @text muteSession
      */
     virtual Core::hresult MuteSession(const uint32_t sessionId) = 0;
@@ -479,16 +667,26 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief UnMute will unhide the rendering of Captions.
      * @details A newly created session is muted and should be unmuted to me visible
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: Session unmuted successfully.
+     * @retval Core::ERROR_GENERAL: Session could not be unmuted.
      * @text unMuteSession
      */
     virtual Core::hresult UnMuteSession(const uint32_t sessionId) = 0;
 
     /**
      * @brief Sends data of Closed Captions, Captions or Timed Text data to a render session.
+     * @details Data is decoded according to the selected session type and rendered according to its presentation timestamps.
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param type Is the type of data
+     * @example type: TTML
      * @param displayOffsetMs Is added to a timestamp in the data to determine when to display it. The offset is in milliseconds and can be negative. Not all types support this.
+     * @example displayOffsetMs: 0
      * @param data Is the data to display, properly formatted as per the expectations of the type used
+     * @example data: "<tt>Caption</tt>"
+     * @retval Core::ERROR_NONE: Session data sent successfully.
+     * @retval Core::ERROR_GENERAL: Session data could not be sent.
      * @text sendSessionData
      */
     virtual Core::hresult SendSessionData(const uint32_t sessionId, const DataType type, const int64_t displayOffsetMs, const string &data) = 0;
@@ -496,7 +694,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief Sends the current timestamp from a media player to a render session.
      * @details The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param mediaTimestampMs Is a timestamp
+     * @example mediaTimestampMs: 123456
+     * @retval Core::ERROR_NONE: Session timestamp sent successfully.
+     * @retval Core::ERROR_GENERAL: Session timestamp could not be sent.
      * @text sendSessionTimestamp
      */
     virtual Core::hresult SendSessionTimestamp(const uint32_t sessionId, const uint64_t mediaTimestampMs) = 0;
@@ -506,7 +708,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @details When a custom style is applied on a specific session we will not update the style for this session if the global style setting change.
      * The style setting will take effect immediately.
      * @param sessionId Is the session as returned in the ITextTrack interface.
+     * @example sessionId: 1
      * @param style Contains the chosen styles
+     * @example style: {fontFamily: PROPORTIONAL_SANS_SERIF, fontSize: REGULAR}
+     * @retval Core::ERROR_NONE: Custom style applied successfully.
+     * @retval Core::ERROR_GENERAL: Custom style could not be applied.
      * @json:omit
      * @text applyCustomClosedCaptionsStyleToSession
      */
@@ -516,7 +722,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief Sets a static text in the display for preview purposes.
      * @details The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param text Is the text to display
+     * @example text: "Sample captions"
      * @retval Core::ERROR_NONE if preview is shown
      * @retval Core::ERROR_NOT_SUPPORTED if preview is not supported
      * @text setPreviewText
@@ -534,40 +742,67 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * This should be done before starting the injection of data.
      * Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param service Identifies the service to display e.g. "CC3"
+     * @example service: "CC3"
+     * @retval Core::ERROR_NONE: Closed-caption service selected successfully.
+     * @retval Core::ERROR_GENERAL: Closed-caption service could not be selected.
      * @text setSessionClosedCaptionsService
      */
     virtual Core::hresult SetSessionClosedCaptionsService(const uint32_t sessionId, const string &service) = 0;
     /**
      * @brief Set the render session into Teletext mode, providing the teletext caption page for presentation
+     * @details Selects the requested Teletext page for decoding and presentation in the render session.
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param page The user selected teletext caption page 100-899
+     * @example page: 100
+     * @retval Core::ERROR_NONE: Teletext page selected successfully.
+     * @retval Core::ERROR_GENERAL: Teletext page could not be selected.
      * @text setSessionTeletextSelection
      */
     virtual Core::hresult SetSessionTeletextSelection(const uint32_t sessionId, const uint16_t page) = 0;
     /**
      * @brief Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
+     * @details Selects the composition and ancillary pages used to decode and present DVB subtitles in the render session.
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param compositionPageId Is the one Id
+     * @example compositionPageId: 1
      * @param ancillaryPageId Is the other Id
+     * @example ancillaryPageId: 1
+     * @retval Core::ERROR_NONE: DVB subtitle pages selected successfully.
+     * @retval Core::ERROR_GENERAL: DVB subtitle pages could not be selected.
      * @text setSessionDvbSubtitleSelection
      */
     virtual Core::hresult SetSessionDvbSubtitleSelection(const uint32_t sessionId, const uint16_t compositionPageId, const uint16_t ancillaryPageId) = 0;
     /**
      * @brief Set the render session into WebVTT mode
+     * @details Selects WebVTT data for decoding and presentation in the render session.
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: WebVTT mode selected successfully.
+     * @retval Core::ERROR_GENERAL: WebVTT mode could not be selected.
      * @text setSessionWebVTTSelection
      */
     virtual Core::hresult SetSessionWebVTTSelection(const uint32_t sessionId) = 0;
     /**
      * @brief Set the render session into TTML mode
+     * @details Selects TTML data for decoding and presentation in the render session.
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: TTML mode selected successfully.
+     * @retval Core::ERROR_GENERAL: TTML mode could not be selected.
      * @text setSessionTTMLSelection
      */
     virtual Core::hresult SetSessionTTMLSelection(const uint32_t sessionId) = 0;
     /**
      * @brief Set the render session into SCTE mode
+     * @details Selects SCTE data for decoding and presentation in the render session.
      * @param sessionId Is the session
+     * @example sessionId: 1
+     * @retval Core::ERROR_NONE: SCTE mode selected successfully.
+     * @retval Core::ERROR_GENERAL: SCTE mode could not be selected.
      * @text setSessionSCTESelection
      */
     virtual Core::hresult SetSessionSCTESelection(const uint32_t sessionId) = 0;
@@ -580,7 +815,10 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * Styles not mentioned in the list will not be affected.
      * Added in version 2
      * @param sessionId Is the session as returned in the ITextTrack interface.
+     * @example sessionId: 1
      * @param style Contains the list of styles to be overridden
+     * @example style: "color: white;fontSize: 1.2em"
+     * @retval Core::ERROR_NOT_SUPPORTED: The method is not implemented.
      * @text applyCustomTtmlStyleOverridesToSession
      */
     virtual Core::hresult ApplyCustomTtmlStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
@@ -594,7 +832,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * After associating the video decoder, further calls to SendSessionData will be ignored.
      * Added in version 3
      * @param sessionId Is the session
+     * @example sessionId: 1
      * @param handle Is a textual representation of the video decoder handle
+     * @example handle: "decoder-0"
      * @text associateVideoDecoder
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if the association failed (whether bad handle is used or lack of support on the platform).
@@ -609,6 +849,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     // all functions of that version.
     // Added in version 4
     // @param version Will receive the version number ex: 4
+    // @example version: 5
     // @text getInterfaceVersion
     // @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
     // @retval Core::ERROR_NONE on success
@@ -624,8 +865,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * Added in version 5
      * @text createSession
      * @param displayHandle Is an encoding of the wayland display name
+     * @example displayHandle: "wayland-0"
      * @param whoAmI Identifier for the caller; must not be empty.
+     * @example whoAmI: "org.example.player"
      * @param sessionId On success the returned session id ex: 1
+     * @example sessionId: 1
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if we were unable to create the session
      * @retval Core::ERROR_NONE on success
@@ -634,9 +878,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
 
     /**
      * @brief Get a list of active sessions.
+     * @details Returns session metadata through an iterator; the iterator may be empty when no sessions are active.
      * Added in version 5
      * @text getSessions
      * @param sessions On success, will contain an iterator to the list of active sessions (see SessionInfo struct)
+     * @example sessions: [{sessionId: 1, displayHandle: "wayland-0", format: CC}]
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_NONE on success
      */
@@ -654,8 +900,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * Added in version 5
      * @text createPreviewSession
      * @param displayHandle Is an encoding of the wayland display name; may be empty
+     * @example displayHandle: "wayland-0"
      * @param whoAmI Identifier for the caller; must not be empty.
+     * @example whoAmI: "org.example.player"
      * @param sessionId On success the returned session id ex: 1
+     * @example sessionId: 2
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if we were unable to create the session
      * @retval Core::ERROR_GENERAL if a preview session is already running on the display
@@ -685,9 +934,13 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * Added in version 5
      * @text setPreviewGeometry
      * @param sessionId Is the session
+     * @example sessionId: 2
      * @param xPos Is the horizontal position (0..1) for the preview text
+     * @example xPos: 0.5
      * @param yPos Is the vertical position (0..1) for the preview text
+     * @example yPos: 0.5
      * @param anchor Indicates the anchor point of the preview text, i.e. which point of the text the positions refer to.
+     * @example anchor: CENTER
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if the geometry could not be set
      * @retval Core::ERROR_NONE on success
@@ -703,7 +956,9 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * Added in version 5
      * @text setClosedCaptionsStyleAppliesTo
      * @param format The session type to configure
+     * @example format: CC
      * @param applies If true, the global ClosedCaptionsStyle applies to sessions of this type
+     * @example applies: true
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if the session type is not supported
      * @retval Core::ERROR_NONE on success
@@ -712,10 +967,12 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
 
     /**
      * @brief Gets whether the global ClosedCaptionsStyle applies to a given session type.
-     * @details Added in version 5
+     * @details Returns whether global caption styling is applied to sessions of this type. Added in version 5.
      * @text getClosedCaptionsStyleAppliesTo
      * @param format The session type to query
+     * @example format: CC
      * @param applies On success, true if the global ClosedCaptionsStyle applies to sessions of this type
+     * @example applies: true
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_NONE on success
      */
@@ -726,6 +983,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @details Added in version 5
      * @text getClosedCaptionsStyleAppliesToList
      * @param iterator On success, an iterator over the session types for which the global ClosedCaptionsStyle applies
+     * @example iterator: [CC, TTML]
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_NONE on success
      */

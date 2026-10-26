@@ -37,7 +37,9 @@ namespace Exchange {
             ~INotification() override = default;
 
             /* @brief Application visibility changes */
+            /* @details Notifies subscribers when the application's hidden state changes. */
             /* @param hidden Denotes if application is currently hidden */
+            /* @example hidden: true */
             virtual void VisibilityChange(const bool hidden) = 0;
         };
 
@@ -82,34 +84,75 @@ namespace Exchange {
         virtual void Unregister(INotification* sink) = 0;
 
         // @brief Resets application data
-        // @param type Type of reset to perform
+        // @details Clears the selected category of application data.
+        // @param type: Type of reset to perform
+        // @example type: FACTORY
+        // @retval Core::ERROR_NONE: Application data reset successfully
         virtual uint32_t Reset(const resettype type) = 0;
 
         // @property
         // @brief Application-specific identification string
-        // @param id Identifier string
+        // @details Retrieves the identifier associated with this application.
+        // @param id: Identifier string
+        // @example id: "com.example.application"
+        // @retval Core::ERROR_NONE: Application identifier retrieved successfully
         virtual uint32_t Identifier(string& id /* @out */) const = 0;
 
         // @property
         // @brief URI of the associated application-specific content
-        // @param link Content URI (e.g. https://youtube.com)
+        // @details Sets the URI that identifies the content associated with this application.
+        // @param link: Content URI (e.g. https://youtube.com)
+        // @example link: "https://youtube.com"
+        // @retval Core::ERROR_NONE: Content URI set successfully
         virtual uint32_t ContentLink(const string& link) = 0;
 
         // @property
         // @brief Application launching point
+        // @details Retrieves the launch point that identifies how the application was started.
+        // @param point: Receives the application's launch point
+        // @example point: DIAL
+        // @retval Core::ERROR_NONE: Launch point retrieved successfully
         virtual uint32_t LaunchPoint(launchpointtype& point /* @out */) const = 0;
-        virtual uint32_t LaunchPoint(const launchpointtype&) = 0;
+
+        // @property
+        // @brief Sets the application launching point
+        // @details Updates the launch point associated with the application.
+        // @param point: Launch point to set
+        // @example point: DIAL
+        // @retval Core::ERROR_NONE: Launch point set successfully
+        virtual uint32_t LaunchPoint(const launchpointtype& point) = 0;
 
         // @property
         // @brief Current application visibility
+        // @details Retrieves whether the application is currently hidden.
+        // @param visiblity: Receives true when the application is hidden
+        // @example visiblity: false
+        // @retval Core::ERROR_NONE: Application visibility retrieved successfully
         virtual uint32_t Visible(bool& visiblity /* @out */) const = 0;
-        virtual uint32_t Visible(const bool&) = 0;
+
+        // @property
+        // @brief Sets the current application visibility
+        // @details Sets whether the application is hidden.
+        // @param visibility: True to hide the application; false to show it
+        // @example visibility: true
+        // @retval Core::ERROR_NONE: Application visibility set successfully
+        virtual uint32_t Visible(const bool visibility) = 0;
 
         // @property
         // @brief Current application user interface language
-        // @param language Language string as per RFC5646 (e.g. en)
+        // @details Retrieves the application's user interface language using an RFC 5646 language tag.
+        // @param language: Language string as per RFC5646 (e.g. en)
+        // @example language: "en-US"
+        // @retval Core::ERROR_NONE: Application language retrieved successfully
         virtual uint32_t Language(string& language /* @out */) const = 0;
-        virtual uint32_t Language(const string&) = 0;
+
+        // @property
+        // @brief Sets the current application user interface language
+        // @details Sets the application's user interface language using an RFC 5646 language tag.
+        // @param language: Language tag to set (e.g. en-US)
+        // @example language: "en-US"
+        // @retval Core::ERROR_NONE: Application language set successfully
+        virtual uint32_t Language(const string& language) = 0;
     };
 }
 }

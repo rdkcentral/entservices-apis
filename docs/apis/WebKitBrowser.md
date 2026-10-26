@@ -2,7 +2,7 @@
 <a id="WebKitBrowser_Module"></a>
 # WebKitBrowser Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/WebKitBrowser/IApplication.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/WebKitBrowser/IMemory.h)**
 
 A WebKitBrowser module for Thunder framework.
 
@@ -78,7 +78,7 @@ The following methods are provided by the IApplication Interface:
 <a id="reset"></a>
 ## *reset*
 
-Resets application data
+Clears the selected category of application data.
 
 ### Events Triggered
 None
@@ -99,7 +99,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.WebKitBrowser.reset",
     "params": {
@@ -112,7 +112,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.WebKitBrowser.reset", "params": {"type": "FACTORY"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.WebKitBrowser.reset", "params": {"type": "FACTORY"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -120,7 +120,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -142,7 +142,7 @@ The following properties are provided by the IApplication Interface:
 <a id="contentLink"></a>
 ## *contentLink*
 
-URI of the associated application-specific content
+Sets the URI that identifies the content associated with this application.
 
 > This property is write-only.
 ### Events
@@ -159,11 +159,11 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.WebKitBrowser.contentLink",
     "params": {
-        "link": ""
+        "link": "https://youtube.com"
     }
 }
 ```
@@ -172,7 +172,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.WebKitBrowser.contentLink", "params": {"link": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.WebKitBrowser.contentLink", "params": {"link": "https://youtube.com"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -180,7 +180,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -189,7 +189,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="identifier"></a>
 ## *identifier*
 
-Application-specific identification string
+Retrieves the identifier associated with this application.
 
 > This property is read-only.
 ### Events
@@ -206,7 +206,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.WebKitBrowser.identifier"
 }
@@ -216,7 +216,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.WebKitBrowser.identifier"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.WebKitBrowser.identifier"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -224,10 +224,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
-        "id": ""
+        "id": "com.example.application"
     }
 }
 ```
@@ -235,7 +235,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="language"></a>
 ## *language*
 
-Current application user interface language
+Retrieves the application's user interface language using an RFC 5646 language tag.
 
 ### Events
 Event details will be updated soon.
@@ -251,7 +251,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.WebKitBrowser.language"
 }
@@ -261,7 +261,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.language"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.WebKitBrowser.language"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -269,10 +269,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
-        "language": ""
+        "language": "en-US"
     }
 }
 ```
@@ -282,11 +282,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.WebKitBrowser.language",
     "params": {
-        "language": ""
+        "language": "en-US"
     }
 }
 ```
@@ -295,7 +295,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.language", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.WebKitBrowser.language", "params": {"language": "en-US"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -303,7 +303,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": null
 }
@@ -312,14 +312,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="launchPoint"></a>
 ## *launchPoint*
 
-Application launching point
+Retrieves the launch point that identifies how the application was started.
 
 ### Events
 Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).point | string | Possible values: UNDEFINED, DIAL, DEDICATED_BUTTON, DEDICATED_ICON, APPLICATION_LIST, INTEGRATED_TILE, SEARCH_RESULT, SEARCH_CONTINUATION, VOICE_CONTROL, VOICE_SEARCH_RESULT, VISUAL_GESTURE, TOUCH_GESTURE, EPG_GRID, CHANNEL_NUMBER, CHANNEL_ZAP, CHANNEL_BAR, WEB_BROWSER, POWER_ON, POWER_ON_FROM_DEDICATED_BUTTON, SUSPENDED_POWER_ON, RESTART, SUSPENDED_RESTART, RESUMED_FROM_SCREEN_SAVER, RESUMED_FROM_STANDBY, BANNER_AD, TITLE_RECOMMENDATION, APPLICATION_PROMOTION |
+| (property).point | string | Receives the application's launch point. Possible values: UNDEFINED, DIAL, DEDICATED_BUTTON, DEDICATED_ICON, APPLICATION_LIST, INTEGRATED_TILE, SEARCH_RESULT, SEARCH_CONTINUATION, VOICE_CONTROL, VOICE_SEARCH_RESULT, VISUAL_GESTURE, TOUCH_GESTURE, EPG_GRID, CHANNEL_NUMBER, CHANNEL_ZAP, CHANNEL_BAR, WEB_BROWSER, POWER_ON, POWER_ON_FROM_DEDICATED_BUTTON, SUSPENDED_POWER_ON, RESTART, SUSPENDED_RESTART, RESUMED_FROM_SCREEN_SAVER, RESUMED_FROM_STANDBY, BANNER_AD, TITLE_RECOMMENDATION, APPLICATION_PROMOTION |
 
 ### Examples
 
@@ -328,7 +328,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.WebKitBrowser.launchPoint"
 }
@@ -338,7 +338,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -346,10 +346,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
-        "point": "UNDEFINED"
+        "point": "DIAL"
     }
 }
 ```
@@ -359,11 +359,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.WebKitBrowser.launchPoint",
     "params": {
-        "point": "UNDEFINED"
+        "point": "DIAL"
     }
 }
 ```
@@ -372,7 +372,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint", "params": {"point": "UNDEFINED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint", "params": {"point": "DIAL"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -380,7 +380,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": null
 }
@@ -389,14 +389,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="visible"></a>
 ## *visible*
 
-Current application visibility
+Retrieves whether the application is currently hidden.
 
 ### Events
 Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).visiblity | bool |  |
+| (property).visiblity | bool | Receives true when the application is hidden |
 
 ### Examples
 
@@ -405,7 +405,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.WebKitBrowser.visible"
 }
@@ -415,7 +415,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.WebKitBrowser.visible"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.WebKitBrowser.visible"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -423,7 +423,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "visiblity": true
@@ -436,7 +436,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.WebKitBrowser.visible",
     "params": {
@@ -449,7 +449,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.WebKitBrowser.visible", "params": {"visiblity": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.WebKitBrowser.visible", "params": {"visiblity": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -457,7 +457,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": null
 }
@@ -480,7 +480,7 @@ The following methods are provided by the IWebBrowser Interface:
 <a id="collectGarbage"></a>
 ## *collectGarbage*
 
-Initiate garbage collection
+Requests garbage collection in the browser process.
 
 ### Events Triggered
 None
@@ -498,7 +498,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.WebKitBrowser.collectGarbage"
 }
@@ -508,7 +508,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.collectGarbage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.WebKitBrowser.collectGarbage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -516,7 +516,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": null
 }
@@ -540,7 +540,7 @@ The following events are provided by the IWebBrowser Interface:
 <a id="visibilityChange"></a>
 ## *visibilityChange*
 
-Signals a visibility change of the browser
+Sent when the browser transitions between hidden and visible states.
 
 ### Parameters
 | Name | Type | Description |
@@ -552,7 +552,7 @@ Signals a visibility change of the browser
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.WebKitBrowser.visibilityChange",
     "params": {
@@ -564,7 +564,7 @@ Signals a visibility change of the browser
 <a id="loadFailed"></a>
 ## *loadFailed*
 
-Browser failed to load page
+Indicates that navigation to the requested page did not complete successfully.
 
 ### Parameters
 | Name | Type | Description |
@@ -576,11 +576,11 @@ Browser failed to load page
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.WebKitBrowser.loadFailed",
     "params": {
-        "URL": ""
+        "URL": "https://example.com"
     }
 }
 ```
@@ -588,7 +588,7 @@ Browser failed to load page
 <a id="loadFinished"></a>
 ## *loadFinished*
 
-Initial HTML document has been completely loaded and parsed
+Indicates completion of loading and parsing the main HTML document.
 
 ### Parameters
 | Name | Type | Description |
@@ -601,12 +601,12 @@ Initial HTML document has been completely loaded and parsed
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.WebKitBrowser.loadFinished",
     "params": {
-        "URL": "",
-        "httpstatus": 0
+        "URL": "https://example.com",
+        "httpstatus": 200
     }
 }
 ```
@@ -614,7 +614,7 @@ Initial HTML document has been completely loaded and parsed
 <a id="pageClosure"></a>
 ## *pageClosure*
 
-Notifies that the web page requests to close its window
+Indicates that the current web page requested closure of its window.
 
 ### Parameters
 This method takes no parameters.
@@ -623,7 +623,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.WebKitBrowser.pageClosure"
 }
@@ -632,7 +632,7 @@ This method takes no parameters.
 <a id="uRLChange"></a>
 ## *uRLChange*
 
-Signals a URL change in the browser
+Reports the new URL and whether its content has finished loading.
 
 ### Parameters
 | Name | Type | Description |
@@ -645,11 +645,11 @@ Signals a URL change in the browser
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.WebKitBrowser.uRLChange",
     "params": {
-        "URL": "",
+        "URL": "https://example.com",
         "loaded": true
     }
 }
@@ -674,7 +674,7 @@ The following properties are provided by the IWebBrowser Interface:
 <a id="bridgeEvent"></a>
 ## *bridgeEvent*
 
-Send legacy $badger 
+Sends an event payload to the legacy window.$badger.event handler.
 
 > This property is write-only.
 ### Events
@@ -691,11 +691,11 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.WebKitBrowser.bridgeEvent",
     "params": {
-        "payload": ""
+        "payload": "..."
     }
 }
 ```
@@ -704,7 +704,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.WebKitBrowser.bridgeEvent", "params": {"payload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.WebKitBrowser.bridgeEvent", "params": {"payload": "..."}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -712,7 +712,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": null
 }
@@ -721,7 +721,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="bridgeReply"></a>
 ## *bridgeReply*
 
-Response for legacy $badger.
+Delivers a response payload to the legacy $badger callback.
 
 > This property is write-only.
 ### Events
@@ -738,11 +738,11 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.WebKitBrowser.bridgeReply",
     "params": {
-        "payload": ""
+        "payload": "..."
     }
 }
 ```
@@ -751,7 +751,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.WebKitBrowser.bridgeReply", "params": {"payload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.WebKitBrowser.bridgeReply", "params": {"payload": "..."}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -759,7 +759,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": null
 }
@@ -768,7 +768,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="fPS"></a>
 ## *fPS*
 
-Current framerate the browser is rendering at
+Retrieves the current browser rendering rate in frames per second.
 
 > This property is read-only.
 ### Events
@@ -785,7 +785,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.WebKitBrowser.fPS"
 }
@@ -795,7 +795,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.WebKitBrowser.fPS"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.WebKitBrowser.fPS"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -803,10 +803,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
-        "fps": 0
+        "fps": 60
     }
 }
 ```
@@ -814,7 +814,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="hTTPCookieAcceptPolicy"></a>
 ## *hTTPCookieAcceptPolicy*
 
-HTTP cookies accept policy
+Retrieves the policy that controls which HTTP cookies the browser accepts.
 
 ### Events
 Event details will be updated soon.
@@ -830,7 +830,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.WebKitBrowser.hTTPCookieAcceptPolicy"
 }
@@ -840,7 +840,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.WebKitBrowser.hTTPCookieAcceptPolicy"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.WebKitBrowser.hTTPCookieAcceptPolicy"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -848,10 +848,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
-        "policy": "ALWAYS"
+        "policy": "ONLY_FROM_MAIN_DOCUMENT_DOMAIN"
     }
 }
 ```
@@ -861,11 +861,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.WebKitBrowser.hTTPCookieAcceptPolicy",
     "params": {
-        "policy": "ALWAYS"
+        "policy": "ONLY_FROM_MAIN_DOCUMENT_DOMAIN"
     }
 }
 ```
@@ -874,7 +874,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.WebKitBrowser.hTTPCookieAcceptPolicy", "params": {"policy": "ALWAYS"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.WebKitBrowser.hTTPCookieAcceptPolicy", "params": {"policy": "ONLY_FROM_MAIN_DOCUMENT_DOMAIN"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -882,7 +882,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": null
 }
@@ -891,14 +891,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 <a id="localStorageEnabled"></a>
 ## *localStorageEnabled*
 
-Controls the local storage availability
+Retrieves whether browser local storage is enabled.
 
 ### Events
 Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).enabled | bool |  |
+| (property).enabled | bool | True if local storage is enabled, false otherwise |
 
 ### Examples
 
@@ -907,7 +907,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.WebKitBrowser.localStorageEnabled"
 }
@@ -917,7 +917,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.WebKitBrowser.localStorageEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.WebKitBrowser.localStorageEnabled"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -925,7 +925,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": {
         "enabled": true
@@ -938,7 +938,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.WebKitBrowser.localStorageEnabled",
     "params": {
@@ -951,7 +951,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.WebKitBrowser.localStorageEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.WebKitBrowser.localStorageEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -959,7 +959,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": null
 }
@@ -968,7 +968,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 <a id="uRL"></a>
 ## *uRL*
 
-Page loaded in the browser
+Retrieves the URL currently loaded in the browser.
 
 ### Events
 Event details will be updated soon.
@@ -984,7 +984,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.WebKitBrowser.uRL"
 }
@@ -994,7 +994,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.WebKitBrowser.uRL"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.WebKitBrowser.uRL"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1002,10 +1002,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "result": {
-        "url": ""
+        "url": "https://example.com"
     }
 }
 ```
@@ -1015,11 +1015,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.WebKitBrowser.uRL",
     "params": {
-        "url": ""
+        "url": "https://example.com"
     }
 }
 ```
@@ -1028,7 +1028,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.WebKitBrowser.uRL", "params": {"url": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.WebKitBrowser.uRL", "params": {"url": "https://example.com"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1036,7 +1036,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "result": null
 }
@@ -1045,7 +1045,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 <a id="userAgent"></a>
 ## *userAgent*
 
-UserAgent string used by the browser
+Retrieves the user-agent value sent by the browser.
 
 ### Events
 Event details will be updated soon.
@@ -1061,7 +1061,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.WebKitBrowser.userAgent"
 }
@@ -1071,7 +1071,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.WebKitBrowser.userAgent"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 19, "method": "org.rdk.WebKitBrowser.userAgent"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1079,10 +1079,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "result": {
-        "useragent": ""
+        "useragent": "Mozilla/5.0"
     }
 }
 ```
@@ -1092,11 +1092,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.WebKitBrowser.userAgent",
     "params": {
-        "useragent": ""
+        "useragent": "Mozilla/5.0"
     }
 }
 ```
@@ -1105,7 +1105,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.WebKitBrowser.userAgent", "params": {"useragent": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 19, "method": "org.rdk.WebKitBrowser.userAgent", "params": {"useragent": "Mozilla/5.0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1113,7 +1113,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "result": null
 }
@@ -1122,7 +1122,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 <a id="visibility"></a>
 ## *visibility*
 
-Browser window visibility state
+Retrieves whether the browser window is hidden or visible.
 
 ### Events
 Event details will be updated soon.
@@ -1138,7 +1138,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.WebKitBrowser.visibility"
 }
@@ -1148,7 +1148,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.WebKitBrowser.visibility"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.WebKitBrowser.visibility"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1156,10 +1156,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": {
-        "visible": "HIDDEN"
+        "visible": "VISIBLE"
     }
 }
 ```
@@ -1169,11 +1169,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.WebKitBrowser.visibility",
     "params": {
-        "visible": "HIDDEN"
+        "visible": "VISIBLE"
     }
 }
 ```
@@ -1182,7 +1182,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.WebKitBrowser.visibility", "params": {"visible": "HIDDEN"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.WebKitBrowser.visibility", "params": {"visible": "VISIBLE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1190,7 +1190,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": null
 }
@@ -1214,7 +1214,7 @@ The following properties are provided by the IBrowserResources Interface:
 <a id="userScripts"></a>
 ## *userScripts*
 
-User scripts used by the browser
+Retrieves the URIs of user scripts configured for execution by the browser.
 
 ### Events
 Event details will be updated soon.
@@ -1231,7 +1231,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.WebKitBrowser.userScripts"
 }
@@ -1241,7 +1241,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.WebKitBrowser.userScripts"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 20, "method": "org.rdk.WebKitBrowser.userScripts"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1249,10 +1249,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "result": [
-        ""
+        "file:///opt/app/styles.css"
     ]
 }
 ```
@@ -1262,11 +1262,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.WebKitBrowser.userScripts",
     "params": [
-        ""
+        "file:///opt/app/styles.css"
     ]
 }
 ```
@@ -1275,7 +1275,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.WebKitBrowser.userScripts", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 20, "method": "org.rdk.WebKitBrowser.userScripts", "params": ["file:///opt/app/styles.css"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1283,7 +1283,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "result": null
 }
@@ -1292,7 +1292,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 <a id="userStyleSheets"></a>
 ## *userStyleSheets*
 
-User style sheets used by the browser
+Retrieves the URIs of user style sheets configured for the browser.
 
 ### Events
 Event details will be updated soon.
@@ -1309,7 +1309,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.WebKitBrowser.userStyleSheets"
 }
@@ -1319,7 +1319,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.WebKitBrowser.userStyleSheets"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.WebKitBrowser.userStyleSheets"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1327,10 +1327,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": [
-        ""
+        "file:///opt/app/styles.css"
     ]
 }
 ```
@@ -1340,11 +1340,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.WebKitBrowser.userStyleSheets",
     "params": [
-        ""
+        "file:///opt/app/styles.css"
     ]
 }
 ```
@@ -1353,7 +1353,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.WebKitBrowser.userStyleSheets", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.WebKitBrowser.userStyleSheets", "params": ["file:///opt/app/styles.css"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1361,7 +1361,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": null
 }
@@ -1385,7 +1385,7 @@ The following properties are provided by the IBrowserSecurity Interface:
 <a id="mixedContentPolicy"></a>
 ## *mixedContentPolicy*
 
-Mixed content policy
+Retrieves whether mixed content is allowed or blocked.
 
 ### Events
 Event details will be updated soon.
@@ -1401,7 +1401,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.WebKitBrowser.mixedContentPolicy"
 }
@@ -1411,7 +1411,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.WebKitBrowser.mixedContentPolicy"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.WebKitBrowser.mixedContentPolicy"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1419,10 +1419,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "result": {
-        "policy": "ALLOWED"
+        "policy": "BLOCKED"
     }
 }
 ```
@@ -1432,11 +1432,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.WebKitBrowser.mixedContentPolicy",
     "params": {
-        "policy": "ALLOWED"
+        "policy": "BLOCKED"
     }
 }
 ```
@@ -1445,7 +1445,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.WebKitBrowser.mixedContentPolicy", "params": {"policy": "ALLOWED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.WebKitBrowser.mixedContentPolicy", "params": {"policy": "BLOCKED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1453,7 +1453,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "result": null
 }
@@ -1462,7 +1462,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 <a id="securityProfile"></a>
 ## *securityProfile*
 
-Security profile for secure connections
+Retrieves the profile used to configure secure browser connections.
 
 ### Events
 Event details will be updated soon.
@@ -1478,7 +1478,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.WebKitBrowser.securityProfile"
 }
@@ -1488,7 +1488,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.WebKitBrowser.securityProfile"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.WebKitBrowser.securityProfile"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1496,10 +1496,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "result": {
-        "profile": ""
+        "profile": "compatible"
     }
 }
 ```
@@ -1509,11 +1509,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.WebKitBrowser.securityProfile",
     "params": {
-        "profile": ""
+        "profile": "compatible"
     }
 }
 ```
@@ -1522,7 +1522,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.WebKitBrowser.securityProfile", "params": {"profile": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.WebKitBrowser.securityProfile", "params": {"profile": "compatible"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1530,7 +1530,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "result": null
 }
@@ -1555,7 +1555,7 @@ The following methods are provided by the IBrowserScripting Interface:
 <a id="addUserScript"></a>
 ## *addUserScript*
 
-Add user script to be executed at document start.
+Registers a script for execution when a document begins loading.
 
 ### Events Triggered
 None
@@ -1564,7 +1564,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.script | string | Utf8 encoded JS code string. |
-| params.topFrameOnly | bool |  |
+| params.topFrameOnly | bool | True to execute only in the top-level frame |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1577,11 +1577,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.WebKitBrowser.addUserScript",
     "params": {
-        "script": "",
+        "script": "window.appReady = true",
         "topFrameOnly": true
     }
 }
@@ -1591,7 +1591,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.WebKitBrowser.addUserScript", "params": {"script": "", "topFrameOnly": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.WebKitBrowser.addUserScript", "params": {"script": "window.appReady = true", "topFrameOnly": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1599,7 +1599,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
 }
@@ -1608,7 +1608,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="removeAllUserScripts"></a>
 ## *removeAllUserScripts*
 
-Remove all user scripts.
+Clears all user scripts previously registered through this interface.
 
 ### Events Triggered
 None
@@ -1626,7 +1626,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.WebKitBrowser.removeAllUserScripts"
 }
@@ -1636,7 +1636,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.WebKitBrowser.removeAllUserScripts"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.WebKitBrowser.removeAllUserScripts"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1644,7 +1644,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -1653,7 +1653,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="runJavaScript"></a>
 ## *runJavaScript*
 
-Run javascript in main frame.
+Executes the supplied JavaScript source in the page's main frame.
 
 ### Events Triggered
 None
@@ -1674,11 +1674,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.WebKitBrowser.runJavaScript",
     "params": {
-        "script": ""
+        "script": "window.appReady = true"
     }
 }
 ```
@@ -1687,7 +1687,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.WebKitBrowser.runJavaScript", "params": {"script": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.WebKitBrowser.runJavaScript", "params": {"script": "window.appReady = true"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1695,7 +1695,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
@@ -1713,12 +1713,12 @@ The following methods are provided by the IBrowserCookieJar Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [setcoookiejar](#setcoookiejar) |  |
+| [setcoookiejar](#setcoookiejar) | Updates the cookie-jar snapshot. |
 
 <a id="setcoookiejar"></a>
 ## *setcoookiejar*
 
-
+Replaces cookie-jar data using its version, checksum, and serialized payload.
 
 ### Events Triggered
 None
@@ -1726,9 +1726,9 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.version | integer |  |
-| params.checksum | integer |  |
-| params.payload | string | base64 encoded JSON string response to be delivered to $badger.callback |
+| params.version | integer | Cookie-jar version |
+| params.checksum | integer | Cookie-jar checksum |
+| params.payload | string | Serialized cookie-jar data |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1741,13 +1741,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.WebKitBrowser.setcoookiejar",
     "params": {
-        "version": 0,
-        "checksum": 0,
-        "payload": ""
+        "version": 1,
+        "checksum": 12345,
+        "payload": "..."
     }
 }
 ```
@@ -1756,7 +1756,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.WebKitBrowser.setcoookiejar", "params": {"version": 0, "checksum": 0, "payload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.WebKitBrowser.setcoookiejar", "params": {"version": 1, "checksum": 12345, "payload": "..."}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1764,7 +1764,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -1784,7 +1784,7 @@ The following events are provided by the IBrowserCookieJar Interface:
 <a id="cookieJarChanged"></a>
 ## *cookieJarChanged*
 
-Notifies that cookies were added, removed or modified.
+Signals that the browser cookie jar contents have changed.
 
 ### Parameters
 This method takes no parameters.
@@ -1793,7 +1793,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.WebKitBrowser.cookieJarChanged"
 }
