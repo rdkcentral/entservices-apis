@@ -124,21 +124,33 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     };
 
     struct ApplicationContext {
+        // @brief Authenticated application identifier.
         string appId;
+        // @brief Caller-assigned session identifier for the application.
         string sessionId;
     };
 
     struct SharedBuffer {
+        // @brief Host path of the shared-memory object owned by caller.
+        // Implementation shall safely open the object, determine its actual
+        // size, validate all buffer regions against that size, and map it only
+        // for the duration of the synchronous operation. All acquired resources
+        // shall be released before returning, and no buffer state shall be
+        // retained.
         string name;
     };
 
     struct BufferRegion {
+        // @brief Byte offset in the shared buffer from which the data starts.
         uint32_t offset;
+        // @brief Number of valid bytes in the region.
         uint32_t length;
     };
 
     struct AuthDhKeyPairParameters {
+        // @brief Prime modulus P encoded as an unsigned big-endian byte sequence.
         std::vector<uint8_t> primeP;
+        // @brief Generator G used for the Diffie-Hellman key pair.
         uint32_t generatorG;
     };
 
