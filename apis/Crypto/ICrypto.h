@@ -170,6 +170,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param usage: Operations for which the generated key may be used.
     // @param keyId: Generated transient key identifier.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GenerateKey(const ApplicationContext& context,
         const GenerateKeyAlgorithm algorithm, const std::vector<KeyUsage>& usage,
         uint32_t& keyId /* @out */, CryptoError& error /* @out */) = 0;
@@ -181,6 +184,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param privateKeyId: Generated transient private-key identifier.
     // @param publicKeyId: Generated transient public-key identifier.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GenerateKeyPair(const ApplicationContext& context,
         const KeyPairAlgorithm algorithm, const KeyPairParameters& parameters,
         uint32_t& privateKeyId /* @out */, uint32_t& publicKeyId /* @out */,
@@ -192,6 +198,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param provisionType: Provisioning source of the key.
     // @param keyId: Transient identifier of the loaded key.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult LoadKey(const ApplicationContext& context,
         const string& locator, const ProvisionType provisionType, uint32_t& keyId /* @out */,
         CryptoError& error /* @out */) = 0;
@@ -200,6 +209,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param context: Application and session identifiers.
     // @param keyId: Identifier of the transient key to release.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult UnloadKey(const ApplicationContext& context, const uint32_t keyId,
         CryptoError& error /* @out */) = 0;
 
@@ -209,6 +221,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param exists: Indicates whether the key is available.
     // @param keyId: Transient key identifier when the key is available.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult KeyExists(const ApplicationContext& context,
         const string& locator, bool& exists /* @out */, uint32_t& keyId /* @out */,
         CryptoError& error /* @out */) const = 0;
@@ -220,6 +235,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param keyUsage: Operations for which the key may be used.
     // @param keyAlgorithm: Algorithm associated with the key.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GetKeyInfo(const ApplicationContext& context,
         const uint32_t keyId, KeyType& keyType /* @out */,
         std::vector<KeyUsage>& keyUsage /* @out */,
@@ -228,6 +246,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @brief Releases all transient keys owned by the application session.
     // @param context: Application and session identifiers.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult FlushKeys(const ApplicationContext& context,
         CryptoError& error /* @out */) = 0;
 
@@ -238,6 +259,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param keyBlob: Key data to import.
     // @param keyId: Transient identifier of the imported key.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult ImportKey(const ApplicationContext& context, const KeyType keyType,
         const Core::OptionalType<ImportExportType>& importExportType,
         const std::vector<uint8_t>& keyBlob,
@@ -249,6 +273,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param importExportType: Optional protection format of the exported key blob.
     // @param keyBlob: Exported key data.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult ExportKey(const ApplicationContext& context, const uint32_t keyId,
         const Core::OptionalType<ImportExportType>& importExportType,
         std::vector<uint8_t>& keyBlob /* @out */,
@@ -263,6 +290,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param inputData: Region containing the input data.
     // @param signature: Plugin-selected region containing the generated signature.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult Sign(const ApplicationContext& context,
         const SharedBuffer& buffer, const SignatureAlgorithm algorithm,
         const uint32_t keyId, const DigestAlgorithm digestAlgorithm,
@@ -279,6 +309,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param expectedSignature: Region containing the expected signature.
     // @param verificationStatus: Indicates whether the signature is valid.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult Verify(const ApplicationContext& context,
         const SharedBuffer& buffer, const SignatureAlgorithm algorithm,
         const uint32_t keyId, const DigestAlgorithm digestAlgorithm,
@@ -295,6 +328,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param inputData: Region containing the plaintext.
     // @param encryptedData: Plugin-selected region containing the generated ciphertext.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult Encrypt(const ApplicationContext& context,
         const SharedBuffer& buffer, const CipherAlgorithm algorithm,
         const uint32_t keyId, const BufferRegion& initData,
@@ -310,6 +346,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param encryptedData: Region containing the ciphertext.
     // @param outputData: Plugin-selected region containing the generated plaintext.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult Decrypt(const ApplicationContext& context,
         const SharedBuffer& buffer, const CipherAlgorithm algorithm,
         const uint32_t keyId, const BufferRegion& initData,
@@ -326,6 +365,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param hmacKeyId: Identifier of the derived HMAC key.
     // @param wrappingKeyId: Identifier of the derived wrapping key.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult DeriveSessionKeys(const ApplicationContext& context,
         const KeyPairAlgorithm algorithm, const uint32_t privateKeyId,
         const uint32_t publicKeyId,
@@ -338,6 +380,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param numberOfBytes: Number of random bytes to generate.
     // @param randomValue: Generated random data.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GenerateRandom(const ApplicationContext& context,
         const uint32_t numberOfBytes,
         std::vector<uint8_t>& randomValue /* @out */,
@@ -347,6 +392,9 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @param context: Application and session identifiers.
     // @param state: Current connection state of the application session.
     // @param error: Crypto operation result.
+    // @retval Core::ERROR_NONE: Indicates successful invocation of the method;
+    // the result of the requested functionality is returned in error output param.
+    // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult NotifyAppState(const ApplicationContext& context,
         const AppConnectionState state, CryptoError& error /* @out */) = 0;
 };
