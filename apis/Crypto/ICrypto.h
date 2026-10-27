@@ -143,12 +143,12 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     };
 
     struct KeyPairParameters {
-        /* As of now, only DH is supported. 
-           In future, more support (ex: RSA) may be added
-           When more algorithms are added, this will become 
-           optional parameter and more optional parameters 
-           will be added as per the requirements of the new algorithms.
-        */
+        /*
+         * Currently, only DH is supported.
+         * In the future, additional algorithms (e.g., RSA) may be added.
+         * When new algorithms are introduced, this field may become optional,
+         * and additional optional parameters may be added as required.
+         */
         AuthDhKeyPairParameters authDh;
     };
 
