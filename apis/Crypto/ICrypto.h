@@ -147,7 +147,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
         uint32_t length;
     };
 
-    struct AuthDhKeyPairParameters {
+    struct AuthDHKeyPairParameters {
         // @brief Prime modulus P encoded as an unsigned big-endian byte sequence.
         std::vector<uint8_t> primeP;
         // @brief Generator G used for the Diffie-Hellman key pair.
@@ -161,7 +161,8 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
          * When new algorithms are introduced, this field may become optional,
          * and additional optional parameters may be added as required.
          */
-        AuthDhKeyPairParameters authDh;
+        // @brief Parameters for generating an authenticated Diffie-Hellman key pair.
+        AuthDHKeyPairParameters authDH;
     };
 
     // @brief Generates a key with the requested algorithm and usages.
