@@ -18,6 +18,8 @@ A AppPackageManager module for Thunder framework.
     - [Methods](#IPackageInstaller-Methods)
   - [IAppPackageManagerConfig](#IAppPackageManagerConfig)
     - [Methods](#IAppPackageManagerConfig-Methods)
+  - [IAppPackagesStatus](#IAppPackagesStatus)
+    - [Methods](#IAppPackagesStatus-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -32,6 +34,7 @@ The `AppPackageManager` module provides the following interface(s):
 - IPackageDownloader
 - IPackageInstaller
 - IAppPackageManagerConfig
+- IAppPackagesStatus
 
 The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
@@ -505,8 +508,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [config](#config) | Return the package runtime configuration as an opaque JSON object |
-| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque JSON runtime configuration |
+| [config](#config) | Return the package runtime configuration as an opaque serialized JSON string |
+| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque serialized JSON runtime configuration |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -515,9 +518,7 @@ The following methods are provided by the IPackageInstaller Interface:
 <a id="config"></a>
 ## *config*
 
-Return the package runtime configuration as an opaque JSON object
-
-`envVariables`, `logLevels`, and `fkpsFiles` are real JSON arrays of strings, not strings containing serialized JSON arrays; consumers must process and preserve them as arrays.
+envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
 
 ### Events Triggered
 None
@@ -531,7 +532,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.configMetadata | object | Opaque JSON runtime configuration object containing real JSON arrays; COM-RPC transports its serialized string representation |
+| result.configMetadata | string | Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -565,7 +566,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "configMetadata": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
+        "configMetadata": ""
     }
 }
 ```
@@ -601,9 +602,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
-Return package metadata and its opaque JSON runtime configuration
-
-`envVariables`, `logLevels`, and `fkpsFiles` are real JSON arrays of strings, not strings containing serialized JSON arrays; consumers must process and preserve them as arrays.
+envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
 
 ### Events Triggered
 None
@@ -618,7 +617,7 @@ None
 | result | object |  |
 | result.id | string | Package Id |
 | result.version | string | Version |
-| result.config | object | Opaque JSON runtime configuration object containing real JSON arrays; COM-RPC transports its serialized string representation |
+| result.config | string | Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -653,7 +652,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "result": {
         "id": "",
         "version": "",
-        "config": {"dial": true, "envVariables": [], "command": "", "userId": 0, "groupId": 0}
+        "config": ""
     }
 }
 ```
@@ -1045,6 +1044,105 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
     "id": 1,
     "result": {
         "config": ""
+    }
+}
+```
+
+---
+
+<a id="IAppPackagesStatus"></a>
+## IAppPackagesStatus Interface
+
+<a id="IAppPackagesStatus-Methods"></a>
+### Methods
+
+The following methods are provided by the IAppPackagesStatus Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getRunningApplicationsUsingPackage](#getRunningApplicationsUsingPackage) | Returns the ids of the currently running (locked) applications that use the given package - they are the package or depend on it, directly or transitively. Only top-level applications are returned; restarting an application refreshes its whole dependency chain. |
+
+<a id="getRunningApplicationsUsingPackage"></a>
+## *getRunningApplicationsUsingPackage*
+
+Returns the ids of the currently running (locked) applications that use the given package - they are the package or depend on it, directly or transitively. Only top-level applications are returned; restarting an application refreshes its whole dependency chain.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.packageId | string | Package Id that was installed or removed |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.applicationIds | string | Stringified JSON array of strings with the ids of the running applications using the package (). The string carries a JSON document (@opaque): over COM the caller receives the plain payload string; over JSON-RPC it is embedded verbatim - the result IS the JSON array (e.g. {"result": ["app1","app2"]}), no second parse needed. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "method": "org.rdk.AppPackageManager.getRunningApplicationsUsingPackage",
+    "params": {
+        "packageId": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getRunningApplicationsUsingPackage", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "result": {
+        "applicationIds": [
+            "app1",
+            "app2"
+        ]
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 2,
+        "message": "Package cache not initialized yet (plugin"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Backend failure (libpackage not initialized or"
     }
 }
 ```
