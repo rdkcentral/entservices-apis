@@ -36,7 +36,11 @@ namespace Exchange {
 
             // @brief Notifies that new events have been retrieved
             // @text onnewevent
-            virtual void OnNewEvent(const string& event) = 0;
+            // @param eventName: Name of the event
+            // @param eventValue: Value of the event
+            // @param timestamp: Timestamp of the event
+            // @param id: Identifier of the event
+            virtual void OnNewEvent(const string& eventName, const string& eventValue, const string& timestamp, const string& id) = 0;
 
             // @brief Notification with all events send after stop capture
             // @text onsummary
@@ -62,8 +66,10 @@ namespace Exchange {
         // @text stopcapture
         virtual uint32_t StopCapture() = 0;
 
+        // @brief Register a new event; if id is empty, the plugin assigns one
         /* @json:omit */
-        virtual uint32_t RegisterEvent(const string& event /* @in */) = 0;
+        virtual uint32_t RegisterEvent(const string& eventName /* @in */, const string& eventValue /* @in */,
+                                       const string& timestamp /* @in */, const string& id /* @in */) = 0;
 
     };
 }
