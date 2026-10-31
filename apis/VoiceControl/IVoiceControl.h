@@ -57,7 +57,8 @@ namespace WPEFramework {
             MIC_STREAM_MULTI      /* @text mic_stream_multi */,
             MIC_TAP_STREAM_SINGLE /* @text mic_tap_stream_single */,
             MIC_TAP_STREAM_MULTI  /* @text mic_tap_stream_multi */,
-            MIC_FACTORY_TEST      /* @text mic_factory_test */
+            MIC_FACTORY_TEST      /* @text mic_factory_test */,
+            PTT_LISTEN            /* @text ptt_listen */
         };
 
         // Data structures for Voice Control
@@ -189,17 +190,19 @@ namespace WPEFramework {
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
-            // @param type: The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test
+            // @param type: The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test, ptt_listen
             // @param transcription(optional): The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "comedy movies"
             // @param audioFile(optional): The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav"
             // @param audioFormat(optional): The audio format of audioFile e.g. "pcm"
             // @param name(optional): A friendly name for the simulated session e.g. "Test"
+            // @param macAddr(optional): The MAC address of the device e.g. "00:11:22:33:44:55" for ptt_listen request type
+            // @param audioDuration(optional): The maximum duration of the audio stream in milliseconds e.g. 5000 for ptt_listen request type
             // @param success: Whether the request succeeded
             // @param sessionId: The identifier of the created voice session, present only when success is true e.g. "83d7747d-e02f-42f8-bdc3-bc8f510605c6"
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestType type, const Core::OptionalType<string>& transcription, const Core::OptionalType<string>& audioFile /* @text audio_file */, const Core::OptionalType<string>& audioFormat /* @text audio_format */, const Core::OptionalType<string>& name, bool& success /* @out */, Core::OptionalType<string>& sessionId /* @out */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestType type, const Core::OptionalType<string>& transcription, const Core::OptionalType<string>& audioFile /* @text audio_file */, const Core::OptionalType<string>& audioFormat /* @text audio_format */, const Core::OptionalType<string>& name, const Core::OptionalType<string>& macAddr, const Core::OptionalType<uint32_t>& audioDuration, bool& success /* @out */, Core::OptionalType<string>& sessionId /* @out */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
