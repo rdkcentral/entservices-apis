@@ -411,6 +411,8 @@ namespace Exchange {
         ID_RESOURCE_MONITOR_NOTIFICATION            = ID_RESOURCE_MONITOR + 1,
 
         ID_DAB_ADAPTER                              = ID_ENTOS_OFFSET + 0x620,
+	ID_SYSTEM_MONITOR                           = ID_ENTOS_OFFSET + 0x630,
+	ID_SYSTEM_MONITOR_NOTIFICATION		    = ID_SYSTEM_MONITOR + 1,	
     }; // enum IDS
 
 } // namespace Exchange
