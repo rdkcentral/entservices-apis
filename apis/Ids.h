@@ -409,6 +409,11 @@ namespace Exchange {
 
         ID_RESOURCE_MONITOR                         = ID_ENTOS_OFFSET + 0x610,
         ID_RESOURCE_MONITOR_NOTIFICATION            = ID_RESOURCE_MONITOR + 1,
+
+        ID_MATH                                    = ID_ENTOS_OFFSET + 0x620,
+        ID_MATHEXTENDED                            = ID_MATH + 1,
+        ID_MATHEXTENDED_NOTIFICATION               = ID_MATH + 2,
+        ID_CONFIGURATION_TELEMETRY                 = ID_MATH + 3
     }; // enum IDS
 
 } // namespace Exchange
