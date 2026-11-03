@@ -13,8 +13,8 @@ namespace Exchange {
         ~IAppPackageConnector() override = default;
 
         struct EXTERNAL PackageSpecifierRuntime {
-            string PackageSpecifier;
-            string packageId;
+            string packageSpecifier /* @brief Package specifier associated with the runtime package */;
+            string packageId /* @brief ID of the installed package associated with the package specifier */;
         };
 
         using IPackageSpecifierRuntimeIterator =
