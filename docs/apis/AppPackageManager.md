@@ -18,10 +18,10 @@ A AppPackageManager module for Thunder framework.
     - [Methods](#IPackageInstaller-Methods)
   - [IAppPackageManagerConfig](#IAppPackageManagerConfig)
     - [Methods](#IAppPackageManagerConfig-Methods)
-  - [IAppPackagesStatus](#IAppPackagesStatus)
-    - [Methods](#IAppPackagesStatus-Methods)
   - [IAppPackageConnector](#IAppPackageConnector)
     - [Methods](#IAppPackageConnector-Methods)
+  - [IAppPackagesStatus](#IAppPackagesStatus)
+    - [Methods](#IAppPackagesStatus-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -36,8 +36,8 @@ The `AppPackageManager` module provides the following interface(s):
 - IPackageDownloader
 - IPackageInstaller
 - IAppPackageManagerConfig
-- IAppPackagesStatus
 - IAppPackageConnector
+- IAppPackagesStatus
 
 The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
@@ -1097,105 +1097,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 
 ---
 
-<a id="IAppPackagesStatus"></a>
-## IAppPackagesStatus Interface
-
-<a id="IAppPackagesStatus-Methods"></a>
-### Methods
-
-The following methods are provided by the IAppPackagesStatus Interface:
-
-| Method | Description |
-| :-------- | :-------- |
-| [getRunningApplicationsUsingPackage](#getRunningApplicationsUsingPackage) | Returns the ids of the currently running (locked) applications that use the given package - they are the package or depend on it, directly or transitively. Only top-level applications are returned; restarting an application refreshes its whole dependency chain. |
-
-<a id="getRunningApplicationsUsingPackage"></a>
-## *getRunningApplicationsUsingPackage*
-
-Returns the ids of the currently running (locked) applications that use the given package - they are the package or depend on it, directly or transitively. Only top-level applications are returned; restarting an application refreshes its whole dependency chain.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.packageId | string | Package Id that was installed or removed |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.applicationIds | string | Stringified JSON array of strings with the ids of the running applications using the package (). The string carries a JSON document (@opaque): over COM the caller receives the plain payload string; over JSON-RPC it is embedded verbatim - the result IS the JSON array (e.g. {"result": ["app1","app2"]}), no second parse needed. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "method": "org.rdk.AppPackageManager.getRunningApplicationsUsingPackage",
-    "params": {
-        "packageId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getRunningApplicationsUsingPackage", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "applicationIds": [
-            "app1",
-            "app2"
-        ]
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_UNAVAILABLE)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "error": {
-        "code": 2,
-        "message": "Package cache not initialized yet (plugin"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Backend failure (libpackage not initialized or"
-    }
-}
-```
-
----
-
 <a id="IAppPackageConnector"></a>
 ## IAppPackageConnector Interface
 
@@ -1307,6 +1208,105 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
     "jsonrpc": "2.0",
     "id": 1,
     "result": null
+}
+```
+
+---
+
+<a id="IAppPackagesStatus"></a>
+## IAppPackagesStatus Interface
+
+<a id="IAppPackagesStatus-Methods"></a>
+### Methods
+
+The following methods are provided by the IAppPackagesStatus Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getRunningApplicationsUsingPackage](#getRunningApplicationsUsingPackage) | Returns the ids of the currently running (locked) applications that use the given package - they are the package or depend on it, directly or transitively. Only top-level applications are returned; restarting an application refreshes its whole dependency chain. |
+
+<a id="getRunningApplicationsUsingPackage"></a>
+## *getRunningApplicationsUsingPackage*
+
+Returns the ids of the currently running (locked) applications that use the given package - they are the package or depend on it, directly or transitively. Only top-level applications are returned; restarting an application refreshes its whole dependency chain.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.packageId | string | Package Id that was installed or removed |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.applicationIds | string | Stringified JSON array of strings with the ids of the running applications using the package (). The string carries a JSON document (@opaque): over COM the caller receives the plain payload string; over JSON-RPC it is embedded verbatim - the result IS the JSON array (e.g. {"result": ["app1","app2"]}), no second parse needed. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "method": "org.rdk.AppPackageManager.getRunningApplicationsUsingPackage",
+    "params": {
+        "packageId": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getRunningApplicationsUsingPackage", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "result": {
+        "applicationIds": [
+            "app1",
+            "app2"
+        ]
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 2,
+        "message": "Package cache not initialized yet (plugin"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Backend failure (libpackage not initialized or"
+    }
 }
 ```
 
