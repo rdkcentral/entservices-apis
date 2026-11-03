@@ -399,7 +399,14 @@ namespace Exchange {
 
         ID_DEVICESETTINGS_VIDEOPORT                         = ID_ENTOS_OFFSET + 0x5F0,
         ID_DEVICESETTINGS_VIDEOPORT_NOTIFICATION            = ID_DEVICESETTINGS_VIDEOPORT + 1,
-        ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR     = ID_DEVICESETTINGS_VIDEOPORT + 2,
+        ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR     = ID_DEVICESETTINGS_VIDEOPORT + 2,     
+
+        ID_MATH                                    = ID_ENTOS_OFFSET + 0x600,
+        ID_MATHEXTENDED                            = ID_MATH + 1,
+        ID_MATHEXTENDED_NOTIFICATION               = ID_MATH + 2,
+        ID_CONFIGURATION_TELEMETRY                 = ID_MATH + 3
+
+ 
     }; // enum IDS
 
 } // namespace Exchange
