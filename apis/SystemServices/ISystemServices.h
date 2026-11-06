@@ -479,13 +479,13 @@ namespace WPEFramework
 
             // @text setDeepSleepTimer
             // @brief Sets the deep sleep timeout period.
-            // @param seconds: The deep sleep timeout in seconds
+            // @param seconds: The deep sleep timeout in seconds, up to 2 days
             // @param SysSrv_Status: System service status error code if failure occurs
             // @param errorMessage: Error message if failure occurs
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetDeepSleepTimer(const int seconds, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetDeepSleepTimer(const int seconds /* @restrict:0..172800 */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text setFirmwareAutoReboot
             // @brief Enables or disables the AutoReboot Feature.
