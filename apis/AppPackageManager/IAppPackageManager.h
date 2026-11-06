@@ -2,6 +2,9 @@
 #include "Module.h"
 #include <utility>
 
+namespace Thunder {
+namespace Exchange {
+
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
