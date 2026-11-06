@@ -259,8 +259,8 @@ namespace WPEFramework
         // @property
         // @text setDeepSleepTimer
         // @brief Set Deep sleep timer for timeOut period
-        // @param timeOut: deep sleep timeout
-        virtual Core::hresult SetDeepSleepTimer(const int timeOut ) = 0;
+        // @param timeOut: deep sleep timeout in seconds, up to 2 days
+        virtual Core::hresult SetDeepSleepTimer(const int timeOut /* @restrict:0..172800 */) = 0;
 
         /** Get Last Wakeup reason */
         // @property
@@ -338,4 +338,3 @@ namespace WPEFramework
 
 } // namespace Exchange
 } // namespace WPEFramework
-
