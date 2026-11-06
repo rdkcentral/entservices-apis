@@ -1194,7 +1194,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).timeOut | int | Deep sleep timeout |
+| (property).timeOut | int | Deep sleep timeout in seconds, from 0 to 172800 (2 days) |
 
 ### Examples
 

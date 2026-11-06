@@ -2445,7 +2445,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.seconds | int | The deep sleep timeout in seconds |
+| params.seconds | int | The deep sleep timeout in seconds, from 0 to 172800 (2 days) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
