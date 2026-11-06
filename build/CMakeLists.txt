@@ -28,10 +28,12 @@ find_package(JsonGenerator REQUIRED)
 find_package(${NAMESPACE}Core REQUIRED)
 find_package(${NAMESPACE}PrivilegedRequest QUIET)
 
-set(Target ${NAMESPACE}${PROJECT_NAME})
+# API_JSON_FILES, API_INTERFACE_HEADERS, WITH_COMMON_FILES and DefinitionsTarget
+# are set by the top-level CMakeLists.txt, depending on STANDALONE_API(S)
+set(Target ${DefinitionsTarget})
 
-file(GLOB JSON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../apis/*/*.json" "${CMAKE_CURRENT_SOURCE_DIR}/../apis/*.json")
-file(GLOB INTERFACE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../apis/*/I*.h")
+set(JSON_FILE ${API_JSON_FILES})
+set(INTERFACE_FILE ${API_INTERFACE_HEADERS})
 
 if(NOT GENERATOR_SEARCH_PATH)
     set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
@@ -44,14 +46,24 @@ file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
 
 include(CreateLink)
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
-list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
-list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/Module.h" TARGET "../apis/Module.h")
-list(APPEND PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/Module.h")
-CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids_comcast.h" TARGET "../Ids_comcast.h")
-list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids_comcast.h")
+if(WITH_COMMON_FILES)
+    CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
+    list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
+    CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
+    list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h")
+    CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids_comcast.h" TARGET "../Ids_comcast.h")
+    list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids_comcast.h")
+endif()
+
+install(
+        FILES ${JSON_LINK_HEADERS}
+        DESTINATION include/${NAMESPACE}/interfaces/json
+)
+
+# APIs without JSON-RPC enums (e.g. COM-only ones) have no Definitions library
+if(NOT JSON_ENUM_SOURCES)
+    return()
+endif()
 
 add_library(${Target} SHARED
         ${JSON_ENUM_SOURCES}
@@ -69,7 +81,6 @@ set_target_properties(${Target} PROPERTIES
         FRAMEWORK FALSE
         VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
-        PUBLIC_HEADER "${PUBLIC_HEADERS}" # specify the public headers
         )
 
 target_include_directories(${Target} PRIVATE
@@ -83,11 +94,6 @@ install(
         RUNTIME DESTINATION bin COMPONENT libs      # binaries
         FRAMEWORK DESTINATION bin/ COMPONENT libs    # for mac
         INCLUDES DESTINATION include/${NAMESPACE}   # default include path
-)
-
-install(
-        FILES ${JSON_LINK_HEADERS}
-        DESTINATION include/${NAMESPACE}/interfaces/json
 )
 
 InstallPackageConfig(
