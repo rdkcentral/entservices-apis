@@ -527,7 +527,6 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.packageId | string | Package Id |
-| params.version | string | Version |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -545,8 +544,7 @@ None
     "id": 10,
     "method": "org.rdk.AppPackageManager.config",
     "params": {
-        "packageId": "",
-        "version": ""
+        "packageId": ""
     }
 }
 ```
@@ -555,7 +553,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -697,7 +695,6 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.packageId | string | Package Id |
-| params.version | string | Version |
 | params.additionalMetadata | array | Additional Metadata |
 | params.additionalMetadata[#].name | string |  |
 | params.additionalMetadata[#].value | string |  |
@@ -720,7 +717,6 @@ None
     "method": "org.rdk.AppPackageManager.install",
     "params": {
         "packageId": "",
-        "version": "",
         "additionalMetadata": [
             {
                 "name": "",
@@ -736,7 +732,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -825,7 +821,6 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.packageId | string | Package Id |
-| params.version | string | Version |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -843,8 +838,7 @@ None
     "id": 14,
     "method": "org.rdk.AppPackageManager.packageState",
     "params": {
-        "packageId": "",
-        "version": ""
+        "packageId": ""
     }
 }
 ```
@@ -853,7 +847,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -950,7 +944,6 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.packageId | string | Package Id |
-| params.version | string | Version |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -968,8 +961,7 @@ None
     "id": 0,
     "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage",
     "params": {
-        "packageId": "",
-        "version": ""
+        "packageId": ""
     }
 }
 ```
@@ -978,7 +970,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
