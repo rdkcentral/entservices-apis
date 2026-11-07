@@ -57,13 +57,13 @@ The following methods are provided by the INativeJS Interface:
 | [createApplication](#createApplication) | Create a NativeJS application. |
 | [getApplications](#getApplications) | Get details of existing plugin. |
 | [runApplication](#runApplication) | run a NativeJS application. |
-| [runJavaScript](#runJavaScript) | run a NativeJS code. |
+| [runJavaScript](#runJavaScript) | Run a NativeJS code. |
 | [terminateApplication](#terminateApplication) | Destroy a running NativeJS application. |
 
 <a id="createApplication"></a>
 ## *createApplication*
 
-Create a NativeJS application.
+This API creates a new NativeJS application with the specified options.
 
 ### Events Triggered
 None
@@ -85,11 +85,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.NativeJS.createApplication",
     "params": {
-        "options": ""
+        "options": "{ \\\"name\\\": \\\"MyApp\\\", \\\"version\\\": \\\"1.0.0\\\" }"
     }
 }
 ```
@@ -98,7 +98,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.NativeJS.createApplication", "params": {"options": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.NativeJS.createApplication", "params": {"options": "{ \\\"name\\\": \\\"MyApp\\\", \\\"version\\\": \\\"1.0.0\\\" }"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -106,10 +106,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
-        "id": 0
+        "id": 1
     }
 }
 ```
@@ -117,7 +117,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getApplications"></a>
 ## *getApplications*
 
-Get details of existing plugin.
+This API retrieves details of all existing NativeJS applications.
 
 ### Events Triggered
 None
@@ -135,7 +135,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.NativeJS.getApplications"
 }
@@ -145,7 +145,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.NativeJS.getApplications"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.NativeJS.getApplications"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -153,7 +153,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": null
 }
@@ -162,7 +162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="runApplication"></a>
 ## *runApplication*
 
-run a NativeJS application.
+This API runs the specified NativeJS application with the given URL.
 
 ### Events Triggered
 None
@@ -184,12 +184,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.NativeJS.runApplication",
     "params": {
-        "id": 0,
-        "url": ""
+        "id": 1,
+        "url": "http://example.com/myapp"
     }
 }
 ```
@@ -198,7 +198,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.NativeJS.runApplication", "params": {"id": 0, "url": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.NativeJS.runApplication", "params": {"id": 1, "url": "http://example.com/myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -206,7 +206,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -215,7 +215,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="runJavaScript"></a>
 ## *runJavaScript*
 
-run a NativeJS code.
+This API runs the specified JavaScript code within the NativeJS plugin.
 
 ### Events Triggered
 None
@@ -224,7 +224,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.id | integer | The ID for the code to run. |
-| params.code | string |  |
+| params.code | string | The JavaScript code to execute. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -237,12 +237,12 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.NativeJS.runJavaScript",
     "params": {
-        "id": 0,
-        "code": ""
+        "id": 1,
+        "code": "console.log('Hello, World!');"
     }
 }
 ```
@@ -251,7 +251,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.NativeJS.runJavaScript", "params": {"id": 0, "code": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.NativeJS.runJavaScript", "params": {"id": 1, "code": "console.log('Hello, World!');"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -259,7 +259,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
@@ -268,7 +268,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="terminateApplication"></a>
 ## *terminateApplication*
 
-Destroy a running NativeJS application.
+This API terminates the specified NativeJS application.
 
 ### Events Triggered
 None
@@ -289,11 +289,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.NativeJS.terminateApplication",
     "params": {
-        "id": 0
+        "id": 1
     }
 }
 ```
@@ -302,7 +302,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.NativeJS.terminateApplication", "params": {"id": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.NativeJS.terminateApplication", "params": {"id": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -310,7 +310,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": null
 }
