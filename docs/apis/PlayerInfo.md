@@ -58,15 +58,15 @@ The following properties are provided by the IPlayerProperties Interface:
 
 | Property | Description |
 | :-------- | :-------- |
-| [audioCodecs](#audioCodecs)<sup>RO</sup> |  |
+| [audioCodecs](#audioCodecs)<sup>RO</sup> | Returns the audio codecs supported by the player. |
 | [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
 | [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution |
-| [videoCodecs](#videoCodecs)<sup>RO</sup> |  |
+| [videoCodecs](#videoCodecs)<sup>RO</sup> | Returns the video codecs supported by the player. |
 
 <a id="audioCodecs"></a>
 ## *audioCodecs*
 
-
+Retrieves the list of audio codecs available for playback.
 
 > This property is read-only.
 ### Events
@@ -74,7 +74,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).codec | array |  |
+| (property).codec | array | Receives an iterator over the supported audio codecs. |
 | (property).codec[#] | string | Possible values: AUDIO_UNDEFINED, AUDIO_AAC, AUDIO_AC3, AUDIO_AC3_PLUS, AUDIO_DTS, AUDIO_MPEG1, AUDIO_MPEG2, AUDIO_MPEG3, AUDIO_MPEG4, AUDIO_OPUS, AUDIO_VORBIS_OGG, AUDIO_WAV |
 
 ### Examples
@@ -84,7 +84,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.PlayerInfo.audioCodecs"
 }
@@ -94,7 +94,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PlayerInfo.audioCodecs"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.PlayerInfo.audioCodecs"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -102,7 +102,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": [
         "AUDIO_UNDEFINED"
@@ -113,7 +113,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="isAudioEquivalenceEnabled"></a>
 ## *isAudioEquivalenceEnabled*
 
-Checks Loudness Equivalence in platform
+Reports whether audio loudness equivalence is enabled on the platform.
 
 > This property is read-only.
 ### Events
@@ -130,7 +130,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"
 }
@@ -140,7 +140,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -148,7 +148,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "ae": true
@@ -159,7 +159,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="resolution"></a>
 ## *resolution*
 
-Current Video playback resolution
+Retrieves the current video playback resolution.
 
 > This property is read-only.
 ### Events
@@ -176,7 +176,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.PlayerInfo.resolution"
 }
@@ -186,7 +186,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.resolution"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.PlayerInfo.resolution"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -194,7 +194,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "res": "RESOLUTION_UNKNOWN"
@@ -205,7 +205,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="videoCodecs"></a>
 ## *videoCodecs*
 
-
+Retrieves the list of video codecs available for playback.
 
 > This property is read-only.
 ### Events
@@ -213,7 +213,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).codec | array |  |
+| (property).codec | array | Receives an iterator over the supported video codecs. |
 | (property).codec[#] | string | Possible values: VIDEO_UNDEFINED, VIDEO_H263, VIDEO_H264, VIDEO_H265, VIDEO_H265_10, VIDEO_MPEG, VIDEO_MPEG2, VIDEO_MPEG4, VIDEO_VP8, VIDEO_VP9, VIDEO_VP10, VIDEO_AV1 |
 
 ### Examples
@@ -223,7 +223,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.PlayerInfo.videoCodecs"
 }
@@ -233,7 +233,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.videoCodecs"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.PlayerInfo.videoCodecs"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -241,7 +241,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": [
         "VIDEO_UNDEFINED"
@@ -274,18 +274,18 @@ The following events are provided by the IOutput Interface:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
+| params.mode | string | Receives the current sound mode. Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
 | params.enabled | bool |  |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.PlayerInfo.dolby_audiomodechanged",
     "params": {
-        "mode": "UNKNOWN",
+        "mode": "STEREO",
         "enabled": true
     }
 }
@@ -306,7 +306,7 @@ The following properties are provided by the IOutput Interface:
 <a id="dolby_atmosmetadata"></a>
 ## *dolby_atmosmetadata*
 
-Atmos capabilities of Sink
+Retrieves whether the connected sink supports Dolby Atmos.
 
 > This property is read-only.
 ### Events
@@ -314,7 +314,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).supported | bool |  |
+| (property).supported | bool | Receives true when Atmos is supported by the sink; otherwise false. |
 
 ### Examples
 
@@ -323,7 +323,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"
 }
@@ -333,7 +333,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -341,7 +341,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "supported": true
@@ -352,7 +352,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="dolby_enableatmosoutput"></a>
 ## *dolby_enableatmosoutput*
 
-Enable Atmos Audio Output
+Enables or disables Dolby Atmos audio output.
 
 > This property is write-only.
 ### Events
@@ -369,7 +369,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput",
     "params": {
@@ -382,7 +382,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -390,7 +390,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": null
 }
@@ -399,7 +399,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="dolby_mode"></a>
 ## *dolby_mode*
 
-Dolby Mode
+Sets the Dolby output mode. Supported values are DIGITAL_PCM, DIGITAL_PLUS, DIGITAL_AC3, AUTO, DIGITAL_PASSTHROUGH, and MS12.
 
 ### Events
 Event details will be updated soon.
@@ -415,7 +415,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.PlayerInfo.dolby_mode"
 }
@@ -425,7 +425,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -433,7 +433,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "mode": "DIGITAL_PCM"
@@ -446,7 +446,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.PlayerInfo.dolby_mode",
     "params": {
@@ -459,7 +459,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -467,7 +467,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
@@ -476,7 +476,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="dolby_soundmode"></a>
 ## *dolby_soundmode*
 
-Sound Mode - Mono/Stereo/Surround
+Retrieves the current sound mode of the Dolby output.
 
 > This property is read-only.
 ### Events
@@ -484,7 +484,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
+| (property).mode | string | Receives the current sound mode. Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
 
 ### Examples
 
@@ -493,7 +493,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.PlayerInfo.dolby_soundmode"
 }
@@ -503,7 +503,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.dolby_soundmode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.PlayerInfo.dolby_soundmode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -511,10 +511,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
-        "mode": "UNKNOWN"
+        "mode": "STEREO"
     }
 }
 ```
