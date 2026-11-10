@@ -307,7 +307,7 @@ namespace Exchange {
         // @brief Get Audio Port handle for the port type and index
         // @details This method retrieves the handle for a specific audio port based on its type and index.
         // @param type: Type of Audio port - see AudioPortType
-        // @example type: HDMI
+        // @example type: AUDIO_PORT_TYPE_HDMI
         // @param index: index of the audio port within the list of audio port types
         // @example index: 0
         // @param handle: handle to the port
