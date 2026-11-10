@@ -155,7 +155,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -206,7 +206,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -260,7 +260,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "", "metaData": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "com.example.myapp", "metaData": "com.example.myapp.META_DATA_KEY"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -316,7 +316,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "com.example.myapp", "key": "com.example.myapp.PROPERTY_KEY"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -479,7 +479,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -532,7 +532,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -587,7 +587,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "com.example.myapp", "intent": "com.example.myapp.ACTION_DO_SOMETHING", "launchArgs": "--fullscreen"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -643,7 +643,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "com.example.myapp", "intent": "com.example.myapp.ACTION_DO_SOMETHING", "launchArgs": "--fullscreen"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -654,7 +654,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "error": "Failed to preload application due to missing resources."
+        "error": ""
     }
 }
 ```
@@ -712,7 +712,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "", "intent": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "com.example.myapp", "intent": "com.example.myapp.ACTION_DO_SOMETHING"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -767,7 +767,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "com.example.myapp", "key": "com.example.myapp.PROPERTY_KEY", "value": "some_value"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -818,7 +818,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -869,7 +869,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -920,7 +920,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
