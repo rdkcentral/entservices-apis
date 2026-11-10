@@ -149,7 +149,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
 
     struct AuthDHKeyPairParameters {
         // @brief Prime modulus P encoded as an unsigned big-endian byte sequence.
-        std::vector<uint8_t> primeP;
+        std::vector<uint8_t> primeP /* @restrict:0..4294967295 */;
         // @brief Generator G used for the Diffie-Hellman key pair.
         uint32_t generatorG;
     };
@@ -175,7 +175,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // the result of the requested functionality is returned in error output param.
     // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GenerateKey(const ApplicationContext& context,
-        const GenerateKeyAlgorithm algorithm, const std::vector<KeyUsage>& usage,
+        const GenerateKeyAlgorithm algorithm, const std::vector<KeyUsage>& usage /* @restrict:0..4294967295 */,
         uint32_t& keyId /* @out */, CryptoError& error /* @out */) = 0;
 
     // @brief Generates a key pair using the specified algorithm and parameters.
@@ -241,7 +241,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GetKeyInfo(const ApplicationContext& context,
         const uint32_t keyId, KeyType& keyType /* @out */,
-        std::vector<KeyUsage>& keyUsage /* @out */,
+        std::vector<KeyUsage>& keyUsage /* @out @restrict:0..4294967295 */,
         KeyAlgorithm& keyAlgorithm /* @out */, CryptoError& error /* @out */) const = 0;
 
     // @brief Releases all transient keys owned by the application session.
@@ -265,7 +265,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult ImportKey(const ApplicationContext& context, const KeyType keyType,
         const Core::OptionalType<ImportExportType>& importExportType,
-        const std::vector<uint8_t>& keyBlob,
+        const std::vector<uint8_t>& keyBlob /* @restrict:0..4294967295 */,
         uint32_t& keyId /* @out */, CryptoError& error /* @out */) = 0;
 
     // @brief Exports a transient key as a key blob.
@@ -279,7 +279,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult ExportKey(const ApplicationContext& context, const uint32_t keyId,
         const Core::OptionalType<ImportExportType>& importExportType,
-        std::vector<uint8_t>& keyBlob /* @out */,
+        std::vector<uint8_t>& keyBlob /* @out @restrict:0..4294967295 */,
         CryptoError& error /* @out */) const = 0;
 
     // @brief Signs input held in shared memory and returns the signature location.
@@ -386,7 +386,7 @@ struct EXTERNAL ICrypto : virtual public Core::IUnknown {
     // @retval Core::ERROR_*: Standard Core error indicating that invocation failed.
     virtual Core::hresult GenerateRandom(const ApplicationContext& context,
         const uint32_t numberOfBytes,
-        std::vector<uint8_t>& randomValue /* @out */,
+        std::vector<uint8_t>& randomValue /* @out @restrict:0..4294967295 */,
         CryptoError& error /* @out */) = 0;
 
     // @brief Updates the lower-level crypto session lifecycle for an application session.
