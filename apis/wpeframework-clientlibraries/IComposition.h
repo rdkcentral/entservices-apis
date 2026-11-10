@@ -175,6 +175,7 @@ namespace Exchange {
 
             // @brief Get client geometry.
             // @details Returns the current client position and dimensions on the composition display.
+            // @retval rectangle: Current client position and dimensions.
             virtual Rectangle Geometry() const = 0;
 
             // @brief Set the client stacking order.
