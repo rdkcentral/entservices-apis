@@ -23,7 +23,7 @@ namespace Exchange {
         // @brief Returns package specifiers and their package IDs.
         // @text getPackageSpecifierRuntimes
         // @param runtimes Iterator containing {PackageSpecifier, packageId} string pairs
-        // @retval ERROR_DISABLED when feature is disabled (in thunder plugin config)
+        // @retval ERROR_NOT_SUPPORTED when this feature is not configured.
         // @retval ERROR_NONE when the operation is successful.
         virtual Core::hresult GetPackageSpecifierRuntimes(
             IPackageSpecifierRuntimeIterator*& runtimes /* @out */) = 0;
@@ -32,9 +32,9 @@ namespace Exchange {
         // @text setPackageSpecifier
         // @param packageSpecifier Package specifier to associate
         // @param packageId ID of the installed package
-        // @retval ERROR_NONE: Association updated successfully
-        // @retval ERROR_DISABLED: Feature is disabled in the Thunder plugin configuration
-        // @retval ERROR_PACKAGEID_NOT_INSTALLED: The requested package ID is not installed
+        // @retval ERROR_NONE Association updated successfully
+        // @retval ERROR_NOT_SUPPORTED Feature is disabled in the Thunder plugin configuration
+        // @retval ERROR_UNKNOWN_KEY The requested package ID is not installed
         virtual Core::hresult SetPackageSpecifier(
             const string& packageSpecifier, const string& packageId) = 0;
     };
