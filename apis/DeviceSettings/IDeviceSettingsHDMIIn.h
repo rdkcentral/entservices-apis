@@ -260,7 +260,7 @@ namespace Exchange {
             // @param port: port 0 or 1 et al
             // @example port: DS_HDMI_IN_PORT_0
             // @param videoPortResolution: Video port resolution
-            // @example videoPortResolution: {"name": "1920x1080p60", "pixelResolution": "DS_HDMIIN_PIXELRES_1920X1080", "aspectRatio": "DS_HDMIIN_ASPECT_RATIO_16X9", "frameRate": "DS_HDMIIN_FRAMERATE_60", "interlaced": false}
+            // @example videoPortResolution: {"name": "1920x1080p60", "pixelResolution": "DS_HDMIIN_PIXELRES_1920X1080", "aspectRatio": "DS_HDMIIN_ASPECT_RATIO_16X9", "stereoScopicMode": "DS_HDMIIN_SSMODE_2D", "frameRate": "DS_HDMIIN_FRAMERATE_60", "interlaced": false}
             virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution& videoPortResolution) {};
             
             // @brief HDMI ALLM status
