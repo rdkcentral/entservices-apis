@@ -379,9 +379,8 @@ namespace Exchange {
         // @param handle: handle to the port
         // @example handle: 1
         // @param videoPortResolution: video port resolution
-        // @example videoPortResolution: {"name": "1920x1080p60", "pixelResolution": "DS_VIDEO_PIXELRES_1920X1080", "aspectRatio": "DS_VIDEO_ASPECT_RATIO_16X9", "stereoScopicMode": "DS_VIDEO_SSMODE_2D", "frameRate": "DS_VIDEO_FRAMERATE_60", "interlaced": false}
-        // @retval Core::ERROR_NONE: Video port resolution was retrieved successfully
-        virtual Core::hresult GetVideoPortResolution(const int32_t handle , VideoPortResolution &videoPortResolution /* @out */) = 0;
+        // @param persist: return persisted value (true) or current value (false)
+        virtual Core::hresult GetVideoPortResolution(const int32_t handle , VideoPortResolution &videoPortResolution /* @out */, const bool persist ) = 0;
 
         /** Set Video port resolution. */
         // @text setVideoPortResolution
