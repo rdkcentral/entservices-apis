@@ -62,7 +62,7 @@ The following methods are provided by the IResourceManager Interface:
 <a id="getBlockedAVApplications"></a>
 ## *getBlockedAVApplications*
 
-Gets a list of blacklisted clients
+Retrieves the list of applications that are currently blocked from AV access.
 
 ### Events Triggered
 None
@@ -83,7 +83,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.ResourceManager.getBlockedAVApplications"
 }
@@ -93,7 +93,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ResourceManager.getBlockedAVApplications"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ResourceManager.getBlockedAVApplications"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -101,13 +101,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "clients": [
-            ""
+            "org.example.app"
         ],
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
     }
 }
 ```
@@ -115,7 +129,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="reserveTTSResource"></a>
 ## *reserveTTSResource*
 
-Reserves the Text To Speech resource for a specified client
+Reserves the Text To Speech resource for the specified client.
 
 ### Events Triggered
 None
@@ -137,11 +151,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.ResourceManager.reserveTTSResource",
     "params": {
-        "appid": ""
+        "appid": "org.example.app"
     }
 }
 ```
@@ -150,7 +164,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appid": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appid": "org.example.app"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -158,7 +172,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -166,10 +180,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
 <a id="reserveTTSResourceForApps"></a>
 ## *reserveTTSResourceForApps*
 
-Reserves the Text To Speech resource for specified clients
+Reserves the Text To Speech resource for the specified clients.
 
 ### Events Triggered
 None
@@ -192,11 +220,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.ResourceManager.reserveTTSResourceForApps",
     "params": [
-        ""
+        "org.example.app"
     ]
 }
 ```
@@ -205,7 +233,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.ResourceManager.reserveTTSResourceForApps", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.ResourceManager.reserveTTSResourceForApps", "params": ["org.example.app"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -213,7 +241,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true
@@ -221,10 +249,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
 <a id="setAVBlocked"></a>
 ## *setAVBlocked*
 
-Adds/removes the application with the given callsign to/from the AV blacklist
+Adds or removes the application with the given callsign to/from the AV blacklist.
 
 ### Events Triggered
 None
@@ -247,11 +289,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.ResourceManager.setAVBlocked",
     "params": {
-        "appid": "",
+        "appid": "org.example.app",
         "blocked": true
     }
 }
@@ -261,7 +303,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appid": "", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appid": "org.example.app", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -269,10 +311,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
     }
 }
 ```
