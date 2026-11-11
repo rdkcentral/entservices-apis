@@ -170,11 +170,16 @@ namespace Exchange {
 
             // @brief Display RX Sense event
             // @text onDisplayRxSense
+            // @details Notifies clients when the display receiver sense signal turns on or off.
             // @param displayEvent: DS_DISPLAY_RXSENSE_ON or DS_DISPLAY_RXSENSE_OFF
+            // @example displayEvent: DS_DISPLAY_RXSENSE_ON
             virtual void OnDisplayRxSense(const DisplayEvent displayEvent) {};
 
             // @brief Display HDCP Status
             // @text onDisplayHDCPStatus
+            // @details Notifies clients when the display HDCP status changes.
+            // @param hdcpStatus: Current HDCP status reported for the display.
+            // @example hdcpStatus: 1
             virtual void OnDisplayHDCPStatus(const int32_t hdcpStatus) {};
             
         };
@@ -189,63 +194,110 @@ namespace Exchange {
 
             // @brief Display HDMI Hot plug event
             // @text onDisplayHDMIHotPlug
+            // @details Notifies clients when an HDMI display is connected or disconnected.
             // @param displayEvent: DS_DISPLAY_EVENT_CONNECTED or DS_DISPLAY_EVENT_DISCONNECTED
+            // @example displayEvent: DS_DISPLAY_EVENT_CONNECTED
             virtual void OnDisplayHDMIHotPlug(const DisplayEvent displayEvent) {};
 
         };
 
+        // @brief Register for HDMI hot-plug notifications.
+        // @details Subscribes a client notification listener to HDMI display connection events.
+        // @param clientName: Name identifying the client registering for notifications.
+        // @example clientName: "DisplayHotPlugClient"
+        // @param notification: Listener that receives HDMI hot-plug events.
+        // @example notification: IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification instance
+        // @retval Core::ERROR_NONE: HDMI hot-plug listener was registered successfully
         virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification* notification ) = 0;
+
+        // @brief Unregister from HDMI hot-plug notifications.
+        // @details Removes a client notification listener from HDMI display connection events.
+        // @param notification: Listener to remove from the subscription.
+        // @example notification: IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification instance
+        // @retval Core::ERROR_NONE: HDMI hot-plug listener was unregistered successfully
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification* notification ) = 0;
 
         /** Get Display EDID. */
         // @text getDisplayEdid
         // @brief Get Display EDID
+        // @details Retrieves the display EDID information and the list of supported video resolutions.
         // @param handle: handle returned in GetDisplay
+        // @example handle: 1
         // @param edId: EDID information
+        // @example edId: {"productCode": 1234, "serialNumber": 5678, "manufactureYear": 2024, "manufactureWeek": 10, "hdmiDeviceType": true, "isRepeater": false}
+        // @param supportedResolutionList: Iterator over resolutions supported by the display.
+        // @example supportedResolutionList: [{"name": "1920x1080p60", "pixelResolution": "DS_DISPLAY_RESOLUTION_1080P60", "aspectRatio": "DS_DISPLAY_ASPECT_RATIO_16X9", "stereoScopicMode": "DS_DISPLAY_SSMODE_2D", "frameRate": "DS_DISPLAY_FRAMERATE_60", "interlaced": false}]
+        // @retval Core::ERROR_NONE: Display EDID and supported resolutions were retrieved successfully
         virtual Core::hresult GetDisplayEdid(const int32_t handle , DisplayEDID &edId /* @out */, IDSVideoPortResolutionIterator*& supportedResolutionList /* @out */) = 0;
 
         /** Get Display EDID bytes. */
         // @text getDisplayEdidBytes
         // @brief Get Display EDID bytes
+        // @details Retrieves the raw EDID byte sequence for the specified display.
         // @param handle: handle returned in GetDisplay
+        // @example handle: 1
         // @param edIdBytes: EDID Bytes
+        // @example edIdBytes: [0, 255, 255, 255, 255, 255, 255, 0]
         // @param edidLength: length of EDID bytes
+        // @example edidLength: 128
+        // @retval Core::ERROR_NONE: EDID bytes were retrieved successfully
         virtual Core::hresult GetDisplayEdidBytes(const int32_t handle , uint8_t edIdBytes[] /* @out @length:edidLength @maxlength:edidLength */, const uint16_t edidLength ) = 0;
 
         /** Get Display handle by port type and index. */
         // @text getDisplay
         // @brief Get Display handle by port type and index
+        // @details Retrieves the handle for a display identified by its port type and index.
         // @param portType: Display port type
+        // @example portType: DS_DISPLAY_PORT_TYPE_HDMI
         // @param index: Display index  
+        // @example index: 0
         // @param handle: Display handle returned
+        // @example handle: 1
+        // @retval Core::ERROR_NONE: Display handle was retrieved successfully
         virtual Core::hresult GetDisplay(const DisplayPortType portType, const int32_t index, int32_t &handle /* @out */) = 0;
 
         /** Get Display Aspect Ratio. */
         // @text getDisplayAspectRatio
         // @brief Get Display Aspect Ratio
+        // @details Retrieves the aspect ratio reported by the specified display.
         // @param handle: Display handle
+        // @example handle: 1
         // @param aspectRatio: Display aspect ratio returned
+        // @example aspectRatio: DS_DISPLAY_ASPECT_RATIO_16X9
+        // @retval Core::ERROR_NONE: Display aspect ratio was retrieved successfully
         virtual Core::hresult GetDisplayAspectRatio(const int32_t handle, DisplayVideoAspectRatio &aspectRatio /* @out */) = 0;
 
         /** Set ALLM (Auto Low Latency Mode) enabled/disabled. */
         // @text setAllmEnabled 
         // @brief Set ALLM (Auto Low Latency Mode) enabled/disabled
+        // @details Enables or disables Auto Low Latency Mode for the specified display.
         // @param handle: Display handle
+        // @example handle: 1
         // @param enabled: Enable/disable ALLM
+        // @example enabled: true
+        // @retval Core::ERROR_NONE: ALLM state was updated successfully
         virtual Core::hresult SetAllmEnabled(const int32_t handle, const bool enabled) = 0;
 
         /** Set AVI Content Type. */
         // @text setAVIContentType
         // @brief Set AVI Content Type
+        // @details Sets the AVI content type transmitted for the specified display.
         // @param handle: Display handle  
+        // @example handle: 1
         // @param contentType: AVI content type to set
+        // @example contentType: DS_DISPLAY_AVI_CONTENT_GRAPHICS
+        // @retval Core::ERROR_NONE: AVI content type was set successfully
         virtual Core::hresult SetAVIContentType(const int32_t handle, const DisplayAVIContentType contentType) = 0;
 
         /** Set AVI Scan Information. */
         // @text setAVIScanInformation
         // @brief Set AVI Scan Information
+        // @details Sets the AVI scan information transmitted for the specified display.
         // @param handle: Display handle
+        // @example handle: 1
         // @param scanInfo: AVI scan information to set
+        // @example scanInfo: DS_DISPLAY_AVI_SCAN_UNDERSCAN
+        // @retval Core::ERROR_NONE: AVI scan information was set successfully
         virtual Core::hresult SetAVIScanInformation(const int32_t handle, const DisplayAVIScanInformation scanInfo) = 0;
     };
 
