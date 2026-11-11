@@ -30,11 +30,41 @@ namespace Exchange {
     struct EXTERNAL IContentDecryption : virtual public Core::IUnknown {
         enum { ID = ID_CONTENTDECRYPTION };
 
-        virtual uint32_t Initialize(PluginHost::IShell* service) = 0;
+        // @brief Initializes the OpenCDMi content-decryption service.
+        // @details Binds the service to the Thunder plugin shell during plugin startup.
+        // @param service: Thunder plugin shell used to initialize the service.
+        // @example service: Initialization
+		// @retval uint32_t: Initialization result.
+		virtual uint32_t Initialize(PluginHost::IShell* service) = 0;
+
+        // @brief Deinitializes the OpenCDMi content-decryption service.
+        // @details Releases service resources associated with the Thunder plugin shell during plugin shutdown.
+        // @param service: Thunder plugin shell associated with the service.
+        // @example service: Deinitialization
         virtual void Deinitialize(PluginHost::IShell* service) = 0;
+
+        // @brief Resets the OpenCDMi content-decryption service.
+        // @details Requests the service to reset its current state.
+        // @retval Core::ERROR_NONE: The service was reset successfully.
         virtual uint32_t Reset() = 0;
+
+        // @brief Retrieves the supported DRM systems.
+        // @details Provides an iterator over DRM system names supported by the plugin.
+        // @retval RPC::IStringIterator*: Iterator over supported DRM system names.
         virtual RPC::IStringIterator* Systems() const = 0;
+
+        // @brief Retrieves the designators configured for a DRM key system.
+        // @details The plugin configuration associates designators with each configured DRM system.
+        // @param keySystem: Name of the DRM key system whose designators are requested.
+        // @example keySystem: "PlayReady"
+        // @retval RPC::IStringIterator*: Iterator over designators for the requested key system.
         virtual RPC::IStringIterator* Designators(const string& keySystem) const = 0;
+
+        // @brief Retrieves active DRM sessions.
+        // @details Provides an iterator over active session entries exposed by the OpenCDMi service.
+        // @param keySystem: DRM key system used to select the session information.
+        // @example keySystem: "PlayReady"
+        // @retval RPC::IStringIterator*: Iterator over active session entries.
         virtual RPC::IStringIterator* Sessions(const string& keySystem) const = 0;
 
         enum Status : uint8_t {
@@ -48,7 +78,12 @@ namespace Exchange {
 
             enum {ID = ID_CONTENTDECRYPTION_NOTIFICATION};
 
-            /* @brief initialization status. */
+            // @brief Notifies clients about the initialization status of a DRM system.
+            // @details Reports BUSY, SUCCESS, or FAILED while the service handles DRM initialization and retries.
+            // @param drm: Name of the DRM system whose initialization status changed.
+            // @example drm: "PlayReady"
+            // @param status: Current initialization status: BUSY, SUCCESS, or FAILED.
+            // @example status: "SUCCESS"
             virtual void initializationStatus(const std::string& drm,
                                               const Status status) = 0;
         };
