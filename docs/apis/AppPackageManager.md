@@ -20,6 +20,8 @@ A AppPackageManager module for Thunder framework.
     - [Methods](#IAppPackageManagerConfig-Methods)
   - [IAppPackagesStatus](#IAppPackagesStatus)
     - [Methods](#IAppPackagesStatus-Methods)
+  - [IAppPackageConnector](#IAppPackageConnector)
+    - [Methods](#IAppPackageConnector-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -35,6 +37,7 @@ The `AppPackageManager` module provides the following interface(s):
 - IPackageInstaller
 - IAppPackageManagerConfig
 - IAppPackagesStatus
+- IAppPackageConnector
 
 The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
@@ -1143,6 +1146,164 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
     "error": {
         "code": 1,
         "message": "Backend failure (libpackage not initialized or"
+    }
+}
+```
+
+---
+
+<a id="IAppPackageConnector"></a>
+## IAppPackageConnector Interface
+
+<a id="IAppPackageConnector-Methods"></a>
+### Methods
+
+The following methods are provided by the IAppPackageConnector Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getPackageSpecifierRuntimes](#getPackageSpecifierRuntimes) | Returns package specifiers and their package IDs. |
+| [setPackageSpecifier](#setPackageSpecifier) | Associates a package specifier with an installed package ID. |
+
+<a id="getPackageSpecifierRuntimes"></a>
+## *getPackageSpecifierRuntimes*
+
+Returns package specifiers and their package IDs.
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.runtimes | string | Iterator containing {PackageSpecifier, packageId} string pairs |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "method": "org.rdk.AppPackageManager.getPackageSpecifierRuntimes"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getPackageSpecifierRuntimes"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "result": {
+        "runtimes": ""
+    }
+}
+```
+
+
+#### Error Response (ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "error": {
+        "code": 22,
+        "message": "when this feature is not configured."
+    }
+}
+```
+
+<a id="setPackageSpecifier"></a>
+## *setPackageSpecifier*
+
+Associates a package specifier with an installed package ID.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.packageSpecifier | string | Package specifier to associate |
+| params.packageId | string | ID of the installed package |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "org.rdk.AppPackageManager.setPackageSpecifier",
+    "params": {
+        "packageSpecifier": "",
+        "packageId": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppPackageManager.setPackageSpecifier", "params": {"packageSpecifier": "", "packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": null
+}
+```
+
+
+#### Error Response (ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+        "code": 22,
+        "message": "Feature is disabled in the Thunder plugin configuration"
+    }
+}
+```
+
+
+#### Error Response (ERROR_UNKNOWN_KEY)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+        "code": 24,
+        "message": "The requested package ID is not installed"
     }
 }
 ```
