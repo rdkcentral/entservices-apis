@@ -13,8 +13,27 @@ namespace WPEFramework
         struct EXTERNAL ISystemMonitor : virtual public Core::IUnknown
         {
             enum { ID = ID_SYSTEM_MONITOR };
- 
-            using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+            
+	    // @event	    
+	    struct EXTERNAL INotification : virtual public Core::IUnknown
+	    {
+		enum { ID = ID_SYSTEM_MONITOR_NOTIFICATION };
+		/* 
+		 * Called when memory usage crossed the configured threahold
+		 */
+		virtual void OnLowMemory( const uint64_t freeMemory, const uint64_t threshold) {}
+		/*
+         	 * Called when CPU usage crosses the configured high-usage threshold.
+         	 */
+        	virtual void OnHighCpuUsage(const double cpuUsage, const double threshold) {}
+		};
+
+		/* COM RPC notification subscription */
+	        virtual Core::hresult Register(Exchange::ISystemMonitor::INotification* notification) = 0;
+
+	        virtual Core::hresult Unregister(Exchange::ISystemMonitor::INotification* notification) = 0;
+
+            //using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
  
             virtual ~ISystemMonitor() = default;
  
@@ -58,6 +77,14 @@ namespace WPEFramework
              * @return Core::ERROR_NONE on success.
              */
             virtual Core::hresult CpuLoad(double& load /*@out */)  const = 0;
+
+	    /*
+     * Temporary APIs for notification testing.
+     * These can be removed after validation.
+     */
+    virtual Core::hresult TriggerMemoryNotification() = 0;
+
+    virtual Core::hresult TriggerCpuNotification() = 0;
         };
     }
 }
