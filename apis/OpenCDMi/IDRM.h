@@ -286,9 +286,6 @@ public:
 
     // Get stream type
     virtual MediaType GetMediaType() const = 0;
-
-    // Deprecated method for backwards compatibility. 
-    virtual uint8_t InitLength() const = 0;
 };
 
 // IMediaKeySessionCallback defines the callback interface to receive
@@ -386,7 +383,7 @@ PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)
                 inData, inDataLength,
                 outDataLength, outData,
                 sampleInfo->keyIdLength, sampleInfo->keyId,
-                properties->InitLength()));
+                0));
 POP_WARNING()
     }
 
