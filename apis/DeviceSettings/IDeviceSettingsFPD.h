@@ -199,8 +199,7 @@ namespace Exchange {
         // @param indicator: Type of indicator
         // @example indicator: DS_FPD_INDICATOR_POWER
         // @param color: color
-        // @param persist: persist (true) the color or not (false)
-        virtual Core::hresult SetFPDColor(const FPDIndicator indicator , const uint32_t color , const bool persist )  = 0;
+        virtual Core::hresult SetFPDColor(const FPDIndicator indicator , const uint32_t color )  = 0;
 
         /** Set Front Panel Text Display (LED). */
         // @text setFPDTextBrightness
