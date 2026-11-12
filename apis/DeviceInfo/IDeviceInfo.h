@@ -145,6 +145,11 @@ namespace Exchange {
             string osVersion /* @brief Operating system version */;
         };
 
+	 struct EXTERNAL DeviceDisplayBrandName {
+	    string displayBrandName /* @brief Device display brand name */;
+	};
+
+
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
