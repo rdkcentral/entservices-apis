@@ -50,14 +50,14 @@ namespace Exchange {
             // @param dolbyAtmosExperience: true if Dolby Atmos Experience is now enabled
             virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {}
 
-	    // @text onVolumeLevelChanged
+	   	    // @text onVolumeLevelChanged
             // @brief Notifies subscribers when the Volume Level changes
             // @param audioPort: The audiport for which volume is changed
-	    // @param volumeLevel: The changed volume level
+	    	// @param volumeLevel: The changed volume level
             virtual void OnVolumeLevelChanged(const string& audioPort, const uint32_t& volumeLevel) {}
 
-	    // @text onMuteStatusChanged
-	    // @brief Notifies subscribers when the Mute status changes
+	    	// @text onMuteStatusChanged
+	    	// @brief Notifies subscribers when the Mute status changes
             // @param audioPort: The audiport which is muted
             // @param muted: true if muted
             virtual void OnMuteStatusChanged(const string& audioPort, const bool muted) {}
@@ -78,52 +78,52 @@ namespace Exchange {
         virtual Core::hresult DolbyAtmosExperience(bool& enabled /* @out */) const = 0;
 
         // @text setVolumeLevel
-       // @brief Sets the volumelevel for given audioport
-       // @param audioPort: Any available audio port
-       // @example audioPort: "SPEAKER0"
-       // @param volumeLevel: Audio input volume level
-       // @example volumeLevel: 50
-       // @param success: if the request succeeds returns true
-       // @example success: true
-       // @retval Core::ERROR_NONE on success
-       virtual Core::hresult SetVolumeLevel(const string& audioPort, const uint32_t& volumeLevel, bool& success /* @out */) = 0;
+        // @brief Sets the volumelevel for given audioport
+        // @param audioPort: Any available audio port
+        // @example audioPort: "SPEAKER0"
+        // @param volumeLevel: Audio input volume level
+        // @example volumeLevel: 50
+        // @param success: if the request succeeds returns true
+        // @example success: true
+        // @retval Core::ERROR_NONE on success
+        virtual Core::hresult SetVolumeLevel(const string& audioPort, const uint32_t& volumeLevel, bool& success /* @out */) = 0;
 
         // @text setMuted
-       // @brief Mutes/Unmutes the volume for given audioport
-       // @param audioPort: Any available audio port
-       // @example audioPort: "SPEAKER0"
-       // @param muted: true if required to mutes the audiport, false to unmute
-       // @example muted: true
-       // @param success: if the request succeeds returns true
-       // @example success: true
-       // @retval Core::ERROR_NONE on success
-       virtual Core::hresult SetMuted(const string& audioPort, const bool muted, bool& success /* @out */) = 0;
+        // @brief Mutes/Unmutes the volume for given audioport
+        // @param audioPort: Any available audio port
+        // @example audioPort: "SPEAKER0"
+        // @param muted: true if required to mutes the audiport, false to unmute
+        // @example muted: true
+        // @param success: if the request succeeds returns true
+        // @example success: true
+        // @retval Core::ERROR_NONE on success
+        virtual Core::hresult SetMuted(const string& audioPort, const bool muted, bool& success /* @out */) = 0;
 
-	// @text getVolumeLevel
-       // @brief Gets the volumelevel for given audioport
-       // @param audioPort: Any available audio port
-       // @example audioPort: "SPEAKER0"
-       // @param affectedAudioPort: The current port the volume level is fetched for
-       // @example affectedAudioPort: "SPEAKER0"
-       // @param volumeLevel: current volume level of the audioport
-       // @example volumeLevel: 50
-       // @param success: if the request succeeds returns true
-       // @example success: true
-       // @retval Core::ERROR_NONE on success
-       virtual Core::hresult GetVolumeLevel(const string& audioPort, string& affectedAudioPort /* @out */, int& volumeLevel /* @out */, bool& success /* @out */) = 0;
+	    // @text getVolumeLevel
+        // @brief Gets the volumelevel for given audioport
+        // @param audioPort: Any available audio port
+        // @example audioPort: "SPEAKER0"
+        // @param affectedAudioPort: The current port the volume level is fetched for
+        // @example affectedAudioPort: "SPEAKER0"
+        // @param volumeLevel: current volume level of the audioport
+        // @example volumeLevel: 50
+        // @param success: if the request succeeds returns true
+        // @example success: true
+        // @retval Core::ERROR_NONE on success
+        virtual Core::hresult GetVolumeLevel(const string& audioPort, string& affectedAudioPort /* @out */, int& volumeLevel /* @out */, bool& success /* @out */) = 0;
 
-       // @text getMuted
-       // @brief Mutes/Unmutes the volume for given audioport
-       // @param audioPort: Any available audio port
-       // @example audioPort: "SPEAKER0"
-       // @param affectedAudioPort: The current port the muted status is fetched for
-       // @example affectedAudioPort: "SPEAKER0"
-       // @param muted: true if the selected audiport is muted, false otherwise
-       // @example muted: true
-       // @param success: if the request succeeds returns true
-       // @example success: true
-       // @retval Core::ERROR_NONE on success
-       virtual Core::hresult GetMuted(const string& audioPort, string& affectedAudioPort /* @out */, bool& muted /* @out */, bool& success /* @out */) = 0;
+        // @text getMuted
+        // @brief Mutes/Unmutes the volume for given audioport
+        // @param audioPort: Any available audio port
+        // @example audioPort: "SPEAKER0"
+        // @param affectedAudioPort: The current port the muted status is fetched for
+        // @example affectedAudioPort: "SPEAKER0"
+        // @param muted: true if the selected audiport is muted, false otherwise
+        // @example muted: true
+        // @param success: if the request succeeds returns true
+        // @example success: true
+        // @retval Core::ERROR_NONE on success
+        virtual Core::hresult GetMuted(const string& audioPort, string& affectedAudioPort /* @out */, bool& muted /* @out */, bool& success /* @out */) = 0;
     };
 
 } // namespace Exchange
