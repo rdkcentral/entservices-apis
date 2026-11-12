@@ -81,17 +81,23 @@ namespace Exchange {
 
             // @brief Zoom settings changed
             // @text onZoomSettingsChanged
+            // @details Notifies clients when the applied video device zoom setting changes.
             // @param zoomSetting: Currently applied zoom setting
+            // @example zoomSetting: DS_VIDEO_DEVICE_ZOOM_FULL
             virtual void OnZoomSettingsChanged(const VideoZoom zoomSetting) {};
 
             // @brief Display framerate pre-change
             // @text onDisplayFrameratePreChange
+            // @details Notifies clients of the display frame rate before it changes.
             // @param frameRate: Pre-change framerate
+            // @example frameRate: "50"
             virtual void OnDisplayFrameratePreChange(const string& frameRate) {};
 
             // @brief Display framerate post-change
             // @text onDisplayFrameratePostChange
+            // @details Notifies clients of the display frame rate after it changes.
             // @param frameRate: Post-change framerate
+            // @example frameRate: "60"
             virtual void OnDisplayFrameratePostChange(const string& frameRate) {};
 
         };
@@ -102,79 +108,124 @@ namespace Exchange {
         /** Get Video Device handle. */
         // @text getVideoDeviceHandle
         // @brief Get Video device handle
+        // @details Retrieves the handle for a video device instance at the specified index.
         // @param index: index (can be multiple instances)
+        // @example index: 0
         // @param handle: video device handle (to be used for other APIs)
+        // @example handle: 1
+        // @retval Core::ERROR_NONE: Video device handle was retrieved successfully
         virtual Core::hresult GetVideoDeviceHandle(const int32_t index , int32_t &handle /* @out */) = 0;
 
         /** Set Video Device DFC. */
         // @text setVideoDeviceDFC
         // @brief Set Video Device DFC
+        // @details Sets the display format conversion (DFC) zoom mode for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param zoomSetting: Zoom setting to apply
+        // @example zoomSetting: DS_VIDEO_DEVICE_ZOOM_FULL
+        // @retval Core::ERROR_NONE: Video device DFC setting was updated successfully
         virtual Core::hresult SetVideoDeviceDFC(const int32_t handle , const VideoZoom zoomSetting ) = 0;
 
         /** Get Video Device DFC. */
         // @text getVideoDeviceDFC
         // @brief Get Video Device DFC
+        // @details Retrieves the current display format conversion (DFC) zoom mode for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param zoomSetting: current Zoom setting
+        // @example zoomSetting: DS_VIDEO_DEVICE_ZOOM_FULL
+        // @retval Core::ERROR_NONE: Video device DFC setting was retrieved successfully
         virtual Core::hresult GetVideoDeviceDFC(const int32_t handle , VideoZoom &zoomSetting /* @out */) = 0;
 
         /** Get Video Device HDR capabilities. */
         // @text getHDRCapabilities
         // @brief Get Video Device HDR capabilities
+        // @details Retrieves the HDR capability bitmask for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param capabilities: Capabilities
+        // @example capabilities: 3
+        // @retval Core::ERROR_NONE: HDR capabilities were retrieved successfully
         virtual Core::hresult GetHDRCapabilities(const int32_t handle , int32_t &capabilities /* @out */) = 0;
 
         /** Get supported video coding formats. */
         // @text getSupportedVideoCodingFormats
         // @brief Get supported video coding formats
+        // @details Retrieves the video coding formats supported by the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param supportedFormats: Supported Formats
+        // @example supportedFormats: 3
+        // @retval Core::ERROR_NONE: Supported video coding formats were retrieved successfully
         virtual Core::hresult GetSupportedVideoCodingFormats(const int32_t handle , int32_t &supportedFormats /* @out */) = 0;
 
         /** Get Video Device Codec Information  */
         // @text getCodecInfo
         // @brief Get Video Device Codec Information
+        // @details Retrieves the supported profile and level information for the specified video codec.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param videoCodec: Video codec for which information is needed
-        // @param videoCodecInfo: Video codec information
+        // @example videoCodec: DS_VIDEO_CODEC_MPEG4PART10
+        // @param codecInfo: Iterator containing supported codec profiles and levels.
+        // @example codecInfo: [{"profile": "DS_VIDEO_CODEC_HEVC_PROFILE_MAIN", "level": 4.1}]
+        // @retval Core::ERROR_NONE: Video codec information was retrieved successfully
         virtual Core::hresult GetCodecInfo(const int32_t handle , const VideoCodec videoCodec , IDeviceSettingsVideoCodecProfileSupportIterator *&codecInfo /* @out */) = 0;
 
         /** Video Device Disable HDR */
         // @text disableHDR
         // @brief Video Device Disable HDR
+        // @details Enables or disables HDR output for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param disable: disable (true) or enable (false)
+        // @example disable: false
+        // @retval Core::ERROR_NONE: HDR state was updated successfully
         virtual Core::hresult DisableHDR(const int32_t handle , const bool disable ) = 0;
 
         /** Set Video Device FRF mode. */
         // @text setFRFMode
         // @brief Set FRF mode
+        // @details Sets the frame rate reduction mode for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param frfmode: FRF mode
+        // @example frfmode: 1
+        // @retval Core::ERROR_NONE: FRF mode was set successfully
         virtual Core::hresult SetFRFMode(const int32_t handle , const int32_t frfmode ) = 0;
 
         /** Get Video Device FRF mode. */
         // @text getFRFMode
         // @brief Get FRF mode
+        // @details Retrieves the frame rate reduction mode for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param frfmode: FRF mode
+        // @example frfmode: 1
+        // @retval Core::ERROR_NONE: FRF mode was retrieved successfully
         virtual Core::hresult GetFRFMode(const int32_t handle , int32_t &frfmode /* @out */) = 0;
 
         /** Get Video Device display frame rate */
         // @text getCurrentDisplayFrameRate
         // @brief Get current display frame rate
+        // @details Retrieves the current display frame rate for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param framerate: frame rate
+        // @example framerate: "60"
+        // @retval Core::ERROR_NONE: Current display frame rate was retrieved successfully
         virtual Core::hresult GetCurrentDisplayFrameRate(const int32_t handle , string &framerate /* @out */) = 0;
 
         /** Set Video Device display frame rate */
         // @text setDisplayFrameRate
         // @brief Set current display frame rate
+        // @details Sets the display frame rate for the specified video device.
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @example handle: 1
         // @param framerate: frame rate
+        // @example framerate: "60"
+        // @retval Core::ERROR_NONE: Display frame rate was set successfully
         virtual Core::hresult SetDisplayFrameRate(const int32_t handle , const string& framerate ) = 0;
 
     };

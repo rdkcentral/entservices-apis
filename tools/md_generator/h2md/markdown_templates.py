@@ -397,6 +397,18 @@ def generate_parameters_section(params, symbol_registry):
     markdown = "### Parameters\n"
     if params:
         markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
+        if len(params) == 1 and params[0].get('unwrapped'):
+            param_info = params[0]
+            param_key = f"{param_info['name']}-{param_info['type']}"
+            param_type = next(iter(symbol_registry[param_key]['flattened_description'].values()))['type']
+            # An @opaque string carrying a JSON example is sent as that JSON, not as a string
+            example = symbol_registry[param_key].get('example')
+            if isinstance(example, dict):
+                param_type = 'object'
+            elif isinstance(example, list):
+                param_type = 'array'
+            markdown += f"| params | {param_type} | {strip_inline_example(param_info.get('description', ''))} |\n"
+            return markdown
         markdown += f"| params | object |  |\n"
         # Single-member struct params (e.g. a struct wrapping just one "enable" field)
         # are normally flattened straight to their member's name, dropping the param's
