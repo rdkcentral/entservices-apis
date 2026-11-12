@@ -162,6 +162,13 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @param appId App identifier for the application.
   virtual Core::hresult CloseApp(const string& appId) = 0;
 
+  /** Set the target lifecycle state for an application **/
+  // @text setTargetAppState
+  // @brief Request a transition to the target lifecycle state for an application
+  // @param appId App identifier for the application.
+  // @param targetState The target lifecycle state to transition to (PAUSED, SUSPENDED, HIBERNATED, etc.)
+  virtual Core::hresult SetTargetAppState(const string& appId, const AppLifecycleState targetState) = 0;
+
   /** Terminate an Application gracefully **/
   // @text terminateApp
   // @brief TerminateApp will terminate gracefully
