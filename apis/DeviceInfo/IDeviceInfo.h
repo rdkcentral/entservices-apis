@@ -145,6 +145,11 @@ namespace Exchange {
             string osVersion /* @brief Operating system version */;
         };
 
+	 struct EXTERNAL DeviceDisplayBrandName {
+	    string displayBrandName /* @brief Device display brand name */;
+	};
+
+
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -353,6 +358,19 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         virtual Core::hresult OsVersion(DeviceOsVersion& deviceOsVersion /* @out */) const = 0;
         virtual Core::hresult OsVersion(const string &osVersion) = 0;
+
+	// @property
+	// @text displaybrandname
+	// @brief Provides access to the device display brand name.
+	// @details Persists in /opt/persistent/displaybrandname.info; returns an empty string if unset. Cleared by factory reset.
+	// @param deviceDisplayBrandName: Device display brand name
+	// @example deviceDisplayBrandName: {"displayBrandName":"Example Brand"}
+	// @param displayBrandName: Device display brand name to set (single line)
+	// @example displayBrandName: "Example Brand"
+	// @retval ErrorCode::ERROR_NONE: Indicates success
+	virtual Core::hresult DisplayBrandName(DeviceDisplayBrandName& deviceDisplayBrandName /* @out */) const = 0;
+        virtual Core::hresult DisplayBrandName(const string &displayBrandName) = 0;
+
     };
 
     /* @json 1.0.0 @text:keep */
