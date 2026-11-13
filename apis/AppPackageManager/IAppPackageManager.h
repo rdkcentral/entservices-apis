@@ -187,12 +187,10 @@ namespace Exchange {
         // @brief Install
         // @text install
         // @param packageId: Package Id
-        // @param version: Version
         // @param additionalMetadata: Additional Metadata
         // @param fileLocator: File Locator
         virtual Core::hresult Install(
             const string &packageId,
-            const string &version,
             IPackageInstaller::IKeyValueIterator* const& additionalMetadata,
             const string &fileLocator,
             FailReason &failReason /* @out */) = 0;
@@ -213,15 +211,13 @@ namespace Exchange {
         // @details envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
         // @text config
         // @param packageId: Package Id
-        // @param version: Version
         // @param configMetadata: Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays
         // @retval Core::ERROR_NONE: Runtime configuration returned successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
-        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
+        // @retval Core::ERROR_INVALID_PARAMETER: Package was not found
         // @retval Core::ERROR_GENERAL: Package is not installed or its runtime configuration is unavailable
         virtual Core::hresult Config(
             const string &packageId,
-            const string &version,
             string &configMetadata /* @out @opaque */
             ) = 0;
 
@@ -233,10 +229,8 @@ namespace Exchange {
         // @brief PackageState
         // @text packageState
         // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult PackageState(
             const string &packageId,
-            const string &version,
             InstallState &state /* @out */
             ) = 0;
 
@@ -276,7 +270,6 @@ namespace Exchange {
         // @brief Lock
         // @text lock
         // @param packageId: Package Id
-        // @param version: Version
         // @param lockReason: Reason for locking the package
         // @param lockId: Identifier assigned to the package lock
         // @param unpackedPath: Path to the unpacked package
@@ -284,11 +277,10 @@ namespace Exchange {
         // @param appMetadata: Additional packages locked for the application
         // @retval Core::ERROR_NONE: Package locked successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
-        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
+        // @retval Core::ERROR_INVALID_PARAMETER: Package was not found
         // @retval Core::ERROR_GENERAL: Package locking or runtime configuration processing failed
         virtual Core::hresult Lock(
             const string &packageId,
-            const string &version,
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
@@ -300,26 +292,22 @@ namespace Exchange {
         // @brief Unlock
         // @text unlock
         // @param packageId: Package Id
-        // @param version: Version
         virtual Core::hresult Unlock(
-            const string &packageId,
-            const string &version) = 0;
+            const string &packageId) = 0;
 
         // @brief GetLockedInfo
         // @text getLockedInfo
         // @param packageId: Package Id
-        // @param version: Version
         // @param unpackedPath: Path to the unpacked package
         // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
         // @param gatewayMetadataPath: Path to the application gateway metadata
         // @param locked: Indicates whether the package is locked
         // @retval Core::ERROR_NONE: Package lock information returned successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
-        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
+    // @retval Core::ERROR_INVALID_PARAMETER: Package was not found
         // @retval Core::ERROR_GENERAL: Runtime configuration could not be processed
         virtual Core::hresult GetLockedInfo(
             const string &packageId,
-            const string &version,
             string &unpackedPath /* @out */,
             string &runtimeConfigPayload /* @out @opaque */,
             string &gatewayMetadataPath /* @out */,
@@ -334,9 +322,8 @@ namespace Exchange {
         // @brief Returns the metadata of installed package in JSON string format
         // @text getConfigForInstalledPackage
         // @param packageId: Package Id
-        // @param version: Version
         // @param config: Config of the installed package in JSON string format
-        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string &config /* @out @opaque */) = 0;
+        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, string &config /* @out @opaque */) = 0;
 
         // @brief Returns the metadata of all installed packages in JSON string format.
         // @text getConfigListForInstalledPackages
