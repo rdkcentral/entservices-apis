@@ -22,7 +22,7 @@
 #include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
 
-#define ITEXTTRACK_VERSION 6
+#define ITEXTTRACK_VERSION 7
 
 namespace WPEFramework {
 namespace Exchange {
@@ -813,6 +813,27 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @text applyCustomWebVTTStyleOverridesToSession
      */
     virtual Core::hresult ApplyCustomWebVTTStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Sets a still image to be shown behind the subtitles of a preview session.
+     * The image is stretched to cover the whole display and is shown underneath all subtitles on the display,
+     * also while no subtitle is visible. An opaque image hides the video completely.
+     * Setting a new image replaces the current one. An empty image removes it.
+     * The image is removed automatically when the preview session is closed.
+     * Whether a session shows a background image is reported in the info field of GetSessions().
+     * Added in version 7
+     *
+     * @text setPreviewBackgroundImage
+     * @param sessionId Is the preview session
+     * @param base64image Is a base64-encoded still WebP image (lossy or lossless, optionally with alpha), at most 1920x1080 pixels,
+     *              preferably with the display's aspect ratio (16:9). Animated WebP images are not supported.
+     *              Empty to remove the image.
+     * @retval Core::ERROR_NONE if the image was set or removed
+     * @retval Core::ERROR_GENERAL if the session does not exist
+     * @retval Core::ERROR_NOT_SUPPORTED if the session is not a preview session
+     * @retval Core::ERROR_INVALID_PARAMETER if the image could not be decoded, is too large or was rejected
+     */
+    virtual Core::hresult SetPreviewBackgroundImage(const uint32_t sessionId, const string &base64image /* @restrict:10M */) { return Core::ERROR_NOT_SUPPORTED; }
 };
 
 } // namespace Exchange
