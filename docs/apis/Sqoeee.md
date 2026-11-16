@@ -83,7 +83,7 @@ This method takes no parameters.
 | result.emittedReports | integer | Reports handed to the sink |
 | result.duplicateInputs | integer | Inputs deduplicated against an equivalent signal |
 | result.staleInputs | integer | Out-of-order inputs or inputs from retired pipelines or closed sessions |
-| result.uncorrelatedInputs | integer | Inputs without a usable avSessionId or session |
+| result.uncorrelatedInputs | integer | Inputs without a usable playbackSessionId or session |
 | result.malformedInputs | integer | Inputs with invalid parameters |
 | result.droppedReports | integer | Reports the sink refused |
 | result.capacityRejectedInputs | integer | Inputs rejected because the session limit was reached |
@@ -162,7 +162,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID |
+| params.playbackSessionId | string | Playback session ID |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.currentPresentationTimeMs | integer | Current presentation time in milliseconds |
@@ -184,7 +184,7 @@ None
     "method": "org.rdk.Sqoeee.notifyCurrentPresentationTimeUpdate",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "currentPresentationTimeMs": 0,
@@ -197,7 +197,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.Sqoeee.notifyCurrentPresentationTimeUpdate", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "currentPresentationTimeMs": 0, "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.Sqoeee.notifyCurrentPresentationTimeUpdate", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "currentPresentationTimeMs": 0, "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -237,7 +237,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID |
+| params.playbackSessionId | string | Playback session ID |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.timestampMs | integer | Event time in Unix epoch milliseconds |
@@ -258,7 +258,7 @@ None
     "method": "org.rdk.Sqoeee.notifyFirstFramePresented",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "timestampMs": 1764752400000
@@ -270,7 +270,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.Sqoeee.notifyFirstFramePresented", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.Sqoeee.notifyFirstFramePresented", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -314,7 +314,7 @@ None
 | params.appSessionId | string | App session ID |
 | params.appUserSessionId | string | App user session ID |
 | params.entityId | string | Content entity ID; empty when unknown |
-| params.avSessionId | string | AV session ID used to correlate with the Rialto pipeline |
+| params.playbackSessionId | string | Playback session ID used to correlate with the Rialto pipeline |
 | params.timestampMs | integer | Event time in Unix epoch milliseconds |
 ### Results
 | Name | Type | Description |
@@ -337,7 +337,7 @@ None
         "appSessionId": "",
         "appUserSessionId": "",
         "entityId": "",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "timestampMs": 1764752400000
     }
 }
@@ -347,7 +347,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.Sqoeee.notifyInAppContentStart", "params": {"appId": "com.example.app", "appVersion": "", "appSessionId": "", "appUserSessionId": "", "entityId": "", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.Sqoeee.notifyInAppContentStart", "params": {"appId": "com.example.app", "appVersion": "", "appSessionId": "", "appUserSessionId": "", "entityId": "", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -391,7 +391,7 @@ None
 | params.appSessionId | string | App session ID |
 | params.appUserSessionId | string | App user session ID |
 | params.entityId | string | Content entity ID; empty when unknown |
-| params.avSessionId | string | AV session ID used to correlate with the Rialto pipeline |
+| params.playbackSessionId | string | Playback session ID used to correlate with the Rialto pipeline |
 | params.timestampMs | integer | Event time in Unix epoch milliseconds |
 ### Results
 | Name | Type | Description |
@@ -414,7 +414,7 @@ None
         "appSessionId": "",
         "appUserSessionId": "",
         "entityId": "",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "timestampMs": 1764752400000
     }
 }
@@ -424,7 +424,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.Sqoeee.notifyInAppContentStop", "params": {"appId": "com.example.app", "appVersion": "", "appSessionId": "", "appUserSessionId": "", "entityId": "", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.Sqoeee.notifyInAppContentStop", "params": {"appId": "com.example.app", "appVersion": "", "appSessionId": "", "appUserSessionId": "", "entityId": "", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -468,7 +468,7 @@ None
 | params.appSessionId | string | App session ID |
 | params.appUserSessionId | string | App user session ID |
 | params.entityId | string | Content entity ID; empty when unknown |
-| params.avSessionId | string | AV session ID used to correlate with the Rialto pipeline |
+| params.playbackSessionId | string | Playback session ID used to correlate with the Rialto pipeline |
 | params.timestampMs | integer | Event time in Unix epoch milliseconds |
 | params.mediaEventName | string | Firebolt method name: mediaLoadStart, mediaPlay, mediaPlaying, mediaPause, mediaWaiting, mediaSeeking, mediaSeeked or mediaEnded |
 | params?.mediaPosSeconds | integer | <sup>(optional)</sup>Playback position or seek target in seconds (0 to 86400) |
@@ -498,7 +498,7 @@ None
         "appSessionId": "",
         "appUserSessionId": "",
         "entityId": "",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "timestampMs": 1764752400000,
         "mediaEventName": "mediaPlaying",
         "mediaPosSeconds": 0,
@@ -515,7 +515,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.Sqoeee.notifyInAppMedia", "params": {"appId": "com.example.app", "appVersion": "", "appSessionId": "", "appUserSessionId": "", "entityId": "", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "timestampMs": 1764752400000, "mediaEventName": "mediaPlaying", "mediaPosSeconds": 0, "playbackRate": 0.0, "playbackBitrate": 0, "playbackWidth": 0, "playbackHeight": 0, "playbackProfile": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.Sqoeee.notifyInAppMedia", "params": {"appId": "com.example.app", "appVersion": "", "appSessionId": "", "appUserSessionId": "", "entityId": "", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "timestampMs": 1764752400000, "mediaEventName": "mediaPlaying", "mediaPosSeconds": 0, "playbackRate": 0.0, "playbackBitrate": 0, "playbackWidth": 0, "playbackHeight": 0, "playbackProfile": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -555,7 +555,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID supplied by the app or generated by Rialto |
+| params.playbackSessionId | string | Playback session ID supplied by the app or generated by Rialto |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.resolution | string | Video resolution, for example 1920x1080; empty when unknown |
@@ -580,7 +580,7 @@ None
     "method": "org.rdk.Sqoeee.notifyMediaPipelineCreate",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "resolution": "",
@@ -596,7 +596,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.Sqoeee.notifyMediaPipelineCreate", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "resolution": "", "lowLatency": true, "dolbyVision": true, "audioFormat": "", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.Sqoeee.notifyMediaPipelineCreate", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "resolution": "", "lowLatency": true, "dolbyVision": true, "audioFormat": "", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -636,7 +636,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID |
+| params.playbackSessionId | string | Playback session ID |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.timestampMs | integer | Event time in Unix epoch milliseconds |
@@ -657,7 +657,7 @@ None
     "method": "org.rdk.Sqoeee.notifyMediaPipelineDestroy",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "timestampMs": 1764752400000
@@ -669,7 +669,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.Sqoeee.notifyMediaPipelineDestroy", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.Sqoeee.notifyMediaPipelineDestroy", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -709,7 +709,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID |
+| params.playbackSessionId | string | Playback session ID |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.type | string | VIDEO_FRAME_DROP, AUDIO_FRAME_DROP, VIDEO_FRAME_REPEAT, AUDIO_GAP, VIDEO_DECODE_ERROR, AUDIO_DECODE_ERROR or BUFFER_UNDERFLOW |
@@ -735,7 +735,7 @@ None
     "method": "org.rdk.Sqoeee.notifyMediaPipelineMetricEvent",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "type": "BUFFER_UNDERFLOW",
@@ -752,7 +752,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.Sqoeee.notifyMediaPipelineMetricEvent", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "type": "BUFFER_UNDERFLOW", "phase": "STARTED", "count": 0, "durationMs": 0, "ptsMs": 0, "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.Sqoeee.notifyMediaPipelineMetricEvent", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "type": "BUFFER_UNDERFLOW", "phase": "STARTED", "count": 0, "durationMs": 0, "ptsMs": 0, "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -792,7 +792,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID |
+| params.playbackSessionId | string | Playback session ID |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.playbackRate | double | Playback rate |
@@ -814,7 +814,7 @@ None
     "method": "org.rdk.Sqoeee.notifyMediaPipelinePlaybackRate",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "playbackRate": 0.0,
@@ -827,7 +827,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.Sqoeee.notifyMediaPipelinePlaybackRate", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "playbackRate": 0.0, "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.Sqoeee.notifyMediaPipelinePlaybackRate", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "playbackRate": 0.0, "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -867,7 +867,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | Durable app ID |
-| params.avSessionId | string | AV session ID |
+| params.playbackSessionId | string | Playback session ID |
 | params.pipelineId | string | Rialto pipeline identity |
 | params.sourceId | string | Rialto source identity |
 | params.mediaPipelineState | string | UNKNOWN, IDLE, PLAYING, PAUSED, STOPPED, END_OF_STREAM, FAILURE, PREROLLING, DISCARDING, DISCARD_DONE or FLUSHING |
@@ -889,7 +889,7 @@ None
     "method": "org.rdk.Sqoeee.notifyMediaPipelineStateChange",
     "params": {
         "appId": "com.example.app",
-        "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
+        "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60",
         "pipelineId": "pipeline-1",
         "sourceId": "rialto",
         "mediaPipelineState": "PLAYING",
@@ -902,7 +902,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.Sqoeee.notifyMediaPipelineStateChange", "params": {"appId": "com.example.app", "avSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "mediaPipelineState": "PLAYING", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.Sqoeee.notifyMediaPipelineStateChange", "params": {"appId": "com.example.app", "playbackSessionId": "6f1c1f3e-2b7a-4c4b-9f3e-1d2c3b4a5f60", "pipelineId": "pipeline-1", "sourceId": "rialto", "mediaPipelineState": "PLAYING", "timestampMs": 1764752400000}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
