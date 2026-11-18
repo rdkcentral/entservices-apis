@@ -201,19 +201,6 @@ namespace Exchange {
         {
             return (reinterpret_cast<const Administration*>(AdministrationBuffer())->Status);
         }
-        void InitWithLast15(bool initWithLast15)
-        {
-            if (initWithLast15 == true) {
-                reinterpret_cast<Administration*>(AdministrationBuffer())->IVLength |= 0x80;
-            }
-            else {
-                reinterpret_cast<Administration*>(AdministrationBuffer())->IVLength &= (~0x80);
-            }
-        }
-        bool InitWithLast15() const
-        {
-            return ((reinterpret_cast<const Administration*>(AdministrationBuffer())->IVLength & 0x80) != 0);
-        }
         void SetIV(const uint8_t ivDataLength, const uint8_t ivData[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
