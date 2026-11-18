@@ -125,7 +125,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.SystemServices.abortLogUpload"
 }
@@ -135,7 +135,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemServices.abortLogUpload"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.SystemServices.abortLogUpload"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -143,7 +143,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -156,7 +156,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "error": {
         "code": 1,
@@ -192,7 +192,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.SystemServices.getBlocklistFlag"
 }
@@ -202,7 +202,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemServices.getBlocklistFlag"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.SystemServices.getBlocklistFlag"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -210,7 +210,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "blocklist": true,
@@ -228,7 +228,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "error": {
         "code": 1,
@@ -259,7 +259,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.SystemServices.getBootTypeInfo"
 }
@@ -269,7 +269,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemServices.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.SystemServices.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -277,7 +277,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "bootType": ""
@@ -290,7 +290,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "error": {
         "code": 1,
@@ -322,7 +322,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.SystemServices.getBuildType"
 }
@@ -332,7 +332,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemServices.getBuildType"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.SystemServices.getBuildType"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -340,7 +340,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "build_type": "",
@@ -354,7 +354,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "error": {
         "code": 1,
@@ -406,7 +406,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.SystemServices.getDeviceInfo",
     "params": [
@@ -419,7 +419,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SystemServices.getDeviceInfo", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.SystemServices.getDeviceInfo", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -427,7 +427,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "make": "",
@@ -456,7 +456,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "error": {
         "code": 1,
@@ -494,7 +494,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"
 }
@@ -504,7 +504,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -512,7 +512,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "currentFWVersion": "",
@@ -531,7 +531,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "error": {
         "code": 1,
@@ -563,7 +563,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.SystemServices.getFSRFlag"
 }
@@ -573,7 +573,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SystemServices.getFSRFlag"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.SystemServices.getFSRFlag"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -581,7 +581,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "fsrFlag": true,
@@ -595,7 +595,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "error": {
         "code": 1,
@@ -627,7 +627,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"
 }
@@ -637,7 +637,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -645,7 +645,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "downloadPercent": 0,
@@ -659,7 +659,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "error": {
         "code": 1,
@@ -694,7 +694,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.SystemServices.getFirmwareUpdateInfo",
     "params": {
@@ -707,7 +707,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SystemServices.getFirmwareUpdateInfo", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.SystemServices.getFirmwareUpdateInfo", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -715,7 +715,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": {
         "asyncResponse": true,
@@ -729,7 +729,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "error": {
         "code": 1,
@@ -761,7 +761,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.SystemServices.getFirmwareUpdateState"
 }
@@ -771,7 +771,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SystemServices.getFirmwareUpdateState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.SystemServices.getFirmwareUpdateState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -779,7 +779,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
         "firmwareUpdateState": 0,
@@ -793,7 +793,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "error": {
         "code": 1,
@@ -825,7 +825,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.SystemServices.getFriendlyName"
 }
@@ -835,7 +835,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.SystemServices.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.SystemServices.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -843,7 +843,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
         "friendlyName": "",
@@ -857,7 +857,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "error": {
         "code": 1,
@@ -889,7 +889,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"
 }
@@ -899,7 +899,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -907,7 +907,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
         "failReason": "",
@@ -921,7 +921,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "error": {
         "code": 1,
@@ -953,7 +953,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.SystemServices.getLastWakeupKeyCode"
 }
@@ -963,7 +963,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.SystemServices.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.SystemServices.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -971,7 +971,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "wakeupKeyCode": 0,
@@ -985,7 +985,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "error": {
         "code": 1,
@@ -1022,7 +1022,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.SystemServices.getMacAddresses",
     "params": {
@@ -1035,7 +1035,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.SystemServices.getMacAddresses", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.SystemServices.getMacAddresses", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1043,7 +1043,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
         "asyncResponse": true,
@@ -1059,7 +1059,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "error": {
         "code": 1,
@@ -1091,7 +1091,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.SystemServices.getMfgSerialNumber"
 }
@@ -1101,7 +1101,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.SystemServices.getMfgSerialNumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.SystemServices.getMfgSerialNumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1109,7 +1109,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "mfgSerialNumber": "",
@@ -1123,7 +1123,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "error": {
         "code": 1,
@@ -1154,7 +1154,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.SystemServices.getMigrationStatus"
 }
@@ -1164,7 +1164,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.SystemServices.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.SystemServices.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1172,7 +1172,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": {
         "migrationStatus": ""
@@ -1185,7 +1185,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "error": {
         "code": 1,
@@ -1217,7 +1217,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.SystemServices.getNetworkStandbyMode"
 }
@@ -1227,7 +1227,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.SystemServices.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.SystemServices.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1235,7 +1235,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "result": {
         "nwStandby": true,
@@ -1249,7 +1249,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "error": {
         "code": 1,
@@ -1325,7 +1325,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.SystemServices.getPlatformConfiguration",
     "params": {
@@ -1338,7 +1338,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration", "params": {"query": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration", "params": {"query": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1346,7 +1346,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "result": {
         "AccountInfo": {
@@ -1405,7 +1405,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "error": {
         "code": 1,
@@ -1437,7 +1437,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.SystemServices.getPowerState"
 }
@@ -1447,7 +1447,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.SystemServices.getPowerState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.SystemServices.getPowerState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1455,7 +1455,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "result": {
         "powerState": "",
@@ -1469,7 +1469,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "error": {
         "code": 1,
@@ -1501,7 +1501,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"
 }
@@ -1511,7 +1511,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 19, "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1519,7 +1519,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "result": {
         "state": "",
@@ -1533,7 +1533,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "error": {
         "code": 1,
@@ -1571,7 +1571,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.SystemServices.getRFCConfig",
     "params": [
@@ -1584,7 +1584,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.SystemServices.getRFCConfig", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 20, "method": "org.rdk.SystemServices.getRFCConfig", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1592,7 +1592,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "result": {
         "RFCConfig": "",
@@ -1608,7 +1608,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "error": {
         "code": 1,
@@ -1640,7 +1640,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.SystemServices.getSerialNumber"
 }
@@ -1650,7 +1650,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.SystemServices.getSerialNumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.SystemServices.getSerialNumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1658,7 +1658,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": {
         "serialNumber": "",
@@ -1672,7 +1672,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "error": {
         "code": 1,
@@ -1707,7 +1707,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.SystemServices.getSystemVersions"
 }
@@ -1717,7 +1717,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.SystemServices.getSystemVersions"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.SystemServices.getSystemVersions"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1725,7 +1725,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": {
         "stbVersion": "",
@@ -1741,7 +1741,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "error": {
         "code": 1,
@@ -1774,7 +1774,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "method": "org.rdk.SystemServices.getTerritory"
 }
@@ -1784,7 +1784,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.SystemServices.getTerritory"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 23, "method": "org.rdk.SystemServices.getTerritory"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1792,7 +1792,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "result": {
         "territory": "",
@@ -1807,7 +1807,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "error": {
         "code": 1,
@@ -1841,7 +1841,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "method": "org.rdk.SystemServices.getTimeStatus"
 }
@@ -1851,7 +1851,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.SystemServices.getTimeStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 24, "method": "org.rdk.SystemServices.getTimeStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1859,7 +1859,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "result": {
         "TimeQuality": "",
@@ -1875,7 +1875,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "error": {
         "code": 1,
@@ -1908,7 +1908,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "method": "org.rdk.SystemServices.getTimeZoneDST"
 }
@@ -1918,7 +1918,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.SystemServices.getTimeZoneDST"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 25, "method": "org.rdk.SystemServices.getTimeZoneDST"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1926,7 +1926,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "result": {
         "timeZone": "",
@@ -1941,7 +1941,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "error": {
         "code": 1,
@@ -1977,7 +1977,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "method": "org.rdk.SystemServices.getTimeZones",
     "params": [
@@ -1990,7 +1990,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.SystemServices.getTimeZones", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 26, "method": "org.rdk.SystemServices.getTimeZones", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1998,7 +1998,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "result": {
         "zoneinfo": "",
@@ -2012,7 +2012,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "error": {
         "code": 1,
@@ -2044,7 +2044,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "method": "org.rdk.SystemServices.getWakeupReason"
 }
@@ -2054,7 +2054,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.SystemServices.getWakeupReason"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 27, "method": "org.rdk.SystemServices.getWakeupReason"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2062,7 +2062,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "result": {
         "wakeupReason": "",
@@ -2076,7 +2076,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "error": {
         "code": 1,
@@ -2108,7 +2108,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "method": "org.rdk.SystemServices.isOptOutTelemetry"
 }
@@ -2118,7 +2118,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.SystemServices.isOptOutTelemetry"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 28, "method": "org.rdk.SystemServices.isOptOutTelemetry"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2126,7 +2126,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "result": {
         "Opt-Out": true,
@@ -2140,7 +2140,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "error": {
         "code": 1,
@@ -2175,7 +2175,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "method": "org.rdk.SystemServices.reboot",
     "params": {
@@ -2188,7 +2188,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.SystemServices.reboot", "params": {"rebootReason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 29, "method": "org.rdk.SystemServices.reboot", "params": {"rebootReason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2196,7 +2196,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "result": {
         "IARM_Bus_Call_STATUS": 0,
@@ -2210,7 +2210,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "error": {
         "code": 1,
@@ -2242,7 +2242,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "method": "org.rdk.SystemServices.requestSystemUptime"
 }
@@ -2252,7 +2252,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.SystemServices.requestSystemUptime"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 30, "method": "org.rdk.SystemServices.requestSystemUptime"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2260,7 +2260,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "result": {
         "systemUptime": "",
@@ -2274,7 +2274,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "error": {
         "code": 1,
@@ -2312,7 +2312,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "method": "org.rdk.SystemServices.setBlocklistFlag",
     "params": {
@@ -2325,7 +2325,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.SystemServices.setBlocklistFlag", "params": {"blocklist": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 31, "method": "org.rdk.SystemServices.setBlocklistFlag", "params": {"blocklist": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2333,7 +2333,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "result": {
         "error": {
@@ -2350,7 +2350,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "error": {
         "code": 1,
@@ -2387,7 +2387,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "method": "org.rdk.SystemServices.setBootLoaderSplashScreen",
     "params": {
@@ -2400,7 +2400,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.SystemServices.setBootLoaderSplashScreen", "params": {"path": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 32, "method": "org.rdk.SystemServices.setBootLoaderSplashScreen", "params": {"path": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2408,7 +2408,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "result": {
         "error": {
@@ -2425,7 +2425,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "error": {
         "code": 1,
@@ -2445,7 +2445,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.seconds | int | The deep sleep timeout in seconds |
+| params.seconds | int | The deep sleep timeout in seconds, up to 2 days |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2461,7 +2461,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "method": "org.rdk.SystemServices.setDeepSleepTimer",
     "params": {
@@ -2474,7 +2474,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.SystemServices.setDeepSleepTimer", "params": {"seconds": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 33, "method": "org.rdk.SystemServices.setDeepSleepTimer", "params": {"seconds": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2482,7 +2482,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "result": {
         "SysSrv_Status": 0,
@@ -2497,7 +2497,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "error": {
         "code": 1,
@@ -2531,7 +2531,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "method": "org.rdk.SystemServices.setFSRFlag",
     "params": {
@@ -2544,7 +2544,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.SystemServices.setFSRFlag", "params": {"fsrFlag": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 34, "method": "org.rdk.SystemServices.setFSRFlag", "params": {"fsrFlag": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2552,7 +2552,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "result": {
         "success": true
@@ -2565,7 +2565,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "error": {
         "code": 1,
@@ -2599,7 +2599,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "method": "org.rdk.SystemServices.setFirmwareAutoReboot",
     "params": {
@@ -2612,7 +2612,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.SystemServices.setFirmwareAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 35, "method": "org.rdk.SystemServices.setFirmwareAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2620,7 +2620,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "result": {
         "success": true
@@ -2633,7 +2633,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "error": {
         "code": 1,
@@ -2667,7 +2667,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "method": "org.rdk.SystemServices.setFriendlyName",
     "params": {
@@ -2680,7 +2680,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.SystemServices.setFriendlyName", "params": {"friendlyName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 36, "method": "org.rdk.SystemServices.setFriendlyName", "params": {"friendlyName": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2688,7 +2688,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "result": {
         "success": true
@@ -2701,7 +2701,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "error": {
         "code": 1,
@@ -2735,7 +2735,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "method": "org.rdk.SystemServices.setMigrationStatus",
     "params": {
@@ -2748,7 +2748,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2756,7 +2756,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "result": {
         "success": true
@@ -2793,7 +2793,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "method": "org.rdk.SystemServices.setMode",
     "params": {
@@ -2807,7 +2807,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.SystemServices.setMode", "params": {"mode": "", "duration": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 38, "method": "org.rdk.SystemServices.setMode", "params": {"mode": "", "duration": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2815,7 +2815,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "result": {
         "SysSrv_Status": 0,
@@ -2830,7 +2830,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "error": {
         "code": 1,
@@ -2864,7 +2864,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "method": "org.rdk.SystemServices.setNetworkStandbyMode",
     "params": {
@@ -2877,7 +2877,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.SystemServices.setNetworkStandbyMode", "params": {"nwStandby": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 39, "method": "org.rdk.SystemServices.setNetworkStandbyMode", "params": {"nwStandby": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2885,7 +2885,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "result": {
         "success": true
@@ -2898,7 +2898,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "error": {
         "code": 1,
@@ -2932,7 +2932,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "method": "org.rdk.SystemServices.setOptOutTelemetry",
     "params": {
@@ -2945,7 +2945,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 40, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2953,7 +2953,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "result": {
         "success": true
@@ -2966,7 +2966,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "error": {
         "code": 1,
@@ -3003,7 +3003,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "method": "org.rdk.SystemServices.setPowerState",
     "params": {
@@ -3017,7 +3017,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 41, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3025,7 +3025,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "result": {
         "SysSrv_Status": 0,
@@ -3040,7 +3040,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "error": {
         "code": 1,
@@ -3076,7 +3076,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.SystemServices.setTerritory",
     "params": {
@@ -3090,7 +3090,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 42, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3098,7 +3098,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 42,
     "result": {
         "error": {
@@ -3114,7 +3114,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 42,
     "error": {
         "code": 1,
@@ -3151,7 +3151,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 43,
     "method": "org.rdk.SystemServices.setTimeZoneDST",
     "params": {
@@ -3165,7 +3165,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 43, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3173,7 +3173,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 43,
     "result": {
         "SysSrv_Status": 0,
@@ -3188,7 +3188,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 43,
     "error": {
         "code": 1,
@@ -3225,7 +3225,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 44,
     "method": "org.rdk.SystemServices.setWakeupSrcConfiguration",
     "params": {
@@ -3244,7 +3244,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_UNKNOWN", "enabled": true}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_UNKNOWN", "enabled": true}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3252,7 +3252,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 44,
     "result": {
         "success": true
@@ -3265,7 +3265,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 44,
     "error": {
         "code": 1,
@@ -3296,7 +3296,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 45,
     "method": "org.rdk.SystemServices.updateFirmware"
 }
@@ -3306,7 +3306,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 45, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3314,7 +3314,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 45,
     "result": {
         "success": true
@@ -3327,7 +3327,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 45,
     "error": {
         "code": 1,
@@ -3358,7 +3358,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 46,
     "method": "org.rdk.SystemServices.uploadLogsAsync"
 }
@@ -3368,7 +3368,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 46, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 46, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3376,7 +3376,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 46, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 46,
     "result": {
         "success": true
@@ -3389,7 +3389,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 46, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 46,
     "error": {
         "code": 1,
@@ -3441,7 +3441,7 @@ Triggered when blocklist flag has changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 47,
     "method": "org.rdk.SystemServices.onBlocklistChanged",
     "params": {
@@ -3468,7 +3468,7 @@ Triggered when Device Mgt settings update is received
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 48,
     "method": "org.rdk.SystemServices.onDeviceMgtUpdateReceived",
     "params": {
@@ -3494,7 +3494,7 @@ Triggered when system is in maintenance window
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 49,
     "method": "org.rdk.SystemServices.onFirmwarePendingReboot",
     "params": {
@@ -3524,7 +3524,7 @@ Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 50,
     "method": "org.rdk.SystemServices.onFirmwareUpdateInfoReceived",
     "params": {
@@ -3554,7 +3554,7 @@ Triggered when the firmware update state is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 51,
     "method": "org.rdk.SystemServices.onFirmwareUpdateStateChange",
     "params": {
@@ -3578,7 +3578,7 @@ Triggered when the friendly name is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 52,
     "method": "org.rdk.SystemServices.onFriendlyNameChanged",
     "params": {
@@ -3602,7 +3602,7 @@ Triggered when logs upload process is done or stopped.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 53,
     "method": "org.rdk.SystemServices.onLogUpload",
     "params": {
@@ -3634,7 +3634,7 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 54,
     "method": "org.rdk.SystemServices.onMacAddressesRetreived",
     "params": {
@@ -3666,7 +3666,7 @@ Triggered when the network standby mode is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 55,
     "method": "org.rdk.SystemServices.onNetworkStandbyModeChanged",
     "params": {
@@ -3691,7 +3691,7 @@ Triggers when a device reboot request is made
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 56,
     "method": "org.rdk.SystemServices.onRebootRequest",
     "params": {
@@ -3713,7 +3713,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 57,
     "method": "org.rdk.SystemServices.onSystemClockSet"
 }
@@ -3734,7 +3734,7 @@ Triggers when the system mode is changed successfully.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 58,
     "method": "org.rdk.SystemServices.onSystemModeChanged",
     "params": {
@@ -3759,7 +3759,7 @@ Triggered when the power manager detects a device power state change.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 59,
     "method": "org.rdk.SystemServices.onSystemPowerStateChanged",
     "params": {
@@ -3786,7 +3786,7 @@ Triggered when the temperature threshold is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 60,
     "method": "org.rdk.SystemServices.onTemperatureThresholdChanged",
     "params": {
@@ -3815,7 +3815,7 @@ Triggered when the device territory changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 61,
     "method": "org.rdk.SystemServices.onTerritoryChanged",
     "params": {
@@ -3844,7 +3844,7 @@ Triggered when time status has changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 62,
     "method": "org.rdk.SystemServices.onTimeStatusChanged",
     "params": {
@@ -3873,7 +3873,7 @@ Triggered when device time zone changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 63,
     "method": "org.rdk.SystemServices.onTimeZoneDSTChanged",
     "params": {
