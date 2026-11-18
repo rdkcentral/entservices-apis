@@ -183,6 +183,8 @@ namespace Exchange {
         ID_TEXT_TRACK_CAPABILITIES                   = ID_TEXT_TRACK + 5,
         ID_TEXT_TRACK_SESSION_INFO_ITERATOR          = ID_TEXT_TRACK + 6,
         ID_TEXT_TRACK_SUBTITLE_FORMAT_ITERATOR       = ID_TEXT_TRACK + 7,
+        ID_TEXT_TRACK_WEBVTT_STYLE                   = ID_TEXT_TRACK + 8,
+        ID_TEXT_TRACK_WEBVTT_STYLE_NOTIFICATION      = ID_TEXT_TRACK + 9,
 
 	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
 	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
@@ -246,6 +248,9 @@ namespace Exchange {
         ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
         ID_APP_PACKAGE_MANAGER_CONFIG                = ID_APP_PACKAGE_MANAGER + 11,
         ID_PACKAGE_CACHE_INITIALIZER                 = ID_APP_PACKAGE_MANAGER + 12,
+        ID_APP_PACKAGES_STATUS                       = ID_APP_PACKAGE_MANAGER + 13,
+        ID_APP_PACKAGES_CONNECTOR                    = ID_APP_PACKAGE_MANAGER + 14,
+        ID_PACKAGE_SPECIFIER_RUNTIME_ITERATOR        = ID_APP_PACKAGE_MANAGER + 15,
 
 	ID_APPSTORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
