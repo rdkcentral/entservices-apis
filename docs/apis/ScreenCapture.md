@@ -75,7 +75,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success */; | bool | Output structure containing the immediate execution status of the capture request |
+| result.success | bool | Output structure containing the immediate execution status of the capture request |
 
 ### Examples
 
@@ -129,7 +129,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success */; | bool | Output structure containing the immediate execution status of the capture request |
+| result.success | bool | Output structure containing the immediate execution status of the capture request |
 
 ### Examples
 
@@ -184,7 +184,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success */; | bool | Output structure containing the immediate execution status of the upload request |
+| result.success | bool | Output structure containing the immediate execution status of the upload request |
 
 ### Examples
 
