@@ -270,10 +270,6 @@ namespace Exchange {
         // @brief Lock
         // @text lock
         // @param packageId: Package Id
-<<<<<<< HEAD
-=======
-        // @param version: Version
->>>>>>> 0c2b2f1d6e7ab9f144c0aee452a14af1202377d6
         // @param lockReason: Reason for locking the package
         // @param lockId: Identifier assigned to the package lock
         // @param unpackedPath: Path to the unpacked package
@@ -281,11 +277,7 @@ namespace Exchange {
         // @param appMetadata: Additional packages locked for the application
         // @retval Core::ERROR_NONE: Package locked successfully
         // @retval Core::ERROR_UNAVAILABLE: Package cache is not initialized
-<<<<<<< HEAD
         // @retval Core::ERROR_INVALID_PARAMETER: Package was not found
-=======
-        // @retval Core::ERROR_INVALID_PARAMETER: Package or version was not found
->>>>>>> 0c2b2f1d6e7ab9f144c0aee452a14af1202377d6
         // @retval Core::ERROR_GENERAL: Package locking or runtime configuration processing failed
         virtual Core::hresult Lock(
             const string &packageId,
