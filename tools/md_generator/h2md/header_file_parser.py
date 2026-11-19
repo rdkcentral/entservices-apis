@@ -22,6 +22,7 @@
 import re
 import json
 import os
+import sys
 from logger import Logger
 
 def _find_balanced_json_end(text, open_index):
@@ -109,7 +110,7 @@ class HeaderFileParser:
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
         ('asyncevents', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@asyncevents\s+(.*?)(?=\s*\*\/|$)')),
         ('deprecated',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@deprecated\s*(.*?)(?=\s*\*\/|$)')),
-        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
+        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit|@docs:include)(.*)')),
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
@@ -401,7 +402,14 @@ class HeaderFileParser:
                 self.plugin_version = groups[1]
             self.latest_tag = ''
         elif line_tag == 'omit':
-            self.doxy_tags['omit'] = 'omit'
+            # Scan the whole line so tags combined on one line (e.g. "@json:omit @docs:include") all apply
+            for tag in re.findall(r'@json:omit|@omit|@docs:omit|@docs:include', ''.join(g for g in groups if g)):
+                if tag == '@docs:include':
+                    self.doxy_tags['docs_include'] = True
+                elif tag == '@docs:omit':
+                    self.doxy_tags['docs_omit'] = True
+                else:
+                    self.doxy_tags['omit'] = 'omit'
             self.latest_tag = ''
         elif line_tag == 'config':
             type = groups[1]
@@ -528,6 +536,28 @@ class HeaderFileParser:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register iterator: {iterator_object}")
 
+    VECTOR_TYPE_REGEX = re.compile(r'^(?:std::)?vector\s*<\s*([\w\d\:]+)\s*>$')
+
+    def register_vector_type(self, type_str):
+        """
+        If type_str is a std::vector<T>, registers it in the iterators registry so it is documented
+        as an array of T, and returns its registry key. Otherwise returns type_str unchanged.
+        """
+        match = self.VECTOR_TYPE_REGEX.match(type_str.strip())
+        if not match:
+            return type_str
+        element_type = self.sanitize_resolution_operator_from_type(match.group(1))
+        if re.match(r'u?int(8|16|32|64)_t', element_type):
+            element_type = 'integer'
+        # Key has no '::' so sanitize_resolution_operator_from_type leaves it intact
+        vector_type = f"vector<{element_type}>"
+        self.iterators_registry[vector_type] = element_type
+        return vector_type
+
+    def is_vector_type(self, type_str):
+        # A lone std::vector param/result stays keyed by name in JSON-RPC, unlike a lone struct
+        return type_str.startswith('vector<') and type_str in self.iterators_registry
+
     def register_enum(self, enum_object):
         """
         Registers an enum by processing the enum's enumerator definitions.
@@ -584,13 +614,14 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
+                    member_type = self.register_vector_type(member_type)
                     # Strip the trailing comment terminator before extracting @text/@brief so
                     # legitimate '/' or '*' characters in the tag's own text (e.g. a URL) aren't
                     # mistaken for the start of '*/' and truncated.
                     description_for_tags = description.rstrip() if description else description
                     if description_for_tags and description_for_tags.endswith('*/'):
                         description_for_tags = description_for_tags[:-2].rstrip()
-                    text_tag_pattern = r'@text\s+([^@]+)'
+                    text_tag_pattern = r'@text\s+([\w\-\.]+)'
                     text_tag_match = re.search(text_tag_pattern, description_for_tags) if description_for_tags else None
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
                     brief_tag_pattern = r'@brief\s+([^@]+)'
@@ -632,8 +663,9 @@ class HeaderFileParser:
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
             method_info['cpp_name'] = method_name
             method_info['owner_interface'] = owner_interface
-            # ignore these methods
-            if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
+            # ignore these methods; @docs:omit always wins, @docs:include overrides @json:omit/@omit
+            is_omitted = doxy_tags.get('docs_omit') or ('omit' in doxy_tags and not doxy_tags.get('docs_include'))
+            if method_name in ['Register', 'Unregister'] or is_omitted:
                 return
             # if the interface struct does not have a @json tag, skip registering the methods
             if '_HasJsonTag' not in scope[-1]:
@@ -702,12 +734,14 @@ class HeaderFileParser:
         for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction, is_optional_type) in param_info_list.items():
             if self.logger:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
+            symbol_type = self.register_vector_type(symbol_type)
             if '::' in symbol_type:
                 symbol_type = self.sanitize_resolution_operator_from_type(symbol_type)
             if symbol_type == 'IStringIterator':
                 self.register_iterator(symbol_type)
-            if symbol_type in self.notification_names:
-                self.doxy_tags['omit'] = 'omit'
+            if symbol_type in self.notification_names or self._is_notification_interface_name(symbol_type):
+                # Notification registration is never JSON-RPC, so @docs:include can't override this
+                self.doxy_tags['docs_omit'] = True
             overridden_name = symbol_name
             if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
                 overridden_name = custom_name
@@ -786,8 +820,16 @@ class HeaderFileParser:
                         custom_name = self.normalize_key(text_match.group(1))
                     if '@keep_key' in param_inline_comment:
                         keep_key = True
-                    if '@unwrapped' in param_inline_comment:
+                    if '@docs:unwrapped' in param_inline_comment:
                         unwrapped = True
+                    elif '@unwrapped' in param_inline_comment:
+                        unwrapped = True
+                        # Deprecated: Thunder doesn't support @unwrapped
+                        warning = (f"{os.path.basename(self.header_file_path)}: parameter '{param_name}' uses @unwrapped, "
+                                   f"which Thunder does not support; use @docs:unwrapped instead")
+                        print(f"WARNING: {warning}", file=sys.stderr)
+                        if self.logger:
+                            self.logger.log("WARNING", warning)
                     if '@out' in param_inline_comment:
                         direction = 'out'
                     elif '@inout' in param_inline_comment:
@@ -940,7 +982,7 @@ class HeaderFileParser:
                 overridden_name = param_custom_name if param_custom_name else param_name
                 param_type = param.get('type')
                 param_desc = param.get('description')
-                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
+                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or (param_type in self.iterators_registry and not self.is_vector_type(param_type))):
                     request["params"] = self.get_symbol_example(
                         f"{param_name}-{param_type}", param_desc)
                 else:
@@ -981,7 +1023,7 @@ class HeaderFileParser:
                 overridden_name = result_custom_name if result_custom_name and result_custom_name != result_name else result_name
                 result_type = result.get('type')
                 result_desc = result.get('description')
-                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
+                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or (result_type in self.iterators_registry and not self.is_vector_type(result_type))):
                     response['result'] = self.get_symbol_example(
                         f"{result_name}-{result_type}", result_desc)
                 else:

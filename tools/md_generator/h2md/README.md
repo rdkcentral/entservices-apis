@@ -193,11 +193,13 @@ virtual uint32_t initialize();
 
 ---
 
-### 7. `@omit`
+### 7. `@omit`, `@json:omit`, or `@docs:omit`
 - **Purpose**: Indicates that the method should be omitted from the markdown.
 - **Required**: No (Optional tag)
 - **Usage**:
   - Use this tag for methods that should not appear in the generated documentation.
+  - `@omit` and `@json:omit` also apply to Thunder's code generators; `@docs:omit` only affects the documentation.
+  - `@omit` and `@json:omit` can be overridden with `@docs:include` (see below); `@docs:omit` cannot.
   - Omitted methods do not need to have any tags, like the `@text` or `@brief` tags
   - This tag is optional.
 
@@ -321,7 +323,7 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 
 ---
 
-### 12. `@unwrapped`
+### 12. `@docs:unwrapped` (or `@unwrapped`)
 - **Purpose**: Provides option to unwrap the results or params object such that it directly returns a single member. 
 - **Required**: No
 - **Usage**:
@@ -334,13 +336,16 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
     "params": true
 }
 ```
-  - In this case, the parameter in the method should be tagged with the `@unwrapped` tag.
+  - In this case, the parameter in the method should be tagged with the `@docs:unwrapped` tag.
+  - Use `@docs:unwrapped` rather than `@unwrapped`, which Thunder does not support. `@unwrapped` still works but prints a warning.
+  - For params, the parameter must be the method's only input parameter; the Parameters table then shows a single `params` row.
+  - An `@opaque` string parameter tagged `@docs:unwrapped` whose example is JSON (e.g. `ex: {"language": "eng-USA"}`) is documented as that JSON object or array, since that is what is sent on the wire.
 
 ### Example:
 
 ***Header File Example:***
 ```cpp
-  virtual Core::hresult IsInstalled(const string& appId, bool& installed /* @unwrapped @out */) = 0;
+  virtual Core::hresult IsInstalled(const string& appId, bool& installed /* @docs:unwrapped @out */) = 0;
 ```
 ***Generated Markdown Example:***
 > #### Response
@@ -352,6 +357,31 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 >     "result": true
 > }
 > ```
+
+---
+
+### 13. `@docs:include`
+- **Purpose**: Documents a method even though it is tagged `@json:omit` (or `@omit`).
+- **Required**: No (Optional tag)
+- **Usage**:
+  - Use this tag for a `@json:omit` method that is still available over JSON-RPC, for example through a JSON-RPC handler registered in the plugin instead of the generated one.
+  - The tag only affects the documentation; Thunder's generators ignore it, so the method stays omitted from the generated JSON-RPC code.
+  - The method is documented like any other method, so give it the usual `@text`, `@brief`, and `@param` tags.
+  - Precedence: `@docs:omit` > `@docs:include` > `@json:omit` / `@omit`. The tags can be on separate lines or on the same line, in any order.
+  - Has no effect on `Register`/`Unregister` or on methods that take a notification interface parameter, since those are never JSON-RPC methods.
+
+### Example:
+
+***Header File Example:***
+```cpp
+// @json:omit
+// @docs:include
+// @brief Sets the application metadata in the INIT message sent to the Voice Server
+// @text setVoiceInit
+// @param payload: The voice init payload as a JSON object, forwarded unchanged ex: {"capabilities": ["PRV"], "language": "eng-USA"}
+// @param result: Whether the request succeeded
+virtual Core::hresult SetVoiceInit(const string& payload /* @opaque @docs:unwrapped */, VoiceControlSuccessResult& result /* @out */) = 0;
+```
 
 
 ## 4. Additional Features and Guidelines
