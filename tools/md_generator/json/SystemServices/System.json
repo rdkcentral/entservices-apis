@@ -198,8 +198,10 @@
             "example": "INITIAL"
         },
         "seconds": {
-            "summary": "The deep sleep timeout in seconds",
+            "summary": "The deep sleep timeout in seconds, up to 2 days",
             "type": "integer",
+            "minimum": 0,
+            "maximum": 172800,
             "example": 3
         },
         "firmwareUpdateState": {
