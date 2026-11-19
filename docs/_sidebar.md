@@ -58,6 +58,7 @@
   - [ResourceMonitor](apis/ResourceMonitor.md)
   - [ScreenCapture](apis/ScreenCapture.md)
   - [SharedStorage](apis/SharedStorage.md)
+  - [Sqoeee](apis/Sqoeee.md)
   - [SystemAudioPlayer<sup>@</sup>](apis/SystemAudioPlayerPlugin.md)
   - [SystemMode](apis/SystemMode.md)
   - [System<sup>@</sup>](apis/SystemPlugin.md)
