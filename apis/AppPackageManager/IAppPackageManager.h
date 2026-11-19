@@ -322,9 +322,8 @@ namespace Exchange {
         // @brief Returns the metadata of installed package in JSON string format
         // @text getConfigForInstalledPackage
         // @param packageId: Package Id
-        // @param version: Version
         // @param config: Config of the installed package in JSON string format
-        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string &config /* @out @opaque */) = 0;
+        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, string &config /* @out @opaque */) = 0;
 
         // @brief Returns the metadata of all installed packages in JSON string format.
         // @text getConfigListForInstalledPackages
