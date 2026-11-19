@@ -557,10 +557,14 @@ None
 
 ```curl
 <<<<<<< HEAD
+<<<<<<< HEAD
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 =======
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 >>>>>>> f912f955 (RDKEMW-26919:Remove Deprecated version Parameter from AppPackageManager APIs)
+=======
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppPackageManager.config", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+>>>>>>> 706e159f (Update AppPackageManager.md)
 ```
 
 
@@ -740,10 +744,14 @@ None
 
 ```curl
 <<<<<<< HEAD
+<<<<<<< HEAD
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 =======
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 >>>>>>> f912f955 (RDKEMW-26919:Remove Deprecated version Parameter from AppPackageManager APIs)
+=======
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppPackageManager.install", "params": {"packageId": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+>>>>>>> 706e159f (Update AppPackageManager.md)
 ```
 
 
@@ -859,10 +867,14 @@ None
 
 ```curl
 <<<<<<< HEAD
+<<<<<<< HEAD
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 =======
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 >>>>>>> f912f955 (RDKEMW-26919:Remove Deprecated version Parameter from AppPackageManager APIs)
+=======
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppPackageManager.packageState", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+>>>>>>> 706e159f (Update AppPackageManager.md)
 ```
 
 
