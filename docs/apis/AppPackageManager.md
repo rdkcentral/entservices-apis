@@ -20,8 +20,6 @@ A AppPackageManager module for Thunder framework.
     - [Methods](#IAppPackageManagerConfig-Methods)
   - [IAppPackagesStatus](#IAppPackagesStatus)
     - [Methods](#IAppPackagesStatus-Methods)
-  - [IAppPackageConnector](#IAppPackageConnector)
-    - [Methods](#IAppPackageConnector-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -37,7 +35,6 @@ The `AppPackageManager` module provides the following interface(s):
 - IPackageInstaller
 - IAppPackageManagerConfig
 - IAppPackagesStatus
-- IAppPackageConnector
 
 The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
@@ -511,8 +508,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [config](#config) | Return the package runtime configuration as an opaque serialized JSON string |
-| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque serialized JSON runtime configuration |
+| [config](#config) | Config |
+| [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -521,7 +518,7 @@ The following methods are provided by the IPackageInstaller Interface:
 <a id="config"></a>
 ## *config*
 
-envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
+Config
 
 ### Events Triggered
 None
@@ -535,7 +532,32 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.configMetadata | string | Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays |
+| result.configMetadata | object | Config Metadata |
+| result.configMetadata.dial | bool |  |
+| result.configMetadata.wanLanAccess | bool |  |
+| result.configMetadata.thunder | bool |  |
+| result.configMetadata.systemMemoryLimit | integer |  |
+| result.configMetadata.gpuMemoryLimit | integer |  |
+| result.configMetadata.envVariables | string |  |
+| result.configMetadata.userId | integer |  |
+| result.configMetadata.groupId | integer |  |
+| result.configMetadata.dataImageSize | integer |  |
+| result.configMetadata.resourceManagerClientEnabled | bool |  |
+| result.configMetadata.dialId | string |  |
+| result.configMetadata.command | string |  |
+| result.configMetadata.appType | string |  |
+| result.configMetadata.appPath | string |  |
+| result.configMetadata.runtimePath | string |  |
+| result.configMetadata.logFilePath | string |  |
+| result.configMetadata.logFileMaxSize | integer |  |
+| result.configMetadata.logLevels | string | json array of strings |
+| result.configMetadata.mapi | bool |  |
+| result.configMetadata.fkpsFiles | string | json array of strings |
+| result.configMetadata.capabilities | string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
+| result.configMetadata.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
+| result.configMetadata.fireboltVersion | string |  |
+| result.configMetadata.enableDebugger | bool |  |
+| result.configMetadata.unpackedPath | string |  |
 
 ### Examples
 
@@ -569,35 +591,31 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "configMetadata": ""
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_UNAVAILABLE)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 10,
-    "error": {
-        "code": 2,
-        "message": "Package cache is not initialized"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Package is not installed or its runtime configuration is unavailable"
+        "dial": true,
+        "wanLanAccess": true,
+        "thunder": true,
+        "systemMemoryLimit": 0,
+        "gpuMemoryLimit": 0,
+        "envVariables": "",
+        "userId": 0,
+        "groupId": 0,
+        "dataImageSize": 0,
+        "resourceManagerClientEnabled": true,
+        "dialId": "",
+        "command": "",
+        "appType": "",
+        "appPath": "",
+        "runtimePath": "",
+        "logFilePath": "",
+        "logFileMaxSize": 0,
+        "logLevels": "",
+        "mapi": true,
+        "fkpsFiles": "",
+        "capabilities": "",
+        "ralfPkgPath": "",
+        "fireboltVersion": "",
+        "enableDebugger": true,
+        "unpackedPath": ""
     }
 }
 ```
@@ -605,7 +623,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
-envVariables, logLevels, and fkpsFiles are JSON arrays of strings rather than strings containing serialized JSON arrays
+getConfigForPackage
 
 ### Events Triggered
 None
@@ -613,14 +631,39 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.fileLocator | string | Locator of the package file |
+| params.fileLocator | string | locator of package |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.id | string | Package Id |
-| result.version | string | Version |
-| result.config | string | Opaque runtime configuration transported as a serialized string over COM-RPC and emitted as a JSON object over JSON-RPC; array-valued properties are represented as JSON arrays |
+| result.id | string | package id |
+| result.version | string | version of package |
+| result.config | object | metadata of package |
+| result.config.dial | bool |  |
+| result.config.wanLanAccess | bool |  |
+| result.config.thunder | bool |  |
+| result.config.systemMemoryLimit | integer |  |
+| result.config.gpuMemoryLimit | integer |  |
+| result.config.envVariables | string |  |
+| result.config.userId | integer |  |
+| result.config.groupId | integer |  |
+| result.config.dataImageSize | integer |  |
+| result.config.resourceManagerClientEnabled | bool |  |
+| result.config.dialId | string |  |
+| result.config.command | string |  |
+| result.config.appType | string |  |
+| result.config.appPath | string |  |
+| result.config.runtimePath | string |  |
+| result.config.logFilePath | string |  |
+| result.config.logFileMaxSize | integer |  |
+| result.config.logLevels | string | json array of strings |
+| result.config.mapi | bool |  |
+| result.config.fkpsFiles | string | json array of strings |
+| result.config.capabilities | string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
+| result.config.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
+| result.config.fireboltVersion | string |  |
+| result.config.enableDebugger | bool |  |
+| result.config.unpackedPath | string |  |
 
 ### Examples
 
@@ -655,35 +698,33 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "result": {
         "id": "",
         "version": "",
-        "config": ""
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_UNAVAILABLE)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 11,
-    "error": {
-        "code": 2,
-        "message": "Package cache is not initialized"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Package metadata or runtime configuration could not be retrieved"
+        "config": {
+            "dial": true,
+            "wanLanAccess": true,
+            "thunder": true,
+            "systemMemoryLimit": 0,
+            "gpuMemoryLimit": 0,
+            "envVariables": "",
+            "userId": 0,
+            "groupId": 0,
+            "dataImageSize": 0,
+            "resourceManagerClientEnabled": true,
+            "dialId": "",
+            "command": "",
+            "appType": "",
+            "appPath": "",
+            "runtimePath": "",
+            "logFilePath": "",
+            "logFileMaxSize": 0,
+            "logLevels": "",
+            "mapi": true,
+            "fkpsFiles": "",
+            "capabilities": "",
+            "ralfPkgPath": "",
+            "fireboltVersion": "",
+            "enableDebugger": true,
+            "unpackedPath": ""
+        }
     }
 }
 ```
@@ -1146,164 +1187,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
     "error": {
         "code": 1,
         "message": "Backend failure (libpackage not initialized or"
-    }
-}
-```
-
----
-
-<a id="IAppPackageConnector"></a>
-## IAppPackageConnector Interface
-
-<a id="IAppPackageConnector-Methods"></a>
-### Methods
-
-The following methods are provided by the IAppPackageConnector Interface:
-
-| Method | Description |
-| :-------- | :-------- |
-| [getPackageSpecifierRuntimes](#getPackageSpecifierRuntimes) | Returns package specifiers and their package IDs. |
-| [setPackageSpecifier](#setPackageSpecifier) | Associates a package specifier with an installed package ID. |
-
-<a id="getPackageSpecifierRuntimes"></a>
-## *getPackageSpecifierRuntimes*
-
-Returns package specifiers and their package IDs.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.runtimes | string | Iterator containing {PackageSpecifier, packageId} string pairs |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "method": "org.rdk.AppPackageManager.getPackageSpecifierRuntimes"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppPackageManager.getPackageSpecifierRuntimes"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "runtimes": ""
-    }
-}
-```
-
-
-#### Error Response (ERROR_NOT_SUPPORTED)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "error": {
-        "code": 22,
-        "message": "when this feature is not configured."
-    }
-}
-```
-
-<a id="setPackageSpecifier"></a>
-## *setPackageSpecifier*
-
-Associates a package specifier with an installed package ID.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.packageSpecifier | string | Package specifier to associate |
-| params.packageId | string | ID of the installed package |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "org.rdk.AppPackageManager.setPackageSpecifier",
-    "params": {
-        "packageSpecifier": "",
-        "packageId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppPackageManager.setPackageSpecifier", "params": {"packageSpecifier": "", "packageId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "result": null
-}
-```
-
-
-#### Error Response (ERROR_NOT_SUPPORTED)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "error": {
-        "code": 22,
-        "message": "Feature is disabled in the Thunder plugin configuration"
-    }
-}
-```
-
-
-#### Error Response (ERROR_UNKNOWN_KEY)
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "error": {
-        "code": 24,
-        "message": "The requested package ID is not installed"
     }
 }
 ```
