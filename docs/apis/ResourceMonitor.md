@@ -520,7 +520,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.config | string |  |
+| params.config | string | JSON-formatted configuration string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
