@@ -42,6 +42,18 @@ struct EXTERNAL ITelemetryMetrics : virtual public Core::IUnknown {
     // @param id string identifier for the telemetry record.
     // @param markerName Groups related metrics
     virtual Core::hresult Publish(const string& id, const string& markerName) = 0;
+
+    // @text publishEvent
+    // @brief Publish a telemetry event directly to the telemetry backend.
+    // @details When verboseOnly is true, publish only if the APP_MANAGER_OBSERVABILITY_VERBOSE RFC is enabled.
+    // When the RFC is disabled, unset, unreadable, or invalid, verbose-only events are suppressed.
+    // When verboseOnly is false, publish regardless of the RFC. Existing recorded metrics are not modified.
+    // @param telemetryMetrics Serialized telemetry event payload.
+    // @param markerName Telemetry marker identifying the event.
+    // @param verboseOnly Whether publishing requires the verbose observability RFC to be enabled.
+    // @retval Core::ERROR_NONE: The event was submitted to T2 or intentionally suppressed by the RFC.
+    // @retval Core::ERROR_GENERAL: T2 failed to accept the event.
+    virtual Core::hresult PublishEvent(const string& telemetryMetrics, const string& markerName, bool verboseOnly) = 0;
 };
 }// namespace Exchange
 }// namespace WPEFramework
