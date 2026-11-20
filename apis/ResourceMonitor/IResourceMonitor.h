@@ -83,7 +83,7 @@ struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
 
     // @text setConfig
     // @brief Loads Resource Monitor Configuration
-    // @param JSON formatted configuration string
+    // @param config JSON-formatted configuration string
     // @retval Core::ERROR_NONE Configuration successfully loaded.
     // @retval Core::ERROR_BAD_REQUEST Invalid JSON configuration.
     // @retval Core::ERROR_ILLEGAL_STATE Configuration change attempted after initialization.
