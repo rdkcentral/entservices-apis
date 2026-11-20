@@ -83,7 +83,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.USBMassStorage.getDeviceList"
 }
@@ -93,7 +93,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.USBMassStorage.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.USBMassStorage.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -101,7 +101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": [
         {
@@ -130,7 +130,7 @@ None
 | result | object |  |
 | result.mountPoints | array | List of mountpoints information for a given device. |
 | result.mountPoints[#].partitionName | string | name of the partition |
-| result.mountPoints[#].mountFlags | string | Mount flags used for mounting the device. Possible values: READ_ONLY, READ_WRITE |
+| result.mountPoints[#].mountFlags | string | Mount flags used for mounting the device / partition. Possible values: READ_ONLY, READ_WRITE |
 | result.mountPoints[#].mountPath | string | path at which the partition is mounted on |
 | result.mountPoints[#].fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 
@@ -141,7 +141,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.USBMassStorage.getMountPoints",
     "params": {
@@ -154,7 +154,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBMassStorage.getMountPoints", "params": {"deviceName": "USB Flash Drive"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.USBMassStorage.getMountPoints", "params": {"deviceName": "USB Flash Drive"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -162,7 +162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": [
         {
@@ -208,7 +208,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.USBMassStorage.getPartitionInfo",
     "params": {
@@ -221,7 +221,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.USBMassStorage.getPartitionInfo", "params": {"mountPath": "/media/usb0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.USBMassStorage.getPartitionInfo", "params": {"mountPath": "/media/usb0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -229,7 +229,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "fileSystem": "EXT4",
@@ -270,7 +270,7 @@ Triggered when a USB mass storage device is successfully mounted by the system.
 | params.deviceInfo.deviceName | string | Device name identifying the device |
 | params.mountPoints | array | List of mountpoints information for the device mounted. |
 | params.mountPoints[#].partitionName | string | name of the partition |
-| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device. Possible values: READ_ONLY, READ_WRITE |
+| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device / partition. Possible values: READ_ONLY, READ_WRITE |
 | params.mountPoints[#].mountPath | string | path at which the partition is mounted on |
 | params.mountPoints[#].fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 
@@ -278,7 +278,7 @@ Triggered when a USB mass storage device is successfully mounted by the system.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.USBMassStorage.onDeviceMounted",
     "params": {
@@ -312,7 +312,7 @@ Triggered when a USB mass storage device is successfully unmounted by the system
 | params.deviceInfo.deviceName | string | Device name identifying the device |
 | params.mountPoints | array | List of mountpoints information for the device unmounted. |
 | params.mountPoints[#].partitionName | string | name of the partition |
-| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device. Possible values: READ_ONLY, READ_WRITE |
+| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device / partition. Possible values: READ_ONLY, READ_WRITE |
 | params.mountPoints[#].mountPath | string | path at which the partition is mounted on |
 | params.mountPoints[#].fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 
@@ -320,7 +320,7 @@ Triggered when a USB mass storage device is successfully unmounted by the system
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.USBMassStorage.onDeviceUnMounted",
     "params": {
