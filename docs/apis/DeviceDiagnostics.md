@@ -83,7 +83,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"
 }
@@ -93,7 +93,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -101,7 +101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "avDecoderStatus": "Active"
@@ -138,7 +138,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.DeviceDiagnostics.getConfiguration",
     "params": [
@@ -153,7 +153,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": ["DeviceInfo", "FirmwareVersion", "SerialNumber"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": ["DeviceInfo", "FirmwareVersion", "SerialNumber"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "paramList": [
@@ -199,7 +199,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.DeviceDiagnostics.getMilestones"
 }
@@ -209,7 +209,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceDiagnostics.getMilestones"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.DeviceDiagnostics.getMilestones"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -217,7 +217,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "milestones": [
@@ -259,7 +259,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"
 }
@@ -269,7 +269,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -277,7 +277,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "rebootInfo": {
@@ -318,7 +318,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.DeviceDiagnostics.logMilestone",
     "params": {
@@ -331,7 +331,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": "NetworkReady"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": "NetworkReady"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -339,7 +339,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "success": true
@@ -373,7 +373,7 @@ The OnAVDecoderStatusChanged event is triggered when the most active status of a
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.DeviceDiagnostics.onAVDecoderStatusChanged",
     "params": {

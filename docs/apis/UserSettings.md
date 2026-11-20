@@ -119,7 +119,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.UserSettings.getAudioDescription"
 }
@@ -129,7 +129,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.UserSettings.getAudioDescription"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.UserSettings.getAudioDescription"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -137,7 +137,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "enabled": true
@@ -167,7 +167,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.UserSettings.getBlockNotRatedContent"
 }
@@ -177,7 +177,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.UserSettings.getBlockNotRatedContent"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.UserSettings.getBlockNotRatedContent"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -185,7 +185,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "blockNotRatedContent": true
@@ -215,7 +215,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.UserSettings.getCaptions"
 }
@@ -225,7 +225,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.UserSettings.getCaptions"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.UserSettings.getCaptions"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -233,7 +233,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "enabled": true
@@ -263,7 +263,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.UserSettings.getContentPin"
 }
@@ -273,7 +273,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.UserSettings.getContentPin"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.UserSettings.getContentPin"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -281,7 +281,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "contentPin": 1234
@@ -311,7 +311,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.UserSettings.getHighContrast"
 }
@@ -321,7 +321,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.UserSettings.getHighContrast"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.UserSettings.getHighContrast"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -329,7 +329,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "enabled": true
@@ -359,7 +359,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.UserSettings.getLiveWatershed"
 }
@@ -369,7 +369,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.UserSettings.getLiveWatershed"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.UserSettings.getLiveWatershed"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -377,7 +377,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "liveWatershed": true
@@ -407,7 +407,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.UserSettings.getPinControl"
 }
@@ -417,7 +417,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.UserSettings.getPinControl"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.UserSettings.getPinControl"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -425,7 +425,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "pinControl": true
@@ -455,7 +455,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.UserSettings.getPinOnPurchase"
 }
@@ -465,7 +465,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.UserSettings.getPinOnPurchase"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.UserSettings.getPinOnPurchase"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -473,7 +473,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "pinOnPurchase": true
@@ -503,7 +503,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.UserSettings.getPlaybackWatershed"
 }
@@ -513,7 +513,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.UserSettings.getPlaybackWatershed"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.UserSettings.getPlaybackWatershed"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -521,7 +521,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": {
         "playbackWatershed": true
@@ -551,7 +551,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.UserSettings.getPreferredAudioLanguages"
 }
@@ -561,7 +561,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.UserSettings.getPreferredAudioLanguages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.UserSettings.getPreferredAudioLanguages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -569,7 +569,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
         "preferredLanguages": "eng,fra"
@@ -599,7 +599,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.UserSettings.getPreferredCaptionsLanguages"
 }
@@ -609,7 +609,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.UserSettings.getPreferredCaptionsLanguages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.UserSettings.getPreferredCaptionsLanguages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -617,7 +617,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
         "preferredLanguages": "eng,fra"
@@ -647,7 +647,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.UserSettings.getPreferredClosedCaptionService"
 }
@@ -657,7 +657,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.UserSettings.getPreferredClosedCaptionService"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.UserSettings.getPreferredClosedCaptionService"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -665,7 +665,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
         "service": "CC3"
@@ -695,7 +695,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.UserSettings.getPresentationLanguage"
 }
@@ -705,7 +705,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.UserSettings.getPresentationLanguage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.UserSettings.getPresentationLanguage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -713,7 +713,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "presentationLanguage": "en-US"
@@ -743,7 +743,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.UserSettings.getPrivacyMode"
 }
@@ -753,7 +753,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.UserSettings.getPrivacyMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.UserSettings.getPrivacyMode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -761,7 +761,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
         "privacyMode": "DO_NOT_SHARE"
@@ -791,7 +791,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.UserSettings.getViewingRestrictions"
 }
@@ -801,7 +801,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.UserSettings.getViewingRestrictions"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.UserSettings.getViewingRestrictions"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -809,7 +809,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "viewingRestrictions": {
@@ -845,7 +845,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.UserSettings.getViewingRestrictionsWindow"
 }
@@ -855,7 +855,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.UserSettings.getViewingRestrictionsWindow"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.UserSettings.getViewingRestrictionsWindow"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -863,7 +863,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": {
         "viewingRestrictionsWindow": "ALWAYS"
@@ -893,7 +893,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.UserSettings.getVoiceGuidance"
 }
@@ -903,7 +903,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.UserSettings.getVoiceGuidance"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.UserSettings.getVoiceGuidance"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -911,7 +911,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "result": {
         "enabled": true
@@ -941,7 +941,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.UserSettings.getVoiceGuidanceHints"
 }
@@ -951,7 +951,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.UserSettings.getVoiceGuidanceHints"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.UserSettings.getVoiceGuidanceHints"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -959,7 +959,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "result": {
         "hints": true
@@ -989,7 +989,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.UserSettings.getVoiceGuidanceRate"
 }
@@ -999,7 +999,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.UserSettings.getVoiceGuidanceRate"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.UserSettings.getVoiceGuidanceRate"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1007,7 +1007,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "result": {
         "rate": 1.0
@@ -1039,7 +1039,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.UserSettings.setAudioDescription",
     "params": {
@@ -1052,7 +1052,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.UserSettings.setAudioDescription", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 19, "method": "org.rdk.UserSettings.setAudioDescription", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1060,7 +1060,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "result": null
 }
@@ -1090,7 +1090,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.UserSettings.setBlockNotRatedContent",
     "params": {
@@ -1103,7 +1103,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.UserSettings.setBlockNotRatedContent", "params": {"blockNotRatedContent": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 20, "method": "org.rdk.UserSettings.setBlockNotRatedContent", "params": {"blockNotRatedContent": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1111,7 +1111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "result": null
 }
@@ -1141,7 +1141,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.UserSettings.setCaptions",
     "params": {
@@ -1154,7 +1154,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.UserSettings.setCaptions", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.UserSettings.setCaptions", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1162,7 +1162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": null
 }
@@ -1192,7 +1192,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.UserSettings.setContentPin",
     "params": {
@@ -1205,7 +1205,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": 1234}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1213,7 +1213,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": null
 }
@@ -1243,7 +1243,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "method": "org.rdk.UserSettings.setHighContrast",
     "params": {
@@ -1256,7 +1256,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.UserSettings.setHighContrast", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 23, "method": "org.rdk.UserSettings.setHighContrast", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1264,7 +1264,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "result": null
 }
@@ -1294,7 +1294,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "method": "org.rdk.UserSettings.setLiveWatershed",
     "params": {
@@ -1307,7 +1307,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.UserSettings.setLiveWatershed", "params": {"liveWatershed": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 24, "method": "org.rdk.UserSettings.setLiveWatershed", "params": {"liveWatershed": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1315,7 +1315,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "result": null
 }
@@ -1345,7 +1345,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "method": "org.rdk.UserSettings.setPinControl",
     "params": {
@@ -1358,7 +1358,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.UserSettings.setPinControl", "params": {"pinControl": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 25, "method": "org.rdk.UserSettings.setPinControl", "params": {"pinControl": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1366,7 +1366,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "result": null
 }
@@ -1396,7 +1396,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "method": "org.rdk.UserSettings.setPinOnPurchase",
     "params": {
@@ -1409,7 +1409,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.UserSettings.setPinOnPurchase", "params": {"pinOnPurchase": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 26, "method": "org.rdk.UserSettings.setPinOnPurchase", "params": {"pinOnPurchase": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1417,7 +1417,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "result": null
 }
@@ -1447,7 +1447,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "method": "org.rdk.UserSettings.setPlaybackWatershed",
     "params": {
@@ -1460,7 +1460,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.UserSettings.setPlaybackWatershed", "params": {"playbackWatershed": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 27, "method": "org.rdk.UserSettings.setPlaybackWatershed", "params": {"playbackWatershed": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1468,7 +1468,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "result": null
 }
@@ -1498,7 +1498,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "method": "org.rdk.UserSettings.setPreferredAudioLanguages",
     "params": {
@@ -1511,7 +1511,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.UserSettings.setPreferredAudioLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 28, "method": "org.rdk.UserSettings.setPreferredAudioLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1519,7 +1519,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "result": null
 }
@@ -1549,7 +1549,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages",
     "params": {
@@ -1562,7 +1562,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 29, "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1570,7 +1570,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "result": null
 }
@@ -1600,7 +1600,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "method": "org.rdk.UserSettings.setPreferredClosedCaptionService",
     "params": {
@@ -1613,7 +1613,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.UserSettings.setPreferredClosedCaptionService", "params": {"service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 30, "method": "org.rdk.UserSettings.setPreferredClosedCaptionService", "params": {"service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1621,7 +1621,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "result": null
 }
@@ -1651,7 +1651,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "method": "org.rdk.UserSettings.setPresentationLanguage",
     "params": {
@@ -1664,7 +1664,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": "en-US"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": "en-US"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1672,7 +1672,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "result": null
 }
@@ -1702,7 +1702,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "method": "org.rdk.UserSettings.setPrivacyMode",
     "params": {
@@ -1715,7 +1715,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": "DO_NOT_SHARE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": "DO_NOT_SHARE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1723,7 +1723,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "result": null
 }
@@ -1753,7 +1753,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "method": "org.rdk.UserSettings.setViewingRestrictions",
     "params": {
@@ -1772,7 +1772,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": {"ratingScheme": "MPAA", "ratings": ["PG-13", "R"]}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": {"ratingScheme": "MPAA", "ratings": ["PG-13", "R"]}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1780,7 +1780,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "result": null
 }
@@ -1810,7 +1810,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "method": "org.rdk.UserSettings.setViewingRestrictionsWindow",
     "params": {
@@ -1823,7 +1823,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": "ALWAYS"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": "ALWAYS"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1831,7 +1831,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "result": null
 }
@@ -1861,7 +1861,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "method": "org.rdk.UserSettings.setVoiceGuidance",
     "params": {
@@ -1874,7 +1874,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.UserSettings.setVoiceGuidance", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 35, "method": "org.rdk.UserSettings.setVoiceGuidance", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1882,7 +1882,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "result": null
 }
@@ -1912,7 +1912,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "method": "org.rdk.UserSettings.setVoiceGuidanceHints",
     "params": {
@@ -1925,7 +1925,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.UserSettings.setVoiceGuidanceHints", "params": {"hints": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 36, "method": "org.rdk.UserSettings.setVoiceGuidanceHints", "params": {"hints": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1933,7 +1933,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "result": null
 }
@@ -1963,7 +1963,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "method": "org.rdk.UserSettings.setVoiceGuidanceRate",
     "params": {
@@ -1976,7 +1976,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 1.0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 1.0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1984,7 +1984,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "result": null
 }
@@ -2034,7 +2034,7 @@ Triggered when the AudioDescription setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "method": "org.rdk.UserSettings.onAudioDescriptionChanged",
     "params": {
@@ -2058,7 +2058,7 @@ Triggered when the BlockNotRatedContent setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "method": "org.rdk.UserSettings.onBlockNotRatedContentChanged",
     "params": {
@@ -2082,7 +2082,7 @@ Triggered when the Captions setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.UserSettings.onCaptionsChanged",
     "params": {
@@ -2106,7 +2106,7 @@ Triggered when the ContentPin setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 43,
     "method": "org.rdk.UserSettings.onContentPinChanged",
     "params": {
@@ -2130,7 +2130,7 @@ Triggered after the high contrast settings changes.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 44,
     "method": "org.rdk.UserSettings.onHighContrastChanged",
     "params": {
@@ -2154,7 +2154,7 @@ Triggered when the LiveWatershed setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 45,
     "method": "org.rdk.UserSettings.onLiveWatershedChanged",
     "params": {
@@ -2178,7 +2178,7 @@ Triggered when the PinControl setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 46,
     "method": "org.rdk.UserSettings.onPinControlChanged",
     "params": {
@@ -2202,7 +2202,7 @@ Triggered when the PinOnPurchase setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 47,
     "method": "org.rdk.UserSettings.onPinOnPurchaseChanged",
     "params": {
@@ -2226,7 +2226,7 @@ Triggered when the PlaybackWatershed setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 48,
     "method": "org.rdk.UserSettings.onPlaybackWatershedChanged",
     "params": {
@@ -2250,7 +2250,7 @@ Triggered when the preferredLanguages setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 49,
     "method": "org.rdk.UserSettings.onPreferredAudioLanguagesChanged",
     "params": {
@@ -2274,7 +2274,7 @@ Triggered when the PreferredCaptionsLanguages setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 50,
     "method": "org.rdk.UserSettings.onPreferredCaptionsLanguagesChanged",
     "params": {
@@ -2298,7 +2298,7 @@ Triggered when the PreferredClosedCaptionService setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 51,
     "method": "org.rdk.UserSettings.onPreferredClosedCaptionServiceChanged",
     "params": {
@@ -2322,7 +2322,7 @@ Triggered when the PresentationLanguages setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 52,
     "method": "org.rdk.UserSettings.onPresentationLanguageChanged",
     "params": {
@@ -2346,7 +2346,7 @@ Triggered when the PrivacyMode setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 53,
     "method": "org.rdk.UserSettings.onPrivacyModeChanged",
     "params": {
@@ -2370,7 +2370,7 @@ Triggered when the ViewingRestrictions setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 54,
     "method": "org.rdk.UserSettings.onViewingRestrictionsChanged",
     "params": {
@@ -2400,7 +2400,7 @@ Triggered when the ViewingRestrictionsWindow setting is changed.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 55,
     "method": "org.rdk.UserSettings.onViewingRestrictionsWindowChanged",
     "params": {
@@ -2424,7 +2424,7 @@ This event is triggered when the voice guidance setting is updated.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 56,
     "method": "org.rdk.UserSettings.onVoiceGuidanceChanged",
     "params": {
@@ -2448,7 +2448,7 @@ This event is triggered when the voice guidance hints setting is updated.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 57,
     "method": "org.rdk.UserSettings.onVoiceGuidanceHintsChanged",
     "params": {
@@ -2472,7 +2472,7 @@ This event is triggered when the voice guidance rate setting is updated.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 58,
     "method": "org.rdk.UserSettings.onVoiceGuidanceRateChanged",
     "params": {
@@ -2521,7 +2521,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "method": "org.rdk.UserSettings.getMigrationState",
     "params": {
@@ -2534,7 +2534,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2542,7 +2542,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "result": {
         "requiresMigration": true
@@ -2574,7 +2574,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "method": "org.rdk.UserSettings.getMigrationStates"
 }
@@ -2584,7 +2584,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.UserSettings.getMigrationStates"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 39, "method": "org.rdk.UserSettings.getMigrationStates"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2592,7 +2592,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "result": [
         {
