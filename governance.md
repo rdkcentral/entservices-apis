@@ -44,7 +44,7 @@ The key objective of the API governance is to ensure, the APIs are
   - All RDK Entertainment Services MUST have a callsign with a prefix of org.rdk and each service name must use PascalCase (first letter of each word is capitalized). For example,
     > org.rdk.PersistentStore
 
-  - All RDK Entertainment Services that are required to implement JSON RPC MUST have "@json 1.0.0" and "@text:keep" tags in the interface definition. For example,
+  - All RDK Entertainment Services that are required to implement JSON RPC MUST have an "@json" tag specifying the interface version in Major.Minor.Patch form and an "@text:keep" tag in the interface definition. For example,
     > /* @json 1.0.0 @text:keep */
       struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
       ....
