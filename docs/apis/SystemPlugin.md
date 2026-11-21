@@ -1915,6 +1915,8 @@ Sets the system time zone. See `getTimeZones` to get a list of available timezon
 
 Sets the wakeup source configuration for the input powerState. if you are using setNetworkStandbyMode API, Please do not use this API to set LAN and WIFI wakeup. Please migrate to setWakeupSrcConfiguration API to control all wakeup source settings. This API does not persist. Please call this API on Every bootup to set the values.
 
+**Note:** When either `WAKEUPSRC_WIFI` or `WAKEUPSRC_LAN` is enabled as a wakeup source, the system automatically enables network standby mode during deep sleep. This keeps the network interface active in a standby state to allow wake-on-LAN or wake-on-WLAN functionality.
+
 > This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=setwakeupsrcconfig)
 
 ### Events
