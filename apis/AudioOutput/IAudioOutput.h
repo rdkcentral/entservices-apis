@@ -113,7 +113,7 @@ namespace Exchange {
         virtual Core::hresult GetVolumeLevel(const string& audioPort, string& affectedAudioPort /* @out */, int& volumeLevel /* @out */, bool& success /* @out */) = 0;
 
         // @text getMuted
-        // @brief Mutes/Unmutes the volume for given audioport
+        // @brief Returns the current mute status for the given audio port
         // @param audioPort: Any available audio port
         // @example audioPort: "SPEAKER0"
         // @param affectedAudioPort: The current port the muted status is fetched for
