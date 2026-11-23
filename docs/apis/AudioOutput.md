@@ -56,7 +56,7 @@ The following methods are provided by the IAudioOutput Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [dolbyAtmosExperience](#dolbyAtmosExperience) | Returns whether Dolby Atmos Experience is currently enabled |
-| [getMuted](#getMuted) | Mutes/Unmutes the volume for given audioport |
+| [getMuted](#getMuted) | Returns the current mute status for the given audio port |
 | [getVolumeLevel](#getVolumeLevel) | Gets the volumelevel for given audioport |
 | [setMuted](#setMuted) | Mutes/Unmutes the volume for given audioport |
 | [setVolumeLevel](#setVolumeLevel) | Sets the volumelevel for given audioport |
@@ -112,7 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
 <a id="getMuted"></a>
 ## *getMuted*
 
-Mutes/Unmutes the volume for given audioport
+Returns the current mute status for the given audio port
 
 ### Events Triggered
 None
