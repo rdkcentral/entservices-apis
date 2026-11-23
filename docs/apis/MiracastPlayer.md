@@ -99,7 +99,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.MiracastPlayer.playRequest",
     "params": {
@@ -123,7 +123,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": {"source_dev_ip": "192.168.1.2", "source_dev_mac": "00:11:22:33:44:55", "source_dev_name": "Miracast Source", "sink_dev_ip": "192.168.1.3"}, "video_rectangle": {"X": 0, "Y": 0, "W": 1920, "H": 1080}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": {"source_dev_ip": "192.168.1.2", "source_dev_mac": "00:11:22:33:44:55", "source_dev_name": "Miracast Source", "sink_dev_ip": "192.168.1.3"}, "video_rectangle": {"X": 0, "Y": 0, "W": 1920, "H": 1080}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -131,7 +131,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -168,7 +168,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.MiracastPlayer.setEnvArguments",
     "params": [
@@ -178,7 +178,7 @@ None
         },
         {
             "argName": "WESTEROS_FULLSCREEN",
-            "argValue": 1
+            "argValue": "1"
         }
     ]
 }
@@ -188,7 +188,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": 1}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": "1"}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -196,7 +196,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -234,7 +234,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.MiracastPlayer.setVideoRectangle",
     "params": {
@@ -250,7 +250,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastPlayer.setVideoRectangle", "params": {"X": 0, "Y": 0, "W": 1920, "H": 1080}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.MiracastPlayer.setVideoRectangle", "params": {"X": 0, "Y": 0, "W": 1920, "H": 1080}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -258,7 +258,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true
@@ -295,7 +295,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.MiracastPlayer.setWesterosEnvironment",
     "params": [
@@ -305,7 +305,7 @@ None
         },
         {
             "argName": "WESTEROS_FULLSCREEN",
-            "argValue": 1
+            "argValue": "1"
         }
     ]
 }
@@ -315,7 +315,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": 1}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": "1"}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -323,7 +323,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "success": true
@@ -360,7 +360,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.MiracastPlayer.stopRequest",
     "params": {
@@ -375,7 +375,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": 203}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": 203}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -383,7 +383,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "success": true
@@ -415,7 +415,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.MiracastPlayer.unsetEnvArguments"
 }
@@ -425,7 +425,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastPlayer.unsetEnvArguments"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.MiracastPlayer.unsetEnvArguments"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -433,7 +433,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "success": true
@@ -465,7 +465,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.MiracastPlayer.unsetWesterosEnvironment"
 }
@@ -475,7 +475,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.MiracastPlayer.unsetWesterosEnvironment"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.MiracastPlayer.unsetWesterosEnvironment"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -483,7 +483,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "success": true
@@ -521,7 +521,7 @@ Triggered whenever the Miracast player changes state. The event provides the sou
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.MiracastPlayer.onStateChange",
     "params": {

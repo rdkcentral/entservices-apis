@@ -96,7 +96,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.SharedStorage.deleteKey",
     "params": {
@@ -111,7 +111,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SharedStorage.deleteKey", "params": {"scope": "device", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.SharedStorage.deleteKey", "params": {"scope": "device", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -119,7 +119,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -153,7 +153,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.SharedStorage.deleteNamespace",
     "params": {
@@ -167,7 +167,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SharedStorage.deleteNamespace", "params": {"scope": "device", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.SharedStorage.deleteNamespace", "params": {"scope": "device", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -175,7 +175,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -212,7 +212,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.SharedStorage.getValue",
     "params": {
@@ -227,7 +227,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SharedStorage.getValue", "params": {"scope": "device", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.SharedStorage.getValue", "params": {"scope": "device", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -235,7 +235,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "value": "en-US",
@@ -274,7 +274,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.SharedStorage.setValue",
     "params": {
@@ -291,7 +291,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SharedStorage.setValue", "params": {"scope": "device", "namespace": "application", "key": "language", "value": "en-US", "ttl": 3580}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.SharedStorage.setValue", "params": {"scope": "device", "namespace": "application", "key": "language", "value": "en-US", "ttl": 3580}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -299,7 +299,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "success": true
@@ -336,7 +336,7 @@ Triggered when the value of a key in the specified namespace changes.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.SharedStorage.onValueChanged",
     "params": {
@@ -392,7 +392,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.SharedStorage.getKeys",
     "params": {
@@ -406,7 +406,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SharedStorage.getKeys", "params": {"scope": "device", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.SharedStorage.getKeys", "params": {"scope": "device", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -414,7 +414,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "keys": [
@@ -453,7 +453,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.SharedStorage.getNamespaces",
     "params": {
@@ -466,7 +466,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SharedStorage.getNamespaces", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.SharedStorage.getNamespaces", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -474,7 +474,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "namespaces": [
@@ -514,7 +514,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.SharedStorage.getStorageSizes",
     "params": {
@@ -527,7 +527,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SharedStorage.getStorageSizes", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.SharedStorage.getStorageSizes", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -535,7 +535,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "storageList": [
@@ -590,7 +590,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.SharedStorage.getNamespaceStorageLimit",
     "params": {
@@ -604,7 +604,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SharedStorage.getNamespaceStorageLimit", "params": {"scope": "device", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.SharedStorage.getNamespaceStorageLimit", "params": {"scope": "device", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -612,7 +612,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": 1024
 }
@@ -645,7 +645,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.SharedStorage.setNamespaceStorageLimit",
     "params": {
@@ -660,7 +660,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SharedStorage.setNamespaceStorageLimit", "params": {"scope": "device", "namespace": "application", "storageLimit": 1024}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.SharedStorage.setNamespaceStorageLimit", "params": {"scope": "device", "namespace": "application", "storageLimit": 1024}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -668,7 +668,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
         "success": true
@@ -711,7 +711,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.SharedStorage.flushCache"
 }
@@ -721,7 +721,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SharedStorage.flushCache"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.SharedStorage.flushCache"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -729,7 +729,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": null
 }

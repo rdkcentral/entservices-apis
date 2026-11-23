@@ -99,7 +99,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.OCIContainer.annotate",
     "params": {
@@ -114,7 +114,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.OCIContainer.annotate", "params": {"containerId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.OCIContainer.annotate", "params": {"containerId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -122,7 +122,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true,
@@ -159,7 +159,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.OCIContainer.executeCommand",
     "params": {
@@ -174,7 +174,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.OCIContainer.executeCommand", "params": {"containerId": "", "options": "", "command": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.OCIContainer.executeCommand", "params": {"containerId": "", "options": "", "command": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -182,7 +182,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true,
@@ -218,7 +218,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.OCIContainer.getContainerInfo",
     "params": {
@@ -231,7 +231,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.OCIContainer.getContainerInfo", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.OCIContainer.getContainerInfo", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -239,7 +239,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "info": "",
@@ -276,7 +276,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.OCIContainer.getContainerState",
     "params": {
@@ -289,7 +289,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.OCIContainer.getContainerState", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.OCIContainer.getContainerState", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -297,7 +297,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "state": "INVALID",
@@ -334,7 +334,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.OCIContainer.hibernateContainer",
     "params": {
@@ -348,7 +348,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.OCIContainer.hibernateContainer", "params": {"containerId": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.OCIContainer.hibernateContainer", "params": {"containerId": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -356,7 +356,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "success": true,
@@ -389,7 +389,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.OCIContainer.listContainers"
 }
@@ -399,7 +399,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.OCIContainer.listContainers"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.OCIContainer.listContainers"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -407,7 +407,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "containers": "",
@@ -447,7 +447,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.OCIContainer.mount",
     "params": {
@@ -464,7 +464,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.OCIContainer.mount", "params": {"containerId": "", "source": "", "target": "", "type": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.OCIContainer.mount", "params": {"containerId": "", "source": "", "target": "", "type": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -472,7 +472,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "success": true,
@@ -507,7 +507,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.OCIContainer.pauseContainer",
     "params": {
@@ -520,7 +520,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.OCIContainer.pauseContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.OCIContainer.pauseContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -528,7 +528,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "success": true,
@@ -564,7 +564,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.OCIContainer.removeAnnotation",
     "params": {
@@ -578,7 +578,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.OCIContainer.removeAnnotation", "params": {"containerId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.OCIContainer.removeAnnotation", "params": {"containerId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -586,7 +586,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": {
         "success": true,
@@ -621,7 +621,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.OCIContainer.resumeContainer",
     "params": {
@@ -634,7 +634,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.OCIContainer.resumeContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.OCIContainer.resumeContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -642,7 +642,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
         "success": true,
@@ -681,7 +681,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.OCIContainer.startContainer",
     "params": {
@@ -697,7 +697,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.OCIContainer.startContainer", "params": {"containerId": "", "bundlePath": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.OCIContainer.startContainer", "params": {"containerId": "", "bundlePath": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -705,7 +705,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
         "descriptor": 0,
@@ -745,7 +745,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.OCIContainer.startContainerFromDobbySpec",
     "params": {
@@ -761,7 +761,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.OCIContainer.startContainerFromDobbySpec", "params": {"containerId": "", "dobbySpec": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.OCIContainer.startContainerFromDobbySpec", "params": {"containerId": "", "dobbySpec": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -769,7 +769,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
         "descriptor": 0,
@@ -806,7 +806,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.OCIContainer.stopContainer",
     "params": {
@@ -820,7 +820,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.OCIContainer.stopContainer", "params": {"containerId": "", "force": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.OCIContainer.stopContainer", "params": {"containerId": "", "force": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -828,7 +828,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "success": true,
@@ -864,7 +864,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.OCIContainer.unmount",
     "params": {
@@ -878,7 +878,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.OCIContainer.unmount", "params": {"containerId": "", "target": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.OCIContainer.unmount", "params": {"containerId": "", "target": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -886,7 +886,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
         "success": true,
@@ -921,7 +921,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.OCIContainer.wakeupContainer",
     "params": {
@@ -934,7 +934,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.OCIContainer.wakeupContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.OCIContainer.wakeupContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -942,7 +942,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "success": true,
@@ -982,7 +982,7 @@ Notifies failure in container execution, only triggered for states start, stop, 
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.OCIContainer.onContainerFailed",
     "params": {
@@ -1009,7 +1009,7 @@ Notifies container is started
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.OCIContainer.onContainerStarted",
     "params": {
@@ -1035,7 +1035,7 @@ Notifies state change of container
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.OCIContainer.onContainerStateChanged",
     "params": {
@@ -1056,17 +1056,19 @@ Notifies container is stopped
 | params | object |  |
 | params.containerId | string | Identifier of container |
 | params.name | string |  |
+| params.exitCode | integer | Exit code of the container process |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.OCIContainer.onContainerStopped",
     "params": {
         "containerId": "",
-        "name": ""
+        "name": "",
+        "exitCode": 0
     }
 }
 ```
