@@ -70,6 +70,11 @@ namespace Exchange {
             };
 
             virtual void Updated(const Source event) = 0;
+
+            // @brief HDMI connection notification
+            // @details Notifies when the HDMI connection status changes.
+            // @param isConnected: connected/disconnected
+            virtual void DisplayConnectionChanged(const bool connected) = 0;
         };
 
         virtual Core::hresult Register(INotification*) = 0;
