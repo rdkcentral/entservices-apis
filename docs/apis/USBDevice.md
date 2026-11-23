@@ -84,7 +84,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.USBDevice.bindDriver",
     "params": {
@@ -97,7 +97,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.USBDevice.bindDriver", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.USBDevice.bindDriver", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -105,7 +105,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": null
 }
@@ -173,7 +173,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.USBDevice.getDeviceInfo",
     "params": {
@@ -186,7 +186,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBDevice.getDeviceInfo", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.USBDevice.getDeviceInfo", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -194,7 +194,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "parentId": 1,
@@ -269,7 +269,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.USBDevice.getDeviceList"
 }
@@ -279,7 +279,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.USBDevice.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.USBDevice.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -287,7 +287,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": [
         {
@@ -324,7 +324,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.USBDevice.unbindDriver",
     "params": {
@@ -337,7 +337,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.USBDevice.unbindDriver", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.USBDevice.unbindDriver", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -345,7 +345,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
@@ -382,7 +382,7 @@ Triggered when a USB device is connected to the system and successfully detected
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.USBDevice.onDevicePluggedIn",
     "params": {
@@ -413,7 +413,7 @@ Triggered when a USB device is disconnected from the system. The event provides 
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.USBDevice.onDevicePluggedOut",
     "params": {

@@ -93,7 +93,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.XCast.getEnabled"
 }
@@ -103,7 +103,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.XCast.getEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.XCast.getEnabled"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -111,7 +111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "enabled": true,
@@ -143,7 +143,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.XCast.getFriendlyName"
 }
@@ -153,7 +153,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.XCast.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.XCast.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "friendlyname": "Living Room TV",
@@ -193,7 +193,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.XCast.getManufacturerName"
 }
@@ -203,7 +203,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.XCast.getManufacturerName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.XCast.getManufacturerName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -211,7 +211,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "manufacturer": "MyCompany",
@@ -243,7 +243,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.XCast.getModelName"
 }
@@ -253,7 +253,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.XCast.getModelName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.XCast.getModelName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -261,7 +261,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "model": "MyModel",
@@ -293,7 +293,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.XCast.getProtocolVersion"
 }
@@ -303,7 +303,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.XCast.getProtocolVersion"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.XCast.getProtocolVersion"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -311,7 +311,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "version": 1.7,
@@ -343,7 +343,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.XCast.getStandbyBehavior"
 }
@@ -353,7 +353,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.XCast.getStandbyBehavior"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.XCast.getStandbyBehavior"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -361,7 +361,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "standbybehavior": "active",
@@ -402,7 +402,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.XCast.registerApplications",
     "params": [
@@ -430,7 +430,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"name": "YouTube", "prefix": "youtube://", "cors": "*", "query": "", "payload": "{}", "allowStop": 1}, {"name": "Netflix", "prefix": "netflix://", "cors": "*", "query": "", "payload": "{}", "allowStop": 1}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"name": "YouTube", "prefix": "youtube://", "cors": "*", "query": "", "payload": "{}", "allowStop": 1}, {"name": "Netflix", "prefix": "netflix://", "cors": "*", "query": "", "payload": "{}", "allowStop": 1}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -438,7 +438,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": true
 }
@@ -472,7 +472,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.XCast.setApplicationState",
     "params": {
@@ -488,7 +488,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "YouTube", "state": "running", "applicationId": "abcd1234", "error": "invalid"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "YouTube", "state": "running", "applicationId": "abcd1234", "error": "invalid"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -496,7 +496,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": true
 }
@@ -527,7 +527,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.XCast.setEnabled",
     "params": {
@@ -540,7 +540,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.XCast.setEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.XCast.setEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -548,7 +548,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": true
 }
@@ -579,7 +579,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.XCast.setFriendlyName",
     "params": {
@@ -592,7 +592,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.XCast.setFriendlyName", "params": {"friendlyname": "Living Room TV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.XCast.setFriendlyName", "params": {"friendlyname": "Living Room TV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -600,7 +600,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": true
 }
@@ -631,7 +631,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.XCast.setManufacturerName",
     "params": {
@@ -644,7 +644,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.XCast.setManufacturerName", "params": {"manufacturer": "MyCompany"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.XCast.setManufacturerName", "params": {"manufacturer": "MyCompany"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -652,7 +652,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": true
 }
@@ -683,7 +683,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.XCast.setModelName",
     "params": {
@@ -696,7 +696,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.XCast.setModelName", "params": {"model": "MyModel"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.XCast.setModelName", "params": {"model": "MyModel"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -704,7 +704,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": true
 }
@@ -735,7 +735,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.XCast.setStandbyBehavior",
     "params": {
@@ -748,7 +748,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.XCast.setStandbyBehavior", "params": {"standbybehavior": "active"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.XCast.setStandbyBehavior", "params": {"standbybehavior": "active"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -756,7 +756,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": true
 }
@@ -788,7 +788,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.XCast.unregisterApplications",
     "params": [
@@ -802,7 +802,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.XCast.unregisterApplications", "params": ["YouTube", "yt"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.XCast.unregisterApplications", "params": ["YouTube", "yt"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -810,7 +810,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": true
 }
@@ -848,7 +848,7 @@ Notifies that a casting client has requested to hide or background a currently r
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.XCast.onApplicationHideRequest",
     "params": {
@@ -874,7 +874,7 @@ Notifies that a casting client has requested application launch with combined la
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.XCast.onApplicationLaunchRequest",
     "params": {
@@ -902,7 +902,7 @@ Signals an incoming launch directive from a casting client containing comprehens
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.XCast.onApplicationLaunchRequestWithParam",
     "params": {
@@ -930,7 +930,7 @@ Signals that a casting client wants to resume a previously hidden or backgrounde
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.XCast.onApplicationResumeRequest",
     "params": {
@@ -956,7 +956,7 @@ Requests the current state of a running application instance. The service must r
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.XCast.onApplicationStateRequest",
     "params": {
@@ -982,7 +982,7 @@ Indicates that a casting client has issued a request to stop a running applicati
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.XCast.onApplicationStopRequest",
     "params": {

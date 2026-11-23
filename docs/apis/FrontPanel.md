@@ -88,7 +88,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.FrontPanel.getBrightness",
     "params": {
@@ -101,7 +101,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.FrontPanel.getBrightness", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.FrontPanel.getBrightness", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -109,7 +109,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "brightness": 100,
@@ -143,7 +143,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.FrontPanel.getFrontPanelLights"
 }
@@ -153,7 +153,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.FrontPanel.getFrontPanelLights"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.FrontPanel.getFrontPanelLights"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "supportedLights": [
@@ -199,7 +199,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.FrontPanel.powerLedOff",
     "params": {
@@ -212,7 +212,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FrontPanel.powerLedOff", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.FrontPanel.powerLedOff", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -220,7 +220,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true
@@ -253,7 +253,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.FrontPanel.powerLedOn",
     "params": {
@@ -266,7 +266,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.FrontPanel.powerLedOn", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.FrontPanel.powerLedOn", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -274,7 +274,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "success": true
@@ -307,7 +307,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.FrontPanel.setBlink",
     "params": {
@@ -320,7 +320,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": "{\"ledIndicator\": \"POWER_LED\", \"iterations\": 3, \"pattern\": [{\"brightness\": 100, \"duration\": 500}, {\"brightness\": 0, \"duration\": 500}]}"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": "{\"ledIndicator\": \"POWER_LED\", \"iterations\": 3, \"pattern\": [{\"brightness\": 100, \"duration\": 500}, {\"brightness\": 0, \"duration\": 500}]}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -328,7 +328,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "success": true
@@ -362,7 +362,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.FrontPanel.setBrightness",
     "params": {
@@ -376,7 +376,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.FrontPanel.setBrightness", "params": {"index": "", "brightness": 100}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.FrontPanel.setBrightness", "params": {"index": "", "brightness": 100}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -384,7 +384,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "success": true
@@ -422,7 +422,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.FrontPanel.setLED",
     "params": {
@@ -440,7 +440,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.FrontPanel.setLED", "params": {"ledIndicator": "POWER_LED", "brightness": 100, "color": "red", "red": 255, "green": 0, "blue": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.FrontPanel.setLED", "params": {"ledIndicator": "POWER_LED", "brightness": 100, "color": "red", "red": 255, "green": 0, "blue": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -448,7 +448,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "success": true
