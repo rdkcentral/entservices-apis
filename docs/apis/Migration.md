@@ -80,7 +80,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.Migration.getBootTypeInfo"
 }
@@ -90,7 +90,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Migration.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.Migration.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -98,7 +98,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "bootType": "BOOT_MIGRATION"
@@ -128,7 +128,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.Migration.getMigrationStatus"
 }
@@ -138,7 +138,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Migration.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.Migration.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -146,7 +146,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "migrationStatus": "STARTED"
@@ -179,7 +179,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.Migration.setMigrationStatus",
     "params": {
@@ -192,7 +192,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "STARTED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "STARTED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -200,7 +200,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true

@@ -14,6 +14,7 @@
   - [AVInput](apis/AVInput.md)
   - [Backup](apis/Backup.md)
   - [Bluetooth<sup>@</sup>](apis/BluetoothPlugin.md)
+  - [DABAdapter](apis/DABAdapter.md)
   - [DeviceDiagnostics](apis/DeviceDiagnostics.md)
   - [DeviceInfo](apis/DeviceInfo.md)
   - [DisplayInfo](apis/DisplayInfo.md)

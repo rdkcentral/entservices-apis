@@ -83,7 +83,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.FirmwareUpdate.getUpdateState"
 }
@@ -93,7 +93,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.FirmwareUpdate.getUpdateState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.FirmwareUpdate.getUpdateState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -101,7 +101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "state": "FLASHING_STARTED",
@@ -135,7 +135,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.FirmwareUpdate.setAutoReboot",
     "params": {
@@ -148,7 +148,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.FirmwareUpdate.setAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.FirmwareUpdate.setAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -156,7 +156,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -190,7 +190,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.FirmwareUpdate.updateFirmware",
     "params": {
@@ -204,7 +204,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FirmwareUpdate.updateFirmware", "params": {"firmwareFilepath": "/tmp/firmware.bin", "firmwareType": "PCI"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.FirmwareUpdate.updateFirmware", "params": {"firmwareFilepath": "/tmp/firmware.bin", "firmwareType": "PCI"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -212,7 +212,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true
@@ -247,7 +247,7 @@ This notification is raised between flashing started state and flashing succeede
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.FirmwareUpdate.onFlashingStateChange",
     "params": {
@@ -272,7 +272,7 @@ This notification is raised when the firmware update state changes. The state an
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.FirmwareUpdate.onUpdateStateChange",
     "params": {

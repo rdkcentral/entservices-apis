@@ -88,7 +88,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.HdcpProfile.getHDCPStatus"
 }
@@ -98,7 +98,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.HdcpProfile.getHDCPStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.HdcpProfile.getHDCPStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -106,7 +106,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "HDCPStatus": {
@@ -114,9 +114,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
             "isHDCPCompliant": true,
             "isHDCPEnabled": true,
             "hdcpReason": 0,
-            "supportedHDCPVersion": 2.2,
-            "receiverHDCPVersion": 2.2,
-            "currentHDCPVersion": 2.2
+            "supportedHDCPVersion": "2.2",
+            "receiverHDCPVersion": "2.2",
+            "currentHDCPVersion": "2.2"
         },
         "success": true
     }
@@ -147,7 +147,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"
 }
@@ -157,7 +157,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -165,7 +165,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "supportedHDCPVersion": 2.2,
@@ -208,7 +208,7 @@ Provides the current connection status and HDCP compliance information for the d
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
     "params": {
@@ -216,9 +216,9 @@ Provides the current connection status and HDCP compliance information for the d
         "isHDCPCompliant": true,
         "isHDCPEnabled": true,
         "hdcpReason": 0,
-        "supportedHDCPVersion": 2.2,
-        "receiverHDCPVersion": 2.2,
-        "currentHDCPVersion": 2.2
+        "supportedHDCPVersion": "2.2",
+        "receiverHDCPVersion": "2.2",
+        "currentHDCPVersion": "2.2"
     }
 }
 ```

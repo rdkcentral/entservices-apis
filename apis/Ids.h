@@ -249,6 +249,8 @@ namespace Exchange {
         ID_APP_PACKAGE_MANAGER_CONFIG                = ID_APP_PACKAGE_MANAGER + 11,
         ID_PACKAGE_CACHE_INITIALIZER                 = ID_APP_PACKAGE_MANAGER + 12,
         ID_APP_PACKAGES_STATUS                       = ID_APP_PACKAGE_MANAGER + 13,
+        ID_APP_PACKAGES_CONNECTOR                    = ID_APP_PACKAGE_MANAGER + 14,
+        ID_PACKAGE_SPECIFIER_RUNTIME_ITERATOR        = ID_APP_PACKAGE_MANAGER + 15,
 
 	ID_APPSTORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
@@ -409,6 +411,8 @@ namespace Exchange {
 
         ID_RESOURCE_MONITOR                         = ID_ENTOS_OFFSET + 0x610,
         ID_RESOURCE_MONITOR_NOTIFICATION            = ID_RESOURCE_MONITOR + 1,
+
+        ID_DAB_ADAPTER                              = ID_ENTOS_OFFSET + 0x620,
     }; // enum IDS
 
 } // namespace Exchange

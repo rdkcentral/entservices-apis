@@ -314,10 +314,10 @@ namespace WPEFramework
         // @text setDeepSleepTimer
         // @brief Set Deep sleep timer for timeOut period
         // @details Sets the deep sleep timer for the device. Clients can use this API to specify a timeout period after which the device will enter deep sleep mode.
-        // @param timeOut: Deep sleep timeout
+        // @param timeOut: Deep sleep timeout in seconds, up to 2 days
         // @example timeOut: 300
         // @retval Core::ERROR_NONE: Indicates success
-        virtual Core::hresult SetDeepSleepTimer(const int timeOut ) = 0;
+        virtual Core::hresult SetDeepSleepTimer(const int timeOut /* @restrict:0..172800 */) = 0;
 
         /** Get Last Wakeup reason */
         // @property
@@ -433,4 +433,3 @@ namespace WPEFramework
 
 } // namespace Exchange
 } // namespace WPEFramework
-

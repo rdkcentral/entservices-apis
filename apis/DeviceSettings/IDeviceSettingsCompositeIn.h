@@ -127,26 +127,38 @@ namespace Exchange {
 
             // @brief Composite In Hotplug event
             // @text onCompositeInHotPlug
+            // @details Notifies clients when a composite input port is connected or disconnected.
             // @param port: Port of the hotplug 
+            // @example port: DS_COMPOSITE_IN_PORT_0
             // @param isConnected: Is it connected (true) or not(false)
+            // @example isConnected: true
             virtual void OnCompositeInHotPlug(const CompositeInPort port, const bool isConnected) {};
 
             // @brief Composite In Signal status
             // @text onCompositeInSignalStatus
+            // @details Notifies clients when the signal status of a composite input port changes.
             // @param port: Port of the hotplug 
+            // @example port: DS_COMPOSITE_IN_PORT_0
             // @param signalStatus: Signal status
+            // @example signalStatus: DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE
             virtual void OnCompositeInSignalStatus(const CompositeInPort port, const CompositeInSignalStatus signalStatus) {};
 
             // @brief Composite In status
             // @text onCompositeInStatus
+            // @details Notifies clients when the active composite input port or its presentation state changes.
             // @param activePort: Active port
+            // @example activePort: DS_COMPOSITE_IN_PORT_0
             // @param isPresented: is it presented to user
+            // @example isPresented: true
             virtual void OnCompositeInStatus(const CompositeInPort activePort, const bool isPresented) {};
 
             // @brief Composite In video mode update
             // @text onCompositeInVideoModeUpdate
+            // @details Notifies clients when the video mode of the active composite input changes.
             // @param activePort: Active port
+            // @example activePort: DS_COMPOSITE_IN_PORT_0
             // @param videoResolution: See DisplayVideoPortResolution
+            // @example videoResolution: {"name": "480i", "pixelResolution": "DS_DISPLAY_RESOLUTION_480I", "aspectRatio": "DS_DISPLAY_ASPECT_RATIO_4X3", "frameRate": "DS_DISPLAY_FRAMERATE_60", "interlaced": true}
             virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution& videoResolution) {};
 
         };
@@ -157,25 +169,37 @@ namespace Exchange {
         /** Get number of composite inputs. */
         // @text getNrOfCompositeInputs
         // @brief Get Number of Composite Inputs in the platform
+        // @details Retrieves the number of composite input ports available on the platform.
         // @param nrCompositeInputs: number of composite inputs
+        // @example nrCompositeInputs: 2
+        // @retval Core::ERROR_NONE: Number of composite input ports was retrieved successfully
         virtual Core::hresult GetNrOfCompositeInputs(int32_t &nrCompositeInputs /* @out */) = 0;
 
         /** Get Composite In port status. */
         // @text getCompositeInStatus
         // @brief Get Composite In port status
+        // @details Retrieves the active composite input port and the current connection state of the ports.
         // @param status: Composite In status
+        // @example status: {"isPresented": true, "activePort": "DS_COMPOSITE_IN_PORT_0", "isPort0Connected": true, "isPort1Connected": false}
+        // @retval Core::ERROR_NONE: Composite input status was retrieved successfully
         virtual Core::hresult GetCompositeInStatus(CompositeInStatus &status /* @out */) = 0;
 
         /** Select Composite In port */
         // @text selectCompositeInPort
         // @brief Select Composite In port.
+        // @details Selects the composite input port to use as the active video source.
         // @param port: port to be selected
+        // @example port: DS_COMPOSITE_IN_PORT_0
+        // @retval Core::ERROR_NONE: Composite input port was selected successfully
         virtual Core::hresult SelectCompositeInPort(const CompositeInPort port ) = 0;
 
         /** Scale composite video . */
         // @text scaleCompositeInVideo
         // @brief Scale composite video.
+        // @details Sets the position and dimensions used to scale composite video.
         // @param videoRect: co-ordinates and width/height to scale to
+        // @example videoRect: {"x": 0, "y": 0, "width": 1920, "height": 1080}
+        // @retval Core::ERROR_NONE: Composite video scaling was updated successfully
         virtual Core::hresult ScaleCompositeInVideo(const VideoRectangle videoRect ) = 0;
     };
 

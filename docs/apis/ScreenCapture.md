@@ -83,7 +83,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.ScreenCapture.sendScreenshot",
     "params": {
@@ -96,7 +96,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -138,7 +138,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
@@ -152,7 +152,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "https://example.com/upload", "callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "https://example.com/upload", "callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -160,7 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -196,7 +196,7 @@ Provides the status, message, and call GUID associated with the completed upload
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.ScreenCapture.uploadComplete",
     "params": {

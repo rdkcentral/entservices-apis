@@ -89,7 +89,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.MiracastService.acceptClientConnection",
     "params": {
@@ -102,7 +102,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastService.acceptClientConnection", "params": {"requestStatus": "Accept"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.MiracastService.acceptClientConnection", "params": {"requestStatus": "Accept"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "message": "Backend discovery status updated",
@@ -142,7 +142,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.MiracastService.getEnable"
 }
@@ -152,7 +152,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastService.getEnable"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.MiracastService.getEnable"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -160,7 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "enabled": true,
@@ -196,7 +196,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.MiracastService.setEnable",
     "params": {
@@ -209,7 +209,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastService.setEnable", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.MiracastService.setEnable", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -217,7 +217,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "message": "Backend discovery status updated",
@@ -253,7 +253,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.MiracastService.setP2PBackendDiscovery",
     "params": {
@@ -266,7 +266,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastService.setP2PBackendDiscovery", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.MiracastService.setP2PBackendDiscovery", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -274,7 +274,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "message": "Backend discovery status updated",
@@ -311,7 +311,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.MiracastService.stopClientConnection",
     "params": {
@@ -325,7 +325,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastService.stopClientConnection", "params": {"mac": "00:11:22:33:44:55", "name": "John's iPhone"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.MiracastService.stopClientConnection", "params": {"mac": "00:11:22:33:44:55", "name": "John's iPhone"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -333,7 +333,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "message": "Backend discovery status updated",
@@ -371,7 +371,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.MiracastService.updatePlayerState",
     "params": {
@@ -386,7 +386,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "00:11:22:33:44:55", "state": "PLAYING", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "00:11:22:33:44:55", "state": "PLAYING", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -394,7 +394,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "message": "Backend discovery status updated",
@@ -434,7 +434,7 @@ Notifies listeners that the connection to the source streaming device could not 
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.MiracastService.onClientConnectionError",
     "params": {
@@ -462,7 +462,7 @@ Notifies listeners of an incoming Miracast connection request, identifying the r
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.MiracastService.onClientConnectionRequest",
     "params": {
@@ -491,7 +491,7 @@ Triggered when the Miracast Service plugin needs the Resident Application or Mir
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.MiracastService.onLaunchRequest",
     "params": {
