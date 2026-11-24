@@ -113,7 +113,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.HdmiCecSink.getActiveRoute"
 }
@@ -123,7 +123,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.HdmiCecSink.getActiveRoute"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.HdmiCecSink.getActiveRoute"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -131,7 +131,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "available": true,
@@ -179,7 +179,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.HdmiCecSink.getActiveSource"
 }
@@ -189,7 +189,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.HdmiCecSink.getActiveSource"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.HdmiCecSink.getActiveSource"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -197,7 +197,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "available": true,
@@ -237,7 +237,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.HdmiCecSink.getAudioDeviceConnectedStatus"
 }
@@ -247,7 +247,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.HdmiCecSink.getAudioDeviceConnectedStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.HdmiCecSink.getAudioDeviceConnectedStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -255,7 +255,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "connected": true,
@@ -296,7 +296,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.HdmiCecSink.getDeviceList"
 }
@@ -306,7 +306,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.HdmiCecSink.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.HdmiCecSink.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -314,7 +314,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "numberofdevices": 2,
@@ -323,7 +323,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
                 "logicalAddress": 4,
                 "physicalAddress": "1.0.0.0",
                 "deviceType": "Playback Device",
-                "cecVersion": 1.4,
+                "cecVersion": "1.4",
                 "osdName": "STB",
                 "vendorID": "0x0000",
                 "powerStatus": "On",
@@ -358,7 +358,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.HdmiCecSink.getEnabled"
 }
@@ -368,7 +368,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.HdmiCecSink.getEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.HdmiCecSink.getEnabled"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -376,7 +376,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "enabled": true,
@@ -408,7 +408,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.HdmiCecSink.getOSDName"
 }
@@ -418,7 +418,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.HdmiCecSink.getOSDName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.HdmiCecSink.getOSDName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -426,7 +426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "name": "My TV",
@@ -458,7 +458,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.HdmiCecSink.getVendorId"
 }
@@ -468,7 +468,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.HdmiCecSink.getVendorId"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.HdmiCecSink.getVendorId"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -476,7 +476,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "vendorid": "0x0000",
@@ -508,7 +508,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.HdmiCecSink.printDeviceList"
 }
@@ -518,7 +518,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.HdmiCecSink.printDeviceList"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.HdmiCecSink.printDeviceList"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -526,7 +526,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
         "printed": true,
@@ -557,7 +557,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.HdmiCecSink.requestActiveSource"
 }
@@ -567,7 +567,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.HdmiCecSink.requestActiveSource"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.HdmiCecSink.requestActiveSource"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -575,7 +575,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": {
         "success": true
@@ -605,7 +605,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.HdmiCecSink.requestAudioDevicePowerStatus"
 }
@@ -615,7 +615,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.HdmiCecSink.requestAudioDevicePowerStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.HdmiCecSink.requestAudioDevicePowerStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -623,7 +623,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
         "success": true
@@ -653,7 +653,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.HdmiCecSink.requestShortAudioDescriptor"
 }
@@ -663,7 +663,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.HdmiCecSink.requestShortAudioDescriptor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.HdmiCecSink.requestShortAudioDescriptor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -671,7 +671,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
         "success": true
@@ -701,7 +701,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.HdmiCecSink.sendAudioDevicePowerOnMessage"
 }
@@ -711,7 +711,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.HdmiCecSink.sendAudioDevicePowerOnMessage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.HdmiCecSink.sendAudioDevicePowerOnMessage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -719,7 +719,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
         "success": true
@@ -749,7 +749,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.HdmiCecSink.sendGetAudioStatusMessage"
 }
@@ -759,7 +759,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.HdmiCecSink.sendGetAudioStatusMessage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.HdmiCecSink.sendGetAudioStatusMessage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -767,7 +767,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "success": true
@@ -801,7 +801,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.HdmiCecSink.sendKeyPressEvent",
     "params": {
@@ -815,7 +815,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.HdmiCecSink.sendKeyPressEvent", "params": {"logicalAddress": 4, "keyCode": "0x44"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.HdmiCecSink.sendKeyPressEvent", "params": {"logicalAddress": 4, "keyCode": "0x44"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -823,7 +823,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
         "success": true
@@ -853,7 +853,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.HdmiCecSink.sendStandbyMessage"
 }
@@ -863,7 +863,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.HdmiCecSink.sendStandbyMessage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.HdmiCecSink.sendStandbyMessage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -871,7 +871,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "success": true
@@ -905,7 +905,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "method": "org.rdk.HdmiCecSink.sendUserControlPressed",
     "params": {
@@ -919,7 +919,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.HdmiCecSink.sendUserControlPressed", "params": {"logicalAddress": 4, "keyCode": "0x44"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.HdmiCecSink.sendUserControlPressed", "params": {"logicalAddress": 4, "keyCode": "0x44"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -927,7 +927,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 15,
     "result": {
         "success": true
@@ -960,7 +960,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "method": "org.rdk.HdmiCecSink.sendUserControlReleased",
     "params": {
@@ -973,7 +973,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.HdmiCecSink.sendUserControlReleased", "params": {"logicalAddress": 4}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.HdmiCecSink.sendUserControlReleased", "params": {"logicalAddress": 4}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -981,7 +981,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 16,
     "result": {
         "success": true
@@ -1014,7 +1014,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "method": "org.rdk.HdmiCecSink.setActivePath",
     "params": {
@@ -1027,7 +1027,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.HdmiCecSink.setActivePath", "params": {"activePath": "1.0.0.0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.HdmiCecSink.setActivePath", "params": {"activePath": "1.0.0.0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1035,7 +1035,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 17,
     "result": {
         "success": true
@@ -1065,7 +1065,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.HdmiCecSink.setActiveSource"
 }
@@ -1075,7 +1075,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.HdmiCecSink.setActiveSource"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.HdmiCecSink.setActiveSource"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1083,7 +1083,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 18,
     "result": {
         "success": true
@@ -1116,7 +1116,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "method": "org.rdk.HdmiCecSink.setEnabled",
     "params": {
@@ -1129,7 +1129,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.HdmiCecSink.setEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 19, "method": "org.rdk.HdmiCecSink.setEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1137,7 +1137,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 19,
     "result": {
         "success": true
@@ -1173,7 +1173,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "method": "org.rdk.HdmiCecSink.setLatencyInfo",
     "params": {
@@ -1189,7 +1189,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.HdmiCecSink.setLatencyInfo", "params": {"videoLatency": "", "lowLatencyMode": "", "audioOutputCompensated": "", "audioOutputDelay": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 20, "method": "org.rdk.HdmiCecSink.setLatencyInfo", "params": {"videoLatency": "", "lowLatencyMode": "", "audioOutputCompensated": "", "audioOutputDelay": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1197,7 +1197,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 20,
     "result": {
         "success": true
@@ -1230,7 +1230,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "method": "org.rdk.HdmiCecSink.setMenuLanguage",
     "params": {
@@ -1243,7 +1243,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.HdmiCecSink.setMenuLanguage", "params": {"language": "eng"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 21, "method": "org.rdk.HdmiCecSink.setMenuLanguage", "params": {"language": "eng"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1251,7 +1251,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 21,
     "result": {
         "success": true
@@ -1284,7 +1284,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "method": "org.rdk.HdmiCecSink.setOSDName",
     "params": {
@@ -1297,7 +1297,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.HdmiCecSink.setOSDName", "params": {"name": "My TV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 22, "method": "org.rdk.HdmiCecSink.setOSDName", "params": {"name": "My TV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1305,7 +1305,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 22,
     "result": {
         "success": true
@@ -1339,7 +1339,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "method": "org.rdk.HdmiCecSink.setRoutingChange",
     "params": {
@@ -1353,7 +1353,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.HdmiCecSink.setRoutingChange", "params": {"oldPort": "HDMI1", "newPort": "HDMI2"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 23, "method": "org.rdk.HdmiCecSink.setRoutingChange", "params": {"oldPort": "HDMI1", "newPort": "HDMI2"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1361,7 +1361,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 23,
     "result": {
         "success": true
@@ -1394,7 +1394,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "method": "org.rdk.HdmiCecSink.setVendorId",
     "params": {
@@ -1407,7 +1407,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.HdmiCecSink.setVendorId", "params": {"vendorid": "0x0000"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 24, "method": "org.rdk.HdmiCecSink.setVendorId", "params": {"vendorid": "0x0000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1415,7 +1415,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 24,
     "result": {
         "success": true
@@ -1448,7 +1448,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "method": "org.rdk.HdmiCecSink.setupARCRouting",
     "params": {
@@ -1461,7 +1461,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.HdmiCecSink.setupARCRouting", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 25, "method": "org.rdk.HdmiCecSink.setupARCRouting", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1469,7 +1469,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 25,
     "result": {
         "success": true
@@ -1522,7 +1522,7 @@ This event is generated when ARC routing through the HDMI ARC port has been succ
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 26,
     "method": "org.rdk.HdmiCecSink.arcInitiationEvent",
     "params": {
@@ -1546,7 +1546,7 @@ This event is generated when ARC routing through the HDMI ARC port has been term
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 27,
     "method": "org.rdk.HdmiCecSink.arcTerminationEvent",
     "params": {
@@ -1571,7 +1571,7 @@ Provides the logical and physical addresses of the new active source device.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 28,
     "method": "org.rdk.HdmiCecSink.onActiveSourceChange",
     "params": {
@@ -1596,7 +1596,7 @@ Provides the logical address of the newly added device in the CEC network.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 29,
     "method": "org.rdk.HdmiCecSink.onDeviceAdded",
     "params": {
@@ -1620,7 +1620,7 @@ Provides the logical address of the device whose information has been updated.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 30,
     "method": "org.rdk.HdmiCecSink.onDeviceInfoUpdated",
     "params": {
@@ -1644,7 +1644,7 @@ Provides the logical address of the device that has been removed from the CEC ne
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 31,
     "method": "org.rdk.HdmiCecSink.onDeviceRemoved",
     "params": {
@@ -1668,7 +1668,7 @@ Provides the logical address of the source device that sent the <Image View ON> 
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 32,
     "method": "org.rdk.HdmiCecSink.onImageViewOnMsg",
     "params": {
@@ -1693,7 +1693,7 @@ Provides the logical and physical addresses of the source device that is no long
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 33,
     "method": "org.rdk.HdmiCecSink.onInActiveSource",
     "params": {
@@ -1719,7 +1719,7 @@ Provides the logical address and key code of the device when a key press CEC mes
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 34,
     "method": "org.rdk.HdmiCecSink.onKeyPressEvent",
     "params": {
@@ -1744,7 +1744,7 @@ Provides the logical address of the device when a key release CEC message is rec
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 35,
     "method": "org.rdk.HdmiCecSink.onKeyReleaseEvent",
     "params": {
@@ -1768,7 +1768,7 @@ Provides the logical address of the source device that sent the <Text View ON> C
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 36,
     "method": "org.rdk.HdmiCecSink.onTextViewOnMsg",
     "params": {
@@ -1792,7 +1792,7 @@ Provides the logical address of the connected source device that sent the <Image
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 37,
     "method": "org.rdk.HdmiCecSink.onWakeupFromStandby",
     "params": {
@@ -1817,7 +1817,7 @@ Provides the status and connection state of the audio device when it is added or
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 38,
     "method": "org.rdk.HdmiCecSink.reportAudioDeviceConnectedStatus",
     "params": {
@@ -1842,7 +1842,7 @@ Provides the power status of the source device when it changes.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 39,
     "method": "org.rdk.HdmiCecSink.reportAudioDevicePowerStatus",
     "params": {
@@ -1867,7 +1867,7 @@ Provides the mute status and volume level of the device when CEC <Report Audio S
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 40,
     "method": "org.rdk.HdmiCecSink.reportAudioStatusEvent",
     "params": {
@@ -1892,7 +1892,7 @@ Provides the HDMI-CEC enabled status.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 41,
     "method": "org.rdk.HdmiCecSink.reportCecEnabledEvent",
     "params": {
@@ -1918,7 +1918,7 @@ Provides the logical address, opcode, and reason for the feature abort when CEC 
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.HdmiCecSink.reportFeatureAbortEvent",
     "params": {
@@ -1944,7 +1944,7 @@ Provides the audio mode when CEC <Set System Audio Mode> message of device is re
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 43,
     "method": "org.rdk.HdmiCecSink.setSystemAudioModeEvent",
     "params": {
@@ -1968,7 +1968,7 @@ Provides the Short Audio Descriptor (SAD) information when it is received from t
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 44,
     "method": "org.rdk.HdmiCecSink.shortAudiodescriptorEvent",
     "params": {
@@ -1992,7 +1992,7 @@ Provides the logical address of the source device when it changes status to STAN
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 45,
     "method": "org.rdk.HdmiCecSink.standbyMessageReceived",
     "params": {
