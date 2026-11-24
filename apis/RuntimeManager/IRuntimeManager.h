@@ -116,6 +116,17 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @param appInstanceId App identifier for the application/container
     virtual Core::hresult Resume(const string& appInstanceId) = 0;
 
+    /** @brief Set the Rialto session of the application to active state */
+    // @text setActive
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult SetActive(const string& appInstanceId) = 0;
+
+    /** @brief Set the Rialto session of the application to inactive state */
+    // @text setInactive
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult SetInactive(const string& appInstanceId) = 0;
+
+
     /** @brief Terminate the application */
     // @text terminate
     // @param appInstanceId App identifier for the application/container
