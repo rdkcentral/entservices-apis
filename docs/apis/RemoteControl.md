@@ -768,6 +768,8 @@ None
 | result.result.status.remoteData[#].wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all, none, custom |
 | result.result.status.remoteData[#].wakeupCustomList | array | The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom  |
 | result.result.status.remoteData[#].wakeupCustomList[#] | integer |  |
+| result.result.status.remoteData[#].keyCodeList | array | The Linux key codes for every key the remote can send, empty if the remote does not report its keys  |
+| result.result.status.remoteData[#].keyCodeList[#] | integer |  |
 
 ### Examples
 
@@ -834,6 +836,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
                         111,
                         110,
                         107
+                    ],
+                    "keyCodeList": [
+                        2,
+                        3,
+                        4,
+                        103,
+                        108,
+                        105,
+                        106,
+                        28
                     ]
                 }
             ]
@@ -1338,6 +1350,8 @@ Triggered at any time when the status of any one of the supported STB remote net
 | params.status.remoteData[#].wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all, none, custom |
 | params.status.remoteData[#].wakeupCustomList | array | The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom  |
 | params.status.remoteData[#].wakeupCustomList[#] | integer |  |
+| params.status.remoteData[#].keyCodeList | array | The Linux key codes for every key the remote can send, empty if the remote does not report its keys  |
+| params.status.remoteData[#].keyCodeList[#] | integer |  |
 
 ### Examples
 
@@ -1379,6 +1393,16 @@ Triggered at any time when the status of any one of the supported STB remote net
                     111,
                     110,
                     107
+                ],
+                "keyCodeList": [
+                    2,
+                    3,
+                    4,
+                    103,
+                    108,
+                    105,
+                    106,
+                    28
                 ]
             }
         ]
