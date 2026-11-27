@@ -73,7 +73,7 @@ namespace Exchange {
 
             // @brief HDMI connection notification
             // @details Notifies when the HDMI connection status changes.
-            // @param isConnected: connected/disconnected
+            // @param connected: True when HDMI is connected; false when disconnected
             virtual void DisplayConnectionChanged(const bool connected) {};
         };
 
