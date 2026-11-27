@@ -269,6 +269,12 @@ typedef struct {
     SubSampleInfo*     subSample;       // SubSample mapping - Repeating pair of Clear bytes and Encrypted Bytes representing each subsample.
 } SampleInfo;
 
+//FPS
+typedef struct {
+  uint32_t offset;
+  uint32_t size;
+} Cdmi_FPSSliceInfo;
+
 // IStreamProperties to provide information about the current stream
 class IStreamProperties {
 public:
@@ -280,9 +286,6 @@ public:
 
     // Get stream type
     virtual MediaType GetMediaType() const = 0;
-
-    // Deprecated method for backwards compatibility. 
-    virtual uint8_t InitLength() const = 0;
 };
 
 // IMediaKeySessionCallback defines the callback interface to receive
@@ -380,9 +383,15 @@ PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)
                 inData, inDataLength,
                 outDataLength, outData,
                 sampleInfo->keyIdLength, sampleInfo->keyId,
-                properties->InitLength()));
+                0));
 POP_WARNING()
     }
+
+    virtual CDMi_RESULT Decrypt(uint64_t MovieId,uint64_t CryptorId, uint32_t ContentTyp, uint8_t *encryptedData, uint32_t encryptedDataSize, const Cdmi_FPSSliceInfo *SliceInfoArray,uint32_t SliceInfoArrayCount, uint8_t *iv, void *svphan)
+    {
+	    return (CDMi_METHOD_NOT_IMPLEMENTED);
+    }
+
 
     virtual CDMi_RESULT ReleaseClearContent(
         const uint8_t* f_pbSessionKey,
@@ -447,6 +456,42 @@ public:
     virtual CDMi_RESULT DestroyMediaKeySession(
         IMediaKeySession* f_piMediaKeySession)
         = 0;
+
+    // fairplay
+    virtual CDMi_RESULT CreateMovieSession(uint32_t version, const uint8_t* cert, uint32_t certificatesize,
+        const uint32_t* versionlist, uint32_t versionListSize, uint64_t* movieIdOut)
+    {
+        return CDMi_METHOD_NOT_IMPLEMENTED;
+    }
+    virtual CDMi_RESULT DestroyMovieSession(uint32_t version, uint64_t movieId)
+    {
+        return CDMi_METHOD_NOT_IMPLEMENTED;
+    }
+    virtual CDMi_RESULT GenerateChallengeWithVersionList(uint32_t version, uint64_t movieId,
+        const uint8_t* assetidData, uint32_t assetidSize, const uint32_t* versionlist, uint32_t versionListSize,
+        const uint8_t* streamerChallengeData, uint32_t streamerChallengeSize,
+        uint64_t cryptorId, uint8_t* licenseChallengeBuffer, uint8_t* licenseSize, uint8_t* session)
+    {
+        return CDMi_METHOD_NOT_IMPLEMENTED;
+    }
+    virtual CDMi_RESULT DestroyServerExchange(uint32_t version, uint8_t* session)
+    {
+        return CDMi_METHOD_NOT_IMPLEMENTED;
+    }
+    virtual CDMi_RESULT ProcessLicense(uint32_t version, uint8_t* session,
+        const uint8_t* licenseData, uint32_t licenseDataSize, uint8_t* cryptoId)
+    {
+        return CDMi_METHOD_NOT_IMPLEMENTED;
+    }
+    virtual CDMi_RESULT InitLibrary()
+    {
+        return CDMi_METHOD_NOT_IMPLEMENTED;
+    }
+
+     virtual CDMi_RESULT DestroyCryptor(uint32_t version, uint64_t cryptoId)
+     {
+             return CDMi_METHOD_NOT_IMPLEMENTED;
+     }
 };
 
 // IMediaKeySession defines the MediaKeySessionExt interface.
@@ -520,6 +565,19 @@ struct IGoogleCastAuthExtension {
     virtual CDMi_RESULT GenDeviceKeyAndCert(std::string& wrappedDeviceKey /* @out */, std::string& deviceCertificate /* @out */) = 0;
     virtual CDMi_RESULT GetModelCertChain(std::string& certChain /* @out */) const = 0;
     virtual CDMi_RESULT GetSystemId(uint32_t& id /* @out */) const = 0;
+};
+
+// Optional batch (multi-sample) decryption. A standalone extension interface
+struct IMediaKeySessionBatch {
+    virtual ~IMediaKeySessionBatch() = default;
+    virtual CDMi_RESULT DecryptMulti(
+        uint8_t*                 inData,          // Incoming encrypted data
+        const uint32_t           inDataLength,    // Incoming encrypted data length
+        uint8_t**                outData,         // Outgoing decrypted data
+        uint32_t*                outDataLength,   // Outgoing decrypted data length
+        const SampleInfo*        sampleInfo,      // Array of per-sample decrypt information
+        const uint16_t           sampleCount,     // Number of samples in sampleInfo
+        const IStreamProperties* properties) = 0; // Stream Properties
 };
 
 struct IRobustnessExtension {
