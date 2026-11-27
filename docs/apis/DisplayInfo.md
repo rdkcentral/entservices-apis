@@ -387,7 +387,7 @@ Notifies when the HDMI connection status changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.connected | bool |  |
+| params.connected | bool | True when HDMI is connected; false when disconnected |
 
 ### Examples
 
