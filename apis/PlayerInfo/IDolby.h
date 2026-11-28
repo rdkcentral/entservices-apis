@@ -20,7 +20,9 @@
 #pragma once
 
 #include "Module.h"
+#include <string>
 
+// @stubgen:include <com/IIteratorType.h>
 namespace WPEFramework {
 namespace Exchange {
 
@@ -61,7 +63,7 @@ namespace Exchange {
                 // @text dolby_audiomodechanged
                 virtual void AudioModeChanged(const Dolby::IOutput::SoundModes mode, const bool enabled) = 0;
             };
-
+            using IAudioConfigListIterator = RPC::IIteratorType<string, ID_AUDIO_CONFIG_LIST_ITERATOR>;
             virtual uint32_t Register(INotification*) = 0;
             virtual uint32_t Unregister(INotification*) = 0;
 
@@ -89,6 +91,23 @@ namespace Exchange {
             // @text dolby_mode
             virtual uint32_t Mode(const Dolby::IOutput::Type& mode) = 0;
             virtual uint32_t Mode(Dolby::IOutput::Type& mode /* @out */) const = 0;
+
+            // @brief set application audio config
+            // @param audioConfig: application specific audio configuration name
+            // @param enable: true/false
+            // @text setApplicationAudioConfigState
+            virtual uint32_t SetApplicationAudioConfig(const std::string& audioConfig /* @text audioConfig */, const bool &enable) = 0;
+
+            // @brief get application audio config
+            // @param audioConfig: application specific audio configuration name
+            // @param enable: true/false
+            // @text getApplicationAudioConfigState
+            virtual uint32_t GetApplicationAudioConfig(const std::string& audioConfig /* @text audioConfig */, bool &enable /* @out */) const = 0;
+
+            // @brief get application audio config list
+            // @param applicationAudioConfigs: audio config list
+            // @text getSupportedApplicationAudioConfigs
+            virtual uint32_t GetSupportedApplicationAudioConfigs(IAudioConfigListIterator*& applicationAudioConfigs /* @out */) const = 0;
 
         };
     }
